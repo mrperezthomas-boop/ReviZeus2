@@ -1,0 +1,11 @@
+{
+  "contextProviders": [
+    {
+      "name": "file",
+      "params": {
+        "nFiles": 5
+      }
+    }
+  ],
+  "systemMessage": "Lis toujours REVIZEUS_CONTEXT.md avant de répondre à toute question sur ce projet."
+}

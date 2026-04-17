@@ -1,0 +1,42 @@
+---
+description: Règles globales du projet RéviZeus
+globs:
+  - "**/*.kt"
+  - "**/*.xml"
+  - "**/*.kts"
+alwaysApply: true
+---
+
+# RÈGLES RÉVIZEUS POUR CURSOR
+
+## Stack
+Kotlin + XML + ViewBinding. Compose INTERDIT. Min SDK 24, Target/Compile 36, JVM 17.
+
+## Modifications
+- Ne JAMAIS renommer variables, IDs XML, extras, managers existants.
+- Ne JAMAIS supprimer une mécanique existante sans demande explicite.
+- Générer les fichiers COMPLETS modifiés — jamais des snippets.
+- Pas de placeholders, pas de pseudocode.
+- Commenter utilement les ajouts.
+- Si une ressource drawable/raw n'existe pas → le DIRE, ne pas l'inventer.
+
+## Orientation
+Portrait fullscreen partout SAUF mode aventure (sensorLandscape).
+
+## Dialogues
+Toast/AlertDialog pour messages importants = INTERDIT.
+Utiliser DialogRPGManager ou GodSpeechAnimator selon le contexte.
+Typewriter avec sfx_dialogue_blip obligatoire.
+Attente IA = LoadingDivineDialog (jamais un simple spinner).
+
+## Audio
+Tout passe par SoundManager. Délai 300ms entre transitions sonores.
+Arrêt dans onPause(), nettoyage dans onDestroy().
+
+## Room
+Version DB = 9. Migrations explicites obligatoires.
+fallbackToDestructiveMigration() INTERDIT.
+
+## Méthode
+TOUJOURS : audit d'abord → plan → puis code.
+Lire AGENTS.md à la racine pour les règles complètes.
