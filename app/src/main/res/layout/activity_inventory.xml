@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#07070E">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.38"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_hero_profile" />
+
+    <RelativeLayout
+        android:id="@+id/headerInventory"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_divine_card">
+
+        <TextView
+            android:id="@+id/btnBackInventory"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:text="←"
+            android:textColor="#EAD8A3"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="SAC DU HÉROS"
+            android:textColor="#FFD700"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/scrollInventoryTabs"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_below="@id/headerInventory"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutInventoryTabs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_hero_panel"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/tabFragments"
+                android:layout_width="122dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_textelayout"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="FRAGMENTS"
+                android:textColor="@color/incorrect_bg"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tabArtefacts"
+                android:layout_width="122dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_textelayout"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="ARTEFACTS"
+                android:textColor="@color/incorrect_bg"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tabEquipements"
+                android:layout_width="132dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_textelayout"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="ÉQUIPEMENTS"
+                android:textColor="@color/incorrect_bg"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tabObjets"
+                android:layout_width="112dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_textelayout"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="OBJETS"
+                android:textColor="@color/incorrect_bg"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tabReliques"
+                android:layout_width="116dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_textelayout"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="RELIQUES"
+                android:textColor="@color/incorrect_bg"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutInventorySortBar"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_below="@id/layoutFilterChips"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp">
+
+        <TextView
+            android:id="@+id/tvSortCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="Tri : Obtention"
+            android:textColor="#FFD700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btnSortMenu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="▼"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- PACK 2 — Filtres par type -->
+    <HorizontalScrollView
+        android:id="@+id/layoutFilterChips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerInventory"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+        
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:checkedChip="@id/chipTous">
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTous"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOUS"
+                android:textColor="#FFD700"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBouclier"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BOUCLIER"
+                android:textColor="#1E90FF"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipArme"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ARME"
+                android:textColor="#FF4444"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipArtefact"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ARTEFACT"
+                android:textColor="#9C27B0"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipParchemin"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PARCHEMIN"
+                android:textColor="#4CAF50"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOffrande"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFFRANDE"
+                android:textColor="#FF9800"
+                app:chipBackgroundColor="#1A1A2E" />
+            
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollInventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutInventorySortBar"
+        android:layout_marginTop="12dp"
+        android:fillViewport="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="18dp">
+
+        <LinearLayout
+            android:id="@+id/inventoryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp" />
+    </ScrollView>
+
+</RelativeLayout>

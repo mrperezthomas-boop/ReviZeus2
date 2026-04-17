@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    CADRE DE GUIDAGE SCAN — Bordure dorée pour cadrer le texte
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#00000000" />
+    <stroke android:width="3dp" android:color="#80FFD700" />
+    <corners android:radius="8dp" />
+
+</shape>

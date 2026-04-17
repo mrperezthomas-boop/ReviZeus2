@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#55000000"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:id="@+id/layoutDialogRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rpg_dialog"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- TITRE (optionnel) -->
+            <FrameLayout
+                android:id="@+id/layoutTitleContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imgTitleBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_divine_card" />
+
+                <TextView
+                    android:id="@+id/tvDialogTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:textColor="#FFD700"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/cinzel_bold"
+                    android:letterSpacing="0.08"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <!-- ZONE CHIBI + TEXTE NARRATIF -->
+            <LinearLayout
+                android:id="@+id/layoutNarrativeZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Chibi animé du dieu -->
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="#22111122"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/imgGodChibi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avatar_zeus_dialog" />
+                </FrameLayout>
+
+                <!-- Texte principal (typewriter) -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rpg_dialog"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tvGodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Zeus"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDialogMainText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingExtra="4dp"
+                        android:minLines="2"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/exo2"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ZONE ADDITIONNELLE (optionnelle - détails, mnémo, etc.) -->
+            <LinearLayout
+                android:id="@+id/layoutAdditionalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="#1AFFFFFF"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvAdditionalLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DÉTAILS"
+                    android:textColor="#FFD700"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAdditionalText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="#F5F5F5"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- CONTAINER BOUTONS (1 à 3 boutons) -->
+            <LinearLayout
+                android:id="@+id/layoutButtonsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical">
+
+                <!-- Bouton 1 (principal / confirm) -->
+                <FrameLayout
+                    android:id="@+id/layoutButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/imgButton1Bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_temple_button" />
+
+                    <TextView
+                        android:id="@+id/tvButton1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="COMPRIS ⚡"
+                        android:textColor="#FFD700"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:letterSpacing="0.06"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <!-- Bouton 2 (secondaire / cancel) -->
+                <FrameLayout
+                    android:id="@+id/layoutButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgButton2Bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_temple_button" />
+
+                    <ImageView
+                        android:id="@+id/imgButton2Overlay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.35"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_rpg_dialog" />
+
+                    <TextView
+                        android:id="@+id/tvButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="ANNULER"
+                        android:textColor="#CCCCCC"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:letterSpacing="0.06"
+                        android:textSize="14sp" />
+                </FrameLayout>
+
+                <!-- Bouton 3 (tertiaire / option alternative) -->
+                <FrameLayout
+                    android:id="@+id/layoutButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imgButton3Bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_temple_button" />
+
+                    <ImageView
+                        android:id="@+id/imgButton3Overlay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.30"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_rpg_dialog" />
+
+                    <TextView
+                        android:id="@+id/tvButton3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="AUTRE CHOIX"
+                        android:textColor="#87CEEB"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:letterSpacing="0.06"
+                        android:textSize="14sp" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

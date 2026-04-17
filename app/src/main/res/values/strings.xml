@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ReviZeus</string>
+
+    <string-array name="school_classes">
+        <item>CP</item>
+        <item>CE1</item>
+        <item>CE2</item>
+        <item>CM1</item>
+        <item>CM2</item>
+
+        <item>6ème</item>
+        <item>5ème</item>
+        <item>4ème</item>
+        <item>3ème (Brevet)</item>
+
+        <item>Seconde</item>
+        <item>Première</item>
+        <item>Terminale (Baccalauréat)</item>
+    </string-array>
+    <string name="switch_to_login"><u>Déjà initié ? → Se connecter</u></string>
+    <!-- 🔥 WEB CLIENT ID FIREBASE POUR GOOGLE SIGN-IN -->
+    <string name="default_web_client_id">291821180930-790hgcsve2r19a1ut88ntq3dfomersqp.apps.googleusercontent.com</string>
+</resources>

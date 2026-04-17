@@ -1,0 +1,151 @@
+═══════════════════════════════════════════════════════════════
+    🏛️ ⚡ MISE À JOUR DE L'OLYMPE ⚡ 🏛️
+                  VERSION 1.0.6 ✨
+═══════════════════════════════════════════════════════════════
+
+              🎭 Bienvenue, Héros de RéviZeus ! 🎭
+
+    ⚔️ Les dieux de l'Olympe ont forgé de nouvelles améliorations
+                    pour ton entraînement 🛡️
+
+───────────────────────────────────────────────────────────────
+
+
+✨ 🌟 NOUVELLES FONCTIONNALITÉS 🌟 ✨
+───────────────────────────────────────────────────────────────
+
+🎨 💫 INTERFACE & NAVIGATION
+
+  ⭐ Écrans du Dashboard animés selon ton humeur
+    → 🎭 L'ambiance visuelle s'adapte dynamiquement
+
+  ⭐ Bouton MAJ accessible en un clic sur l'écran titre
+    → 🔔 Plus besoin de chercher !
+
+  ⭐ Stats héros en temps réel dans la sélection de compte
+    → 📊 Niveau, éclats 💎, ambroisie 🍯, temps joué ⏱️
+
+  ⭐ Synchronisation parfaite des héros
+    → 👥 Création, chargement et sélection ultra-fluides
+    → 🔄 Données toujours à jour, zéro décalage
+
+  ⭐ Dialogues au format RPG
+    → 💬 Immersion narrative améliorée
+
+
+📚 🎯 SYSTÈME DE QUIZ AMÉLIORÉ
+
+  ⭐ Choix du mode après sauvegarde d'un savoir
+    → ⏱️ Quiz avec timer, 🕐 Quiz sans timer
+    → 🔮 Retour Oracle ou 🏛️ Retour Panthéon
+
+  ⭐ Entraînement Normal
+    → ⚡ Quiz avec ou sans timer
+    → 🎁 Le mode sans timer réduit les récompenses
+
+  ⭐ Entraînement Ultime
+    → 📜 Choix du format Brevet ou 🎓 Bac
+
+  ⭐ Barème des temps adapté à l'âge
+    → 👶 0-10 ans : 30 secondes par question
+    → 🧒 11-20 ans : 25 secondes par question
+    → 👨 21+ ans : 20 secondes par question
+
+
+📖 🏺 ÉVOLUTION DU SYSTÈME DE SAVOIRS
+
+  ⭐ Titre personnalisé pour chaque savoir
+    → ✏️ Nomme tes connaissances comme tu le souhaites !
+
+  ⭐ Sous-dossier de temple pour l'organisation
+    → 🗂️ Range tes savoirs par thématique
+
+  ⭐ Actions avancées sur appui long
+    → 👆 Reste appuyé pour voir une multitude de choix 🎯
+
+
+🎵 🎶 LA LYRE D'APOLLON
+
+  ⭐ Création de musique directement dans l'application
+    → 🎼 Compose tes propres mélodies divines !
+
+  ⭐ Export avec Lyria de Gemini
+    → 📝 Poème et/ou 🎵 musique
+    → 🎤 Compatible Suno : paroles + style
+
+
+🧠 🤖 IA ADAPTATIVE 1.2
+
+  ⭐ Première intégration profonde des profils type
+    → 🎯 L'IA comprend ton style d'apprentissage unique
+    → 📊 Analyse de tes forces et faiblesses en temps réel
+
+  ⭐ Dialogue génératif selon multiples paramètres
+    → 💬 Conversations personnalisées et contextuelles
+    → 🎭 Les dieux s'adaptent à ta personnalité et tes besoins
+    → 🔮 Conseils sur mesure pour progresser efficacement
+
+
+───────────────────────────────────────────────────────────────
+🔧 ⚙️ AMÉLIORATIONS ⚙️ 🔧
+───────────────────────────────────────────────────────────────
+
+  ✅ Stats des héros se mettent à jour correctement
+    → 📈 Niveau, éclats 💎, ambroisie 🍯, temps joué ⏱️
+
+  ✅ Fluidité des transitions entre écrans améliorée
+    → 🌊 Navigation plus douce et agréable
+
+  ✅ Optimisation de la mémoire vidéo
+    → 🚀 Expérience plus fluide et rapide
+
+  ✅ Stabilisation du socle transverse (Bloc A)
+    → 🏗️ BaseActivity, SoundManager, audio/TTS/vidéo, navigation
+
+
+───────────────────────────────────────────────────────────────
+🛠️ 🔨 CORRECTIONS TECHNIQUES 🔨 🛠️
+───────────────────────────────────────────────────────────────
+
+  🔹 Bouton retour Android plus fiable
+    → 📱 Gestion avec API moderne, plus stable sur appareils récents
+
+  🔹 Correction des fuites mémoire
+    → 🧹 Écrans de connexion et menu principal optimisés
+
+  🔹 Code plus propre
+    → 🧼 Suppression de portions obsolètes, meilleure maintenance
+
+
+═══════════════════════════════════════════════════════════════
+
+        👁️ L'Olympe observe tes progrès et adapte tes futurs
+                        enseignements 📚
+
+     🏛️ L'Olympe t'attend, héros. Prêt à découvrir ta nouvelle
+                     aventure ? ⚔️🛡️
+
+                  — L'équipe RéviZeus 🏛️⚡✨
+
+
+    ⚡ 🏆 RÉVISEZ COMME UN DIEU, PROGRESSEZ COMME UN HÉROS 🏆 ⚡
+
+═══════════════════════════════════════════════════════════════
+ 
+═══════════════════════════════════════════════════════════════
+
+===========================================================
+_____  ________      _______ ____________ _    _  _____ 
+|  __ \|  ____\ \    / /_   _|___  /  ____| |  | |/ ____|
+| |__) | |__   \ \  / /  | |    / /| |__  | |  | | (___  
+|  _  /|  __|   \ \/ /   | |   / / |  __| | |  | |\___ \ 
+| | \ \| |____   \  /   _| |_ / /__| |____| |__| |____) |
+|_|  \_\______|   \/   |_____/_____|______| \____/|_____/
+         
+===========================================================
+
+
+
+
+
+

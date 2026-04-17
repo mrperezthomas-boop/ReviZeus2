@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Aura externe XXL -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#0007E3FF"
+                android:centerColor="#3007E3FF"
+                android:endColor="#0007E3FF" />
+            <size android:height="24dp" />
+        </shape>
+    </item>
+
+    <!-- Halo principal cyan -->
+    <item
+        android:top="3dp"
+        android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#0018F3FF"
+                android:centerColor="#8A18F3FF"
+                android:endColor="#0018F3FF" />
+            <size android:height="18dp" />
+        </shape>
+    </item>
+
+    <!-- Halo secondaire bleu-blanc -->
+    <item
+        android:top="6dp"
+        android:bottom="6dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#0039FAFF"
+                android:centerColor="#D039FAFF"
+                android:endColor="#0039FAFF" />
+            <size android:height="12dp" />
+        </shape>
+    </item>
+
+    <!-- Coeur lumineux principal -->
+    <item
+        android:top="9dp"
+        android:bottom="9dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#00C8FFFF"
+                android:centerColor="#FFFFFFFF"
+                android:endColor="#00C8FFFF" />
+            <size android:height="6dp" />
+        </shape>
+    </item>
+
+    <!-- Trait central ultra chaud -->
+    <item
+        android:left="42dp"
+        android:right="42dp"
+        android:top="10dp"
+        android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <solid android:color="#FFFFFFFF" />
+            <size android:height="4dp" />
+        </shape>
+    </item>
+
+    <!-- Pic lumineux horizontal très premium -->
+    <item
+        android:left="110dp"
+        android:right="110dp"
+        android:top="8dp"
+        android:bottom="8dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <gradient
+                android:angle="0"
+                android:startColor="#00FFFFFF"
+                android:centerColor="#FFFFFFFF"
+                android:endColor="#00FFFFFF" />
+            <size android:height="8dp" />
+        </shape>
+    </item>
+
+</layer-list>

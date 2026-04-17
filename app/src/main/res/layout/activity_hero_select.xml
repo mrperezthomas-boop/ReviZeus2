@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_hero_select.xml — Sélection des héros d'un compte
+    Correctif :
+    - fond animé via AnimatedBackgroundHelper
+    - particules olympiennes branchées
+    - panneau sobre, sans ressources géantes disproportionnées
+    - RecyclerView qui affichera des cartes alignées sur item_account_card
+-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootHeroSelect"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#05050A" />
+
+    <com.revizeus.app.OlympianParticlesView
+        android:id="@+id/olympianParticlesView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#18000000" />
+
+    <FrameLayout
+        android:id="@+id/layoutHeroSelectHeader"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_divine_card" />
+
+        <TextView
+            android:id="@+id/btnBackHeroSelect"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cinzel_bold"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="#EAD8A3"
+            android:textSize="26sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="58dp"
+            android:paddingEnd="58dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cinzel_bold"
+                android:letterSpacing="0.08"
+                android:text="⚔  TES HÉROS"
+                android:textColor="#FFD700"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvHeroSelectEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/exo2"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="#F4E7B7"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layoutHeroSelectPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutHeroSelectHeader"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.78"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_rpg_dialog" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#12000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHeroSlots"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="18dp"
+            android:scrollbars="none" />
+    </FrameLayout>
+
+</RelativeLayout>

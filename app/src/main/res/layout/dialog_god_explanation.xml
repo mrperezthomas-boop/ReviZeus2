@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutGodExplanationRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rpg_dialog"
+    android:padding="18dp">
+
+    <!-- CHANTIER 1.1 & 1.2
+         Header premium avec portrait mieux cadré et hiérarchie visuelle propre. -->
+    <LinearLayout
+        android:id="@+id/layoutGodHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/layoutPortraitFrame"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:background="#22111122"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/imgGodPortrait"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/avatar_zeus_dialog" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutGodTitleZone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Zeus — Question 7"
+                android:textColor="#FFD700"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDialogSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Correction divine"
+                android:textColor="#CCFFFFFF"
+                android:textSize="13sp" />
+
+            <View
+                android:id="@+id/viewHeaderAccent"
+                android:layout_width="56dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="#66FFD700" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- CHANTIER 1.1 & 1.2
+         Bloc principal d'explication. -->
+    <LinearLayout
+        android:id="@+id/layoutExplanationCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical"
+        android:background="#1AFFFFFF"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvExplanationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EXPLICATION"
+            android:textColor="#FFD700"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGodExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5dp"
+            android:text="L'explication divine apparaîtra ici."
+            android:textColor="#F5F5F5"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- CHANTIER 1.1 & 1.2
+         Bloc mnémotechnique premium dédié. -->
+    <LinearLayout
+        android:id="@+id/layoutMnemoZone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        android:background="#26FFD700"
+        android:paddingStart="16dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:id="@+id/tvMnemoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚡ MNÉMO DIVIN"
+            android:textColor="#FFD700"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGodMnemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3dp"
+            android:text="Le mnemo apparaîtra ici."
+            android:textColor="#FFF8DC"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- CHANTIER 1.1 & 1.2
+         Bouton intégré au layout pour remplacer le bouton système AlertDialog
+         et garder une DA premium cohérente. -->
+    <RelativeLayout
+        android:id="@+id/layoutDialogButtonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="18dp">
+
+        <ImageView
+            android:id="@+id/imgDialogButtonBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:id="@+id/btnDialogConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="COMPRIS ⚡"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</LinearLayout>

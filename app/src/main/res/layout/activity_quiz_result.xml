@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+═══════════════════════════════════════════════════════════════
+QUIZ RESULT ACTIVITY - LAYOUT PREMIUM
+═══════════════════════════════════════════════════════════════
+CHANGEMENTS :
+✅ Conservation des IDs existants
+✅ Refactor premium du bloc verdict divin
+✅ 6 étoiles conservées
+✅ flashOverlay + perfectParticles conservés
+✅ Aucun nouveau drawable requis
+✅ Toujours plein écran portrait
+✅ AJOUT BLOC 1C FINAL :
+   - layoutFragmentsBreakdown sous tvRewardFragments
+   - permet l'affichage premium multi-matières sans casser l'UI existante
+═══════════════════════════════════════════════════════════════
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A">
+
+    <ImageView
+        android:id="@+id/imgBackgroundResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.14"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_olympus_dark" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollQuizResult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnReturnDashboard"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layoutQuizResultContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <RelativeLayout
+                android:id="@+id/layoutResultTitle"
+                android:layout_width="290dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/imgResultTitleBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_temple_button" />
+
+                <TextView
+                    android:id="@+id/tvResultTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="BUTIN DE QUÊTE"
+                    android:textColor="#FFD700"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/star1"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_empty" />
+
+                <ImageView
+                    android:id="@+id/star2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_empty" />
+
+                <ImageView
+                    android:id="@+id/star3"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_empty" />
+
+                <ImageView
+                    android:id="@+id/star4"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_empty" />
+
+                <ImageView
+                    android:id="@+id/star5"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_empty" />
+
+                <ImageView
+                    android:id="@+id/star6"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_star_divine"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCurrencyRewards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_hud_panel"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingStart="14dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_currency_eclat_savoir" />
+
+                    <TextView
+                        android:id="@+id/tvRewardEclats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+0 Éclats de Savoir"
+                        android:textColor="#FFD700"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_currency_ambroisie" />
+
+                    <TextView
+                        android:id="@+id/tvRewardAmbroisie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+0 Ambroisie"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgRewardFragments"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@android:drawable/star_on" />
+
+                    <TextView
+                        android:id="@+id/tvRewardFragments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+0 Fragments"
+                        android:textColor="#F3E6B3"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutFragmentsBreakdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0 / 0"
+                android:textColor="#FFFFFF"
+                android:textSize="58sp"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/pbQuizScore"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="34dp"
+                android:progressTint="#FFD700" />
+
+            <RelativeLayout
+                android:id="@+id/layoutXpReward"
+                android:layout_width="240dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/imgXpRewardBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_temple_button" />
+
+                <TextView
+                    android:id="@+id/tvXpGained"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+0 XP"
+                    android:textColor="#FFD700"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutZeusDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_rpg_dialog"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutVerdictHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/layoutVerdictPortraitFrame"
+                        android:layout_width="92dp"
+                        android:layout_height="92dp"
+                        android:background="#22111122"
+                        android:padding="6dp">
+
+                        <ImageView
+                            android:id="@+id/imgZeusResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/avatar_zeus_dialog" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutVerdictTitleZone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvVerdictLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VERDICT DIVIN"
+                            android:textColor="#FFD700"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvVerdictSubLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#CCFFFFFF"
+                            android:textSize="13sp" />
+
+                        <View
+                            android:id="@+id/viewVerdictAccent"
+                            android:layout_width="58dp"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#66FFD700" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutVerdictMessageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="#1AFFFFFF"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="14dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/tvVerdictMessageLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MESSAGE"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvZeusMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:text="L'Oracle examine tes parchemins..."
+                        android:textColor="#F5F5F5"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewReviewSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#66FFD700" />
+
+            <TextView
+                android:id="@+id/tvReviewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="RÉSUMÉ DE L'ÉPREUVE"
+                android:textColor="#FFD700"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/containerQuizReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnReturnDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_temple_button"
+        android:text="🏛️ RETOUR AU PANTHÉON"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.revizeus.app.OlympianParticlesView
+        android:id="@+id/perfectParticles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/flashOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="#FFFFD700"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

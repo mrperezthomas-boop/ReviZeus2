@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_avatar.xml
+    FIX CARROUSEL : android:clipChildren="false" ajouté sur le ConstraintLayout racine.
+    Sans ça, le parent coupait les cartes voisines même avec clipChildren=false sur le RV.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:clipChildren="false"
+    tools:screenOrientation="portrait">
+
+    <!-- Fond still — fallback bg_olympus_animated, remplacé par bg_avatar_heroN au snap -->
+    <ImageView
+        android:id="@+id/ivAvatarBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_olympus_animated"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Fond vidéo MP4 — invisible jusqu'à STATE_READY -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/pvAvatarBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:visibility="invisible"
+        app:resize_mode="zoom"
+        app:show_buffering="never"
+        app:use_controller="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Voile sombre -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#50000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Titre -->
+    <TextView
+        android:id="@+id/tvAvatarName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/cinzel"
+        android:text="TON INCARNATION"
+        android:textColor="#FFD700"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Carrousel — clipToPadding=false + clipChildren=false pour débordement latéral -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAvatars"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/layoutDialogRPG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAvatarName" />
+
+    <!-- Dialogue Zeus -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutDialogRPG"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:background="@drawable/bg_rpg_dialog"
+        android:padding="12dp"
+        app:layout_constraintBottom_toTopOf="@id/btnConfirmAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvAvatars">
+
+        <ImageView
+            android:id="@+id/imgZeusDialog"
+            android:layout_width="90dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_zeus_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvZeusSpeech"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/exo2"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/layoutConfirmButtons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgZeusDialog"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layoutConfirmButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <FrameLayout
+                android:id="@+id/btnNoAvatar"
+                android:layout_width="96dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" android:src="@drawable/bg_temple_button" />
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.35" android:scaleType="fitXY" android:src="@drawable/bg_textelayout" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:fontFamily="@font/cinzel" android:letterSpacing="0.06" android:text="NON" android:textColor="#FFD700" android:textSize="13sp" android:textStyle="bold" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/btnYesAvatar"
+                android:layout_width="96dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" android:src="@drawable/bg_temple_button" />
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.30" android:scaleType="fitXY" android:src="@drawable/bg_textelayout" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:fontFamily="@font/cinzel" android:text="OUI" android:textColor="#1A0A00" android:textSize="13sp" android:textStyle="bold" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bouton principal -->
+    <FrameLayout
+        android:id="@+id/btnConfirmAvatar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitXY" android:src="@drawable/bg_temple_button" />
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.30" android:scaleType="fitXY" android:src="@drawable/bg_textelayout" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/cinzel"
+            android:letterSpacing="0.04"
+            android:text="SCELLER MON DESTIN"
+            android:textColor="@color/ambre_promethee"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

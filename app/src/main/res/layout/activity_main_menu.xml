@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_main_menu.xml — Les Portes de l'Olympe
+    ──────────────────────────────────────────────────────────
+    3 boutons FrameLayout (règle design #10 — 3 couches) :
+    ① btnDemarrerAventure  = "NOUVEAU COMPTE"        → LoginActivity (inscription)
+    ② btnChargerPartie     = "CHARGER UN COMPTE"     → LoginActivity (connexion email)
+    ③ btnChargerHeros      = "CHARGER UN HÉROS"      → AccountSelectActivity (local)
+
+    IDs ① et ② conservés (rétrocompat ViewBinding existant).
+-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A">
+
+    <!-- Fond -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_debut"
+        android:alpha="0.85"
+        android:contentDescription="@null" />
+
+    <!-- Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <!-- Titre RéviZeus -->
+    <TextView
+        android:id="@+id/tvMainMenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/cinzel_bold"
+        android:text="RÉVIZEUS"
+        android:textColor="#FFD700"
+        android:textSize="30sp"
+        android:letterSpacing="0.2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvMainMenuTitle"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/cinzel"
+        android:text="L'OLYMPE DU SAVOIR"
+        android:textColor="#AAFFD700"
+        android:textSize="12sp"
+        android:letterSpacing="0.15" />
+
+    <!-- Conteneur des 3 boutons centré -->
+    <LinearLayout
+        android:id="@+id/layoutMenuButtons"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <!-- ① NOUVEAU COMPTE (ancien btnDemarrerAventure conservé) -->
+        <FrameLayout
+            android:id="@+id/btnDemarrerAventure"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.30"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_textelayout"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:letterSpacing="0.06"
+                android:text="✦  NOUVEAU COMPTE"
+                android:textColor="@color/ambre_promethee"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <!-- ② CHARGER UN COMPTE (ancien btnChargerPartie conservé) -->
+        <FrameLayout
+            android:id="@+id/btnChargerPartie"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.30"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_textelayout"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:letterSpacing="0.06"
+                android:text="📜SE CONNECTER"
+                android:textColor="@color/incorrect_text"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <!-- ③ CHARGER UN HÉROS EXISTANT (NOUVEAU) -->
+        <FrameLayout
+            android:id="@+id/btnChargerHeros"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.35"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_textelayout"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/cinzel_bold"
+                android:text="⚔  CHARGER UN HÉROS EXISTANT"
+                android:textColor="#FFD700"
+                android:textSize="13sp"
+                android:letterSpacing="0.05" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Version en bas -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/cinzel"
+        android:text="v1.0.5 — Révizeus"
+        android:textColor="#55FFD700"
+        android:textSize="10sp" />
+
+</RelativeLayout>

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+═══════════════════════════════════════════════════════════════
+DASHBOARD ACTIVITY - LAYOUT
+═══════════════════════════════════════════════════════════════
+RECTIFICATION HUD SCROLLABLE :
+✅ Une seule ligne horizontale scrollable
+✅ Tous les raccourcis vivent dans le XML, donc réorganisables à la main
+✅ btnMoodDash déplacé à côté de la Forge dans la ligne d'items
+✅ IDs existants conservés
+✅ Architecture générale de l'écran conservée
+═══════════════════════════════════════════════════════════════
+-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A"
+    tools:context=".DashboardActivity">
+
+    <FrameLayout
+        android:id="@+id/containerDashboardBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Fond vidéo animé (si disponible) -->
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/pvDashboardBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.55"
+            android:visibility="gone"
+            app:resize_mode="zoom"
+            app:surface_type="texture_view"
+            app:use_controller="false" />
+
+        <!-- Fond statique (fallback) -->
+        <ImageView
+            android:id="@+id/ivDashboardBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.55"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_olympus_dark" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/headerStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <!--
+            Le HUD devient scrollable horizontalement sur UNE SEULE LIGNE.
+            Tu pourras déplacer les éléments directement dans layoutHudItemsRow.
+        -->
+        <HorizontalScrollView
+            android:id="@+id/layoutCurrenciesHud"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/bg_hud_panel"
+            android:elevation="16dp"
+            android:fillViewport="false"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/layoutHudItemsRow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/chipEclat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_hud_chip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivCurrencyEclat"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="Éclats de savoir"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_currency_eclat_savoir" />
+
+                    <TextView
+                        android:id="@+id/tvCurrencyEclat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/vt323_regular"
+                        android:text="0"
+                        android:textColor="#FFE27A"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chipAmbroisie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_hud_chip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivCurrencyAmbroisie"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="Ambroisie"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_currency_ambroisie" />
+
+                    <TextView
+                        android:id="@+id/tvCurrencyAmbroisie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/vt323_regular"
+                        android:text="0"
+                        android:textColor="#F1DAFF"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chipDayStreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_hud_chip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivDayStreakHud"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="Day streak"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_day_streak_olympian" />
+
+                    <TextView
+                        android:id="@+id/tvDayStreakHud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/vt323_regular"
+                        android:text="0"
+                        android:textColor="#FFB35A"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chipWinStreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_hud_chip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivWinStreakHud"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="Win streak"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_win_streak_olympian" />
+
+                    <TextView
+                        android:id="@+id/tvWinStreakHud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/vt323_regular"
+                        android:text="0"
+                        android:textColor="#FFE27A"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnInventoryDash"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Inventaire"
+                    android:scaleType="fitCenter"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:src="@drawable/ic_inventory_bag_olympian" />
+
+                <ImageButton
+                    android:id="@+id/btnBadgeBookDash"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Livre des badges"
+                    android:scaleType="fitCenter"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:src="@drawable/ic_badge_book_olympian" />
+
+                <FrameLayout
+                    android:id="@+id/chipForge"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/btnForge"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:contentDescription="Forge d'Héphaïstos"
+                        android:focusable="false"
+                        android:scaleType="fitCenter"
+                        android:scaleX="1.7"
+                        android:scaleY="1.7"
+                        android:src="@drawable/ic_forge_hammer" />
+
+                    <View
+                        android:id="@+id/viewForgeNotif"
+                        android:layout_width="9dp"
+                        android:layout_height="9dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@drawable/ic_star_divine"
+                        android:elevation="4dp"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <!--
+                    Bouton humeur déplacé ici comme demandé.
+                    Tu pourras le repositionner manuellement dans cette ligne.
+                -->
+                <ImageButton
+                    android:id="@+id/btnMoodDash"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Changer l'humeur"
+                    android:padding="4dp"
+                    android:scaleType="fitCenter"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_mood_oracle" />
+
+
+                <ImageButton
+                    android:id="@+id/btnAdventureLocked"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Aventure verrouillée"
+                    android:padding="3dp"
+                    android:scaleType="fitCenter"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_aventure_locked" />
+
+                <ImageButton
+                    android:id="@+id/btnSettings"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Réglages"
+                    android:elevation="20dp"
+                    android:scaleType="fitCenter"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_settings_gameplay" />
+
+                <FrameLayout
+                    android:id="@+id/frameDebugML"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="true"
+                    android:elevation="20dp"
+                    android:focusable="true">
+
+                    <View
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="#CC0A0A14" />
+
+                    <ImageButton
+                        android:id="@+id/btnDebugML"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_debug_button"
+                        android:contentDescription="Debug ML Analytics"
+                        android:scaleType="fitCenter" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/llRecentBadges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutCurrenciesHud"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/layoutHeroTopBar"
+            android:layout_width="336dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/layoutCurrenciesHud"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp">
+
+            <FrameLayout
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:layout_centerInParent="true"
+                android:elevation="12dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_temple_button" />
+
+                <TextView
+                    android:id="@+id/tvHeroName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/cinzel"
+                    android:gravity="center"
+                    android:text="HÉROS"
+                    android:textColor="#FFD700"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- BLOC 3C — CONTAINER WIDGET INSIGHTS DU JOUR                   -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- Ce LinearLayout est rempli dynamiquement par DashboardActivity
+         avec le widget DashboardInsightsWidget.
+         Position : Juste sous le headerStats, au-dessus de l'avatar. -->
+    <ScrollView
+        android:id="@+id/scrollInsightsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerStats"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_above="@id/imgFrame"
+        android:scrollbars="vertical"
+        android:fillViewport="false"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:id="@+id/insightsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+    </ScrollView>
+
+
+    <ImageView
+        android:id="@+id/imgFrame"
+        android:layout_width="430dp"
+        android:layout_height="460dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:elevation="2dp"
+        android:src="@drawable/frame_avatar_gold" />
+
+    <ImageView
+        android:id="@+id/imgAvatarHero"
+        android:layout_width="220dp"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="152dp"
+        android:clickable="true"
+        android:contentDescription="Avatar du héros"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/sym_def_app_icon" />
+
+    <FrameLayout
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="390dp"
+        android:elevation="12dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:id="@+id/tvLevel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/vt323_regular"
+            android:gravity="center"
+            android:text="LVL 1"
+            android:textColor="#FFD700"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="420dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="430dp"
+        android:elevation="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:scaleX="1.2"
+            android:src="@drawable/bg_divine_card" />
+
+        <ProgressBar
+            android:id="@+id/pbXp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:max="500"
+            android:progress="0"
+            android:progressDrawable="@drawable/custom_xp_bar" />
+
+        <TextView
+            android:id="@+id/tvXpTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/vt323_regular"
+            android:text="0 / 500 XP"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="20sp"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/btnNewCourse"
+        android:layout_width="280dp"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_oracle_eye" />
+
+    <FrameLayout
+        android:layout_width="170dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
+        android:elevation="100dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:id="@+id/labelOracle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:text="ORACLE"
+            android:textColor="#FFD700"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/btnDailyTraining"
+        android:layout_width="105dp"
+        android:layout_height="145dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-54dp"
+        android:layout_marginBottom="50dp"
+        android:layout_toStartOf="@id/btnNewCourse"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:src="@drawable/icon_daily_trainingh" />
+
+    <FrameLayout
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-69dp"
+        android:layout_marginBottom="35dp"
+        android:layout_toStartOf="@id/btnNewCourse"
+        android:elevation="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:id="@+id/labelTraining"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:text="ENTRAÎNEMENT"
+            android:textColor="#FFD700"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/btnLibrary"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-42dp"
+        android:layout_marginBottom="55dp"
+        android:layout_toEndOf="@id/btnNewCourse"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:src="@drawable/ic_library_scroll" />
+
+    <FrameLayout
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-44dp"
+        android:layout_marginBottom="35dp"
+        android:layout_toEndOf="@id/btnNewCourse"
+        android:elevation="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:id="@+id/labelLibrary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:text="SAVOIR"
+            android:textColor="#FFD700"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+</RelativeLayout>

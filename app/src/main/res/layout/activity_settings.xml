@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A"
+    tools:context=".SettingsActivity">
+
+    <ImageView
+        android:id="@+id/ivSettingsBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.60"
+        android:src="@drawable/bg_settings_olympus" />
+
+    <RelativeLayout
+        android:id="@+id/layoutTitre"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_divine_cardo"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/ivTitleBg"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:elevation="0dp"
+            android:src="@drawable/bg_temple_button" />
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="RÉGLAGES"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15" />
+
+        <FrameLayout
+            android:id="@+id/btnInfoSettings"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:scaleX="1.3">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.35"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_textelayout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/cinzel_bold"
+                android:gravity="center"
+                android:text="i"
+                android:textColor="@color/incorrect_text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBoutonsBas"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button"
+                app:tint="#8B9BB4"
+                app:tintMode="multiply" />
+
+            <Button
+                android:id="@+id/btnRetour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:elevation="2dp"
+                android:fontFamily="@font/cinzel_bold"
+                android:text="RETOUR"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_temple_button" />
+
+            <Button
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:elevation="2dp"
+                android:fontFamily="@font/cinzel_bold"
+                android:text="OK"
+                android:textColor="@color/ambre_promethee"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutCorps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/layoutBoutonsBas"
+        android:layout_below="@id/layoutTitre"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        android:elevation="5dp">
+
+        <ScrollView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_settings_sidebar"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
+
+                <LinearLayout
+                    android:id="@+id/tabAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@drawable/bg_tab_selected">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_audio"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Audio"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFD700"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabAffichage"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_display"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Affichage"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabAccessibilite"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_access"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Accès"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabNotifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_notif"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notifs"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabCompte"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_account"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compte"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabGameplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_gameplay"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gameplay"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabAvance"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings_avance"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avancé"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/tabJukebox"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_star_divine" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="JukeBox"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/layoutContenu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_settings_panel_dark">
+
+            <ScrollView
+                android:id="@+id/panelAudio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎵  Audio"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Volume Musique" />
+                    <LinearLayout style="@style/SeekRow">
+                        <SeekBar android:id="@+id/seekMusiqueVolume" style="@style/SeekBarStyle" android:max="100" android:progress="80" />
+                        <TextView android:id="@+id/tvMusiqueVolume" style="@style/SeekValue" android:textColor="#FFD700" android:text="80" />
+                    </LinearLayout>
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Volume Bruitages" />
+                    <LinearLayout style="@style/SeekRow">
+                        <SeekBar android:id="@+id/seekSfxVolume" style="@style/SeekBarStyle" android:max="100" android:progress="65" />
+                        <TextView android:id="@+id/tvSfxVolume" style="@style/SeekValue" android:textColor="#FFD700" android:text="65" />
+                    </LinearLayout>
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Volume Dialogues" />
+                    <LinearLayout style="@style/SeekRow">
+                        <SeekBar android:id="@+id/seekDialogueVolume" style="@style/SeekBarStyle" android:max="100" android:progress="75" />
+                        <TextView android:id="@+id/tvDialogueVolume" style="@style/SeekValue" android:textColor="#FFD700" android:text="75" />
+                    </LinearLayout>
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Muet Général" />
+                        <Switch android:id="@+id/switchMuet" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Qualité Audio" />
+                        <Spinner android:id="@+id/spinnerQualiteAudio" style="@style/SpinnerStyle" android:background="@android:color/transparent" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnResetAudio"
+                        style="@style/BtnReset"
+                        android:text="◆  Rétablir  ◆"
+                        android:textColor="@color/incorrect_text" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+
+            <ScrollView
+                android:id="@+id/panelAffichage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👁  Affichage"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Taille du Texte" />
+                    <LinearLayout style="@style/SeekRow">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="A" android:textColor="#FFFFFF" android:textSize="12sp"
+                            android:layout_marginEnd="4dp" />
+                        <SeekBar android:id="@+id/seekTailleTexte" style="@style/SeekBarStyle" android:max="4" android:progress="2" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="A" android:textColor="#FFD700" android:textSize="20sp"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Vitesse Dialogues" />
+                    <LinearLayout style="@style/SeekRow">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="🐢" android:textSize="16sp" android:layout_marginEnd="4dp" />
+                        <SeekBar android:id="@+id/seekVitesseDialogue" style="@style/SeekBarStyle" android:max="4" android:progress="2" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="⚡" android:textSize="16sp" android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <Button android:id="@+id/btnResetAffichage" style="@style/BtnReset" android:textColor="#FFFFFF" android:text="◆  Rétablir  ◆" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/panelAccessibilite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="♿  Accessibilité"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Mode Daltonien" />
+                        <Switch android:id="@+id/switchDaltonien" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutDaltonismeType"
+                        style="@style/SwitchRow"
+                        android:visibility="gone">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Type" />
+                        <Spinner android:id="@+id/spinnerDaltonisme" style="@style/SpinnerStyle" android:background="@android:color/transparent" />
+                    </LinearLayout>
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Contraste Élevé" />
+                        <Switch android:id="@+id/switchContrasteEleve" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Réduire Flashs" />
+                        <Switch android:id="@+id/switchReduireFlashs" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Sans Animations" />
+                        <Switch android:id="@+id/switchAnimationsOff" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <Button android:id="@+id/btnResetAccessibilite" style="@style/BtnReset" android:textColor="#FFFFFF" android:text="◆  Rétablir  ◆" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/panelNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔔  Notifications"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Heure de rappel" />
+                        <Button
+                            android:id="@+id/btnHeureRappel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:text="21h30"
+                            android:fontFamily="@font/vt323_regular"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:background="@drawable/bg_temple_button_inset"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+                    </LinearLayout>
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Défis Quotidiens" />
+                        <Switch android:id="@+id/switchNotifQuotidien" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="QCM Hebdomadaire" />
+                        <Switch android:id="@+id/switchNotifQcm" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Récompenses" />
+                        <Switch android:id="@+id/switchNotifRecompenses" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Streak en danger 🔥" />
+                        <Switch android:id="@+id/switchNotifStreak" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <Button android:id="@+id/btnResetNotifs" style="@style/BtnReset" android:textColor="#FFFFFF" android:text="◆  Rétablir  ◆" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/panelCompte"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚔  Compte"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Nom du Héros" />
+                    <TextView
+                        android:id="@+id/tvNomHeros"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:text="—"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_textelayout"
+                        android:paddingStart="10dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="6dp" />
+
+                    <Button
+                        android:id="@+id/btnModifierPseudo"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="✏  Modifier le pseudo"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginBottom="14dp" />
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Niveau" />
+                        <TextView android:id="@+id/tvNiveauCompte" style="@style/StatValue" android:textColor="#FFD700" android:text="LVL 1" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="XP Total" />
+                        <TextView android:id="@+id/tvXpCompte" style="@style/StatValue" android:textColor="#FFD700" android:text="0 XP" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Streak" />
+                        <TextView android:id="@+id/tvStreakCompte" style="@style/StatValue" android:textColor="#FFD700" android:text="0 🔥" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Cours scannés" />
+                        <TextView android:id="@+id/tvCoursCompte" style="@style/StatValue" android:textColor="#FFFFFF" android:text="—" />
+                    </LinearLayout>
+
+                    <View style="@style/Separator" />
+
+                    <Button
+                        android:id="@+id/btnChangerAvatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="🏺  Changer d'Avatar"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginBottom="10dp" />
+
+                    <Button
+                        android:id="@+id/btnReinitialiser"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="⚠  Réinitialiser Progression"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FF4444"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginTop="4dp" />
+
+                    <Button
+                        android:id="@+id/btnRestartAdventure"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:text="↺  Recommencer l'aventure"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset" />
+
+                    <Button
+                        android:id="@+id/btnDeleteAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:text="✖  Supprimer le compte"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FF4444"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset" />
+
+                    <View style="@style/Separator" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👨‍👩‍👦  Parents"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/etParentEmailSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/bg_textelayout"
+                        android:fontFamily="@font/exo2"
+                        android:hint="Email du parent"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#80000000" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Résumé hebdomadaire parent" />
+                        <Switch android:id="@+id/switchNotifParents" style="@style/SwitchStyle" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvParentRpgExplanation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/exo2"
+                        android:text="Les dieux envoient directement tes résultats hebdomadaires pour qu'ils puissent t'aider à construire ton avenir."
+                        android:textColor="#FFE0B2"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSaveParentSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="✉  Sauvegarder l'espace parents"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginBottom="10dp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/panelGameplay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎮  Gameplay"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Difficulté" />
+                    <Spinner
+                        android:id="@+id/spinnerDifficulte"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Questions par Quiz" />
+                    <Spinner
+                        android:id="@+id/spinnerNbQuestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <TextView style="@style/SettingsLabel" android:textColor="#F0F0F0" android:text="Temps / Question" />
+                    <Spinner
+                        android:id="@+id/spinnerTempsLimite"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Corrections détaillées" />
+                        <Switch android:id="@+id/switchCorrections" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Révision Espacée ⏳" />
+                        <Switch android:id="@+id/switchRevisionEspacee" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Vibrations Haptiques" />
+                        <Switch android:id="@+id/switchHaptique" style="@style/SwitchStyle" android:checked="true" />
+                    </LinearLayout>
+
+                    <Button android:id="@+id/btnResetGameplay" style="@style/BtnReset" android:textColor="#FFFFFF" android:text="◆  Rétablir  ◆" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/panelAvance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚙  Avancé"
+                        android:fontFamily="@font/cinzel_bold"
+                        android:textColor="#FFD700"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="14dp" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Langue" />
+                        <Spinner android:id="@+id/spinnerLangue" style="@style/SpinnerStyle" android:background="@android:color/transparent" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvLangueLock"
+                        style="@style/BadgeBientot"
+                        android:text="🔒 Bientôt disponible"
+                        android:layout_marginBottom="10dp" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Thème Visuel" />
+                        <Spinner android:id="@+id/spinnerTheme" style="@style/SpinnerStyle" android:background="@android:color/transparent" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvThemeLock"
+                        style="@style/BadgeBientot"
+                        android:text="🔒 Bientôt disponible"
+                        android:layout_marginBottom="10dp" />
+
+                    <View style="@style/Separator" />
+
+                    <LinearLayout style="@style/SwitchRow">
+                        <TextView style="@style/SettingsLabelInline" android:textColor="#F0F0F0" android:text="Mode Hors-Ligne" />
+                        <Switch android:id="@+id/switchHorsLigne" style="@style/SwitchStyle" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvHorsLigneLock"
+                        style="@style/BadgeBientot"
+                        android:text="🔒 Bientôt disponible"
+                        android:layout_marginBottom="10dp" />
+
+                    <View style="@style/Separator" />
+
+                    <Button
+                        android:id="@+id/btnViderCache"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="🗑  Vider le cache"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginBottom="10dp" />
+
+                    <Button
+                        android:id="@+id/btnExporter"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="📤  Exporter les résumés"
+                        android:fontFamily="@font/cinzel"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_temple_button_inset"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:id="@+id/tvExportLock"
+                        style="@style/BadgeBientot"
+                        android:text="🔒 Bientôt disponible"
+                        android:layout_marginBottom="10dp" />
+
+                    <Button android:id="@+id/btnResetAvance" style="@style/BtnReset" android:textColor="#FFFFFF" android:text="◆  Rétablir  ◆" />
+                </LinearLayout>
+            </ScrollView>
+
+
+            <RelativeLayout
+                android:id="@+id/panelJukebox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="12dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="14dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvCurrentTrack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tab_selected"
+                    android:fontFamily="@font/exo2"
+                    android:padding="10dp"
+                    android:text="Aucune piste du jukebox en lecture."
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:id="@+id/layoutJukeboxTopButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCurrentTrack"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_temple_button"
+                            app:tint="#8B9BB4"
+                            app:tintMode="multiply" />
+
+                        <Button
+                            android:id="@+id/btnStopJukebox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:elevation="2dp"
+                            android:fontFamily="@font/cinzel_bold"
+                            android:text="⏹ ARRÊT"
+                            android:textColor="@color/design_default_color_error"
+                            android:textSize="12sp" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_temple_button" />
+
+                        <Button
+                            android:id="@+id/btnResumeGameMusic"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:elevation="2dp"
+                            android:fontFamily="@font/cinzel_bold"
+                            android:text="↺ RETOUR JEU"
+                            android:textColor="@color/ambre_promethee"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvJukeboxTracks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/layoutJukeboxTopButtons"
+                    android:layout_marginTop="12dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:paddingBottom="18dp" />
+            </RelativeLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    panel_tutorial.xml — RéviZeus v9
+    Panneau Tutoriel pour activity_settings.xml
+
+    INSTRUCTIONS D'INTÉGRATION :
+    Ce fichier décrit le panneau à ajouter dans le FrameLayout
+    "layoutContenu" de activity_settings.xml, après panelAvance.
+
+    Copie le contenu du ScrollView ci-dessous et colle-le
+    en dernier enfant du FrameLayout layoutContenu,
+    juste après la fermeture </ScrollView> de panelAvance.
+
+    NOUVEAUX IDs à ajouter dans activity_settings.xml :
+      - tabTutorial          (dans la sidebar LinearLayout)
+      - panelTutorial        (dans le FrameLayout contenu)
+      - tvTutoProgression    (texte "X / 15 étapes vues")
+      - btnTutoRejouer       (bouton rejouer tutoriel)
+      - btnTutoTout          (filtre : Tout)
+      - btnTutoZeus          (filtre : Zeus)
+      - btnTutoAthena        (filtre : Athéna)
+      - btnTutoAres          (filtre : Arès)
+      - btnTutoHephaistos    (filtre : Héphaïstos)
+      - rvTutorialSteps      (RecyclerView des étapes)
+-->
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- ONGLET TUTORIEL — à ajouter dans la sidebar            -->
+<!-- Après tabAvance dans le LinearLayout de la sidebar     -->
+<!-- ════════════════════════════════════════════════════════ -->
+<!--
+<LinearLayout
+    android:id="@+id/tabTutorial"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="6dp"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_settings_tutorial"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tutoriel"
+        android:fontFamily="@font/cinzel"
+        android:textColor="#B8A060"
+        android:textSize="10sp"
+        android:layout_marginTop="3dp" />
+</LinearLayout>
+-->
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- PANNEAU TUTORIEL — à ajouter dans le FrameLayout       -->
+<!-- ════════════════════════════════════════════════════════ -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/panelTutorial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="14dp"
+    android:scrollbars="none"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📜  Tutoriel"
+            android:fontFamily="@font/cinzel_bold"
+            android:textColor="#FFD700"
+            android:textSize="15sp"
+            android:layout_marginBottom="6dp" />
+
+        <!-- Sous-titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ce que Zeus t'a enseigné"
+            android:fontFamily="@font/exo2"
+            android:textColor="#B8A060"
+            android:textSize="11sp"
+            android:fontStyle="italic"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Barre de progression -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_textelayout"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Étapes découvertes"
+                android:fontFamily="@font/exo2"
+                android:textColor="#E8D5A0"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvTutoProgression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / 15"
+                android:fontFamily="@font/vt323_regular"
+                android:textColor="#FFD700"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Bouton rejouer le tutoriel -->
+        <Button
+            android:id="@+id/btnTutoRejouer"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="⚡  Rejouer le Tutoriel depuis le début"
+            android:fontFamily="@font/cinzel"
+            android:textColor="#FFD700"
+            android:textSize="10sp"
+            android:background="@drawable/bg_temple_button"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Séparateur -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3A2A00"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Filtres par dieu -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtrer par dieu :"
+            android:fontFamily="@font/exo2"
+            android:textColor="#B8A060"
+            android:textSize="11sp"
+            android:layout_marginBottom="8dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnTutoTout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Tout"
+                    android:fontFamily="@font/cinzel"
+                    android:textColor="#FFD700"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_tab_selected"
+                    android:layout_marginEnd="6dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnTutoZeus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Zeus"
+                    android:fontFamily="@font/cinzel"
+                    android:textColor="#B8A060"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_temple_button"
+                    android:layout_marginEnd="6dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnTutoAthena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Athéna"
+                    android:fontFamily="@font/cinzel"
+                    android:textColor="#B8A060"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_temple_button"
+                    android:layout_marginEnd="6dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnTutoAres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Arès"
+                    android:fontFamily="@font/cinzel"
+                    android:textColor="#B8A060"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_temple_button"
+                    android:layout_marginEnd="6dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnTutoHephaistos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Héphaïstos"
+                    android:fontFamily="@font/cinzel"
+                    android:textColor="#B8A060"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_temple_button"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Liste des étapes — générée dynamiquement par le code -->
+        <!-- Chaque étape = une carte injectée dans ce LinearLayout -->
+        <LinearLayout
+            android:id="@+id/llTutorialSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/pvTitleBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:resize_mode="zoom"
+        app:surface_type="texture_view"
+        app:use_controller="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#16000000" />
+
+    <ImageView
+        android:id="@+id/ivDemarrer"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="96dp"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:contentDescription="Appuyer pour commencer"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_demarrer" />
+
+    <FrameLayout
+        android:id="@+id/btnSupportTitle"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        android:contentDescription="Contacter le Support Technique"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.30"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_textelayout" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/cinzel_bold"
+            android:gravity="center"
+            android:letterSpacing="0.04"
+            android:text="✉  CONTACTER LE SUPPORT TECHNIQUE"
+            android:textColor="#FFD700"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+    <!-- NOUVEAU : Bouton MAJ rouge en haut à gauche -->
+    <ImageView
+        android:id="@+id/btnMajTitle"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="40dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:contentDescription="Afficher les mises à jour"
+        android:focusable="true"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/maj" />
+
+</FrameLayout>

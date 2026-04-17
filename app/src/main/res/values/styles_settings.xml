@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    styles_settings.xml — RéviZeus v9
+    Styles réutilisables pour activity_settings.xml
+    Chemin : res/values/styles_settings.xml
+    (ou à fusionner dans res/values/styles.xml existant)
+-->
+<resources>
+
+    <!-- Label texte au-dessus d'un SeekBar -->
+    <style name="SettingsLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/exo2</item>
+        <item name="android:textColor">#E8D5A0</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- Label texte dans une ligne switch/spinner -->
+    <style name="SettingsLabelInline">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/exo2</item>
+        <item name="android:textColor">#E8D5A0</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- Ligne horizontale contenant un SeekBar + valeur numérique -->
+    <style name="SeekRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+    </style>
+
+    <!-- SeekBar standard dans les réglages -->
+    <style name="SeekBarStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:progressTint">#1E90FF</item>
+        <item name="android:thumbTint">#FFD700</item>
+    </style>
+
+    <!-- Valeur numérique à droite d'un SeekBar -->
+    <style name="SeekValue">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/vt323_regular</item>
+        <item name="android:textColor">#FFD700</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">6dp</item>
+    </style>
+
+    <!-- Ligne horizontale contenant un label + switch ou spinner -->
+    <style name="SwitchRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <!-- Switch standard dans les réglages -->
+    <style name="SwitchStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:thumbTint">#FFD700</item>
+        <item name="android:trackTint">#1E4A80</item>
+    </style>
+
+    <!-- Spinner standard dans les réglages -->
+    <style name="SpinnerStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_temple_button</item>
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+    </style>
+
+    <!-- Séparateur horizontal -->
+    <style name="Separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#3A2A00</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+    <!-- Bouton Rétablir (bas de chaque panneau) -->
+    <style name="BtnReset">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:fontFamily">@font/cinzel</item>
+        <item name="android:textColor">#FFD700</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:background">@drawable/bg_temple_button</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <!-- Valeur stat (lecture seule dans Compte) -->
+    <style name="StatValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/vt323_regular</item>
+        <item name="android:textColor">#FFD700</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Badge "Bientôt disponible" pour les features verrouillées -->
+    <style name="BadgeBientot">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/exo2</item>
+        <item name="android:textColor">#806040</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_marginStart">4dp</item>
+    </style>
+    <style name="BadgeFilterBtn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/cinzel</item>
+        <item name="android:textColor">#806040</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingHorizontal">10dp</item>
+    </style>
+
+</resources>

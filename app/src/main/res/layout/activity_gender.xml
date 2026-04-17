@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_olympus_animated">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#11000000" />
+
+    <ImageView
+        android:id="@+id/ivTitleBg"
+        android:layout_width="400dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="28dp"
+        android:elevation="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_temple_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDestinyTitle"
+        android:layout_width="340dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:fontFamily="@font/cinzel"
+        android:gravity="center"
+        android:shadowColor="#FFD700"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="30"
+        android:text="FORGE TON DESTIN"
+        android:textColor="@color/ambre_promethee"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layoutStatues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toTopOf="@+id/layoutDialogRPG"
+        app:layout_constraintTop_toBottomOf="@id/tvDestinyTitle">
+
+        <LinearLayout
+            android:id="@+id/btnHero"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgHero"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/statue_hero_abstract_chibi" />
+
+            <ImageView
+                android:id="@+id/imgTxtHero"
+                android:layout_width="250dp"
+                android:layout_height="161dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/txt_hero_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnHeroine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgHeroine"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/statue_heroine_abstract_chibi" />
+
+            <ImageView
+                android:id="@+id/imgTxtHeroine"
+                android:layout_width="250dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/txt_heroine_pink" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutDialogRPG"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_rpg_dialog"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imgZeusDialog"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            android:src="@drawable/avatar_zeus_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvZeusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/cinzel"
+            android:text="ZEUS"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgZeusDialog"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvZeusSpeech"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/exo2"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgZeusDialog"
+            app:layout_constraintTop_toBottomOf="@+id/tvZeusName" />
+
+        <LinearLayout
+            android:id="@+id/layoutConfirmButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp">
+
+            <Button
+                android:id="@+id/btnNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NON"
+                android:backgroundTint="#FF5252"
+                android:textSize="12sp"
+                android:fontFamily="@font/cinzel" />
+
+            <Button
+                android:id="@+id/btnYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUI"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#FFD700"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:fontFamily="@font/cinzel" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

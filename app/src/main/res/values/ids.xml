@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DialogRPGFragment IDs -->
+    <item name="layoutTitleContainer" type="id"/>
+    <item name="imgTitleBg" type="id"/>
+    <item name="tvDialogTitle" type="id"/>
+    <item name="layoutNarrativeZone" type="id"/>
+    <item name="imgGodChibi" type="id"/>
+    <item name="tvGodName" type="id"/>
+    <item name="tvDialogMainText" type="id"/>
+    <item name="layoutAdditionalInfo" type="id"/>
+    <item name="tvAdditionalLabel" type="id"/>
+    <item name="tvAdditionalText" type="id"/>
+    <item name="layoutButtonsContainer" type="id"/>
+    <item name="layoutButton1" type="id"/>
+    <item name="tvButton1" type="id"/>
+    <item name="layoutButton2" type="id"/>
+    <item name="tvButton2" type="id"/>
+    <item name="layoutButton3" type="id"/>
+    <item name="tvButton3" type="id"/>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ambre_promethee">#FFFFBF00</color>
+
+    <!-- Couleurs pour la revue de Quiz -->
+    <color name="correct_bg">#1A2E1A</color>
+    <color name="incorrect_bg">#2E1A1A</color>
+    <color name="correct_text">#4CAF50</color>
+    <color name="incorrect_text">#F44336</color>
+    <color name="correct_text_light">#81C784</color>
+    <color name="incorrect_text_light">#E57373</color>
+    <color name="separator">#333333</color>
+
+    <!-- Thème RPG -->
+    <color name="gold_theme">#FFD700</color>
+</resources>

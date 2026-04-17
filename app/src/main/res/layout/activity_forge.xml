@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ═══════════════════════════════════════════════════════════════
+    ACTIVITY FORGE — LA FORGE D'HÉPHAÏSTOS
+    PHASE C — RéviZeus
+    ═══════════════════════════════════════════════════════════════
+    Architecture :
+      - Fond plein écran bg_forge_hephaistos (fallback bg_rpg_dialog)
+      - Header fixe : bouton retour + titre CINZEL
+      - HUD fragment : HorizontalScrollView avec chips par matière
+      - RecyclerView : liste des recettes (item_recipe_card.xml)
+
+    IDs exposés à ForgeActivity via ViewBinding :
+      btnForgeBack, tvForgeTitle, llFragmentHud,
+      rvRecipes, tvForgeEmptyState
+    ═══════════════════════════════════════════════════════════════
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_forge_hephaistos">
+
+    <!-- ── HEADER ─────────────────────────────────────────────── -->
+    <RelativeLayout
+        android:id="@+id/layoutForgeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#CC0A0A14"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:elevation="8dp">
+
+        <!-- Bouton retour -->
+        <TextView
+            android:id="@+id/btnForgeBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="#FFD700"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Titre central -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvForgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FORGE D'HÉPHAÏSTOS"
+                android:fontFamily="@font/cinzel"
+                android:textColor="#FFD700"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forge du Savoir"
+                android:fontFamily="@font/cinzel"
+                android:textColor="#B8860B"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Icône dieu (décoration) -->
+        <ImageView
+            android:id="@+id/imgForgeIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="Héphaïstos"
+            android:scaleType="fitCenter"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:src="@drawable/ic_forge_hephaistos" />
+    </RelativeLayout>
+
+    <!-- ── HUD DES FRAGMENTS ───────────────────────────────────── -->
+    <!-- Bandeau horizontal scrollable montrant les fragments du joueur -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#14000000"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="⚗ VOS FRAGMENTS DE CONNAISSANCE"
+            android:fontFamily="@font/cinzel"
+            android:textColor="#CCFFD700"
+            android:textSize="11sp"
+            android:letterSpacing="0.1" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:layout_marginTop="6dp">
+
+            <!-- Ce LinearLayout est rempli programmatiquement par ForgeActivity -->
+            <LinearLayout
+                android:id="@+id/llFragmentHud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:gravity="center_vertical" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- ── SÉPARATEUR DORÉ ────────────────────────────────────── -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#4DFFD700" />
+
+    <!-- ── TITRE SECTION RECETTES ─────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="16dp"
+            android:background="#FFD700"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RECETTES DISPONIBLES"
+            android:fontFamily="@font/cinzel"
+            android:textColor="#E8D07A"
+            android:textSize="12sp"
+            android:letterSpacing="0.06" />
+
+        <TextView
+            android:id="@+id/tvForgeRecipeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/vt323_regular"
+            android:text="— recettes"
+            android:textColor="@color/ic_launcher_background"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- ── LISTE DES RECETTES ────────────────────────────────── -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:overScrollMode="never" />
+
+    <!-- ── EMPTY STATE (affiché si 0 recettes) ───────────────── -->
+    <TextView
+        android:id="@+id/tvForgeEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="Héphaïstos attend tes fragments…\nRéponds correctement en quiz pour en obtenir."
+        android:fontFamily="@font/cinzel"
+        android:textColor="#66FFD700"
+        android:textSize="14sp"
+        android:lineSpacingExtra="6dp"
+        android:visibility="gone" />
+
+</LinearLayout>

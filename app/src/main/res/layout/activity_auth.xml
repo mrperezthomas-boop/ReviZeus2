@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_olympus_school"
+    android:padding="24dp"
+    tools:context=".AuthActivity">
+
+    <ImageView
+        android:id="@+id/ivZeusMascot"
+        android:layout_width="143dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="revizeus"
+        android:src="@drawable/revizeus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:fontFamily="@font/cinzel"
+        android:text="INTRONISATION"
+        android:textColor="#FFD700"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivZeusMascot" />
+
+    <LinearLayout
+        android:id="@+id/containerInputs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/ivTempleButtonAuth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+        <EditText
+            android:id="@+id/etPseudo"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_textelayout"
+            android:fontFamily="@font/exo2"
+            android:hint="Pseudo de l'Avatar"
+            android:inputType="textPersonName"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/ambre_promethee"
+            android:textColorHint="@color/design_default_color_primary" />
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_textelayout"
+            android:fontFamily="@font/exo2"
+            android:hint="Âge du Héros"
+            android:inputType="number"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/design_default_color_primary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/exo2"
+            android:text="Niveau de Quête (Classe) :"
+            android:textColor="@color/ic_launcher_background"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerClass"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_textelayout"
+            android:paddingStart="12dp" />
+
+        <TextView
+            android:id="@+id/tvParentSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/cinzel"
+            android:text="ESPACE PARENTS"
+            android:textColor="@android:color/system_accent1_50"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etParentEmail"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_textelayout"
+            android:fontFamily="@font/exo2"
+            android:hint="Email du parent (optionnel)"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/design_default_color_primary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/exo2"
+                android:text="Envoyer un résumé hebdomadaire"
+                android:textColor="@color/ic_launcher_background"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchParentSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ✅ FIX #1 : Image bg_temple_button EN DESSOUS du texte (elevation 0) -->
+    <ImageView
+        android:id="@+id/ivTempleButtonAuth"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="120dp"
+        android:elevation="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_temple_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Bouton texte — fond transparent, elevation 2dp pour passer AU-DESSUS de l'image -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="120dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:fontFamily="@font/cinzel"
+        android:text="FORGER MON DESTIN"
+        android:textColor="#FFD700"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/btnReturnTitle"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="82dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button_inset"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="RETOUR VERS L'ÉCRAN TITRE"
+            android:textColor="#EAD8A3"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <!-- Zeus chibi RPG dialog -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutDialogRPG"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_rpg_dialog"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imgZeusDialog"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            android:src="@drawable/avatar_zeus_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvZeusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/cinzel"
+            android:text="ZEUS"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgZeusDialog"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvZeusSpeech"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/exo2"
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgZeusDialog"
+            app:layout_constraintTop_toBottomOf="@+id/tvZeusName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

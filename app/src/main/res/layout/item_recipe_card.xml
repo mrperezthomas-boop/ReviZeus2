@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ═══════════════════════════════════════════════════════════════
+    ITEM RECIPE CARD — Carte de recette de la Forge d'Héphaïstos
+    PHASE C — RéviZeus
+
+    CORRECTION v2 :
+    ✅ tvRecipeDescription enveloppée dans un ScrollView (height=100dp)
+       → description longue défile à l'intérieur de la carte
+       → bouton FORGER toujours visible, jamais poussé hors écran
+    ✅ nestedScrollingEnabled="true" (RecyclerView parent sinon capture le scroll)
+    ✅ ID tvRecipeDescription conservé sur la TextView enfant
+       → ViewBinding RecipeAdapter inchangé, zero code à modifier
+
+    IDs utilisés par RecipeAdapter dans ForgeActivity :
+      accentStrip, imgRecipeIcon, tvRecipeType, tvRecipeName,
+      tvRecipeDescription, tvRecipeCost, tvRecipeLore, btnForge
+    ═══════════════════════════════════════════════════════════════
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rpg_dialog"
+    android:layout_marginBottom="12dp"
+    android:elevation="4dp">
+
+    <!-- Bordure supérieure colorée
+         vert  #4CAF50 = craft possible
+         gris  #444444 = fragments insuffisants
+         Couleur injectée par RecipeAdapter -->
+    <View
+        android:id="@+id/accentStrip"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#444444" />
+
+    <!-- Corps principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <!-- Icône de l'objet — chargée depuis recipe.resultResName par getIdentifier() -->
+        <ImageView
+            android:id="@+id/imgRecipeIcon"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:contentDescription="Icône de l'objet à forger"
+            android:scaleType="fitCenter"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:src="@drawable/ic_forge_hephaistos" />
+
+        <!-- Séparateur vertical doré translucide -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#33FFD700" />
+
+        <!-- Zone centre : badge type + nom + description scrollable + coût -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Ligne badge type + nom -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvRecipeType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:background="#FFD700"
+                    android:paddingStart="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="2dp"
+                    android:text="BOUCLIER"
+                    android:textColor="#0A0A14"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvRecipeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cinzel"
+                    android:text="Bouclier de Logique"
+                    android:textColor="#FFD700"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!--
+                DESCRIPTION SCROLLABLE — hauteur fixe 100dp
+                nestedScrollingEnabled OBLIGATOIRE dans un RecyclerView.
+                La TextView n'a pas de maxLines : tout le texte est rendu,
+                le scroll en gère l'accès.
+            -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="4dp"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false">
+
+                <TextView
+                    android:id="@+id/tvRecipeDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2dp"
+                    android:paddingEnd="4dp"
+                    android:text="Forgé des éclats de raisonnement pur."
+                    android:textColor="#C8C8C8"
+                    android:textSize="14sp" />
+
+            </ScrollView>
+
+            <!-- Coût en fragments — "⚗ 12/50 Maths  ·  5/25 Philo" -->
+            <TextView
+                android:id="@+id/tvRecipeCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/vt323_regular"
+                android:text="⚗ 50 Maths"
+                android:textColor="#CCFFD700"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Bouton FORGER
+             Toujours visible car la description est dans un ScrollView borné.
+             Actif : bg_temple_button + texte #0A0A14
+             Grisé : fond #222222 + texte #555555 + alpha 0.4
+             → État injecté par RecipeAdapter.onBindViewHolder -->
+        <TextView
+            android:id="@+id/btnForge"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_temple_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:paddingStart="6dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="10dp"
+            android:text="FORGER"
+            android:textColor="@color/ic_launcher_background"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Lore divin — visibility=GONE par défaut, VISIBLE si recipe.lore.isNotBlank() -->
+    <TextView
+        android:id="@+id/tvRecipeLore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="« Héphaïstos l'a trempé dans l'axiome. »"
+        android:textColor="#88FFD700"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="10dp"
+        android:visibility="gone" />
+
+</LinearLayout>

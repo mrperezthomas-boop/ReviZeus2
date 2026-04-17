@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05050A">
+
+    <ImageView
+        android:id="@+id/ivTrainingBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.25"
+        android:src="@drawable/bg_olympus_dark" />
+
+    <ImageView
+        android:id="@+id/ivTitleBg"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_temple_button" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:fontFamily="@font/cinzel"
+        android:text="⚔️ ARÈNE D'ENTRAÎNEMENT"
+        android:textColor="#FFD700"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutGodSpeech"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/imgGodChibi"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:elevation="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/avatar_zeus_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_rpg_dialog"
+            android:elevation="2dp"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvGodSpeech"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2"
+                android:minLines="2"
+                android:text="Choisis ton arène d'entraînement !"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/btnEpreuveUltime"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/layoutGodSpeech"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_ultime_selector"
+        android:clickable="true"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="12dp">
+            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_ultime_crown" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/cinzel" android:text="⚡ ÉPREUVE ULTIME ⚡" android:textColor="#FFD700" android:textSize="14sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Toutes les matières • GAGNE DE L'XP" android:textColor="#FFFFFF" android:textSize="10sp" />
+            </LinearLayout>
+            <TextView android:id="@+id/tvCountUltime" android:layout_width="28dp" android:layout_height="28dp" android:background="@drawable/bg_action_slot" android:gravity="center" android:text="0" android:textColor="#000000" android:textSize="10sp" android:textStyle="bold" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btnEpreuveUltime"
+        android:layout_above="@id/btnBack"
+        android:fillViewport="true">
+        <GridLayout
+            android:id="@+id/gridPantheon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:padding="8dp">
+
+            <FrameLayout android:id="@+id/btnZeus" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_zeus_mini" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ZEUS"
+                        android:textColor="#1E90FF"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="La Citadelle de l'Axiome"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountZeus" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnAthena" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_athena_dialog" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ATHÉNA"
+                        android:textColor="#FFD700"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L'Académie des Lettres"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountAthena" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnPoseidon" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_poseidon_dialog" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="POSÉIDON"
+                        android:textColor="#40E0D0"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L'Observatoire du Vivant"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountPoseidon" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnAres" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_ares_dialog" />
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ARÈS"
+                        android:textColor="#DC143C"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Le Mémorial des Siècles"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountAres" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnAphrodite" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_aphrodite_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="APHRODITE" android:textColor="#FF69B4" android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Le Pavillon de l'Esthétique"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountAphrodite" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnHermes" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_hermes_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HERMÈS" android:textColor="#87CEEB" android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Le Comptoir des Échanges"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountHermes" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnDemeter" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_demeter_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DÉMÉTER" android:textColor="#228B22" android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="La Tour Cartographique du Monde"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountDemeter" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnHephaestus" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/avatar_hephaistos_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HÉPHAÏSTOS" android:textColor="#FF8C00" android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="La Forge Expérimentale"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountHephaestus" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnApollon" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+                    <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/avatar_apollon_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="APOLLON" android:textColor="#9370DB" android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Le Portique de la Réflexion"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountApollon" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+
+            </FrameLayout>
+
+            <FrameLayout android:id="@+id/btnPrometheus" android:layout_width="0dp" android:layout_height="80dp" android:layout_columnWeight="1" android:layout_margin="4dp" android:background="@drawable/button_divine_selector">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical">
+                    <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/avatar_promethee_dialog" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PROMÉTHÉE" android:textColor="#FFBF00" android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Le Domaine Terrien"
+                        android:textColor="@color/ic_launcher_background"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCountPrometheus" android:layout_width="18dp" android:layout_height="18dp" android:layout_gravity="top|end" android:background="@drawable/badge_count" android:text="0" android:gravity="center" android:textColor="#FFF" android:textSize="8sp" />
+            </FrameLayout>
+        </GridLayout>
+    </ScrollView>
+
+    <Button android:id="@+id/btnBack" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_marginBottom="12dp" android:text="↩ RETOUR" />
+</RelativeLayout>

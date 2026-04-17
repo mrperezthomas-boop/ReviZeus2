@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.ReviZeus2" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#FFD700</item>
+    </style>
+
+    <style name="Theme.ReviZeus2" parent="Base.Theme.ReviZeus2" />
+
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.ReviZeus.Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!-- Style pour les dialogues RPG (Chantier I.2) -->
+    <style name="ReviZeus_Dialog_RPG" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@drawable/bg_rpg_dialog</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorAccent">@color/gold_theme</item>
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+    </style>
+
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

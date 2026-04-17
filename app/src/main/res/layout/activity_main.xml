@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT ORACLE — Écran caméra (CameraX)
+    ─────────────────────────────────────────
+    CORRECTION v12 — PROBLÈME 1 :
+    ✅ Suppression du fond noir android:background="#000000" sur le ConstraintLayout racine.
+       Le fond noir apparaissait EN DESSOUS du PreviewView CameraX et était visible
+       brièvement au démarrage. On le retire complètement : c'est le PreviewView
+       qui remplit tout l'écran et sert de "fond" naturel.
+    ✅ L'overlayFrame (cadre de visée blanc semi-transparent) est conservé mais
+       rendu plus propre : contour blanc au lieu d'un fond semi-opaque gênant.
+    ✅ Le bouton capture reste ancré en bas, visible sur le flux caméra.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- PAS de android:background ici : la caméra remplit tout l'écran proprement -->
+
+    <!-- ─── FLUX CAMÉRA (plein écran) ───────────────────────────────────────── -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+        ─── CADRE DE VISÉE ──────────────────────────────────────────────────────
+        Sert de guide visuel pour cadrer le cours à scanner.
+        On utilise un simple stroke (contour) doré sans fond opaque
+        pour ne pas masquer le flux caméra.
+        Fond transparent = on voit bien ce qu'on va photographier.
+    -->
+    <View
+        android:id="@+id/overlayFrame"
+        android:layout_width="397dp"
+        android:layout_height="634dp"
+        android:background="@drawable/frame_scan_guide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <!-- ─── TEXTE D'INSTRUCTION ──────────────────────────────────────────────── -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/exo2"
+        android:text="Cadrez le texte du cours dans le cadre doré"
+        android:textColor="#FFD700"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        app:layout_constraintBottom_toTopOf="@+id/btnCapture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--
+        ─── BOUTON CAPTURE ──────────────────────────────────────────────────────
+        FloatingActionButton blanc, visible sur n'importe quel fond de caméra.
+        Ancré en bas au centre, 40dp de marge.
+        Initialement GONE — OracleActivity.startCamera() le rend VISIBLE.
+    -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCapture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_menu_camera"
+        android:visibility="gone"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="#000000" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

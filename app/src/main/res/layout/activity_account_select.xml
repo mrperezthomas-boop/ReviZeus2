@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_account_select.xml — Le Registre des Héros
+    ──────────────────────────────────────────────────────────
+    Couches (de bas en haut) :
+    1. Fond noir #000000 (pendant le chargement de la vidéo)
+    2. pvAccountBackground : PlayerView plein écran (raw/bg_account_select, muet, loop)
+    3. Overlay sombre pour lisibilité des cartes
+    4. Header "CHOISIR SON HÉROS"
+    5. RecyclerView des cartes de compte
+    6. Bouton bas "+ Nouvelle Aventure"
+-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- COUCHE 1 : Vidéo bg_account_select (muette, en boucle) -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/pvAccountBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:use_controller="false"
+        app:resize_mode="zoom" />
+
+    <!-- COUCHE 2 : Overlay sombre pour lisibilité des cartes -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <!-- ══ HEADER ══ -->
+    <!-- Déclaré avant le RecyclerView et le bouton bas (règle RelativeLayout #11) -->
+    <FrameLayout
+        android:id="@+id/layoutAccountHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:elevation="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_divine_card"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/btnBackAccountSelect"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="#EAD8A3"
+            android:textSize="26sp"
+            android:fontFamily="@font/cinzel_bold"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="⚔  CHOISIR SON HÉROS"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:letterSpacing="0.1" />
+    </FrameLayout>
+
+    <!-- ══ BOUTON BAS — "+ Nouvelle Aventure" ══ -->
+    <!-- Déclaré AVANT le RecyclerView pour servir d'ancre layout_above (règle #11) -->
+    <FrameLayout
+        android:id="@+id/btnNouvelleAventure"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_temple_button"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.30"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_textelayout"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="✦  NOUVELLE AVENTURE"
+            android:textColor="#1A0A00"
+            android:textSize="14sp"
+            android:letterSpacing="0.06" />
+    </FrameLayout>
+
+    <!-- ══ LISTE DES COMPTES ══ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAccountCards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/layoutAccountHeader"
+        android:layout_above="@id/btnNouvelleAventure"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:scrollbars="none" />
+
+    <!-- Indicateur de chargement -->
+    <ProgressBar
+        android:id="@+id/progressAccountLoad"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

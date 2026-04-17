@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    BOUTON ÉPREUVE ULTIME — Style premium avec gradient or
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- État pressé -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#80FFD700"
+                android:endColor="#80FFA500"
+                android:angle="45" />
+            <stroke android:width="2dp" android:color="#FFD700" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- État normal -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#33FFD700"
+                android:endColor="#33FFA500"
+                android:angle="45" />
+            <stroke android:width="2dp" android:color="#FFD700" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+</selector>
