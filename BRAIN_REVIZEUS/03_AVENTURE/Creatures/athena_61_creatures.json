@@ -1,0 +1,374 @@
+[
+  {
+    "resource_name_icon": "creature_athena_basic_1_icon",
+    "resource_name_combat": "creature_athena_basic_1_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 1, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 1, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_2_icon",
+    "resource_name_combat": "creature_athena_basic_2_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 2, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 2, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_3_icon",
+    "resource_name_combat": "creature_athena_basic_3_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 3, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 3, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_4_icon",
+    "resource_name_combat": "creature_athena_basic_4_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 4, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 4, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_5_icon",
+    "resource_name_combat": "creature_athena_basic_5_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 5, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 5, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_6_icon",
+    "resource_name_combat": "creature_athena_basic_6_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 6, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 6, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_7_icon",
+    "resource_name_combat": "creature_athena_basic_7_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 7, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 7, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_8_icon",
+    "resource_name_combat": "creature_athena_basic_8_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 8, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 8, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_9_icon",
+    "resource_name_combat": "creature_athena_basic_9_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 9, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 9, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_10_icon",
+    "resource_name_combat": "creature_athena_basic_10_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 10, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 10, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_11_icon",
+    "resource_name_combat": "creature_athena_basic_11_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 11, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 11, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_12_icon",
+    "resource_name_combat": "creature_athena_basic_12_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 12, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 12, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_13_icon",
+    "resource_name_combat": "creature_athena_basic_13_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 13, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 13, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_14_icon",
+    "resource_name_combat": "creature_athena_basic_14_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 14, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 14, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_15_icon",
+    "resource_name_combat": "creature_athena_basic_15_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 15, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 15, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_16_icon",
+    "resource_name_combat": "creature_athena_basic_16_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 16, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 16, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_17_icon",
+    "resource_name_combat": "creature_athena_basic_17_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 17, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 17, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_18_icon",
+    "resource_name_combat": "creature_athena_basic_18_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 18, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 18, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_19_icon",
+    "resource_name_combat": "creature_athena_basic_19_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 19, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 19, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_20_icon",
+    "resource_name_combat": "creature_athena_basic_20_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 20, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 20, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_21_icon",
+    "resource_name_combat": "creature_athena_basic_21_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 21, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 21, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_22_icon",
+    "resource_name_combat": "creature_athena_basic_22_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 22, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 22, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_23_icon",
+    "resource_name_combat": "creature_athena_basic_23_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 23, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 23, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_24_icon",
+    "resource_name_combat": "creature_athena_basic_24_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 24, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 24, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_25_icon",
+    "resource_name_combat": "creature_athena_basic_25_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 25, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 25, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_26_icon",
+    "resource_name_combat": "creature_athena_basic_26_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 26, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 26, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_27_icon",
+    "resource_name_combat": "creature_athena_basic_27_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 27, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 27, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_28_icon",
+    "resource_name_combat": "creature_athena_basic_28_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 28, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 28, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_29_icon",
+    "resource_name_combat": "creature_athena_basic_29_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 29, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 29, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_basic_30_icon",
+    "resource_name_combat": "creature_athena_basic_30_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena creature 30, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena creature 30, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_1_icon",
+    "resource_name_combat": "creature_athena_miniboss_1_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 1, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 1, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_2_icon",
+    "resource_name_combat": "creature_athena_miniboss_2_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 2, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 2, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_3_icon",
+    "resource_name_combat": "creature_athena_miniboss_3_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 3, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 3, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_4_icon",
+    "resource_name_combat": "creature_athena_miniboss_4_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 4, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 4, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_5_icon",
+    "resource_name_combat": "creature_athena_miniboss_5_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 5, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 5, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_6_icon",
+    "resource_name_combat": "creature_athena_miniboss_6_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 6, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 6, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_7_icon",
+    "resource_name_combat": "creature_athena_miniboss_7_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 7, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 7, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_8_icon",
+    "resource_name_combat": "creature_athena_miniboss_8_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 8, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 8, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_9_icon",
+    "resource_name_combat": "creature_athena_miniboss_9_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 9, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 9, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_10_icon",
+    "resource_name_combat": "creature_athena_miniboss_10_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 10, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 10, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_11_icon",
+    "resource_name_combat": "creature_athena_miniboss_11_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 11, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 11, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_12_icon",
+    "resource_name_combat": "creature_athena_miniboss_12_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 12, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 12, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_13_icon",
+    "resource_name_combat": "creature_athena_miniboss_13_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 13, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 13, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_14_icon",
+    "resource_name_combat": "creature_athena_miniboss_14_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 14, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 14, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_15_icon",
+    "resource_name_combat": "creature_athena_miniboss_15_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 15, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 15, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_16_icon",
+    "resource_name_combat": "creature_athena_miniboss_16_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 16, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 16, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_17_icon",
+    "resource_name_combat": "creature_athena_miniboss_17_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 17, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 17, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_18_icon",
+    "resource_name_combat": "creature_athena_miniboss_18_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 18, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 18, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_19_icon",
+    "resource_name_combat": "creature_athena_miniboss_19_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 19, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 19, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_miniboss_20_icon",
+    "resource_name_combat": "creature_athena_miniboss_20_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena miniboss 20, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena miniboss 20, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_1_icon",
+    "resource_name_combat": "creature_athena_boss_1_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 1, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 1, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_2_icon",
+    "resource_name_combat": "creature_athena_boss_2_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 2, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 2, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_3_icon",
+    "resource_name_combat": "creature_athena_boss_3_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 3, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 3, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_4_icon",
+    "resource_name_combat": "creature_athena_boss_4_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 4, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 4, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_5_icon",
+    "resource_name_combat": "creature_athena_boss_5_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 5, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 5, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_6_icon",
+    "resource_name_combat": "creature_athena_boss_6_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 6, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 6, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_7_icon",
+    "resource_name_combat": "creature_athena_boss_7_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 7, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 7, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_8_icon",
+    "resource_name_combat": "creature_athena_boss_8_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 8, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 8, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_9_icon",
+    "resource_name_combat": "creature_athena_boss_9_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 9, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 9, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_boss_10_icon",
+    "resource_name_combat": "creature_athena_boss_10_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena boss 10, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena boss 10, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_ultimate_easy_icon",
+    "resource_name_combat": "creature_athena_ultimate_easy_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena ultimate form easy, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena ultimate form easy, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  },
+  {
+    "resource_name_icon": "creature_athena_ultimate_hard_icon",
+    "resource_name_combat": "creature_athena_ultimate_hard_combat",
+    "prompt_icon": "3D stylized mobile game creature icon, Clash Royale style, athena ultimate form hard, from ATHENA, facing left, strong silhouette, simplified shapes, vibrant colors, soft shading, high contrast, readable at small size, transparent background",
+    "prompt_combat": "3D stylized mobile game creature, Clash Royale style, athena ultimate form hard, from ATHENA, facing left, dynamic pose, detailed textures, expressive design, vibrant colors, soft shading, high contrast, transparent background"
+  }
+]

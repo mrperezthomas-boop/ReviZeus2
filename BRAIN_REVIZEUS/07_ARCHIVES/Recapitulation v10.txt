@@ -1,0 +1,543 @@
+Voici un **document de pilotage complet** pour RéviZeus.
+L’objectif est d’avoir une **vision claire de tout ce qu’il reste à faire**, classé par priorité et par système, afin de garder la cohérence du projet dans le temps.
+
+Je l’ai structuré comme un **roadmap technique + artistique + gameplay**.
+
+---
+
+# 📜 Feuille de Route Complète — RéviZeus
+
+Version : **Roadmap 1.0**
+
+Objectifs :
+
+* stabiliser l’app
+* finaliser les systèmes principaux
+* renforcer l’immersion
+* améliorer l’expérience utilisateur
+* préparer les extensions futures
+
+---
+
+# 1. PRIORITÉ CRITIQUE — STABILITÉ
+
+## 1.1 Corriger les crashs
+
+À vérifier systématiquement :
+
+* ResultActivity
+* QuizActivity
+* TrainingQuizActivity
+* BadgeBookActivity
+* GodMatiereActivity
+* GeminiManager
+
+Points à sécuriser :
+
+```
+NullPointerException
+index hors limite
+liste vide
+intent extras manquants
+```
+
+---
+
+## 1.2 Validation du flux complet
+
+Flux complet à tester :
+
+```
+Scan cours
+→ Résumé
+→ QCM
+→ Choix matière
+→ Sauvegarde cours
+→ Temple savoir
+→ Quiz
+→ Résultat
+→ XP
+→ Badge
+```
+
+---
+
+## 1.3 Vérification Room
+
+Tables à contrôler :
+
+```
+UserProfile
+CourseEntry
+Badges
+Progression
+```
+
+Vérifier :
+
+* insertion
+* suppression
+* lecture
+* migration future
+
+---
+
+# 2. SYSTÈME SAVOIR
+
+## 2.1 Gestion des cours
+
+Fonctions restantes :
+
+✔ suppression cours
+✔ lecture cours
+
+À ajouter :
+
+* modifier titre du cours
+* trier par date
+* trier par matière
+* recherche cours
+
+---
+
+## 2.2 Temple des matières
+
+Chaque temple doit afficher :
+
+```
+fond unique
+couleur divine
+musique propre
+particules
+```
+
+À implémenter :
+
+fond par dieu
+
+```
+bg_zeus_temple
+bg_athena_temple
+bg_poseidon_temple
+...
+```
+
+---
+
+## 2.3 Lecture immersive des cours
+
+Ajouts possibles :
+
+* parchemin animé
+* voix divine optionnelle
+* effet lumière divine
+
+---
+
+# 3. SYSTÈME QUIZ
+
+## 3.1 Stabiliser les questions
+
+Problèmes actuels :
+
+* réponses trop longues
+* question mal formatée
+* progression incorrecte
+
+À faire :
+
+* limiter longueur réponses
+* nettoyer texte Gemini
+* filtrer questions invalides
+
+---
+
+## 3.2 Amélioration gameplay quiz
+
+Ajouts :
+
+* timer optionnel
+* combo réponses
+* bonus streak
+* effets visuels réussite
+
+---
+
+## 3.3 Types de quiz
+
+Ajouter :
+
+```
+Quiz normal
+Quiz rapide
+Quiz ultime matière
+Quiz panthéon
+```
+
+---
+
+# 4. SYSTÈME BADGES
+
+## 4.1 Organisation badges
+
+Structure actuelle :
+
+```
+Maîtrisé
+Sur la voie
+```
+
+À ajouter :
+
+* tri par catégorie
+* tri par rareté
+* animation obtention badge
+
+---
+
+## 4.2 Nouveaux badges
+
+Types :
+
+```
+Savoir
+Quiz
+Progression
+Exploration
+Oracle
+Secret
+```
+
+---
+
+## 4.3 Récompenses badges
+
+Possibilités :
+
+```
+XP
+titres
+skins avatar
+effets UI
+```
+
+---
+
+# 5. PROFIL HÉROS
+
+## 5.1 Statut héros
+
+À améliorer :
+
+* affichage progression
+* statistiques détaillées
+* badges récents
+
+---
+
+## 5.2 Inventaire
+
+À implémenter :
+
+```
+parchemins
+artefacts
+skins
+boosts
+```
+
+---
+
+# 6. DASHBOARD
+
+## 6.1 Organisation visuelle
+
+À finaliser :
+
+* forme triangulaire boutons
+* barre XP divine
+* accès rapide inventaire
+* accès rapide badges
+
+---
+
+## 6.2 Animations
+
+Ajouter :
+
+* halo divin
+* particules
+* micro animations icônes
+
+---
+
+# 7. ORACLE
+
+## 7.1 Amélioration analyse
+
+Améliorer :
+
+* résumé plus clair
+* questions mieux équilibrées
+* cohérence pédagogique
+
+---
+
+## 7.2 Dialogue oracle
+
+Ajouter :
+
+* réactions Zeus
+* réactions dieu matière
+* humour WTF
+
+---
+
+# 8. MUSIQUES ET SONS
+
+À compléter.
+
+## 8.1 Musiques par écran
+
+Dashboard
+
+```
+bgm_dashboard
+```
+
+Oracle
+
+```
+bgm_oracle
+```
+
+Quiz
+
+```
+bgm_quiz
+```
+
+Temple savoir
+
+```
+bgm_temple
+```
+
+---
+
+## 8.2 Musiques par dieu
+
+exemples :
+
+```
+bgm_zeus
+bgm_athena
+bgm_poseidon
+```
+
+---
+
+## 8.3 Effets sonores
+
+À créer :
+
+```
+succès quiz
+échec quiz
+scan cours
+apparition badge
+clic divin
+```
+
+---
+
+# 9. SYSTÈME XP
+
+À implémenter :
+
+```
+XP quiz
+XP cours étudié
+XP badge
+XP streak
+```
+
+---
+
+## 9.1 Progression joueur
+
+Niveaux :
+
+```
+Novice
+Disciple
+Stratège
+Héros
+Demi-Dieu
+Olympien
+```
+
+---
+
+# 10. SYSTÈME STREAK
+
+Chronos gère :
+
+```
+jours consécutifs
+bonus XP
+multiplicateur
+```
+
+---
+
+# 11. ACCESSIBILITÉ
+
+À ajouter :
+
+* taille texte
+* mode daltonien
+* réduction animations
+* narration audio
+
+---
+
+# 12. PARAMÈTRES
+
+Menu réglages à finaliser :
+
+```
+Audio
+Affichage
+Accessibilité
+Notifications
+Compte
+Gameplay
+Avancé
+```
+
+---
+
+# 13. AMBIANCE VISUELLE
+
+À implémenter partout :
+
+```
+AnimatedBackgroundHelper
+OlympianParticlesView
+```
+
+---
+
+# 14. OPTIMISATION
+
+À faire :
+
+* réduire taille images
+* utiliser WebP
+* limiter allocations UI
+* optimiser Room queries
+
+---
+
+# 15. SÉCURITÉ DONNÉES
+
+À prévoir :
+
+* export profil
+* sauvegarde cloud
+* restauration compte
+
+---
+
+# 16. EXTENSIONS FUTURES
+
+Fonctionnalités possibles :
+
+## 16.1 Mode duel
+
+```
+Quiz joueur vs joueur
+```
+
+---
+
+## 16.2 Classement
+
+```
+classe
+amis
+global
+```
+
+---
+
+## 16.3 Défis journaliers
+
+```
+défi Zeus
+défi matière
+```
+
+---
+
+# 17. POLISH FINAL
+
+Avant release :
+
+* équilibrage XP
+* équilibrage quiz
+* corrections UI
+* animations finales
+* optimisation batterie
+
+---
+
+# 18. ÉTAT ACTUEL DU PROJET (estimation)
+
+Fonctionnel :
+
+```
+70%
+```
+
+Restant :
+
+```
+30%
+```
+
+Majoritairement :
+
+* polish
+* immersion
+* contenu
+
+---
+
+# 19. Objectif final
+
+RéviZeus doit devenir :
+
+```
+la meilleure app d’apprentissage gamifiée
+avec une DA unique
+et une immersion divine
+```
+
+---
+
+Si tu veux, je peux aussi te produire le **document le plus important pour la suite du projet** :
+
+### le **MASTER PLAN RÉVIZEUS**
+
+qui inclut :
+
+* architecture complète de l’app
+* diagramme des écrans
+* diagramme des systèmes
+* hiérarchie du code
+* hiérarchie des ressources
+* plan d’évolution jusqu’à la V2
+
+C’est **le document que toutes les grosses apps utilisent pour ne jamais perdre la cohérence du projet**.

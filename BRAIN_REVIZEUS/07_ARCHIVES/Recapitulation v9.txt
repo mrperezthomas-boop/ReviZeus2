@@ -1,0 +1,2137 @@
+Parfait. On repart proprement en prenant en compte **deux choses essentielles** :
+
+1. **Tu as déjà les ressources** `drawable` et `raw` principales dans le projet, donc on **ne redemande pas leur création**. Tes captures montrent bien qu’elles sont présentes dans `res/drawable` et `res/raw`, notamment les fonds dashboard, les avatars dialog, les icônes streak/monnaies, le livre de badges, l’inventaire, les musiques dashboard/training/oracle, les SFX dialogue/badge/error, etc.
+2. Tu veux la **version encore plus puissante** du document : une **cartographie technique complète par fichier**, avec pour chaque classe :
+
+   * rôle
+   * dépendances
+   * risques
+   * ressources utilisées
+   * points exacts où brancher les futures features
+
+Je te donne donc un **document de reprise technique avancé**, pensé pour être donné à n’importe quelle IA ou développeur pour continuer RéviZeus correctement.
+
+---
+
+# RéviZeus — Cartographie Technique Complète par Fichier
+
+Version de reprise avancée — basée sur l’état réel du projet
+
+---
+
+# 1. Règles de reprise obligatoires
+
+## Règles d’architecture
+
+* conserver **100 % de l’architecture générale**
+* ne faire que des **insertions / ajustements localisés**
+* ne jamais casser les flux existants
+* toujours renvoyer les **fichiers complets** si modification
+
+## Règles UX
+
+* orientation **portrait obligatoire**
+* tout dialogue important doit être en **style RPG immersif**, jamais en popup Android basique
+* la BGM continue pendant les dialogues
+* `sfx_dialogue_blip` doit s’arrêter dès que :
+
+  * le texte disparaît
+  * le texte est skip
+  * l’écran change
+  * `onPause()`
+  * `onDestroy()`
+
+## Règles ressources
+
+* les ressources principales existent déjà dans `res/drawable` et `res/raw`
+* avant de créer une nouvelle ressource, vérifier si l’existant couvre déjà le besoin
+* si une nouvelle ressource est vraiment nécessaire :
+
+  * nom exact
+  * rôle
+  * écrans concernés
+  * connexions code
+  * prompt conforme à la DA
+
+---
+
+# 2. État ressources déjà présentes à considérer comme disponibles
+
+D’après tes captures, on considère comme **déjà présentes et utilisables** :
+
+## Drawables déjà visibles
+
+* `bg_dashboard_happy`
+* `bg_dashboard_tired`
+* `bg_dashboard_stressed`
+* `bg_dashboard`
+* `bg_olympus_dark`
+* `bg_olympus_school`
+* `bg_olympus_animated`
+* `bg_mood_oracle`
+* `bg_settings_olympus`
+* `bg_settings_panel`
+* `bg_settings_panel_dark`
+* `bg_settings_sidebar`
+* `bg_temple_button`
+* `bg_hud_panel`
+* `bg_hud_chip`
+* `bg_dashboard_hud_panel`
+* `bg_dashboard_hud_chip`
+* `bg_hero_panel`
+* `bg_stat_card_compact`
+* `bg_stat_card_hero`
+* `bg_badge_frame_commun`
+* `bg_badge_frame_rare`
+* `bg_badge_frame_epique`
+* `bg_badge_frame_legendaire`
+* `frame_scan_guide`
+* `frame_avatar_gold`
+* `avatar_zeus_dialog`
+* `avatar_athena_dialog`
+* `avatar_poseidon_dialog`
+* `avatar_ares_dialog`
+* `avatar_aphrodite_dialog`
+* `avatar_hermes_dialog`
+* `avatar_demeter_dialog`
+* `avatar_hephaistos_dialog`
+* `avatar_apollon_dialog`
+* `avatar_promethee_dialog`
+* `ic_day_streak_olympian`
+* `ic_win_streak_olympian`
+* `ic_currency_eclat_savoir`
+* `ic_currency_ambroisie`
+* `ic_badge_book_olympian`
+* `ic_inventory_bag_olympian`
+* `ic_library_scroll`
+* `ic_oracle_eye`
+* `ic_zeus_mini`
+* `ic_athena_mini`
+* `ic_poseidon_mini`
+* `ic_ares_mini`
+* `ic_aphrodite_mini`
+* `ic_hermes_mini`
+* `ic_demeter_mini`
+* `ic_hephaestus_mini`
+* `ic_apollon_mini`
+* `ic_prometheus_mini`
+* `ic_epreuve_ultime`
+* `ic_ultime_crown`
+* `ic_settings_audio`
+* `ic_settings_display`
+* `ic_settings_notif`
+* `ic_settings_account`
+* `ic_settings_gameplay`
+* `ic_settings_access`
+* `ic_settings_avance`
+* `ic_settings_tutorial`
+
+## Raw déjà visibles
+
+* `theme_splash`
+* `music_gender_selection`
+* `bgm_avatar_selection`
+* `bgm_mood_selection`
+* `bgm_dashboard`
+* `bgm_dashboard_happy`
+* `bgm_dashboard_tired`
+* `bgm_dashboard_stressed`
+* `bgm_oracle`
+* `bgm_savoir`
+* `bgm_training_select`
+* `bgm_training_quiz`
+* `music_quiz`
+* `olympus_theme`
+* `dialog_blip` / `sfx_dialogue_blip` selon nom exact utilisé dans le code
+* `sfx_app_start_pop`
+* `sfx_avatar_confirm`
+* `sfx_avatar_scroll`
+* `sfx_badge_unlock`
+* `sfx_epic_chibi_select`
+* `sfx_epreuve_ultime`
+* `sfx_error`
+* `sfx_module_open`
+* `sfx_mood_happy`
+* `sfx_mood_tired`
+* `sfx_mood_stressed`
+* `sfx_notif_divine`
+* `sfx_orb_open`
+* `sfx_select_wisdom`
+* `sfx_settings_save`
+* `sfx_settings_tab`
+* `sfx_statue_select`
+* `sfx_success`
+* `sfx_thunder_confirm`
+* `sfx_training_start`
+* `sfx_transition_thunder`
+
+Conclusion : **la suite doit partir du principe que ces ressources existent déjà**.
+
+---
+
+# 3. Cartographie technique complète par fichier
+
+---
+
+## 3.1 `BaseActivity.kt`
+
+### Rôle
+
+Classe de base commune pour les activités principales.
+
+### Dépendances
+
+* Android Activity lifecycle
+* souvent `SoundManager`
+* helpers visuels / vibration / UI globale
+
+### Risques
+
+* si on met trop de logique métier ici, on pollue toute l’app
+* toute régression dans `BaseActivity` touche beaucoup d’écrans
+
+### Ressources utilisées
+
+* aucune ressource métier spécifique à elle seule
+* peut piloter des SFX communs
+
+### Points exacts où brancher des futures features
+
+* gestion centralisée du bouton retour immersif si on veut un comportement partagé
+* arrêt automatique des sons de dialogue sur `onPause()`
+* utilitaires vibration / confirmation divine
+
+---
+
+## 3.2 `BaseGameActivity.kt`
+
+### Rôle
+
+Base commune pour les écrans de gameplay / quiz.
+
+### Dépendances
+
+* `BaseActivity`
+* timers / score / logique de session si présents
+
+### Risques
+
+* risque de coupler trop fort quiz Oracle et quiz Training
+
+### Ressources utilisées
+
+* aucune imposée par défaut
+
+### Branches futures
+
+* gestion standardisée du retour arrière immersif
+* gestion commune des overlays divins pendant quiz
+* gestion commune de la barre de progression QCM
+
+---
+
+## 3.3 `SplashActivity.kt`
+
+### Rôle
+
+Entrée de l’application.
+
+### Dépendances
+
+* navigation vers Login ou suite
+* `SoundManager`
+
+### Risques
+
+* double lecture audio si transitions mal gérées
+
+### Ressources utilisées
+
+* `bg_splashscreen_zeus`
+* `theme_splash`
+* `sfx_app_start_pop`
+* `sfx_transition_thunder`
+
+### Branches futures
+
+* cinématique plus premium
+* chargement précoce de préférences globales
+* future vérification d’état parent / update / tuto
+
+---
+
+## 3.4 `LoginActivity.kt`
+
+### Rôle
+
+Authentification locale / entrée du compte.
+
+### Dépendances
+
+* SharedPreferences compte
+* navigation vers onboarding
+
+### Risques
+
+* confusion avec AuthActivity si responsabilités mal séparées
+
+### Ressources utilisées
+
+* `bg_olympus_school`
+* `music_gender_selection`
+* `sfx_dialogue_blip`
+* `sfx_thunder_confirm`
+
+### Branches futures
+
+* meilleure validation compte
+* future synchro parent / backend si un jour ajoutée
+
+---
+
+## 3.5 `AuthActivity.kt`
+
+### Rôle
+
+Collecte âge / classe / profil initial.
+
+### Dépendances
+
+* SharedPreferences
+* navigation onboarding
+
+### Risques
+
+* c’est ici qu’on fixe les données utilisées plus tard par l’IA
+* si âge/classe sont mal stockés, tout le système pédagogique dérive
+
+### Ressources utilisées
+
+* `bg_olympus_school`
+* `music_gender_selection`
+* `avatar_zeus_dialog`
+* `sfx_dialogue_blip`
+* `sfx_thunder_confirm`
+
+### Branches futures
+
+* dialogue Zeus de référence à imiter partout
+* validation plus fine âge / classe
+* introduction des règles quiz liées à l’âge
+
+---
+
+## 3.6 `GenderActivity.kt`
+
+### Rôle
+
+Choix du genre / archétype initial.
+
+### Dépendances
+
+* SharedPreferences
+* transition vers AvatarActivity
+
+### Risques
+
+* peu de risques, mais beaucoup d’identité UX
+
+### Ressources utilisées
+
+* `bg_olympus_animated`
+* `sfx_statue_select`
+* `sfx_epic_chibi_select`
+* `sfx_dialogue_blip`
+
+### Branches futures
+
+* effet statue plus premium
+* variation de dialogues selon sélection
+
+---
+
+## 3.7 `AvatarActivity.kt`
+
+### Rôle
+
+Choix avatar du héros.
+
+### Dépendances
+
+* `AppDatabase`
+* `UserProfile`
+* SharedPreferences avatar/pseudo
+* navigation vers MoodActivity
+
+### Risques
+
+* si sauvegarde avatar/pseudo incohérente, HeroProfile et Dashboard affichent mal
+* risque audio entre fin Avatar et début Mood
+
+### Ressources utilisées
+
+* `bg_olympus_animated`
+* `bgm_avatar_selection`
+* `sfx_avatar_scroll`
+* `sfx_avatar_confirm`
+* `sfx_dialogue_blip`
+* avatars `m_avatar_*`, `f_avatar_*`, `bg_avatar_*` selon ton système actuel
+
+### Branches futures
+
+* système de bonus par avatar
+* nom unique par avatar
+* fond animé unique par avatar
+* identité WTF épique chibi olympienne
+* stockage d’un `avatarClassId` ou équivalent
+
+### Point exact de branchement
+
+* au moment de confirmer l’avatar : attribuer son bonus et son nom système
+* dans l’objet profil : stocker `avatarResName`, `avatarTitle`, `avatarBonusType`
+
+---
+
+## 3.8 `MoodActivity.kt`
+
+### Rôle
+
+Choix de l’humeur du joueur.
+
+### Dépendances
+
+* SharedPreferences `CURRENT_MOOD`
+* retour Dashboard
+
+### Risques
+
+* si nouvelles humeurs ajoutées sans mapping complet, Dashboard et IA cassent
+* risque audio si musique précédente non coupée proprement
+
+### Ressources utilisées
+
+* `bg_mood_oracle`
+* `bgm_mood_selection`
+* `sfx_mood_happy`
+* `sfx_mood_tired`
+* `sfx_mood_stressed`
+* `sfx_dialogue_blip`
+
+### Branches futures
+
+* ajout humeur **Colère**
+* future humeur spéciale saisonnière / boss / examen
+
+### Point exact de branchement
+
+* dans `saveMoodAndGo()` ou équivalent :
+
+  * ajouter `COLERE`
+  * sauvegarder `CURRENT_MOOD = "COLERE"`
+  * brancher `sfx_mood_colere` si ressource dispo plus tard
+* étendre `GeminiManager.getToneByMood()`
+
+---
+
+## 3.9 `DashboardActivity.kt`
+
+### Rôle
+
+Hub central du jeu.
+
+### Dépendances
+
+* `AppDatabase`
+* `UserProfile`
+* `XpCalculator`
+* `BadgeManager`
+* `SettingsManager`
+* `SoundManager`
+
+### Risques
+
+* écran très sensible car central
+* erreurs de binding si layout changé sans aligner le Kotlin
+* risque de mauvaise gestion musique humeur
+
+### Ressources utilisées
+
+* `bg_olympus_dark`
+* `bg_dashboard_happy`
+* `bg_dashboard_tired`
+* `bg_dashboard_stressed`
+* `bgm_dashboard`
+* `bgm_dashboard_happy`
+* `bgm_dashboard_tired`
+* `bgm_dashboard_stressed`
+* `ic_currency_eclat_savoir`
+* `ic_currency_ambroisie`
+* `ic_day_streak_olympian`
+* `ic_win_streak_olympian`
+* `bg_hud_panel`
+* `bg_hud_chip`
+* `frame_avatar_gold`
+* `custom_xp_bar`
+* `ic_oracle_eye`
+* `icon_daily_training`
+* `ic_library_scroll`
+* `bg_temple_button`
+* `ic_settings_gameplay` actuellement présent sur ton layout
+* badges récents via `badge_*`
+
+### Branches futures
+
+* bouton **Humeur** direct vers `MoodActivity`
+* affichage du mood courant
+* HUD premium encore plus lisible
+* badge notification premium
+* future météo de l’Olympe / quêtes journalières
+
+### Points exacts de branchement
+
+* `applyMoodTheme()` :
+
+  * ajouter humeur `COLERE`
+  * mapper `bg_dashboard_colere`, `bgm_dashboard_colere`
+* `setupMenu()` :
+
+  * ajouter bouton humeur
+* `loadUserData()` :
+
+  * mettre à jour `dayStreak`, `winStreak`, monnaies
+* `onResume()` :
+
+  * relire `CURRENT_MOOD`
+  * recharger HUD
+
+---
+
+## 3.10 `SettingsActivity.kt`
+
+### Rôle
+
+Réglages système.
+
+### Dépendances
+
+* `SettingsManager`
+* `SoundManager`
+* `AppDatabase`
+* `UserProfile`
+
+### Risques
+
+* crash si binding ou champs profil mal lus
+* risque de confusion entre réglages visuels et gameplay
+
+### Ressources utilisées
+
+* `bg_settings_olympus`
+* `bg_settings_sidebar`
+* `bg_settings_panel`
+* `bg_settings_panel_dark`
+* `bg_temple_button`
+* `ic_settings_audio`
+* `ic_settings_display`
+* `ic_settings_notif`
+* `ic_settings_account`
+* `ic_settings_gameplay`
+* `ic_settings_access`
+* `ic_settings_avance`
+* `ic_settings_tutorial`
+* `ic_slider_thumb_divine`
+* `bg_slider_track`
+* `sfx_settings_tab`
+* `sfx_settings_save`
+
+### Branches futures
+
+* réglage nombre de questions minimum / maximum
+* réglage accessibilité plus poussé
+* écran explications / tutoriels rejouables
+* entrée vers parent mode
+* langue globale stricte
+
+### Points exacts de branchement
+
+* onglet Gameplay :
+
+  * futur réglage quiz adaptatif
+* onglet Avancé :
+
+  * langue
+  * mode parent
+* sauvegarde :
+
+  * brancher volume dialogue séparé de BGM/SFX
+
+---
+
+## 3.11 `OracleActivity.kt`
+
+### Rôle
+
+Sélection caméra / galerie et futur PDF.
+
+### Dépendances
+
+* CameraX
+* galerie picker
+* `ResultActivity`
+* `SoundManager`
+* dialogue Zeus premier passage
+
+### Risques
+
+* bugs permissions
+* crash si ressources d’icônes manquent
+* ordre multi-pages
+
+### Ressources utilisées
+
+* `bgm_oracle` ou `bgm_scanner` selon ton code
+* `sfx_orb_open`
+* `sfx_select_wisdom`
+* `sfx_thunder_confirm`
+* `sfx_dialogue_blip`
+* `avatar_zeus_dialog`
+* `ic_library_scroll`
+* `ic_menu_camera` / `ic_menu_camera.webp` selon ton code
+* `frame_scan_guide`
+* `dialog_oracle_choice` layout
+
+### Branches futures
+
+* import PDF
+* selector Oracle enrichi
+* meilleure explication premier passage
+* choix caméra / galerie / PDF / retour
+
+### Points exacts de branchement
+
+* `showOracleChoiceDialog()` :
+
+  * ajouter bouton PDF
+* `galleryLauncher` / `cameraLauncher` :
+
+  * unifier flux vers `ResultActivity`
+* `onBackPressed` :
+
+  * futur dialogue Zeus confirmation retour
+
+---
+
+## 3.12 `ResultActivity.kt`
+
+### Rôle
+
+Résumé IA + préparation quiz + nommage du parchemin.
+
+### Dépendances
+
+* `GeminiManager`
+* `IAristoteEngine`
+* `CourseEntry`
+* `AppDatabase`
+* `QuizActivity`
+* `GodManager`
+* `GodSpeechAnimator`
+
+### Risques
+
+* fichier très sensible
+* risques de casser le flux quiz
+* risques d’UX si on retombe en popup Android
+* risques OOM si images trop lourdes
+
+### Ressources utilisées
+
+* fond écran résultat actuel selon ton layout
+* `sfx_notif_divine`
+* `sfx_badge_unlock`
+* `sfx_error`
+* `sfx_dialogue_blip`
+* avatars dieux dialog :
+
+  * `avatar_zeus_dialog`
+  * `avatar_athena_dialog`
+  * `avatar_poseidon_dialog`
+  * `avatar_ares_dialog`
+  * `avatar_aphrodite_dialog`
+  * `avatar_hermes_dialog`
+  * `avatar_demeter_dialog`
+  * `avatar_hephaistos_dialog`
+  * `avatar_apollon_dialog`
+  * `avatar_promethee_dialog`
+* `bg_temple_button`
+
+### Branches futures
+
+* nommage toujours immersif
+* dialogue retour arrière
+* meilleure gestion latence Oracle
+* retry intelligent
+* PDF
+* détection de questions dans le document
+* catégorisation IA des cours
+
+### Points exacts de branchement
+
+* juste après résumé généré :
+
+  * déterminer richesse du résumé
+  * calculer `questionCount`
+  * calculer `answerCount` selon âge
+  * transmettre au prompt IA
+* au clic retour :
+
+  * ouvrir dialogue dieu Oui/Non
+* au moment de sauvegarde :
+
+  * remplir `title`
+  * futur `category`
+
+---
+
+## 3.13 `GeminiManager.kt`
+
+### Rôle
+
+Couche IA principale.
+
+### Dépendances
+
+* API Gemini
+* humeur, âge, classe, matière, divinité, ethos
+
+### Risques
+
+* le moindre changement de prompt impacte tout le gameplay
+* lenteur / timeout / erreurs réseau
+* risque de mauvaise langue
+* risque de quiz mal équilibré
+
+### Ressources utilisées
+
+* pas de drawable/raw directement, mais dépend de `CURRENT_MOOD` et du contexte du dieu
+
+### Branches futures
+
+* humeur Colère
+* langue stricte
+* nombre de questions 10–30 selon résumé
+* nombre de réponses 2/3/4 selon âge
+* cas spécial Langues
+* détection des questions dans un document
+* équilibrage A/B/C/D
+
+### Points exacts de branchement
+
+* fonction de génération quiz :
+
+  * ajouter `questionCount`
+  * ajouter `answerCount`
+* fonction `getToneByMood()` :
+
+  * ajouter `COLERE`
+* prompt de résumé :
+
+  * imposer langue de sortie
+* post-traitement quiz :
+
+  * éviter biais réponse B
+
+---
+
+## 3.14 `IAristoteEngine.kt`
+
+### Rôle
+
+Parseur de réponse IA.
+
+### Dépendances
+
+* format de sortie Gemini
+* `QuizQuestion`
+
+### Risques
+
+* ultra sensible au format du texte généré
+* casse immédiatement si format IA évolue
+
+### Ressources utilisées
+
+* aucune directement
+
+### Branches futures
+
+* parser quiz à 2, 3, 4 réponses
+* parser 10–30 questions
+* parser explications de réponses
+* parser catégories de cours
+
+### Points exacts de branchement
+
+* `decoderReponse()` :
+
+  * supporter options variables
+* construction de `QuizQuestion` :
+
+  * envisager une structure flexible `options: List<String>`
+
+---
+
+## 3.15 `QuizQuestion.kt`
+
+### Rôle
+
+Modèle de question.
+
+### Dépendances
+
+* `QuizActivity`
+* `TrainingQuizActivity`
+* `IAristoteEngine`
+
+### Risques
+
+* changer sa structure sans migrer tous les usages casse le projet
+
+### Ressources utilisées
+
+* aucune
+
+### Branches futures
+
+* passer d’un modèle fixe `optionA/B/C` à un modèle flexible si nécessaire
+* ou maintenir compatibilité avec champ D optionnel
+
+### Point exact de branchement
+
+* meilleur compromis conseillé :
+
+  * garder structure existante si projet fragile
+  * ajouter progressivement support d’une `optionD` ou liste d’options
+
+---
+
+## 3.16 `QuizActivity.kt`
+
+### Rôle
+
+Quiz principal issu de l’Oracle.
+
+### Dépendances
+
+* `QuizQuestion`
+* `ResultActivity`
+* `QuizResultActivity`
+* `SoundManager`
+* futur `GodManager`
+
+### Risques
+
+* très sensible au modèle `QuizQuestion`
+* risque de réponses toujours B
+* risque de blip qui continue
+* risque de mauvaise gestion retour
+
+### Ressources utilisées
+
+* `olympus_theme` ou `music_quiz` selon ton code final
+* `sfx_avatar_confirm`
+* `sfx_error`
+* `sfx_dialogue_blip`
+* futurs avatars dieux dialog pendant les questions
+* `overlay_particles_blue`
+* `overlay_particles_gold` si réutilisé
+
+### Branches futures
+
+* réponses 2/3/4 selon âge
+* dieu parle entre les questions
+* confirmation retour immersive
+* barre progression harmonisée
+
+### Points exacts de branchement
+
+* `showQuestion()` :
+
+  * masquer/afficher boutons A/B/C/D selon âge
+* `checkAnswer()` :
+
+  * lancer feedback divin
+* `onBackPressedDispatcher` :
+
+  * dialogue Oui/Non du dieu
+
+---
+
+## 3.17 `QuizResultActivity.kt`
+
+### Rôle
+
+Résultat du quiz.
+
+### Dépendances
+
+* score
+* `UserProfile`
+* `BadgeManager`
+* `XpCalculator`
+* `SoundManager`
+
+### Risques
+
+* bug étoiles incorrectes
+* logique récompenses / streak / XP couplée
+* risque de mauvais retour Dashboard
+
+### Ressources utilisées
+
+* fond résultat actuel ou `bg_olympus_dark`
+* `sfx_avatar_confirm`
+* `sfx_error`
+* `sfx_badge_unlock`
+* futures musiques :
+
+  * `bgm_result_fail`
+  * `bgm_result_mitigated`
+  * `bgm_result_good`
+  * `bgm_result_perfect`
+* futures étoiles :
+
+  * `ic_star_empty_olympian`
+  * `ic_star_full_olympian`
+
+### Branches futures
+
+* étoiles correctes selon score
+* résumé complet du dieu
+* musique selon score
+* effet parfait 100 %
+* affichage win streak / day streak
+
+### Points exacts de branchement
+
+* méthode calcul score → mapping étoiles
+* méthode `applyRewards()` :
+
+  * mettre à jour `winStreak`
+* `onBackPressed` :
+
+  * dialogue divin confirmation retour si écran terminal encore interactif
+
+---
+
+## 3.18 `TrainingSelectActivity.kt`
+
+### Rôle
+
+Choix de l’entraînement.
+
+### Dépendances
+
+* `CourseEntry`
+* `AppDatabase`
+* `TrainingQuizActivity`
+* `PantheonConfig`
+
+### Risques
+
+* beaucoup de boutons matière
+* risque de mismatch ressource ↔ matière
+* risque compteur cours incorrect
+
+### Ressources utilisées
+
+* `bgm_training_select`
+* `sfx_training_start`
+* `sfx_epreuve_ultime`
+* `sfx_dialogue_blip`
+* `ic_zeus_mini`
+* `ic_athena_mini`
+* `ic_poseidon_mini`
+* `ic_ares_mini`
+* `ic_aphrodite_mini`
+* `ic_hermes_mini`
+* `ic_demeter_mini`
+* `ic_hephaestus_mini`
+* `ic_apollon_mini`
+* `ic_prometheus_mini`
+* `ic_ultime_crown`
+
+### Branches futures
+
+* temple matière plus riche
+* catégories de cours par matière
+* explication Zeus premier passage
+* choix difficulté plus fin
+
+### Points exacts de branchement
+
+* clic matière :
+
+  * futur passage via temple du dieu plutôt que départ direct
+* clic ultime :
+
+  * brancher dialogue de confirmation épique
+
+---
+
+## 3.19 `TrainingQuizActivity.kt`
+
+### Rôle
+
+Quiz d’entraînement.
+
+### Dépendances
+
+* `GeminiManager`
+* `QuizQuestion`
+* `CourseEntry`
+* `MemoryScore`
+
+### Risques
+
+* presque les mêmes que `QuizActivity`
+* danger si les deux activités divergent trop
+
+### Ressources utilisées
+
+* `bgm_training_quiz`
+* `sfx_avatar_confirm`
+* `sfx_error`
+* `sfx_dialogue_blip`
+
+### Branches futures
+
+* règles âge identiques à `QuizActivity`
+* retour immersif
+* dieu entre questions
+* correction adaptative mémoire
+
+### Points exacts de branchement
+
+* génération quiz :
+
+  * injecter `questionCount` et `answerCount`
+* affichage :
+
+  * gérer 2/3/4 réponses
+* résultat :
+
+  * si mode ultime, brancher `QuizResultActivity`
+
+---
+
+## 3.20 `SavoirActivity.kt`
+
+### Rôle
+
+Bibliothèque globale.
+
+### Dépendances
+
+* `AppDatabase`
+* `CourseEntry`
+* `PantheonConfig`
+
+### Risques
+
+* risque de titres génériques si `CourseEntry.title` mal géré
+* risque d’ouverture matière incorrecte
+
+### Ressources utilisées
+
+* `bgm_savoir` ou `bgm_library` selon le nom effectivement utilisé
+* fond bibliothèque actuel
+* icônes matière / dieux si layout les utilise
+
+### Branches futures
+
+* tri par catégorie
+* filtre par sous-catégorie
+* progression visuelle par chapitre
+* dialogue contextuel du dieu
+
+### Points exacts de branchement
+
+* liste cours :
+
+  * utiliser `displayTitle()`
+* clic matière :
+
+  * futur temple du dieu
+
+---
+
+## 3.21 `GodMatiereActivity.kt`
+
+### Rôle
+
+Temple matière / lecture des parchemins.
+
+### Dépendances
+
+* `AppDatabase`
+* `CourseEntry`
+* `GodManager`
+* `PantheonConfig`
+* `AnimatedBackgroundHelper`
+* `OlympianParticlesView`
+
+### Risques
+
+* risque de rester trop “liste simple” alors que tu veux un vrai temple
+
+### Ressources utilisées
+
+* avatars dieux dialog si affichés
+* fonds / couleurs matière
+* `overlay_particles_gold`
+* `overlay_particles_blue`
+* futurs `bg_temple_*`
+
+### Branches futures
+
+* vrai temple interactif
+* boutons lire / s’entraîner / méditer
+* lore du dieu
+* cartes de chapitre
+
+### Points exacts de branchement
+
+* header du dieu :
+
+  * afficher avatar/nom/couleur
+* liste cours :
+
+  * catégories
+* actions :
+
+  * lecture
+  * entraînement ciblé
+
+---
+
+## 3.22 `HeroProfileActivity.kt`
+
+### Rôle
+
+Statut héros.
+
+### Dépendances
+
+* `AppDatabase`
+* `UserProfile`
+* `BadgeManager`
+* avatar selectionné
+
+### Risques
+
+* écran très identitaire, facile à “salir” visuellement
+* si avatar/pseudo mal persistés, il paraît cassé
+
+### Ressources utilisées
+
+* `bg_hero_profile`
+* `frame_avatar_gold`
+* `bg_hero_panel`
+* `bg_stat_card_hero`
+* `bg_prestige_panel`
+* `ic_badge_book_olympian`
+* `ic_inventory_bag_olympian`
+* `ic_day_streak_olympian`
+* `ic_win_streak_olympian`
+* `ic_currency_eclat_savoir`
+* `ic_currency_ambroisie`
+
+### Branches futures
+
+* temple du héros premium
+* aura / rang / prestige
+* accès badges
+* accès inventaire
+* affichage bonus avatar
+
+### Points exacts de branchement
+
+* zone héros droite :
+
+  * placer `ic_badge_book_olympian`
+  * placer `ic_inventory_bag_olympian`
+* stats :
+
+  * afficher day/win streak
+  * afficher bonus avatar
+* prestige :
+
+  * futur système d’artefacts
+
+---
+
+## 3.23 `BadgeBookActivity.kt`
+
+### Rôle
+
+Livre des badges.
+
+### Dépendances
+
+* `BadgeManager`
+* `BadgeDefinition`
+
+### Risques
+
+* si on cache tout, UX frustrante
+* si on révèle tout, pas de mystère
+
+### Ressources utilisées
+
+* `ic_badge_book_olympian`
+* `bg_badge_frame_commun`
+* `bg_badge_frame_rare`
+* `bg_badge_frame_epique`
+* `bg_badge_frame_legendaire`
+* `badge_locked`
+* tous les `badge_*`
+
+### Branches futures
+
+* détail au clic
+* filtres
+* rareté / catégorie / récompense
+* badges secrets intelligents
+
+### Points exacts de branchement
+
+* item clic :
+
+  * ouvrir détail badge
+* rendu verrouillé :
+
+  * vrai nom + `descriptionBloquee` pour non-secrets
+  * `???` pour secrets uniquement
+
+---
+
+## 3.24 `BadgeDefinition.kt`
+
+### Rôle
+
+Catalogue statique des badges.
+
+### Dépendances
+
+* `BadgeBookActivity`
+* `BadgeManager`
+
+### Risques
+
+* toucher aux ids casse les badges déjà attribués
+
+### Ressources utilisées
+
+* références à `badge_*`
+* frames rareté `bg_badge_frame_*`
+
+### Branches futures
+
+* champ `isSecret`
+* champ `hint` séparé si besoin
+* catégories parentales / avatar / lore
+
+### Point exact de branchement
+
+* chaque nouveau badge doit être ajouté ici, avec :
+
+  * id
+  * nom
+  * description
+  * descriptionBloquee
+  * rareté
+  * catégorie
+  * récompense
+
+---
+
+## 3.25 `BadgeManager.kt`
+
+### Rôle
+
+Moteur d’évaluation des badges.
+
+### Dépendances
+
+* `BadgeDefinition`
+* `AppDatabase`
+* SharedPreferences
+
+### Risques
+
+* très transverse
+* un bug ici impacte progression partout
+
+### Ressources utilisées
+
+* `sfx_badge_unlock`
+* badges `badge_*`
+
+### Branches futures
+
+* notification premium haut droite
+* badges parent
+* badges avatar
+* badges lore
+
+### Points exacts de branchement
+
+* `evaluateAll()` :
+
+  * nouvelles conditions
+* `getDerniersDebloques()` :
+
+  * alimenter Dashboard
+* futur overlay badge unlock
+
+---
+
+## 3.26 `CurrencyManager.kt`
+
+### Rôle
+
+Gestion des monnaies.
+
+### Dépendances
+
+* `UserProfile`
+* quiz / badges / récompenses
+
+### Risques
+
+* déséquilibre économie si gains dispersés partout
+
+### Ressources utilisées
+
+* `ic_currency_eclat_savoir`
+* `ic_currency_ambroisie`
+
+### Branches futures
+
+* boutique cosmétique
+* artefacts
+* coffres
+* protections streak
+
+### Points exacts de branchement
+
+* `QuizResultActivity` gains
+* `BadgeManager` récompenses
+* `HeroProfileActivity` affichage
+* Dashboard HUD
+
+---
+
+## 3.27 `UserProfile.kt`
+
+### Rôle
+
+Entité centrale joueur.
+
+### Dépendances
+
+* Room
+* Dashboard
+* HeroProfile
+* QuizResult
+* Settings
+
+### Risques
+
+* entité la plus sensible du projet
+* toute future feature finit ici
+
+### Ressources utilisées
+
+* aucune directement
+
+### Champs déjà/à maintenir
+
+* pseudo
+* avatar
+* xp
+* niveau calculé
+* eclatsSavoir
+* ambroisie
+* streak
+* bestStreakEver
+* dayStreak
+* bestDayStreak
+* winStreak
+* bestWinStreak
+* lastLoginDayKey
+* lastWinQuizAt
+
+### Branches futures
+
+* parentEmail
+* parentLinkEnabled
+* avatar bonus
+* langue
+* humeur persistée longue durée si besoin
+
+### Point exact de branchement
+
+* toute progression long terme doit passer ici
+
+---
+
+## 3.28 `CourseEntry.kt`
+
+### Rôle
+
+Entité cours sauvegardé.
+
+### Dépendances
+
+* Oracle
+* Savoir
+* Training
+* GodMatiere
+
+### Risques
+
+* si mal conçu, impossible de trier / catégoriser ensuite
+
+### Ressources utilisées
+
+* aucune directement
+
+### Champs déjà/à ajouter
+
+* `subject`
+* `title`
+* `extractedText`
+* `dateAdded`
+* `difficultyLevel`
+* futurs :
+
+  * `category`
+  * `subcategory`
+  * `containsQuestions`
+
+### Branches futures
+
+* catégorisation IA
+* temple cartes
+* filtres avancés
+
+### Point exact de branchement
+
+* `ResultActivity` au moment de sauvegarder
+
+---
+
+## 3.29 `MemoryScore.kt`
+
+### Rôle
+
+Suivi de mémoire / révision adaptative.
+
+### Dépendances
+
+* entraînement
+* répétition espacée
+
+### Risques
+
+* sous-utilisé alors qu’il peut devenir très puissant
+
+### Ressources utilisées
+
+* aucune
+
+### Branches futures
+
+* révision espacée réelle
+* difficulté adaptative
+* suggestions de révision quotidiennes
+
+---
+
+## 3.30 `AppDatabase.kt` / `IAristoteDao.kt`
+
+### Rôle
+
+Persistance Room.
+
+### Dépendances
+
+* toutes les activités métier
+
+### Risques
+
+* migrations
+* casse totale si version Room mal gérée
+
+### Ressources utilisées
+
+* aucune
+
+### Branches futures
+
+* migrations propres
+* parent system
+* catégories cours
+* objets inventaire
+* quêtes
+
+### Point exact de branchement
+
+* toute nouvelle entité stable doit passer ici
+
+---
+
+## 3.31 `PantheonConfig.kt`
+
+### Rôle
+
+Source de vérité matière ↔ dieu.
+
+### Dépendances
+
+* Dashboard
+* Oracle
+* Result
+* Savoir
+* Training
+* GodMatiere
+* GeminiManager
+
+### Risques
+
+* si une matière change de nom ici sans aligner le reste, tout casse
+
+### Ressources utilisées
+
+* couleurs matière
+* labels
+* futurs bgm/avatars associés
+
+### Branches futures
+
+* BGM par matière
+* temple backgrounds par matière
+* dieux interconnectés
+* textes lore par état
+
+### Point exact de branchement
+
+* ajouter toutes les ressources matière ici comme source de vérité secondaire si besoin :
+
+  * avatar dialog
+  * icône mini
+  * bgm quiz matière
+  * couleur
+
+---
+
+## 3.32 `GodManager.kt`
+
+### Rôle
+
+Couche métier des dieux.
+
+### Dépendances
+
+* `PantheonConfig`
+* dialogues
+* quiz
+* result
+
+### Risques
+
+* si inégal entre dieux, expérience incohérente
+
+### Ressources utilisées
+
+* `avatar_zeus_dialog`
+* `avatar_athena_dialog`
+* `avatar_poseidon_dialog`
+* `avatar_ares_dialog`
+* `avatar_aphrodite_dialog`
+* `avatar_hermes_dialog`
+* `avatar_demeter_dialog`
+* `avatar_hephaistos_dialog`
+* `avatar_apollon_dialog`
+* `avatar_promethee_dialog`
+
+### Branches futures
+
+* dialogue entre questions
+* retour immersif
+* motivation selon score
+* interactions inter-dieux
+
+### Points exacts de branchement
+
+* `fromMatiere()`
+* `getDialogue(context)`
+* ajouter dialogue :
+
+  * abandon
+  * réussite
+  * échec
+  * nommage cours
+  * encouragement
+
+---
+
+## 3.33 `GodLoreManager.kt`
+
+### Rôle
+
+Lore évolutif.
+
+### Dépendances
+
+* cours de l’utilisateur
+* quantité / thèmes / histoire progression
+
+### Risques
+
+* si non structuré, lore devient vite incohérent
+
+### Ressources utilisées
+
+* avatars dieux dialog
+* futurs fonds temple
+
+### Branches futures
+
+* anecdotes débloquées
+* mémoire par matière
+* inter-dieux
+* phrases contextuelles uniques
+
+### Point exact de branchement
+
+* après sauvegarde d’un cours
+* après entraînement matière
+* après seuils par matière
+
+---
+
+## 3.34 `GodSpeechAnimator.kt`
+
+### Rôle
+
+Typewriter + animation chibi.
+
+### Dépendances
+
+* `SoundManager`
+* lifecycle écran
+* ImageView / TextView
+
+### Risques
+
+* fuite audio si mal stoppé
+* blip fantôme si texte skip
+
+### Ressources utilisées
+
+* `sfx_dialogue_blip`
+* avatars dieux dialog
+
+### Branches futures
+
+* mode skip propre
+* arrêt propre centralisé
+* vitesse variable depuis Settings
+
+### Points exacts de branchement
+
+* `onChar`
+* `stopSpeaking()`
+* `release()`
+* lier à `onPause()` et `onDestroy()` de tous les écrans à dialogue
+
+---
+
+## 3.35 `AnimatedBackgroundHelper.kt`
+
+### Rôle
+
+Animation des fonds.
+
+### Dépendances
+
+* ImageView / écran
+
+### Risques
+
+* trop d’animation = surcharge visuelle / perf
+
+### Ressources utilisées
+
+* `bg_olympus_animated`
+* `overlay_particles_gold`
+* `overlay_particles_blue`
+* futurs fonds avatar / temple / humeur
+
+### Branches futures
+
+* fond avatar unique
+* fond colère
+* temple matière
+
+### Point exact de branchement
+
+* HeroProfile
+* temples
+* dashboard premium
+* perfect quiz result
+
+---
+
+## 3.36 `OlympianParticlesView.kt`
+
+### Rôle
+
+Particules premium.
+
+### Dépendances
+
+* vues custom
+
+### Risques
+
+* surconsommation si partout
+
+### Ressources utilisées
+
+* compatible avec `overlay_particles_gold`, `overlay_particles_blue`
+
+### Branches futures
+
+* perfect quiz
+* déblocage badge
+* prestige héros
+* temples
+
+### Point exact de branchement
+
+* QuizResult parfait
+* HeroProfile
+* Dashboard événement
+
+---
+
+## 3.37 `SettingsManager.kt`
+
+### Rôle
+
+Persistance des réglages.
+
+### Dépendances
+
+* SettingsActivity
+* SoundManager
+* possiblement UI globale
+
+### Risques
+
+* si settings non appliqués globalement, UX incohérente
+
+### Ressources utilisées
+
+* aucune directe
+
+### Branches futures
+
+* vitesse dialogue
+* volume blip séparé
+* nombre questions / difficulté
+* langue
+* accessibilité
+
+---
+
+## 3.38 `XpCalculator.kt`
+
+### Rôle
+
+Calcul niveaux / seuils XP.
+
+### Dépendances
+
+* Dashboard
+* HeroProfile
+* QuizResult
+* Settings compte
+
+### Risques
+
+* si formule change, équilibrage global impacté
+
+### Ressources utilisées
+
+* aucune
+
+### Branches futures
+
+* prestige
+* rangs
+* bonus avatar
+
+---
+
+# 4. Futures features classées avec points de branchement exacts
+
+---
+
+## 4.1 Bouton Humeur Dashboard
+
+### Fichiers à toucher
+
+* `activity_dashboard.xml`
+* `DashboardActivity.kt`
+
+### Ressources déjà existantes
+
+* réutiliser un bouton visuel existant si possible
+* sinon futur `ic_mood_cycle_olympian`
+
+### Point exact
+
+* `setupMenu()` dans `DashboardActivity`
+* `onResume()` pour recharger mood
+
+---
+
+## 4.2 Humeur Colère
+
+### Fichiers à toucher
+
+* `MoodActivity.kt`
+* `DashboardActivity.kt`
+* `GeminiManager.kt`
+* éventuellement `SettingsActivity.kt` si visible dans résumé des réglages
+
+### Ressources déjà présentes
+
+* pas de fond/musique colère visibles dans tes captures, donc à créer plus tard seulement si besoin réel
+
+### Points exacts
+
+* switch / sélection humeur
+* `CURRENT_MOOD`
+* `applyMoodTheme()`
+* `getToneByMood()`
+
+---
+
+## 4.3 Retour arrière immersif
+
+### Fichiers à toucher
+
+* `ResultActivity.kt`
+* `QuizActivity.kt`
+* `QuizResultActivity.kt`
+* `TrainingQuizActivity.kt`
+* `OracleActivity.kt`
+* potentiellement `BaseActivity.kt`
+
+### Ressources réutilisables
+
+* avatars dieux dialog
+* `bg_temple_button`
+* `sfx_dialogue_blip`
+
+### Points exacts
+
+* `onBackPressedDispatcher`
+* ouvrir panneau divin Oui/Non
+
+---
+
+## 4.4 Questions 10–30 selon richesse du résumé
+
+### Fichiers à toucher
+
+* `GeminiManager.kt`
+* `ResultActivity.kt`
+* `TrainingQuizActivity.kt`
+* `IAristoteEngine.kt`
+
+### Point exact
+
+* juste après résumé généré
+* calculer `questionCount`
+* injecter dans prompt
+
+---
+
+## 4.5 Réponses 2/3/4 selon âge
+
+### Fichiers à toucher
+
+* `GeminiManager.kt`
+* `IAristoteEngine.kt`
+* `QuizQuestion.kt`
+* `QuizActivity.kt`
+* `TrainingQuizActivity.kt`
+
+### Point exact
+
+* dans prompt : `answerCount`
+* dans parser : options dynamiques
+* dans UI quiz : masquer/afficher boutons
+
+---
+
+## 4.6 Dieu entre chaque question
+
+### Fichiers à toucher
+
+* `QuizActivity.kt`
+* `TrainingQuizActivity.kt`
+* `GodManager.kt`
+* `GodSpeechAnimator.kt`
+
+### Ressources déjà présentes
+
+* tous les `avatar_*_dialog`
+* `sfx_dialogue_blip`
+
+### Point exact
+
+* après validation réponse
+* afficher petit bloc dialogue avec explication
+
+---
+
+## 4.7 Étoiles résultat corrigées
+
+### Fichiers à toucher
+
+* `QuizResultActivity.kt`
+
+### Ressources à vérifier
+
+* si étoiles dédiées existent, les utiliser
+* sinon prévoir plus tard
+
+### Point exact
+
+* méthode de rendu score final
+
+---
+
+## 4.8 PDF Oracle
+
+### Fichiers à toucher
+
+* `OracleActivity.kt`
+* futur `SelectorOracleActivity` si présent
+* `ResultActivity.kt`
+
+### Ressources
+
+* `ic_library_scroll` possible réutilisation temporaire
+* créer une vraie icône PDF seulement si nécessaire
+
+### Point exact
+
+* dialog choix Oracle
+* pipeline `PdfRenderer`
+
+---
+
+## 4.9 Badge détail et non-secrets lisibles
+
+### Fichiers à toucher
+
+* `BadgeBookActivity.kt`
+* `BadgeDefinition.kt`
+
+### Ressources déjà présentes
+
+* toutes les icônes badges
+* `badge_locked`
+* `bg_badge_frame_*`
+
+### Point exact
+
+* rendu d’un item badge
+* clic détail
+
+---
+
+## 4.10 HeroProfile badges + inventaire
+
+### Fichiers à toucher
+
+* `HeroProfileActivity.kt`
+* `activity_hero_profile.xml`
+* `BadgeBookActivity.kt`
+* `InventoryActivity.kt`
+
+### Ressources déjà présentes
+
+* `ic_badge_book_olympian`
+* `ic_inventory_bag_olympian`
+
+### Point exact
+
+* zone droite du héros
+* clic navigation
+
+---
+
+# 5. Priorité réelle de reprise
+
+## Bloc 1 — stabilité
+
+1. `ResultActivity`
+2. `QuizQuestion`
+3. `QuizActivity`
+4. `TrainingQuizActivity`
+5. `IAristoteEngine`
+6. `SettingsActivity`
+7. `QuizResultActivity` étoiles
+
+## Bloc 2 — immersion
+
+8. `GodSpeechAnimator`
+9. retour immersif
+10. arrêt blip
+11. bouton humeur
+12. humeur colère
+
+## Bloc 3 — pédagogie
+
+13. quiz 10–30 questions
+14. réponses 2/3/4 selon âge
+15. dieu entre questions
+
+## Bloc 4 — premium
+
+16. BadgeBook détail
+17. HeroProfile premium
+18. inventaire
+19. avatars bonus
+20. Oracle PDF
+
+---
+
+# 6. Conclusion de reprise
+
+RéviZeus est déjà un projet **très avancé**.
+La bonne manière de le continuer n’est plus de “coder au hasard”, mais de le traiter comme un vrai projet de production :
+
+```text
+fichier par fichier
+dépendance par dépendance
+en protégeant les flux existants
+```
+
+La règle d’or :
+
+```text
+stabiliser d’abord
+puis enrichir
+sans jamais casser l’immersion divine
+```
+
+Si tu veux, au prochain message je peux te faire le **niveau ultime** :
+un **tableau d’intervention par feature**, qui dit pour chaque future amélioration :
+
+* fichiers exacts à modifier
+* ordre d’édition
+* risques de casse
+* tests à faire après modification.
+
+
+Backgrounds de sélection matière
+
+À mettre dans res/drawable/ en WebP :
+
+bg_select_maths_zeus.webp
+
+bg_select_francais_athena.webp
+
+bg_select_svt_poseidon.webp
+
+bg_select_histoire_ares.webp
+
+bg_select_art_aphrodite.webp
+
+bg_select_anglais_hermes.webp
+
+bg_select_geographie_demeter.webp
+
+bg_select_physique_hephaistos.webp
+
+bg_select_philo_apollon.webp
+
+bg_select_vie_promethee.webp
+
+Musiques de sélection matière
+
+À mettre dans res/raw/ :
+
+bgm_select_maths_zeus
+
+bgm_select_francais_athena
+
+bgm_select_svt_poseidon
+
+bgm_select_histoire_ares
+
+bgm_select_art_aphrodite
+
+bgm_select_anglais_hermes
+
+bgm_select_geographie_demeter
+
+bgm_select_physique_hephaistos
+
+bgm_select_philo_apollon
+
+bgm_select_vie_promethee
+
+Ces ressources serviront pour :
+
+GodMatiereActivity
+
+TrainingSelectActivity
+
+Donc un seul background + une seule BGM par matière, partagés entre les deux écrans.
+
+Utilité et connexions de chaque nouvelle ressource
+Backgrounds bg_select_*
+
+Utilité :
+
+fond immersif de sélection de cours/exercices selon la matière choisie
+
+Connexions :
+
+GodMatiereActivity.kt
+
+TrainingSelectActivity.kt
+
+BGM bgm_select_*
+
+Utilité :
+
+musique d’ambiance divine spécifique à la matière pendant la sélection
+
+Connexions :
+
+GodMatiereActivity.kt
+
+TrainingSelectActivity.kt

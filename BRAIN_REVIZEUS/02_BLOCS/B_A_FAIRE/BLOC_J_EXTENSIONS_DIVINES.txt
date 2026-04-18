@@ -1,0 +1,804 @@
+RÉVIZEUS — BLOC J
+EXTENSIONS DIVINES CRÉATIVES : APHRODITE / HERMÈS / APOLLON / PROMÉTHÉE
+Version : bloc d’implémentation exploitable par IA
+Date : 2026-03-24
+Statut : prêt à lancer après le BLOC I, avec liens directs vers K, L, M, N, O et P
+
+══════════════════════════════════════════════════════════════════════════════
+0 — RÔLE DU BLOC J DANS L’ORDRE GLOBAL
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc transforme les savoirs vivants du BLOC I en créations dérivées réellement utiles, mémorielles, immersives, exportables et reliées au gameplay.
+Jusqu’ici, RéviZeus a déjà stabilisé son socle, uniformisé les dialogues RPG, fiabilisé l’audio, renforcé l’Oracle, amélioré les quiz, unifié les récompenses, densifié l’économie, fait progresser les temples, enrichi l’inventaire/la forge et fait des savoirs de vraies entités vivantes.
+Le BLOC J vient maintenant brancher proprement les divinités créatives.
+
+Mission du BLOC J :
+- rendre Aphrodite réellement utile comme déesse de la visualisation pédagogique,
+- rendre Hermès réellement utile comme dieu de la traduction, de la reformulation et de la circulation du savoir,
+- rendre Apollon réellement utile comme dieu de la mémoire poétique, rythmique et musicale,
+- rendre Prométhée réellement utile comme dieu du sens, de l’explication méta, de l’aide système noble et de l’orientation pédagogique,
+- faire de chaque transformation un artefact traçable lié au savoir source,
+- assurer l’export individuel de chaque création dérivée,
+- assurer la gestion diégétique des quotas, limites et indisponibilités temporaires,
+- préparer les badges, quêtes, analytics, recommandations et mécaniques aventure liées aux créations,
+- garder une architecture propre : managers dédiés, artefacts liés au savoir, UI maîtrisée, dialogues RPG, loading divin et fallbacks.
+
+Vision produit :
+Un savoir RéviZeus ne doit pas seulement pouvoir être lu ou révisé.
+Il doit pouvoir être transformé en image, en traduction, en variation pédagogique, en poème, en chant, en piste symbolique, en explication de sens ou en suggestion divine.
+Ces transformations ne sont pas décoratives :
+- elles servent la mémorisation,
+- elles servent des profils d’apprentissage variés,
+- elles renforcent le sentiment de valeur du savoir,
+- elles créent une collection d’artefacts pédagogiques et créatifs,
+- elles donnent aux dieux une vraie utilité gameplay.
+
+Position dans l’ordre maître :
+- le BLOC I a créé les savoirs vivants, les sous-dossiers, le menu d’actions et les artefacts dérivés,
+- le BLOC J active maintenant les transformations créatives majeures,
+- le BLOC K s’appuiera ensuite dessus pour le dashboard vivant, les suggestions, le jukebox, les paramètres premium et les infos de progression,
+- le BLOC L reliera ces usages au moteur cognitif et aux recommandations intelligentes,
+- le BLOC M s’en servira pour badges, rangs et quêtes,
+- le BLOC O intégrera ces créations dans l’aventure, le bestiaire, le chaos, les quêtes et les récompenses de campagne.
+
+Le BLOC J doit donc absorber :
+- génération visuelle pédagogique via Aphrodite,
+- traduction, reformulation et variantes textuelles via Hermès,
+- poèmes, variantes lyriques et préparation musique/chant via Apollon,
+- aides de sens, suggestions intelligentes et guidance noble via Prométhée,
+- quotas divins et fatigue diégétique,
+- prompts IA structurés et JSON strict si nécessaire,
+- liaison forte avec le savoir source,
+- intégration dans le menu d’actions divines,
+- stockage en artefacts dérivés,
+- export universel,
+- affichage premium des résultats de création,
+- suggestions automatiques après échecs ou contexte adapté.
+
+══════════════════════════════════════════════════════════════════════════════
+1 — OBJECTIF FINAL DU BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+À la fin de ce bloc, RéviZeus doit disposer d’un vrai système d’extensions divines créatives :
+
+1. un savoir peut être transformé en image pédagogique cohérente avec la DA via Aphrodite,
+2. un savoir peut être traduit, simplifié, condensé, reformulé ou converti en version mots-clés via Hermès,
+3. un savoir peut être transformé en poème mnémotechnique, variation lyrique ou base musicale via Apollon,
+4. un savoir peut déclencher une intervention de Prométhée pour expliquer le sens, proposer le bon angle d’apprentissage, guider le joueur ou l’aider à choisir une transformation pertinente,
+5. toute création est reliée à son savoir source dans la base,
+6. toute création issue du savoir est exportable individuellement,
+7. les limites techniques sont toujours rendues diégétiques par fatigue divine,
+8. les créations peuvent être suggérées automatiquement selon les échecs, la fatigue, la fragilité d’un savoir ou le profil d’apprentissage,
+9. les écrans de résultats de création restent immersifs, audio-cohérents et RPG,
+10. l’architecture prépare les badges, quêtes, analytics, dashboard intelligent et aventure sans dette explosive.
+
+══════════════════════════════════════════════════════════════════════════════
+2 — PÉRIMÈTRE EXACT DU BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC J couvre :
+- intégration complète des actions créatives dans le menu d’actions divines du savoir,
+- génération d’image pédagogique via Aphrodite,
+- traduction et reformulation multi-format via Hermès,
+- génération de poème / variation lyrique / base musique guidée via Apollon,
+- aides de sens, suggestions et conseils système par Prométhée,
+- stockage des créations dérivées dans GeneratedArtifact / ResourceArtifact,
+- quotas et fatigue divine par pouvoir,
+- export individuel de tous les artefacts générés,
+- affichage premium des créations dans les écrans de résultat ou de consultation,
+- préparation d’une galerie des créations dérivées,
+- hooks vers badges, quêtes et analytics,
+- prompts IA dédiés dans GeminiManager et textes immersifs dans GodLoreManager.
+
+Le BLOC J ne doit PAS absorber maintenant :
+- la totalité du dashboard vivant,
+- la totalité du moteur cognitif profond,
+- tout le système badges/rangs/quêtes complet,
+- toute l’aventure complète,
+- tout le cloud ou la gestion multi-héros,
+- toute la génération audio réelle avancée si ton backend/API musique n’est pas encore prêt.
+
+En revanche, il doit préparer des points d’extension propres pour :
+- musique divine future,
+- galerie créative,
+- score d’inspiration par savoir,
+- recommandations intelligentes,
+- récompenses spécifiques aux savoirs enrichis,
+- enchaînement de plusieurs transformations sur un même savoir.
+
+══════════════════════════════════════════════════════════════════════════════
+3 — DÉPENDANCES ET PRÉREQUIS
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC J dépend fortement de :
+- BLOC A : stabilité compile, lifecycle, navigation et gestion sûre des écrans,
+- BLOC B : dialogues RPG, retours immersifs et fatigue divine propre,
+- BLOC C : loading divin, audio, TTS, ducking, fonds vidéo/image,
+- BLOC D : pipeline Oracle fiable pour créer des savoirs cohérents,
+- BLOC E : quiz / corrections / feedbacks stables,
+- BLOC F : RewardBundle et système de gains si des récompenses sont liées aux créations,
+- BLOC I : savoirs vivants, appui long, artefacts générés, export et sous-dossiers.
+
+Le BLOC J doit aussi anticiper :
+- BLOC K pour le dashboard vivant, les suggestions visibles, le jukebox et les paramètres de création,
+- BLOC L pour les déclencheurs cognitifs et recommandations intelligentes,
+- BLOC M pour badges/rangs/quêtes liés aux usages des dieux créatifs,
+- BLOC N pour la cohérence lore et la place narrative des dieux,
+- BLOC O pour intégrer les créations dans l’aventure, les quêtes et les systèmes de campagne,
+- BLOC P si certaines créations doivent plus tard être sauvegardées/restaurées en cloud.
+
+Avant de coder J, il faut vérifier :
+- qu’un savoir peut déjà être sélectionné et ouvrir un menu d’actions,
+- qu’une entité d’artefacts dérivés existe déjà ou peut être créée sans casser l’existant,
+- que l’export individuel des contenus texte existe déjà ou peut être généralisé proprement,
+- que les loadings divins et les dialogues RPG sont disponibles,
+- que SoundManager, SpeakerTtsHelper et les helpers de résultat peuvent être réutilisés,
+- que GeminiManager peut accueillir de nouveaux prompts structurés sans polluer les flows existants.
+
+Si une logique partielle existe déjà pour Apollon ou Prométhée :
+- ne pas la supprimer brutalement,
+- la fiabiliser,
+- la recentraliser si nécessaire dans des managers dédiés,
+- garder les ressources existantes,
+- garder les IDs XML et flows déjà utilisés si possible,
+- prévoir des fallbacks si certaines APIs externes ne sont pas encore branchées.
+
+══════════════════════════════════════════════════════════════════════════════
+4 — FICHIERS PRINCIPAUX CONCERNÉS
+══════════════════════════════════════════════════════════════════════════════
+
+Fichiers Kotlin probables :
+- CourseActionsBottomSheet.kt
+- GodMatiereActivity.kt
+- ResultActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+- GeneratedArtifact.kt ou ResourceArtifact.kt
+- GeneratedArtifactDao.kt ou ResourceArtifactDao.kt
+- ArtifactManager.kt
+- ExportManager / CourseExportManager.kt
+- AphroditeImageGenerator.kt
+- HermesTranslator.kt
+- ApollonLyreManager.kt
+- PrometheusHelper.kt
+- DivineFatigueManager.kt ou système équivalent
+- DivineSuggestionManager.kt
+- SpeakerTtsHelper.kt si lecture des créations textuelles
+- RewardManager.kt si récompenses spécifiques aux créations
+- BadgeManager.kt pour hooks légers
+- QuestManager.kt pour hooks légers
+- AnalyticsManager.kt / UserAnalyticsEngine.kt pour événements de création
+
+Fichiers XML probables :
+- bottom_sheet_course_actions.xml
+- dialog_divine_creation_result.xml ou équivalent
+- fragment_poem_result.xml / layout_apollon_result.xml si écran dédié
+- dialog_translation_options.xml
+- dialog_divine_fatigue.xml ou variante RPG si nécessaire
+- item_generated_artifact.xml si liste/galerie dédiée
+- éventuels composants de prévisualisation d’image / texte / variantes
+
+Ressources pouvant être nécessaires :
+- icône Aphrodite / dessin / image,
+- icône Hermès / traduction / langues,
+- icône Apollon / lyre / poème / musique,
+- icône Prométhée / conseil / flamme,
+- éventuels SFX dédiés par dieu créatif,
+- éventuels fonds ou overlays pour écrans de création,
+- éventuelles mini-illustrations de fatigue divine,
+- éventuels placeholders si génération d’image/musique échoue.
+
+Si des ressources manquent :
+- ne pas bloquer le chantier,
+- fallback propre obligatoire,
+- documenter précisément : nom exact, utilité, écrans concernés, connexions, prompt JSON si ressource non présente.
+
+══════════════════════════════════════════════════════════════════════════════
+5 — SOUS-CHANTIERS DU BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+J1 — Cadre d’architecture des extensions divines créatives
+J2 — Aphrodite : dessiner un savoir
+J3 — Hermès : traduction, reformulation et variantes textuelles
+J4 — Apollon : poème, lyre, variantes et préparation musique divine
+J5 — Prométhée : aide système noble, sens et suggestions intelligentes
+J6 — Artefacts dérivés, persistance et métadonnées de création
+J7 — Quotas, fatigue divine et limitations diégétiques
+J8 — Export individuel et préparation de l’export groupé créatif
+J9 — Intégration UI : menu actions, écrans résultat, relecture et régénération
+J10 — Hooks analytics, badges, quêtes, score d’inspiration et récompenses
+J11 — Cartographie des ressources manquantes et prompts JSON
+J12 — Tests manuels, critères de fin et garde-fous d’intégration
+
+══════════════════════════════════════════════════════════════════════════════
+6 — J1 : CADRE D’ARCHITECTURE DES EXTENSIONS DIVINES CRÉATIVES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Ne pas disperser les créations divines dans les Activities, ni coder des règles fragiles en direct dans le menu d’actions.
+
+Architecture cible :
+- une couche UI qui déclenche l’action divine choisie,
+- un manager/service dédié par dieu créatif,
+- GeminiManager pour les prompts et sorties structurées,
+- ArtifactManager pour stocker le résultat,
+- DivineFatigueManager pour les quotas et indisponibilités,
+- GodLoreManager pour les textes immersifs,
+- ExportManager pour sortir la création,
+- hooks analytics et badges découplés.
+
+À intégrer :
+- une enum ou sealed class pour les types d’actions créatives : DRAWING, TRANSLATION, SIMPLIFIED_TEXT, KEYWORDS, POEM, MUSIC_GUIDE, DIVINE_ADVICE,
+- un modèle commun de requête de création lié à un CourseEntry,
+- un modèle commun de réponse de création lié à un Artifact,
+- une convention de nommage claire des artefacts,
+- une table ou logique unifiée des types de créations autorisées par savoir.
+
+À éviter absolument :
+- lancer directement de longs appels IA depuis une Activity sans manager,
+- stocker du JSON arbitraire dispersé partout,
+- faire de l’export “à la volée” sans artefact persisté,
+- dupliquer la logique de quota dans quatre endroits différents,
+- perdre le lien avec le savoir d’origine.
+
+Résultat attendu :
+Le système est prêt à accueillir les quatre dieux créatifs sans dette architecturelle.
+
+══════════════════════════════════════════════════════════════════════════════
+7 — J2 : APHRODITE — DESSINER UN SAVOIR
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Transformer un savoir en représentation visuelle mémorable, claire, premium, pédagogique et cohérente avec la DA RéviZeus.
+
+Entrées possibles :
+- résumé d’un savoir validé,
+- titre + points clés + sous-catégorie,
+- métadonnées de matière / âge / classe / humeur,
+- éventuellement difficulté détectée ou échecs répétés sur ce savoir.
+
+Cas d’usage principaux :
+- invocation manuelle via l’appui long sur un savoir,
+- suggestion automatique après plusieurs échecs sur le même savoir,
+- usage prioritaire pour les profils à affinité visuelle,
+- création d’une carte visuelle révisable et exportable.
+
+À livrer :
+- AphroditeImageGenerator.kt,
+- prompt de génération d’image pédagogique à partir du savoir,
+- adaptation du prompt selon l’âge et le niveau scolaire,
+- adaptation à la matière,
+- liaison de l’image générée au savoir source,
+- stockage de l’image comme artefact dérivé,
+- export individuel de l’image,
+- affichage premium du résultat,
+- régénération d’une variante d’image,
+- dialogue RPG d’invocation / succès / fatigue.
+
+Règles produit :
+- le résultat doit aider à comprendre ou mémoriser, pas seulement “faire joli”,
+- la DA RéviZeus doit rester respectée : chibi, mythologie, scolaire, coloré, premium,
+- si une ressource manquante est nécessaire, fournir le prompt JSON, le nom, l’utilité et les connexions,
+- si l’API image n’est pas prête, fallback propre : générer un prompt structuré exportable + placeholder expliqué par Aphrodite,
+- toute image produite doit rester attachée au savoir et exportable individuellement.
+
+Améliorations premium à intégrer directement :
+- styles de visualisation : schéma simple, image symbolique, carte mentale visuelle, scène mémorielle,
+- badge ou compteur interne “savoirs illustrés”,
+- score d’inspiration du savoir,
+- suggestion automatique contextuelle en fin de quiz si blocage répété,
+- compatibilité avec profils visuels et recommandations cognitives futures.
+
+Écran / UX attendus :
+- loading divin dédié à Aphrodite,
+- résultat avec prévisualisation d’image,
+- boutons : exporter, régénérer, revenir au savoir, éventuellement “version plus simple” / “plus symbolique”,
+- message diégétique si le dessin ne peut être produit maintenant.
+
+Résultat attendu :
+Un savoir peut être visualisé comme une œuvre pédagogique collectible, mémorable et reliée au système du jeu.
+
+══════════════════════════════════════════════════════════════════════════════
+8 — J3 : HERMÈS — TRADUCTION, REFORMULATION ET VARIANTES TEXTUELLES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Permettre à un savoir déjà enregistré de changer de langue ou de forme pédagogique sans perdre le sens central.
+
+Cas d’usage principaux :
+- traduction dans une autre langue,
+- version bilingue FR + langue cible,
+- version plus simple,
+- version plus concise,
+- version exemples concrets,
+- version mots-clés seulement,
+- reformulation culturelle ou linguistique plus accessible.
+
+Langues initiales à prévoir au minimum :
+- anglais,
+- espagnol,
+- latin,
+- japonais,
+- structure extensible pour en ajouter d’autres.
+
+À livrer :
+- HermesTranslator.kt,
+- choix de langue / type de reformulation,
+- prompt IA garantissant conservation du sens pédagogique,
+- version bilingue si nécessaire,
+- stockage de chaque variante comme artefact dérivé distinct,
+- export individuel de chaque variante,
+- conservation du lien avec le savoir source,
+- écran ou panneau de résultat lisible et RPG,
+- loading et fatigue divine propres.
+
+Règles produit :
+- ne jamais écraser silencieusement le résumé d’origine,
+- toute traduction / variante doit être considérée comme ressource dérivée,
+- le savoir d’origine reste la référence,
+- les variantes doivent garder leurs métadonnées : langue cible, type de reformulation, date, dieu, source,
+- si la matière impose le français comme base, garder une version FR visible ou accessible.
+
+Améliorations premium à intégrer directement :
+- boutons rapides “plus simple”, “plus court”, “mots-clés”, “version bilingue”,
+- compatibilité avec profils de compréhension et surcharge cognitive,
+- réutilisation dans les quiz langues / révision multilingue,
+- suggestion automatique si le résumé paraît trop dense,
+- badge / analytics “savoir multiforme” ou “voyageur d’Hermès”.
+
+Écran / UX attendus :
+- dialogue de choix de langue / type de reformulation,
+- loading divin d’Hermès,
+- résultat texte lisible avec TTS possible,
+- boutons : exporter, recréer une autre variante, revenir au savoir,
+- message diégétique si les vents d’Hermès sont troublés ou si le quota est atteint.
+
+Résultat attendu :
+Un savoir devient modulable et multilingue sans casser sa structure, son indexation ni sa valeur pédagogique.
+
+══════════════════════════════════════════════════════════════════════════════
+9 — J4 : APOLLON — POÈME, LYRE, VARIANTES ET PRÉPARATION MUSIQUE DIVINE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Transformer un savoir en contenu mémoriel rythmé, émotionnel, poétique ou préparatoire à une piste musicale.
+
+Cas d’usage principaux :
+- génération de poème mnémotechnique,
+- génération de variantes : plus simple, plus lyrique, plus drôle, plus courte,
+- transformation d’un savoir difficile en forme plus mémorable,
+- préparation d’une base textuelle pour futur module musique divine,
+- usage comme récompense ou aide après difficulté.
+
+À livrer :
+- ApollonLyreManager.kt,
+- bouton “Invoquer la Lyre d’Apollon” dans le menu du savoir,
+- loading divin plein écran pendant génération,
+- prompt IA adapté à l’âge, la matière et l’objectif mémoriel,
+- plusieurs tonalités possibles,
+- stockage du poème comme artefact dérivé,
+- export texte immédiat,
+- possibilité de régénérer une variation,
+- lecture TTS du poème,
+- base architecturelle pour futur export audio récité ou musique guidée.
+
+Sous-couche musique divine à préparer sans surpromettre :
+- si ton backend/API musique n’est pas encore prêt, préparer un artifactType MUSIC_GUIDE ou SONG_CONCEPT,
+- stocker un texte de guidage musical ou une structure rythmique liée au savoir,
+- rendre ce résultat exportable comme texte ou note créative,
+- afficher clairement un message immersif si la musique réelle n’est pas encore invocable.
+
+Règles produit :
+- le poème doit rester utile à la mémorisation, pas seulement ornemental,
+- le ton doit rester propre à l’âge et au contexte,
+- le savoir source doit rester lié à toutes les variations,
+- le système doit supporter plusieurs versions d’un même poème,
+- toute limite technique doit devenir fatigue divine d’Apollon.
+
+Améliorations premium à intégrer directement :
+- options “plus simple” / “plus lyrique” / “plus drôle”,
+- BGM ou ambiance dédiée au résultat si déjà disponible,
+- badge lié à l’usage de la Lyre,
+- score d’inspiration par savoir,
+- suggestion automatique après échecs répétés sur un savoir,
+- préparation de playlists ou galerie lyrique future.
+
+Écran / UX attendus :
+- loading divin premium,
+- résultat poème en mode RPG ou panneau noble,
+- boutons : exporter, écouter, régénérer, revenir au savoir,
+- message de fatigue divine si Apollon se repose.
+
+Résultat attendu :
+Un savoir peut devenir poème mémoriel, variation lyrique ou base musicale, sans quitter la logique pédagogique du jeu.
+
+══════════════════════════════════════════════════════════════════════════════
+10 — J5 : PROMÉTHÉE — AIDE SYSTÈME NOBLE, SENS ET SUGGESTIONS INTELLIGENTES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de Prométhée un vrai guide du sens et de l’orientation pédagogique, pas seulement un visage tutoriel statique.
+
+Rôles à intégrer :
+- expliquer à quoi sert un savoir,
+- aider à choisir la bonne transformation divine,
+- suggérer une action quand l’utilisateur bloque,
+- formuler un conseil système immersif,
+- porter certaines explications de création ou de profil d’apprentissage,
+- intervenir lors des retours de fatigue, de confusion ou de perte de sens.
+
+Cas d’usage :
+- depuis le menu d’actions d’un savoir : “Demander conseil à Prométhée”,
+- en fin de quiz ou après échecs : suggestion d’un angle différent,
+- depuis le dashboard futur : recommandation de prochaine meilleure action,
+- lors de choix sensibles : expliquer pourquoi une transformation est utile,
+- en support des profils d’apprentissage et du moteur cognitif futur.
+
+À livrer :
+- PrometheusHelper.kt,
+- messages structurés et immersifs via GodLoreManager,
+- logique de conseil contextuel à partir du savoir, de l’historique récent et du contexte,
+- suggestions d’actions du type : dessiner, traduire, reformuler, poétiser, réviser, simplifier,
+- affichage RPG cohérent,
+- possibilité de journaliser l’intervention dans DivineInterventionLog à terme.
+
+Règles produit :
+- Prométhée ne doit pas être une simple FAQ déguisée,
+- ses conseils doivent être contextualisés et actionnables,
+- il doit aider à choisir sans imposer brutalement,
+- il doit servir le sens, la motivation et la lisibilité système,
+- il doit porter les messages techniques transformés en diégétique quand approprié.
+
+Améliorations premium à intégrer directement :
+- suggestions automatiques après échecs répétés,
+- suggestion de création artistique ou de reformulation selon le profil,
+- pont avec recommandations IA futures,
+- support de messages “ce savoir serait mieux retenu sous forme d’image / poème / version plus simple”,
+- intégration future aux quêtes narratives et au lore.
+
+Résultat attendu :
+Prométhée devient un guide intelligent, vivant et central dans l’accompagnement du joueur.
+
+══════════════════════════════════════════════════════════════════════════════
+11 — J6 : ARTEFACTS DÉRIVÉS, PERSISTANCE ET MÉTADONNÉES DE CRÉATION
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire en sorte que toute création divine soit persistée proprement comme artefact relié au savoir.
+
+À intégrer :
+- types d’artefacts : IMAGE, TRANSLATION, SIMPLIFIED_TEXT, KEYWORDS, POEM, MUSIC_GUIDE, DIVINE_ADVICE,
+- lien vers CourseEntry,
+- createdByGod,
+- createdAt,
+- exportCount,
+- wasExported,
+- metadataJson riche,
+- paramètres utiles : langue cible, style, tonalité, prompt, quotaSlot éventuel, versionIndex,
+- indicateurs UI : favori, récent, visible, supprimé logiquement si nécessaire.
+
+Règles :
+- ne pas perdre le savoir d’origine,
+- plusieurs artefacts du même type doivent pouvoir coexister,
+- possibilité de retrouver l’historique des créations d’un savoir,
+- compatibilité avec export, badges, quêtes et analytics.
+
+Résultat attendu :
+Toutes les créations divines existent comme objets solides du système, pas comme résultats jetables.
+
+══════════════════════════════════════════════════════════════════════════════
+12 — J7 : QUOTAS, FATIGUE DIVINE ET LIMITATIONS DIÉGÉTIQUES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Transformer toute limite technique en événement divin immersif cohérent.
+
+À intégrer :
+- suivi des usages par pouvoir : Aphrodite dessin, Hermès traduction, Apollon lyre/musique,
+- état disponible / en repos / réactivation prévue,
+- message immersif par dieu,
+- affichage du délai estimé avant retour,
+- logique centralisée via DivineFatigueManager,
+- hooks UI pour empêcher de lancer une action indisponible.
+
+Exemples de formulation attendue :
+- Aphrodite est fatiguée et repose ses pinceaux célestes,
+- les vents d’Hermès sont troublés,
+- Apollon accorde encore sa lyre,
+- Prométhée garde encore sa flamme pour un prochain conseil.
+
+Règles :
+- jamais de message technique brut type quota exceeded,
+- jamais de stacktrace exposée,
+- toujours une explication noble, claire et utile,
+- si possible heure ou durée restante,
+- si indisponibilité réseau ou API : formulation diégétique cohérente.
+
+Résultat attendu :
+Les limites techniques sont absorbées dans l’univers du jeu.
+
+══════════════════════════════════════════════════════════════════════════════
+13 — J8 : EXPORT INDIVIDUEL ET PRÉPARATION DE L’EXPORT GROUPÉ CRÉATIF
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Rendre chaque création divine exportable individuellement, et préparer l’export groupé par savoir.
+
+À livrer :
+- export individuel du dessin,
+- export individuel de la traduction / reformulation,
+- export individuel du poème,
+- export individuel de la base musique/guide si générée,
+- export éventuel du conseil de Prométhée si jugé utile,
+- métadonnées lisibles dans les noms ou contenus d’export.
+
+Préparation à intégrer :
+- futur export groupé par savoir,
+- futur export groupé par temple,
+- dossier RéviZeus clair,
+- nommage propre des fichiers,
+- partage Android natif si prêt.
+
+Résultat attendu :
+Les créations dérivées prennent de la valeur hors de l’application et ne restent pas prisonnières de l’UI.
+
+══════════════════════════════════════════════════════════════════════════════
+14 — J9 : INTÉGRATION UI — MENU ACTIONS, ÉCRANS RÉSULTAT, RELECTURE ET RÉGÉNÉRATION
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Offrir une UX noble, fluide, immersive et non technique pour lancer, lire et gérer les créations divines.
+
+À intégrer :
+- ajouter les actions divines dans le menu appui long du savoir,
+- boutons / sous-menus propres selon le dieu,
+- dialogues RPG d’introduction et de retour,
+- loadings divins cohérents,
+- écrans ou panneaux résultats lisibles,
+- possibilité de régénérer une variante,
+- possibilité de revenir au savoir source,
+- compatibilité TTS pour les résultats textuels,
+- compatibilité audio propre sans superposition parasite.
+
+Règles UI :
+- pas d’écran froid ou debug,
+- pas de toast sec pour un résultat important,
+- pas de boîte système plate pour une création majeure,
+- chaque retour doit rester cohérent avec la DA RéviZeus.
+
+Résultat attendu :
+L’invocation d’un dieu créatif devient une expérience premium complète.
+
+══════════════════════════════════════════════════════════════════════════════
+15 — J10 : HOOKS ANALYTICS, BADGES, QUÊTES, SCORE D’INSPIRATION ET RÉCOMPENSES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Préparer le raccord propre avec la meta-progression sans gonfler ce bloc inutilement.
+
+À prévoir :
+- événement analytics lorsqu’un savoir est illustré, traduit, poétisé ou conseillé,
+- compteur de transformations par savoir,
+- compteur de savoirs enrichis,
+- score d’inspiration du savoir,
+- hooks vers BadgeManager,
+- hooks vers QuestManager,
+- possibilité future de petites récompenses ciblées.
+
+Exemples de futures récompenses / usages :
+- badge après X savoirs illustrés,
+- badge après X traductions,
+- badge après X poèmes d’Apollon,
+- quête “invoquer trois dieux sur un même savoir”,
+- recommandation “ce savoir enrichi mérite une révision ou une mise en avant”.
+
+Règle :
+- ne pas coder toute la logique de badges/quêtes ici,
+- simplement exposer les bons événements et points d’ancrage.
+
+Résultat attendu :
+Le système créatif nourrit naturellement la méta-progression future.
+
+══════════════════════════════════════════════════════════════════════════════
+16 — J11 : CARTOGRAPHIE DES RESSOURCES MANQUANTES ET PROMPTS JSON
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Respecter la règle produit : toute ressource absente de la mémoire doit être documentée proprement.
+
+À faire :
+- lister toute ressource nécessaire non encore présente,
+- pour chacune :
+  - nom exact,
+  - utilité,
+  - écrans concernés,
+  - connexions avec autres écrans/codes,
+  - prompt JSON conforme à la DA RéviZeus.
+
+Exemples possibles si absents :
+- ic_aphrodite_divine_action,
+- ic_hermes_translation,
+- ic_apollon_lyre,
+- ic_promethee_advice,
+- sfx_aphrodite_invoke,
+- sfx_hermes_translate,
+- sfx_apollon_lyre,
+- bg_divine_creation_result,
+- placeholder_divine_artifact.
+
+Règle :
+- ne jamais inventer qu’une ressource existe si elle n’est pas confirmée,
+- fallback propre en attendant,
+- toujours documenter.
+
+Résultat attendu :
+Le chantier reste pilotable même si certaines ressources artistiques/audio ne sont pas encore créées.
+
+══════════════════════════════════════════════════════════════════════════════
+17 — J12 : TESTS MANUELS, CRITÈRES DE FIN ET GARDE-FOUS D’INTÉGRATION
+══════════════════════════════════════════════════════════════════════════════
+
+Tests manuels minimaux :
+1. ouvrir un savoir et déclencher chaque action divine disponible,
+2. vérifier qu’un loading divin apparaît proprement,
+3. vérifier que le résultat est stocké comme artefact lié,
+4. vérifier que l’export individuel fonctionne,
+5. vérifier qu’aucune action n’écrase le savoir original par erreur,
+6. vérifier que la fatigue divine bloque proprement une action indisponible,
+7. vérifier le retour arrière pendant une génération,
+8. vérifier la reprise après pause / rotation si applicable,
+9. vérifier l’absence de superposition audio parasite,
+10. vérifier la lisibilité des textes générés,
+11. vérifier la cohérence des messages RPG,
+12. vérifier que les anciens savoirs sans métadonnées riches ne cassent rien.
+
+Critères de fin :
+- Aphrodite fonctionne au minimum en mode architecture + stockage + export + fallback si API image absente,
+- Hermès permet au minimum traduction/reformulation + stockage + export,
+- Apollon permet au minimum poème + variantes + stockage + export,
+- Prométhée permet au minimum conseil contextuel + suggestions utiles,
+- chaque création est liée au savoir source,
+- la fatigue divine est centralisée et visible,
+- l’UI reste premium,
+- aucune Activity critique n’est fragilisée,
+- aucun message technique brut n’est exposé,
+- le système prépare clairement les blocs K, L, M, N et O.
+
+Erreurs à éviter :
+- coder quatre micro-systèmes isolés sans socle commun,
+- ne pas stocker proprement les créations,
+- oublier l’export,
+- lancer des appels API sans loading ni garde-fou,
+- multiplier les prompts sans structure,
+- mélanger résultat créatif et écrasement du résumé original,
+- oublier la fatigue divine,
+- casser l’appui long du savoir déjà mis en place au BLOC I.
+
+══════════════════════════════════════════════════════════════════════════════
+18 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CODER LE BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+Priorité haute :
+- CourseActionsBottomSheet.kt
+- GodMatiereActivity.kt
+- CourseEntry.kt
+- GeneratedArtifact.kt ou ResourceArtifact.kt
+- GeneratedArtifactDao.kt / ResourceArtifactDao.kt
+- ArtifactManager.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+- ExportManager / CourseExportManager.kt
+- SoundManager.kt
+- SpeakerTtsHelper.kt
+- XML du menu d’actions et des écrans/panneaux résultat
+
+Priorité moyenne :
+- RewardManager.kt
+- BadgeManager.kt
+- QuestManager.kt
+- AnalyticsManager.kt / UserAnalyticsEngine.kt
+- ResultActivity.kt si certains retours créatifs y sont branchés
+- SettingsActivity.kt si options de création / TTS / langues y sont exposées
+
+Si certains fichiers n’existent pas encore :
+- demander à l’IA de les créer sans casser l’architecture,
+- lui imposer des managers dédiés,
+- lui faire documenter les points d’intégration exacts.
+
+══════════════════════════════════════════════════════════════════════════════
+19 — ORDRE D’EXÉCUTION RECOMMANDÉ À L’INTÉRIEUR DU BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. cadrer les types d’artefacts et l’architecture commune,
+2. brancher la fatigue divine centralisée,
+3. brancher Hermès et Apollon d’abord côté texte (plus simples à stabiliser),
+4. brancher Prométhée pour la guidance et les suggestions,
+5. brancher Aphrodite avec fallback propre si API image absente,
+6. finaliser stockage / export / UI résultat,
+7. ajouter analytics, hooks badges/quêtes et score d’inspiration,
+8. finir par les tests manuels et la cartographie ressource.
+
+Pourquoi cet ordre :
+- les transformations textuelles stabilisent d’abord la logique,
+- Prométhée aide à rationaliser les suggestions,
+- Aphrodite est souvent la plus dépendante d’API externes et de ressources visuelles,
+- l’export et les hooks méta viennent après pour éviter de recoder deux fois.
+
+══════════════════════════════════════════════════════════════════════════════
+20 — PROMPT PRÊT À COPIER-COLLER À UNE IA POUR LANCER LE BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+Voici le BLOC J de RéviZeus.
+Je veux que tu implémentes les extensions divines créatives : Aphrodite, Hermès, Apollon et Prométhée, sans jamais casser l’architecture existante.
+Tu dois respecter strictement les règles suivantes :
+- conserver 100 % des variables, IDs, flows, mécaniques, managers et commentaires utiles déjà en place ;
+- ne rien supprimer arbitrairement ;
+- ne pas renommer arbitrairement ;
+- générer les fichiers complets modifiés ;
+- rester en XML classique + ViewBinding ;
+- aucun Jetpack Compose ;
+- plein écran portrait partout ;
+- toute popup importante doit tendre vers du RPG lettre par lettre avec son ;
+- toute action longue IA doit avoir un loading divin ;
+- toute limite technique doit être rendue diégétique via fatigue divine ;
+- toute création issue d’un savoir doit être liée au savoir source et exportable individuellement.
+
+Objectif du bloc :
+- intégrer Aphrodite pour dessiner un savoir,
+- intégrer Hermès pour traduire ou reformuler un savoir,
+- intégrer Apollon pour générer poèmes/variantes et préparer la musique divine,
+- intégrer Prométhée comme guide de sens et suggestion intelligente,
+- stocker toutes les créations comme artefacts dérivés,
+- centraliser quotas et fatigue divine,
+- préparer analytics, badges, quêtes et score d’inspiration.
+
+Je veux que tu travailles en 4 étapes :
+1. audit précis des fichiers fournis et des collisions potentielles,
+2. plan d’intégration détaillé par fichier,
+3. génération des fichiers complets modifiés et nouveaux fichiers nécessaires,
+4. instructions d’intégration, tests manuels, liste des ressources manquantes avec pour chacune : nom exact, utilité, connexions écran/code, prompt JSON si absente.
+
+Points fonctionnels obligatoires :
+- ne jamais écraser le savoir original quand on génère une traduction, un poème ou un dessin,
+- tout résultat doit devenir un artefact dérivé relié au CourseEntry source,
+- export individuel obligatoire,
+- fatigue divine centralisée,
+- fallback propre si API image ou musique non disponible,
+- boutons de régénération quand c’est cohérent,
+- messages immersifs via GodLoreManager,
+- prompts structurés dans GeminiManager,
+- compatibilité avec le menu d’actions divines du savoir.
+
+Commence par l’audit des fichiers que je te fournis et dis-moi précisément ce qu’il faut modifier, créer ou relier avant de générer le code.
+
+══════════════════════════════════════════════════════════════════════════════
+21 — MISE À JOUR DES FICHIERS DE COHÉRENCE À PRÉVOIR APRÈS IMPLÉMENTATION
+══════════════════════════════════════════════════════════════════════════════
+
+Après implémentation du BLOC J, mettre à jour au minimum :
+- 01_SYSTEM_PROMPT_ULTIME.txt
+- 03_DATA_AND_MANAGERS.md
+- 04_UI_AND_NAVIGATION_MAP.md
+- 05_RESOURCE_MANIFEST.json
+- 09_LORE_BIBLE_REVIZEUS.md si certains rôles divins ou formulations sont enrichis
+
+À documenter :
+- nouveaux managers,
+- nouveaux types d’artefacts,
+- nouvelles actions divines disponibles,
+- règles de fatigue divine,
+- types d’exports supportés,
+- points d’entrée UI,
+- ressources manquantes / placeholders / prompts.
+
+══════════════════════════════════════════════════════════════════════════════
+22 — CONCLUSION DU BLOC J
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC J est le moment où les dieux créatifs cessent d’être une promesse pour devenir des outils réels de transformation pédagogique.
+Il donne au savoir une profondeur multi-forme.
+Il donne une vraie utilité aux dieux hors quiz simples.
+Il prépare les systèmes de recommandation, de progression, de collection et d’aventure.
+Et il renforce l’identité unique de RéviZeus :
+un sanctuaire éducatif vivant où le savoir ne se contente pas d’être appris, mais se transforme, s’incarne et rayonne.

@@ -1,0 +1,283 @@
+═══════════════════════════════════════════════════════════════════════════════
+RÉVIZEUS — 400 BADGES MASTER ULTIMATE COMPLET
+═══════════════════════════════════════════════════════════════════════════════
+
+Version : GOD TIER ULTIMATE 2026-03-25
+Document FINAL complet : 400 badges avec prompts corrects format badge
+Statut : 298 NOUVEAUX BADGES + 102 DÉJÀ CODÉS = 400 TOTAL
+
+═══════════════════════════════════════════════════════════════════════════════
+0. FORMAT STRICT PROMPTS — ABSOLU
+═══════════════════════════════════════════════════════════════════════════════
+
+TOUS les prompts suivent STRICTEMENT :
+
+"RPG badge icon, [OBJET_CENTRAL], [square/circular/triangular] badge frame, 
+centered composition, 3D epic chibi Olympe style, clay render, chroma key green 
+background #00FF00, no scenery, no characters, icon only"
+
+RÈGLES NON-NÉGOCIABLES :
+✓ Fond VERT FLUO #00FF00 (chroma key)
+✓ ICÔNE SEULE centrée - PAS de chibi
+✓ Badge frame (square/circular/triangular)
+✓ OBJET SYMBOLIQUE uniquement
+✓ NO background - NO scenery - NO landscape - NO characters
+✓ Format 1:1 carré
+✓ ICON ONLY
+
+═══════════════════════════════════════════════════════════════════════════════
+
+BADGES DÉJÀ CODÉS (102) - RÉFÉRENCE
+
+STREAK (9), XP/NIVEAU (11), ORACLE (11), QUIZ/COMBAT (19), PANTHÉON (9), 
+FORGE (13), DIVIN/INTERACTIONS (12), SPÉCIAL/WTF (18)
+
+Voir BadgeDefinition.kt pour la liste complète
+
+═══════════════════════════════════════════════════════════════════════════════
+CATÉGORIE 1 — TEMPLES ÉVOLUTIFS (35 BADGES)
+═══════════════════════════════════════════════════════════════════════════════
+
+ID : temple_first_level_any | NOM : Première Pierre | RARETÉ : Commun
+DESCRIPTION : Tu as relevé ta première pierre d'un temple en ruine.
+DÉBLOCAGE : Monter n'importe quel temple au niveau 1 | CATÉGORIE : Temples | XP : 100
+PROMPT : "RPG badge icon, single glowing foundation stone, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_zeus_level_5 | NOM : Foudre Renaissante | RARETÉ : Rare
+DESCRIPTION : Le temple de Zeus reprend vie grâce à tes efforts mathématiques.
+DÉBLOCAGE : Temple de Zeus niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, golden lightning bolt with pi symbol, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_athena_level_5 | NOM : Renaissance de la Sagesse | RARETÉ : Rare
+DESCRIPTION : La bibliothèque d'Athéna brille à nouveau.
+DÉBLOCAGE : Temple d'Athéna niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, ancient glowing book with owl symbol, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_poseidon_level_5 | NOM : Marée Montante | RARETÉ : Rare
+DESCRIPTION : Les eaux du savoir coulent à nouveau dans le temple de Poséidon.
+DÉBLOCAGE : Temple de Poséidon niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, trident with DNA helix, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_ares_level_5 | NOM : Forge de l'Histoire | RARETÉ : Rare
+DESCRIPTION : Les batailles du passé résonnent à nouveau dans le temple d'Arès.
+DÉBLOCAGE : Temple d'Arès niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, spartan helmet with ancient scroll, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_hephaistos_level_5 | NOM : Enclume Éternelle | RARETÉ : Rare
+DESCRIPTION : Les flammes de la connaissance brûlent à nouveau dans la forge.
+DÉBLOCAGE : Temple d'Héphaïstos niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, anvil with chemical flask, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_hermes_level_5 | NOM : Messager Restauré | RARETÉ : Rare
+DESCRIPTION : Les langues du monde résonnent à nouveau dans le temple d'Hermès.
+DÉBLOCAGE : Temple d'Hermès niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, winged caduceus with ABC letters, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_demeter_level_5 | NOM : Jardin Fertile | RARETÉ : Rare
+DESCRIPTION : Les terres de Déméter fleurissent à nouveau sous tes soins.
+DÉBLOCAGE : Temple de Déméter niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, wheat sheaf with globe, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_apollon_level_5 | NOM : Lyre Ressuscitée | RARETÉ : Rare
+DESCRIPTION : La musique de la philosophie résonne à nouveau dans le temple d'Apollon.
+DÉBLOCAGE : Temple d'Apollon niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, golden lyre with thought bubble, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_promethee_level_5 | NOM : Flamme de l'Innovation | RARETÉ : Rare
+DESCRIPTION : La torche de Prométhée éclaire à nouveau le chemin de l'humanité.
+DÉBLOCAGE : Temple de Prométhée niveau 5 | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, burning torch with lightbulb, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+──────────────────────────────────────────────────────────────────────────────── 
+
+ID : temple_three_level_10 | NOM : Triple Gloire | RARETÉ : Épique
+DESCRIPTION : Trois temples atteignent leur apogée grâce à ta dévotion.
+DÉBLOCAGE : 3 temples différents niveau 10 | CATÉGORIE : Temples | XP : 1500
+PROMPT : "RPG badge icon, three greek columns glowing, triangular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_five_level_10 | NOM : Panthéon Renaissant | RARETÉ : Légendaire
+DESCRIPTION : Cinq dieux règnent à nouveau en pleine puissance.
+DÉBLOCAGE : 5 temples différents niveau 10 | CATÉGORIE : Temples | XP : 3000
+PROMPT : "RPG badge icon, five stars in pentagram, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_all_level_5 | NOM : Reconstruction Généralisée | RARETÉ : Épique
+DESCRIPTION : Tous les temples sont en voie de restauration active.
+DÉBLOCAGE : Tous les 9 temples au moins niveau 5 | CATÉGORIE : Temples | XP : 2000
+PROMPT : "RPG badge icon, nine small temple icons in circle, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_single_max_xp | NOM : Maître d'un Temple | RARETÉ : Épique
+DESCRIPTION : Tu as consacré toute ton énergie à un seul dieu.
+DÉBLOCAGE : Un temple atteint 10000 XP | CATÉGORIE : Temples | XP : 1000
+PROMPT : "RPG badge icon, single massive pillar radiating, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_balanced_all | NOM : Équilibre Parfait | RARETÉ : Légendaire
+DESCRIPTION : Tous les temples progressent en harmonie totale.
+DÉBLOCAGE : Tous temples entre niveau 7 et 9 | CATÉGORIE : Temples | XP : 2500
+PROMPT : "RPG badge icon, balance scale with nine equal gems, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_zeus_perfect_only | NOM : Tyran de la Logique | RARETÉ : WTF Épique
+DESCRIPTION : Zeus niveau 10 mais tous les autres temples niveau 0. Dictature mathématique.
+DÉBLOCAGE : Temple Zeus niveau 10, autres niveau 0 | CATÉGORIE : Temples | XP : 666
+PROMPT : "RPG badge icon, massive lightning bolt crushing eight ruins, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_abandoned_three | NOM : Négligence Divine | RARETÉ : WTF Rare
+DESCRIPTION : Trois dieux pleurent ton abandon.
+DÉBLOCAGE : 3 temples niveau 0 pendant 30 jours | CATÉGORIE : Temples | XP : 100
+PROMPT : "RPG badge icon, three cracked columns with cobwebs, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_speed_level_10 | NOM : Constructeur Divin | RARETÉ : Légendaire
+DESCRIPTION : Tu as restauré un temple complet en moins de 7 jours.
+DÉBLOCAGE : Temple 0→10 en <7 jours | CATÉGORIE : Temples | XP : 2000
+PROMPT : "RPG badge icon, temple column with speed lines, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_marathon_xp | NOM : Offrande Colossale | RARETÉ : Épique
+DESCRIPTION : Tu as donné 1000 XP à un temple en une seule session.
+DÉBLOCAGE : +1000 XP temple en 1 session | CATÉGORIE : Temples | XP : 800
+PROMPT : "RPG badge icon, overflowing chalice with XP, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_first_reward_claimed | NOM : Bénédiction Divine | RARETÉ : Rare
+DESCRIPTION : Tu as réclamé ta première récompense de palier de temple.
+DÉBLOCAGE : Réclamer récompense temple | CATÉGORIE : Temples | XP : 200
+PROMPT : "RPG badge icon, divine gift box with ribbon, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_all_rewards_zeus | NOM : Favori de Zeus | RARETÉ : Épique
+DESCRIPTION : Tu as collecté toutes les récompenses du temple de Zeus.
+DÉBLOCAGE : Toutes récompenses Zeus | CATÉGORIE : Temples | XP : 500
+PROMPT : "RPG badge icon, three stacked gifts with lightning, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_night_offering | NOM : Offrande de Minuit | RARETÉ : Rare
+DESCRIPTION : Tu as fait progresser un temple entre minuit et 4h du matin.
+DÉBLOCAGE : XP temple 0h-4h | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, crescent moon with temple icon, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_all_subcategories_one | NOM : Spécialiste Accompli | RARETÉ : Épique
+DESCRIPTION : Tu as rempli toutes les sous-catégories d'une matière.
+DÉBLOCAGE : Toutes sous-catégories remplies | CATÉGORIE : Temples | XP : 600
+PROMPT : "RPG badge icon, tree with glowing branches complete, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_hundred_savoirs_one | NOM : Bibliothèque Personnelle | RARETÉ : Légendaire
+DESCRIPTION : 100 savoirs dans un seul temple. Expert absolu.
+DÉBLOCAGE : 100 savoirs un temple | CATÉGORIE : Temples | XP : 2000
+PROMPT : "RPG badge icon, massive scroll with 100 number, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_visual_stage_transition | NOM : Témoin de la Renaissance | RARETÉ : Commun
+DESCRIPTION : Tu as vu un temple passer d'un stade visuel à un autre.
+DÉBLOCAGE : Voir transition temple | CATÉGORIE : Temples | XP : 50
+PROMPT : "RPG badge icon, before-after transformation symbol, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_unlock_boss_access | NOM : Portail du Défi | RARETÉ : Épique
+DESCRIPTION : Tu as débloqué l'accès au boss d'une matière.
+DÉBLOCAGE : Temple niveau 6 | CATÉGORIE : Temples | XP : 700
+PROMPT : "RPG badge icon, boss door opening, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_all_music_unlocked | NOM : Symphonie des Dieux | RARETÉ : Légendaire
+DESCRIPTION : Toutes les musiques divines débloquées.
+DÉBLOCAGE : Toutes musiques temples | CATÉGORIE : Temples | XP : 1500
+PROMPT : "RPG badge icon, musical notes in circle, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_bonus_gameplay_used | NOM : Pouvoir Divin Activé | RARETÉ : Rare
+DESCRIPTION : Tu as utilisé un bonus de temple en quiz.
+DÉBLOCAGE : Utiliser bonus temple | CATÉGORIE : Temples | XP : 150
+PROMPT : "RPG badge icon, power-up star glowing, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_ruin_to_glory_witness | NOM : De la Cendre à la Lumière | RARETÉ : Mythique
+DESCRIPTION : Résurrection complète de l'Olympe.
+DÉBLOCAGE : Tous temples 0→10 | CATÉGORIE : Temples | XP : 5000
+PROMPT : "RPG badge icon, phoenix with nine stars, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_all_level_10 | NOM : Architecte de l'Olympe | RARETÉ : Mythique
+DESCRIPTION : Tous les temples au niveau maximum.
+DÉBLOCAGE : 9 temples niveau 10 | CATÉGORIE : Temples | XP : 10000
+PROMPT : "RPG badge icon, nine temple pillars crown, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_same_day_three_levels | NOM : Ascension Fulgurante | RARETÉ : Épique
+DESCRIPTION : Faire monter un temple de 3 niveaux en une journée.
+DÉBLOCAGE : +3 niveaux en 24h | CATÉGORIE : Temples | XP : 800
+PROMPT : "RPG badge icon, stairs 3 upward arrow, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_perfect_distribution | NOM : Sage Équilibré | RARETÉ : Légendaire
+DESCRIPTION : Tous les temples au même niveau exact.
+DÉBLOCAGE : 9 temples niveau identique | CATÉGORIE : Temples | XP : 2500
+PROMPT : "RPG badge icon, balance nine equal weights, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_cinematic_watched_all | NOM : Cinéphile des Temples | RARETÉ : Rare
+DESCRIPTION : Tu as vu toutes les cinématiques de déblocage temple.
+DÉBLOCAGE : Voir toutes cinématiques temple | CATÉGORIE : Temples | XP : 300
+PROMPT : "RPG badge icon, film reel with play, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_divine_weather_seen | NOM : Témoin Météorologique | RARETÉ : Commun
+DESCRIPTION : Tu as vu les effets météo divins sur les temples.
+DÉBLOCAGE : Voir météo divine | CATÉGORIE : Temples | XP : 50
+PROMPT : "RPG badge icon, temple with weather symbols, circular badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+
+────────────────────────────────────────────────────────────────────────────────
+
+ID : temple_first_subcategory_complete | NOM : Maîtrise Catégorielle | RARETÉ : Rare
+DESCRIPTION : Une sous-catégorie complète remplie de savoirs.
+DÉBLOCAGE : Sous-catégorie 10+ savoirs | CATÉGORIE : Temples | XP : 250
+PROMPT : "RPG badge icon, folder with checkmark, square badge frame, centered composition, 3D epic chibi Olympe style, clay render, chroma key green background #00FF00, no scenery, no characters, icon only"
+

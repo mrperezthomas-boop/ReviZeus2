@@ -1,0 +1,771 @@
+RÉVIZEUS — BLOC K
+PROFILS D’ACCOMPAGNEMENT PÉDAGOGIQUE + IA ADAPTATIVE V1
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de doter RéviZeus d’un vrai système de profils d’accompagnement pédagogiques
+sans casser l’architecture actuelle.
+
+Le système ne doit PAS être conçu comme un diagnostic médical.
+Il doit être conçu comme un réglage pédagogique noble, modifiable, rassurant et utile,
+permettant à RéviZeus d’adapter :
+- la forme des résumés,
+- la longueur des consignes,
+- le rythme des quiz,
+- la densité des corrections,
+- le ton des dialogues,
+- certaines intensités audio/visuelles,
+- et plus tard la profondeur de l’accompagnement par matière.
+
+Ce bloc doit créer une première couche centrale, propre, exploitable, extensible,
+et immédiatement branchée à l’IA et aux points d’entrée UI déjà cohérents avec RéviZeus.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC K DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC K arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives (Aphrodite / Hermès / Apollon / Prométhée)
+
+Il prépare ensuite :
+- L : analytics pédagogiques avancées
+- M : recommandations IA et adaptation plus profonde
+- N : dashboard vivant + widgets d’insight
+- O : rangs / badges / couches méta
+- P : aventure structurée, quêtes, zones, boss
+- Q : lore, carte du monde, intro, tension mythologique et polissage transversal
+
+Ce bloc ne doit pas tenter de coder toute l’IA adaptative profonde d’un coup.
+Il doit construire une V1 propre, robuste et déjà utile.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Permettre à chaque héros de disposer d’un profil d’accompagnement configurable
+qui influence l’IA et certaines logiques UX sans casser l’architecture actuelle.
+
+Objectifs principaux :
+- ajouter un profil stocké proprement sur le héros,
+- permettre de choisir ce profil à la création du héros,
+- permettre de le modifier ensuite dans les paramètres,
+- centraliser sa logique dans un manager dédié,
+- injecter ce profil dans GeminiManager et GodLoreManager,
+- faire varier les résumés, quiz, corrections et dialogues,
+- préparer une extension future vers une vraie IA adaptative profonde.
+
+Objectifs secondaires :
+- rassurer l’utilisateur sur le fait que ce choix n’est ni figé ni stigmatisant,
+- rendre le système noble et immersif via une explication RPG,
+- permettre à l’UX de varier sans dupliquer des conditions partout,
+- préparer plus tard la combinaison avec âge, classe, humeur, matière, progression, analytics et rang méta.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+ne jamais disperser cette logique dans quinze Activities avec des conditions fragiles.
+
+INTERDIT :
+- if profil == tdah dans plusieurs écrans
+- if profil == x dans chaque Activity
+- prompts recopiés à la main dans plusieurs classes
+- adaptation de l’UI faite au hasard écran par écran
+- logique sensorielle et pédagogique non centralisée
+
+OBLIGATOIRE :
+- un type de profil visible côté produit,
+- une config dérivée côté code,
+- un manager unique qui traduit le type choisi en comportements concrets,
+- quelques points d’intégration propres dans l’UI,
+- une injection propre dans les managers IA.
+
+Architecture cible recommandée :
+- LearningProfileType
+- LearningProfileConfig
+- LearningProfileManager
+- champ learningProfile dans UserProfile
+- UI de sélection / modification
+- helpers d’adaptation pour prompts, résumés, quiz, corrections et dialogues
+
+════════════════════════════════════════════════════════════════════
+4 — NOM CÔTÉ PRODUIT ET CÔTÉ CODE
+════════════════════════════════════════════════════════════════════
+
+Nom conseillé côté produit :
+Profil d’accompagnement du héros
+
+Pourquoi :
+- plus élégant
+- moins stigmatisant
+- plus RPG
+- plus cohérent avec RéviZeus
+- plus rassurant pour un parent ou un enfant
+
+Noms conseillés côté code :
+- LearningProfileType
+- LearningProfileConfig
+- LearningProfileManager
+
+Champs conseillés côté UserProfile :
+- learningProfile: String = "STANDARD"
+
+Extensions possibles plus tard :
+- learningProfileVersion
+- learningProfileLastUpdatedAt
+- learningProfileSource (manual / inferred / mixed)
+- learningProfileNotesJson si besoin avancé plus tard
+
+════════════════════════════════════════════════════════════════════
+5 — PROFILS VISIBLES V1 À IMPLÉMENTER
+════════════════════════════════════════════════════════════════════
+
+Le but n’est pas d’exposer trop de profils trop tôt.
+Il faut une V1 courte, lisible, noble, utile.
+
+Liste recommandée V1 :
+
+5.1 STANDARD
+Description produit :
+RéviZeus utilise son adaptation normale selon l’âge, la classe, l’humeur,
+la matière et la progression générale du héros.
+
+Effets attendus :
+- comportement par défaut
+- densité standard
+- ton standard
+- rythme standard
+
+5.2 CONSIGNES COURTES
+Description produit :
+Pour les héros qui préfèrent des consignes plus rapides, plus directes et moins chargées.
+
+Effets attendus :
+- phrases plus courtes
+- moins d’informations simultanées
+- consignes plus nettes
+- résumés plus compacts
+- corrections plus brèves
+
+5.3 REFORMULATION GUIDÉE
+Description produit :
+Pour les héros qui comprennent mieux quand RéviZeus reformule, clarifie et réexplique autrement.
+
+Effets attendus :
+- vocabulaire plus clair
+- plus d’analogies simples
+- plus de reformulations
+- plus de transitions explicites
+- explications plus décomposées
+
+5.4 RYTHME APAISÉ
+Description produit :
+Pour les héros qui ont besoin d’un rythme plus doux, d’un ton plus rassurant et d’une pression réduite.
+
+Effets attendus :
+- ton plus calme
+- feedback moins abrupt
+- corrections plus enveloppantes
+- intensité de défi réduite
+- allègement possible de certains effets sensoriels plus tard
+
+5.5 GUIDAGE PAS À PAS
+Description produit :
+Pour les héros qui apprennent mieux quand le savoir est découpé en étapes successives.
+
+Effets attendus :
+- questions plus séquencées
+- explications ordonnées
+- décomposition logique plus forte
+- résumés structurés en étapes
+- corrections à forte composante maïeutique guidée
+
+5.6 RENFORCEMENT POSITIF
+Description produit :
+Pour les héros qui gagnent en confiance quand RéviZeus valorise plus fortement les progrès.
+
+Effets attendus :
+- feedback plus encourageants
+- ton plus soutenant
+- valorisation fine des micro-réussites
+- meilleure récupération après erreur
+- intensité de punition émotionnelle réduite
+
+5.7 DÉFI ET CHALLENGE
+Description produit :
+Pour les héros qui aiment être poussés davantage, avec un ton plus combatif et des défis plus francs.
+
+Effets attendus :
+- formulations plus directes
+- distracteurs un peu plus denses
+- encouragement au dépassement
+- plus forte présence d’Arès / Zeus dans certaines formulations
+- cadence plus vive si le reste du contexte le permet
+
+Important :
+Ce choix est modifiable à tout moment.
+Aucun profil n’est définitif.
+Aucun profil ne définit la valeur du héros.
+Il sert uniquement à mieux accorder la manière d’enseigner.
+
+════════════════════════════════════════════════════════════════════
+6 — DIMENSIONS D’ADAPTATION À CENTRALISER
+════════════════════════════════════════════════════════════════════
+
+Le manager doit convertir le profil choisi en paramètres pédagogiques concrets.
+
+Dimensions minimales à prévoir dans LearningProfileConfig :
+- instructionLengthBias
+- summaryDensityBias
+- quizComplexityBias
+- distractorDensityBias
+- correctionDepthBias
+- correctionWarmthBias
+- maieuticStrengthBias
+- guidanceStepByStepBias
+- positiveFeedbackBias
+- challengeBias
+- sensoryIntensityBias
+- pacingBias
+- dialogVerbosityBias
+- analogiesBias
+- reformulationBias
+
+Ces biais ne remplacent pas :
+- l’âge,
+- la classe,
+- l’humeur,
+- la matière,
+- la progression réelle,
+- la personnalité du dieu.
+
+Ils s’y ajoutent comme une dimension supplémentaire.
+
+════════════════════════════════════════════════════════════════════
+7 — SOUS-CHANTIERS DU BLOC K
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+K1 — AJOUT DU CHAMP PROFILE DANS USERPROFILE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Ajouter le profil d’accompagnement au héros sans casser la base actuelle.
+
+À faire :
+- ajouter le champ learningProfile à UserProfile
+- prévoir une valeur par défaut STANDARD
+- préparer migration Room propre
+- garantir compatibilité profil id=1
+- prévoir fallback si ancienne ligne sans valeur
+
+À intégrer en même temps :
+- learningProfileLastUpdatedAt si faible coût
+- utilitaire de lecture robuste
+- garde-fou contre valeur invalide
+
+Fichiers concernés :
+- UserProfile.kt
+- AppDatabase.kt
+- migration Room associée
+- DAO lié au profil utilisateur
+
+Critère de fin :
+le profil est persisté proprement et relu après redémarrage.
+
+────────────────────────────────────────────────────────────────────
+K2 — ENUM / TYPE CENTRAL LEARNINGPROFILETYPE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Centraliser la liste des profils visibles.
+
+À faire :
+- créer enum ou sealed class LearningProfileType
+- nommer proprement chaque valeur
+- prévoir label produit
+- prévoir description courte
+- prévoir identifiant stable en DB
+
+Exemple de types :
+- STANDARD
+- SHORT_INSTRUCTIONS
+- GUIDED_REFORMULATION
+- CALM_PACING
+- STEP_BY_STEP
+- POSITIVE_REINFORCEMENT
+- CHALLENGE
+
+À intégrer en même temps :
+- méthode fromStorageValue
+- fallback STANDARD
+- méthode de sérialisation stable
+
+Fichiers concernés :
+- LearningProfileType.kt
+
+Critère de fin :
+un type unique et sûr sert de base au reste du système.
+
+────────────────────────────────────────────────────────────────────
+K3 — CONFIG DÉRIVÉE LEARNINGPROFILECONFIG
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Découpler le type visible du comportement réel.
+
+À faire :
+- créer data class LearningProfileConfig
+- y ranger les biais utiles
+- donner une config explicite à chaque type
+- prévoir méthode utilitaire d’affichage / debug
+- prévoir compatibilité future avec combinaison analytics
+
+Fichiers concernés :
+- LearningProfileConfig.kt
+
+Critère de fin :
+chaque profil produit une config exploitable sans logique éparpillée.
+
+────────────────────────────────────────────────────────────────────
+K4 — LEARNINGPROFILEMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Créer l’unique source de vérité métier du système.
+
+Responsabilités du manager :
+- lire le profil choisi
+- le convertir en LearningProfileConfig
+- exposer des labels / descriptions
+- fournir des textes d’aide
+- exposer des helpers pour les prompts IA
+- exposer des helpers pour l’UI
+- préparer plus tard les fusions avec analytics et rang méta
+
+Méthodes minimales recommandées :
+- getSelectedProfile(userProfile)
+- getProfileConfig(type)
+- getProfileTitle(type)
+- getProfileShortDescription(type)
+- getProfileLongDescription(type)
+- buildCreationWarningText(type)
+- buildPromptHints(type)
+- buildUiAdaptationHints(type)
+
+À intégrer en même temps :
+- variations légères selon âge
+- variations légères selon humeur si faible coût
+- mode debug lisible
+
+Fichiers concernés :
+- LearningProfileManager.kt
+
+Critère de fin :
+aucune logique de profil importante n’est dispersée ailleurs.
+
+────────────────────────────────────────────────────────────────────
+K5 — WARNING RPG LORS DE LA CRÉATION DU HÉROS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Insérer une étape ou un popup d’explication juste avant validation finale du héros.
+
+Moment idéal :
+après nom / âge / classe, juste avant validation.
+
+Figure divine recommandée :
+Prométhée en priorité
+ou Athéna si la scène est plus scolaire.
+
+Message à faire passer :
+RéviZeus peut adapter la manière d’expliquer, le rythme des défis,
+la longueur des consignes et certaines interactions selon la manière dont le héros apprend le mieux.
+Ce choix ne définit pas sa valeur.
+Il aide seulement les dieux à mieux l’accompagner.
+Il pourra être modifié plus tard dans les réglages du héros.
+
+À faire :
+- créer l’étape de choix ou popup de sélection
+- la rendre RPG lettre par lettre
+- proposer les profils clairement
+- afficher une description simple
+- enregistrer le choix avant validation finale
+
+Fichiers concernés :
+- AuthActivity.kt ou flow de création héros réel
+- layout / dialog associé
+- DialogRPGManager / DialogRPGFragment si déjà en place
+
+Critère de fin :
+le héros peut être créé avec un profil choisi explicitement.
+
+────────────────────────────────────────────────────────────────────
+K6 — MODIFICATION DU PROFIL DANS SETTINGS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Permettre une modification propre après création.
+
+À faire :
+- ajouter section Profil d’accompagnement du héros dans Settings
+- afficher profil actuel
+- afficher description courte
+- bouton modifier
+- confirmation avant sauvegarde si besoin
+- feedback RPG de succès
+
+À intégrer en même temps :
+- petit texte rassurant sur le caractère modifiable
+- bouton d’explication
+- cohérence avec le style du jeu
+
+Fichiers concernés :
+- SettingsActivity.kt
+- layout_settings.xml ou sous-layout associé
+- manager / persistence
+
+Critère de fin :
+le profil peut être modifié proprement à chaud et persiste.
+
+────────────────────────────────────────────────────────────────────
+K7 — INJECTION DANS GEMINIMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Faire varier réellement la génération.
+
+Ce que le profil doit pouvoir influencer :
+- structure du résumé
+- longueur des phrases
+- densité des sections
+- formulation des consignes
+- difficulté perçue des quiz
+- ambiguïté des distracteurs
+- profondeur des corrections
+- ton général des feedbacks
+- intensité maïeutique
+
+À faire :
+- intégrer des hints centralisés issus du LearningProfileManager
+- ne pas dupliquer des prompts
+- enrichir les system instructions et/ou prompts de génération
+- garder la structure JSON stricte existante si déjà imposée
+
+Fichiers concernés :
+- GeminiManager.kt
+
+Critère de fin :
+deux profils différents produisent déjà des différences perceptibles et cohérentes.
+
+────────────────────────────────────────────────────────────────────
+K8 — INJECTION DANS GODLOREMANAGER / DIALOGUES DIVINS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Faire varier la façon de parler des dieux selon le profil.
+
+À faire :
+- ajuster la densité
+- ajuster la chaleur
+- ajuster la fermeté
+- ajuster la longueur
+- ajuster le niveau de guidage
+- moduler l’intensité d’Arès / Zeus
+- renforcer Athéna / Prométhée / Déméter selon certains profils
+
+Important :
+on ne change pas l’identité du dieu.
+on ajuste la forme de l’accompagnement.
+
+Fichiers concernés :
+- GodLoreManager.kt
+- éventuellement DialogRPGManager si templates textuels communs
+
+Critère de fin :
+les dialogues restent cohérents, mais gagnent en adaptation réelle.
+
+────────────────────────────────────────────────────────────────────
+K9 — IMPACT SUR QUIZ / CORRECTIONS / RÉSUMÉS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Brancher la V1 dans les principaux outputs pédagogiques.
+
+À adapter concrètement :
+- longueur des questions
+- syntaxe des questions
+- nombre d’informations simultanées
+- complexité des distracteurs
+- structure des corrections
+- profondeur de la maïeutique
+- ton du feedback immédiat
+- forme des résumés et sous-parties
+- densité des blocs textuels
+
+Fichiers concernés :
+- TrainingQuizActivity.kt si besoin de paramètres d’affichage
+- QuizActivity.kt si présent
+- QuizResultActivity.kt
+- ResultActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+
+Critère de fin :
+le profil influe réellement sur la forme pédagogique livrée au joueur.
+
+────────────────────────────────────────────────────────────────────
+K10 — MICRO-ADAPTATIONS UX ET SENSORIELLES V1
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Préparer une variation douce de l’expérience sans surcharge.
+
+Exemples V1 raisonnables :
+- textes un peu plus aérés
+- délais légèrement plus doux avant enchaînement
+- feedback un peu plus doux
+- volume ou intensité réduits de certains enchaînements sonores si profil apaisé
+- priorité à la lisibilité si profil concerné
+
+Important :
+ce bloc ne doit pas déclencher une refonte visuelle complète.
+Seulement quelques adaptations sûres et à coût faible.
+
+Fichiers concernés :
+- DialogRPGManager.kt
+- SoundManager.kt
+- écrans pédagogiques clés si besoin
+- éventuel helper UI d’adaptation
+
+Critère de fin :
+on sent une différence légère mais utile dans l’expérience.
+
+────────────────────────────────────────────────────────────────────
+K11 — TEXTES PRODUIT, AIDES ET DESCRIPTIONS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Rendre le système compréhensible et noble côté utilisateur.
+
+À produire :
+- nom produit
+- description courte par profil
+- description longue par profil
+- warning de création
+- mini texte d’aide dans Settings
+- message de confirmation après changement
+- wording non stigmatisant
+- wording compatible parent/enfant
+
+À intégrer en même temps :
+- cohérence avec ton RPG
+- Prométhée / Athéna comme porteurs naturels
+- possibilité TTS si bloc déjà prêt
+
+Fichiers concernés :
+- LearningProfileManager.kt
+- ressources strings si centralisées
+- écrans de création / settings
+
+Critère de fin :
+aucun wording du système ne paraît clinique, brutal ou mal expliqué.
+
+────────────────────────────────────────────────────────────────────
+K12 — PRÉPARATION DES EXTENSIONS FUTURES SANS LES CODER TOUT DE SUITE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+Ne pas se bloquer pour la suite.
+
+À prévoir dans l’architecture :
+- fusion future avec analytics
+- profil inféré dynamiquement plus tard
+- combinaison avec humeur
+- combinaison avec rang méta
+- combinaison par matière
+- mode parent ou tuteur
+- curseurs avancés
+- adaptation audio-visuelle plus profonde
+
+À NE PAS SURCHARGER TOUT DE SUITE :
+- trop de profils
+- logique automatique complexe
+- auto-diagnostic implicite
+- réglages ultra fins partout
+- multiplication d’écrans
+
+Critère de fin :
+l’architecture est extensible sans surconstruire la V1.
+
+════════════════════════════════════════════════════════════════════
+8 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- UserProfile.kt
+- AppDatabase.kt
+- DAO utilisateur / IAristoteDao.kt si concerné
+- AuthActivity.kt ou écran réel de création héros
+- SettingsActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+
+Priorité 2 :
+- DialogRPGManager.kt / DialogRPGFragment.kt si déjà en place
+- SoundManager.kt si micro-adaptations audio V1
+- layouts de création héros
+- layouts paramètres
+- éventuels helpers de texte / strings
+
+Priorité 3 :
+- QuizActivity.kt / TrainingQuizActivity.kt / ResultActivity.kt / QuizResultActivity.kt
+  uniquement si le chantier pousse déjà l’adaptation jusque-là dans le même passage
+
+════════════════════════════════════════════════════════════════════
+9 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. ajouter le champ DB et la migration
+2. créer LearningProfileType
+3. créer LearningProfileConfig
+4. créer LearningProfileManager
+5. brancher le choix lors de la création héros
+6. brancher la modification dans Settings
+7. injecter le profil dans GeminiManager
+8. injecter le profil dans GodLoreManager
+9. brancher les premières micro-adaptations UX
+10. tester la persistance et la cohérence des variations
+
+Pourquoi cet ordre :
+- on verrouille d’abord la donnée,
+- puis la logique centrale,
+- puis les points d’entrée UI,
+- puis l’IA,
+- puis les raffinements UX.
+
+════════════════════════════════════════════════════════════════════
+10 — CRITÈRES DE FIN DU BLOC K
+════════════════════════════════════════════════════════════════════
+
+Le bloc K est considéré comme FAIT si :
+- un profil d’accompagnement est stocké proprement sur le héros,
+- ce profil peut être choisi à la création,
+- ce profil peut être modifié dans Settings,
+- LearningProfileManager est l’unique source de vérité métier,
+- GeminiManager varie déjà réellement les sorties selon ce profil,
+- GodLoreManager varie déjà la forme d’accompagnement,
+- les textes utilisateur sont nobles, clairs et non stigmatisants,
+- l’architecture est prête pour une IA adaptative plus profonde ensuite.
+
+════════════════════════════════════════════════════════════════════
+11 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- disperser des if profil partout dans le code
+- utiliser un wording clinique ou stigmatisant
+- exposer trop de profils trop tôt
+- rendre le choix anxiogène
+- modifier l’identité des dieux au lieu de moduler leur forme d’accompagnement
+- casser les prompts existants de Gemini
+- coupler trop fortement ce bloc à des analytics encore non stabilisés
+- transformer cette V1 en système trop lourd à maintenir
+- oublier la migration Room
+- oublier la modifiabilité du choix
+
+════════════════════════════════════════════════════════════════════
+12 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC K : “Profils d’accompagnement pédagogique + IA adaptative V1”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- tous les textes explicatifs importants doivent tendre vers le style RPG lettre par lettre avec son si le système existe déjà,
+- le système ne doit pas être présenté comme un diagnostic médical,
+- il doit être présenté comme un “Profil d’accompagnement du héros” modifiable à tout moment.
+
+Objectif :
+Créer une V1 propre et centralisée du système de profils d’accompagnement qui :
+1. ajoute un champ learningProfile à UserProfile avec migration Room propre,
+2. crée LearningProfileType,
+3. crée LearningProfileConfig,
+4. crée LearningProfileManager comme source unique de vérité métier,
+5. permet de choisir le profil lors de la création du héros,
+6. permet de modifier le profil dans Settings,
+7. injecte ce profil dans GeminiManager et GodLoreManager,
+8. influence déjà la structure des résumés, quiz, corrections et dialogues,
+9. prépare l’extension future vers analytics / humeur / rang méta sans la surcharger maintenant.
+
+Profils V1 à prévoir :
+- STANDARD
+- SHORT_INSTRUCTIONS
+- GUIDED_REFORMULATION
+- CALM_PACING
+- STEP_BY_STEP
+- POSITIVE_REINFORCEMENT
+- CHALLENGE
+
+Dimensions à centraliser dans la config :
+- longueur des consignes,
+- densité des résumés,
+- complexité des quiz,
+- densité des distracteurs,
+- profondeur des corrections,
+- chaleur du feedback,
+- force de la maïeutique,
+- guidage pas à pas,
+- renforcement positif,
+- niveau de challenge,
+- intensité sensorielle,
+- rythme,
+- verbosité des dialogues,
+- analogies,
+- reformulations.
+
+Le chantier doit rester modéré, propre et extensible.
+Ne code pas une IA adaptative totale.
+Code une base stable, élégante et immédiatement utile.
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- UserProfile.kt
+- AppDatabase.kt
+- DAO utilisateur
+- AuthActivity.kt
+- SettingsActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles migrations nécessaires, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+13 — RÉSUMÉ ULTRA COURT DU BLOC K
+════════════════════════════════════════════════════════════════════
+
+Ce bloc ajoute à RéviZeus une première vraie couche de personnalisation pédagogique noble.
+Le héros choisit un profil d’accompagnement.
+Ce profil est stocké proprement.
+Un manager central le traduit en comportements concrets.
+L’IA adapte déjà résumés, quiz, corrections et dialogues.
+L’architecture reste propre, modulaire, non stigmatisante et prête pour une extension future.

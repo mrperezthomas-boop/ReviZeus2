@@ -1,0 +1,806 @@
+RÉVIZEUS — BLOC M
+RECOMMANDATIONS IA + PROCHAINE MEILLEURE ACTION + SUGGESTIONS STRATÉGIQUES
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de transformer toute la matière métier accumulée par RéviZeus
+en décisions concrètes, visibles, utiles et nobles pour le héros.
+
+Après le BLOC L, RéviZeus commence à comprendre :
+- ce qui est fragile,
+- ce qui revient mal,
+- ce qui progresse,
+- ce qui fanerait bientôt,
+- ce qui marche mieux selon le profil d’accompagnement,
+- ce qui fatigue le héros,
+- ce qui demanderait un défi ou au contraire un rappel doux.
+
+Le BLOC M doit convertir cette lecture en :
+- recommandations visibles,
+- “prochaine meilleure action”,
+- suggestions contextuelles des dieux,
+- priorités pédagogiques actionnables,
+- relances intelligentes,
+- conseils de rythme,
+- suggestions de temple, de révision, d’entraînement, de transformation ou de pause.
+
+Ce bloc ne doit pas produire une IA bavarde ou intrusive.
+Il doit produire une IA utile, crédible, progressive et élégante,
+qui donne le sentiment que RéviZeus sait guider sans harceler.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC M DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC M arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros + IA adaptative V1
+- L : analytics pédagogiques avancées + moteur cognitif + révision intelligente + Déméter
+
+Il prépare ensuite :
+- N : dashboard vivant + widgets d’insight + agora + monde réactif
+- O : rangs, badges, progression méta et lectures long terme
+- P : aventure structurée, zones, quêtes, boss éducatifs
+- Q : lore, carte du monde, intro, tension mythologique et polissage transversal
+
+Ce bloc est le pont entre :
+- la compréhension interne du héros,
+- et les actions concrètes proposées au joueur.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Permettre à RéviZeus de recommander intelligemment la prochaine action
+la plus utile à l’instant présent.
+
+Objectifs principaux :
+- sortir une recommandation principale claire,
+- produire quelques recommandations secondaires utiles,
+- hiérarchiser selon valeur pédagogique réelle,
+- tenir compte de l’état cognitif, du profil du héros, de l’humeur, de la progression,
+- ne pas recommander mécaniquement toujours la même chose,
+- donner un sentiment d’accompagnement vivant,
+- préparer l’intégration noble dans le Dashboard et plus tard dans l’aventure.
+
+Objectifs secondaires :
+- réduire la friction devant “je fais quoi maintenant ?”,
+- créer une relance saine,
+- faire apparaître les dieux comme de vrais conseillers,
+- éviter que l’utilisateur ignore des zones importantes du jeu,
+- mettre en valeur les systèmes profonds déjà construits.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+les recommandations ne doivent pas être bricolées directement dans le Dashboard
+ou calculées avec des if éparpillés dans plusieurs Activities.
+
+INTERDIT :
+- “si temple faible alors afficher texte en dur” dans DashboardActivity
+- “si fatigue > x alors pause” codé en double ailleurs
+- recommandations figées sans score
+- textes produits sans relation avec les vraies données
+- duplication des règles entre Dashboard, Temples, Oracle et Aventure
+
+OBLIGATOIRE :
+- un moteur de recommandation central,
+- une structure de sortie claire,
+- une hiérarchisation propre,
+- une distinction entre donnée métier, scoring, et verbalisation divine,
+- une compatibilité avec Dashboard, widgets, popups et futures quêtes.
+
+Architecture cible recommandée :
+- RecommendationType
+- RecommendationPriority
+- RecommendationCardModel
+- RecommendationReason
+- RecommendationEngine
+- RecommendationPresenter / RecommendationNarrator
+- éventuellement RecommendationHistoryEntity
+- éventuellement RecommendationDismissalStateEntity
+- intégration avec LearningRecommendation existant si l’entité existe déjà dans le projet
+
+Le bloc doit exploiter :
+- CognitiveEngineManager
+- ReviewPriorityManager
+- DemeterRecallManager
+- LearningProfileManager
+- TempleProgressManager
+- Reward / progression / fragments / inventaire
+- mood actuel
+- historique récent d’actions
+- signaux de fatigue et de rechute
+- déblocages monde disponibles
+
+════════════════════════════════════════════════════════════════════
+4 — CE QUE RÉVIZEUS DOIT ÊTRE CAPABLE DE RECOMMANDER
+════════════════════════════════════════════════════════════════════
+
+RéviZeus doit pouvoir recommander de façon crédible :
+- réviser un savoir précis,
+- retourner dans un temple précis,
+- lancer un entraînement ciblé,
+- faire un entraînement ultime,
+- relire un résumé fragile,
+- utiliser un format plus adapté,
+- invoquer un dieu créatif si pertinent,
+- forger un objet si l’économie le permet,
+- explorer une zone nouvellement débloquée,
+- s’arrêter ou ralentir si la fatigue est forte,
+- profiter d’un moment de confiance pour un défi,
+- classer ou réorganiser des savoirs,
+- reprendre un savoir abandonné,
+- écouter plutôt que lire,
+- demander une reformulation,
+- transformer un savoir pour mieux le retenir.
+
+Les recommandations ne doivent pas toutes être “étudier plus”.
+Elles doivent être variées, contextuelles et motivées.
+
+════════════════════════════════════════════════════════════════════
+5 — TYPES DE RECOMMANDATIONS À PRÉVOIR
+════════════════════════════════════════════════════════════════════
+
+5.1 REVIEW_NOW
+Réviser maintenant un savoir ou une notion qui se fragilise.
+
+5.2 TARGETED_TRAINING
+Faire un entraînement ciblé dans une matière ou un sous-domaine.
+
+5.3 ULTIMATE_TRAINING
+Faire un entraînement ultime multi-matière si la situation s’y prête.
+
+5.4 TEMPLE_RETURN
+Retourner dans un temple précis pour stabiliser une matière.
+
+5.5 SUMMARY_REREAD
+Relire un résumé important avant qu’il ne fane.
+
+5.6 ASK_FOR_REFORMULATION
+Demander à Athéna ou Prométhée une reformulation plus adaptée.
+
+5.7 VISUALIZE_WITH_APHRODITE
+Utiliser une visualisation si la compréhension textuelle ne suffit pas.
+
+5.8 MEMORIZE_WITH_APOLLON
+Transformer un savoir en poème ou en musique courte.
+
+5.9 TRANSLATE_WITH_HERMES
+Traduire ou reformuler en une autre langue si cela aide.
+
+5.10 CRAFT_USEFUL_ITEM
+Forger un objet utile si les ressources et le contexte le justifient.
+
+5.11 EXPLORE_UNLOCKED_ZONE
+Explorer une zone désormais débloquée.
+
+5.12 REST_AND_RECOVER
+Prendre une pause, ralentir, ou faire une action douce.
+
+5.13 CLEAN_AND_CLASSIFY
+Réorganiser des savoirs, les classer, les déplacer, les enrichir.
+
+5.14 CHALLENGE_MODE
+Se lancer un défi si les signaux sont au vert.
+
+5.15 DAILY_DIVINE_RECALL
+Répondre à l’appel quotidien de Déméter.
+
+5.16 NEXT_MAJOR_GOAL
+Pousser doucement vers un grand objectif proche :
+niveau temple, badge, rang, boss, zone, objet clé.
+
+════════════════════════════════════════════════════════════════════
+6 — MODÈLE DE RECOMMANDATION À CENTRALISER
+════════════════════════════════════════════════════════════════════
+
+Le moteur doit produire des objets structurés, pas seulement des phrases.
+
+Data class recommandée :
+RecommendationCardModel
+
+Champs conseillés :
+- recommendationId
+- type
+- title
+- shortDescription
+- longDescription
+- subject
+- targetId
+- targetLabel
+- score
+- urgency
+- confidence
+- primaryGod
+- secondaryGods
+- ctaLabel
+- ctaDestination
+- reasons
+- rewardPreview
+- dismissible
+- snoozeable
+- createdAt
+- expiresAt
+- metadataJson
+
+Autres structures utiles :
+- RecommendationReason
+- RecommendationPriority
+- RecommendationActionType
+- RecommendationDestination
+
+Objectif :
+séparer le moteur métier de l’affichage et du wording.
+
+════════════════════════════════════════════════════════════════════
+7 — DIMENSIONS À PRENDRE EN COMPTE DANS LE SCORING
+════════════════════════════════════════════════════════════════════
+
+Le RecommendationEngine doit pondérer notamment :
+- urgence de révision,
+- stabilité réelle du savoir,
+- risque de rechute,
+- temps écoulé,
+- humeur actuelle,
+- profil d’accompagnement,
+- fatigue estimée,
+- progression récente,
+- variété des actions déjà effectuées,
+- déblocages disponibles,
+- formats pédagogiques efficaces,
+- ressources disponibles pour forge / extension divine,
+- proximité d’un palier important,
+- surcharge ou saturation récente,
+- engagement sur la session actuelle.
+
+Principes de scoring :
+- une action très utile mais trop lourde n’est pas toujours la meilleure maintenant,
+- une action motivante mais peu utile ne doit pas dominer trop souvent,
+- une pause peut parfois être la recommandation la plus intelligente,
+- un défi ne doit pas être proposé au mauvais moment,
+- la même recommandation ne doit pas revenir à l’identique trop souvent.
+
+════════════════════════════════════════════════════════════════════
+8 — SOUS-CHANTIERS DU BLOC M
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+M1 — STRUCTURES CENTRALES DE RECOMMANDATION
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer les types de base du système.
+
+À faire :
+- RecommendationType
+- RecommendationCardModel
+- RecommendationReason
+- RecommendationPriority
+- RecommendationDestination
+- RecommendationActionType si utile
+
+À intégrer en même temps :
+- labels stables,
+- fallback sûr,
+- compatibilité future avec dashboard et aventure,
+- structure simple mais extensible.
+
+Fichiers concernés :
+- RecommendationType.kt
+- RecommendationCardModel.kt
+- RecommendationReason.kt
+- RecommendationPriority.kt
+- RecommendationDestination.kt
+
+Critère de fin :
+il existe un modèle unique et propre pour toutes les recommandations.
+
+────────────────────────────────────────────────────────────────────
+M2 — RECOMMENDATIONENGINE CENTRAL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer la source unique de vérité métier pour les recommandations.
+
+Responsabilités :
+- lire les signaux des autres managers,
+- calculer les actions les plus utiles,
+- scorer les options,
+- produire une recommandation principale,
+- produire un set limité de recommandations secondaires,
+- éviter les doublons et répétitions,
+- préparer l’explication des raisons.
+
+Méthodes recommandées :
+- buildRecommendationSet(userId)
+- getPrimaryRecommendation(userId)
+- getSecondaryRecommendations(userId)
+- scoreRecommendationCandidate(...)
+- filterUnavailableRecommendations(...)
+- diversifyRecommendations(...)
+- buildReasons(...)
+- buildRewardPreview(...)
+- shouldRecommendPause(...)
+- shouldRecommendChallenge(...)
+
+Fichiers concernés :
+- RecommendationEngine.kt
+
+Critère de fin :
+un moteur central peut sortir un set de recommandations cohérent.
+
+────────────────────────────────────────────────────────────────────
+M3 — INTÉGRATION AVEC LEARNINGRECOMMENDATION EXISTANT
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+réutiliser proprement l’existant s’il y a déjà une entité LearningRecommendation.
+
+À faire :
+- auditer l’entité actuelle,
+- décider si elle peut stocker les recommandations persistées,
+- soit l’enrichir,
+- soit créer une couche de mapping,
+- éviter une deuxième structure inutile si l’existant est déjà pertinent.
+
+Champs potentiellement utiles :
+- type
+- target
+- priority
+- status
+- createdAt
+- consumedAt
+- snoozedUntil
+- reasonJson
+
+Fichiers concernés :
+- LearningRecommendation.kt
+- AppDatabase.kt
+- DAO associé
+- RecommendationEngine.kt
+
+Critère de fin :
+pas de duplication absurde entre ancien et nouveau système.
+
+────────────────────────────────────────────────────────────────────
+M4 — CANDIDATS DE RECOMMANDATION ISSUS DE LA COGNITION
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire remonter les actions pédagogiquement les plus utiles.
+
+À brancher depuis :
+- ReviewPriorityManager
+- DemeterRecallManager
+- CognitiveEngineManager
+- LearningFormatEffectiveness
+- TemplePedagogicState
+
+Exemples de candidats :
+- savoir à réviser maintenant,
+- matière instable,
+- notion fragile,
+- rappel doux de Déméter,
+- besoin de reformulation,
+- besoin d’un format différent.
+
+Fichiers concernés :
+- RecommendationEngine.kt
+- managers du bloc L
+
+Critère de fin :
+les recommandations s’appuient sur les vraies données cognitives.
+
+────────────────────────────────────────────────────────────────────
+M5 — CANDIDATS ISSUS DE LA PROGRESSION ET DE L’ÉCONOMIE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+ne pas limiter les recommandations à la cognition pure.
+
+À brancher depuis :
+- TempleProgressManager
+- Reward / fragments / inventaire
+- Forge / recettes craftables
+- déblocages monde
+- rangs ou badges plus tard si déjà stables
+
+Exemples :
+- forge maintenant un objet utile,
+- tu peux bientôt restaurer un palier de temple,
+- une zone est désormais débloquée,
+- il te manque peu pour un objectif fort.
+
+Fichiers concernés :
+- RecommendationEngine.kt
+- TempleProgressManager.kt
+- Inventory / Forge managers
+- AdventureUnlockManager.kt si déjà présent
+
+Critère de fin :
+les recommandations prennent aussi en compte la boucle RPG.
+
+────────────────────────────────────────────────────────────────────
+M6 — FATIGUE, HUMEUR, PAUSE ET RYTHME
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+éviter une IA qui pousse toujours plus fort.
+
+À intégrer :
+- si fatigue élevée → action douce, pause, révision légère, écoute TTS
+- si humeur fragile → ton plus enveloppant
+- si confiance basse → éviter recommandation trop punitive
+- si confiance haute et stabilité bonne → défi possible
+
+Important :
+la recommandation “pause” doit être rare, crédible et bien amenée,
+pas moralisatrice.
+
+Figures divines recommandées :
+- Déméter pour ralentir et rappeler,
+- Prométhée pour redonner du sens,
+- Athéna pour proposer une autre voie,
+- Arès pour les défis quand l’état le permet.
+
+Fichiers concernés :
+- RecommendationEngine.kt
+- LearningProfileManager.kt
+- mood manager / état d’humeur existant
+- GodLoreManager.kt pour verbalisation
+
+Critère de fin :
+le moteur sait parfois recommander autre chose qu’un effort frontal.
+
+────────────────────────────────────────────────────────────────────
+M7 — DIVERSIFICATION ET ANTI-RÉPÉTITION
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+empêcher les recommandations de devenir monotones ou irritantes.
+
+À faire :
+- mémoriser les dernières recommandations montrées,
+- éviter de répéter la même recommandation brute trop vite,
+- varier le dieu porteur si cohérent,
+- varier la formulation,
+- varier le niveau de pression,
+- gérer snooze/dismiss si cette couche est déjà livrée.
+
+Version V1 raisonnable :
+- RecommendationHistoryEntity ou stockage léger
+- fenêtre anti-répétition simple
+- compteur d’affichage récent
+
+Fichiers concernés :
+- RecommendationEngine.kt
+- RecommendationHistoryEntity.kt ou équivalent
+- DAO si persistance
+- éventuellement prefs si version ultra légère
+
+Critère de fin :
+les recommandations ne donnent pas la sensation de spam intelligent.
+
+────────────────────────────────────────────────────────────────────
+M8 — VERBALISATION DIVINE DES RECOMMANDATIONS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+transformer les sorties du moteur en conseils immersifs.
+
+À faire :
+- RecommendationNarrator ou helpers équivalents
+- associer un ou plusieurs dieux porteurs
+- transformer les raisons techniques en wording noble
+- garder des CTA clairs malgré l’habillage RPG
+- éviter les phrases trop longues
+- permettre plus tard TTS / popup / carte dashboard / agora
+
+Exemples :
+- Déméter appelle à sauver un savoir fanant
+- Athéna propose une reformulation ciblée
+- Prométhée voit qu’une étape intermédiaire manque
+- Arès sent qu’un défi peut être tenté
+- Héphaïstos recommande de forger un outil utile
+
+Fichiers concernés :
+- RecommendationNarrator.kt ou helpers dans RecommendationEngine
+- GodLoreManager.kt si déjà mutualisé
+- DialogRPGManager.kt si affichage en popup
+
+Critère de fin :
+les recommandations sont lisibles, immersives et actionnables.
+
+────────────────────────────────────────────────────────────────────
+M9 — CTA, DESTINATIONS ET ACTIONS DIRECTES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+une recommandation doit pouvoir mener quelque part immédiatement.
+
+Exemples de destinations :
+- ouvrir un temple précis,
+- lancer un entraînement ciblé,
+- ouvrir un savoir précis,
+- ouvrir la forge,
+- ouvrir un résumé,
+- ouvrir un flow de traduction,
+- ouvrir un flow de poème,
+- ouvrir une future zone monde,
+- lancer un rappel Déméter,
+- ouvrir les paramètres si une adaptation est conseillée.
+
+À faire :
+- centraliser les destinations,
+- créer des labels CTA propres,
+- prévoir compatibilité avec navigation existante,
+- ne pas casser les flows.
+
+Fichiers concernés :
+- RecommendationDestination.kt
+- DashboardActivity.kt plus tard
+- éventuellement NavigationHelper.kt si présent
+
+Critère de fin :
+chaque recommandation majeure possède une action directe exploitable.
+
+────────────────────────────────────────────────────────────────────
+M10 — SORTIE PRIMAIRE + SECONDAIRE + CONTEXTE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+éviter un bloc de recommandations illisible.
+
+Format recommandé :
+- 1 recommandation principale
+- 2 ou 3 secondaires maximum
+- 1 message de contexte si utile
+- 1 raison courte visible
+- 1 détail plus long accessible
+
+Exemples :
+Principale :
+“Le Jardin de Déméter appelle : 2 savoirs fanent en SVT.”
+Secondaire :
+“Forge un objet utile avant ta prochaine épreuve.”
+Secondaire :
+“Tu sembles prêt pour un défi de logique.”
+
+Fichiers concernés :
+- RecommendationEngine.kt
+- futurs widgets du Dashboard
+
+Critère de fin :
+le système sait sortir un set lisible et hiérarchisé.
+
+────────────────────────────────────────────────────────────────────
+M11 — PRÉPARATION DU DASHBOARD VIVANT ET DES WIDGETS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+préparer le BLOC N sans le coder entièrement ici.
+
+À prévoir :
+- format widget-friendly
+- format carte dashboard
+- format popup divine
+- format agora
+- compatibilité avec futures notifications légères
+- compatibilité avec monde / aventure / quêtes
+
+À NE PAS SURCHARGER TOUT DE SUITE :
+- trop d’animations,
+- trop de widgets différents,
+- mur de recommandations,
+- sur-verbalisation divine partout.
+
+Fichiers concernés :
+- RecommendationCardModel.kt
+- RecommendationEngine.kt
+- futurs widgets Dashboard
+
+Critère de fin :
+les sorties du moteur sont déjà prêtes à être branchées dans N.
+
+────────────────────────────────────────────────────────────────────
+M12 — PRÉPARATION DES BLOCS SUIVANTS SANS LES CODER TOUT DE SUITE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+laisser une architecture prête pour :
+- Dashboard vivant
+- quêtes dynamiques
+- suggestions d’aventure
+- objectifs méta
+- badges contextuels
+- zones du monde et boss
+- notifications intelligentes
+- moteur de campagne vivante
+
+À ne pas coder entièrement dans M :
+- quêtes complètes,
+- aventure complète,
+- monde réactif total,
+- système de badges géant,
+- surcouche UI finale du dashboard.
+
+Critère de fin :
+le moteur de recommandation est autonome et prêt à alimenter N, O et P.
+
+════════════════════════════════════════════════════════════════════
+9 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- LearningRecommendation.kt
+- AppDatabase.kt
+- DAO associés
+- RecommendationEngine.kt si déjà commencé
+- CognitiveEngineManager.kt
+- ReviewPriorityManager.kt
+- DemeterRecallManager.kt
+- LearningProfileManager.kt
+- TempleProgressManager.kt
+- Reward / Inventory / Forge managers utiles
+- GodLoreManager.kt
+
+Priorité 2 :
+- DashboardActivity.kt
+- SettingsActivity.kt si option de masquage / intensité des conseils
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- managers de navigation ou helpers d’intents
+- éventuel mood manager existant
+
+Priorité 3 :
+- futurs widgets Dashboard
+- futurs managers d’aventure
+- futurs systèmes de rangs / badges
+
+════════════════════════════════════════════════════════════════════
+10 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. créer les structures centrales de recommandation
+2. auditer LearningRecommendation existant
+3. créer RecommendationEngine
+4. brancher les candidats cognitifs
+5. brancher les candidats progression / économie
+6. intégrer fatigue, humeur et rythme
+7. créer la couche anti-répétition
+8. créer la verbalisation divine
+9. définir les destinations et CTA
+10. sortir le format primaire + secondaires
+11. préparer l’intégration Dashboard
+12. tester la cohérence multi-sessions
+
+Pourquoi cet ordre :
+- on verrouille d’abord la structure,
+- puis la source de vérité,
+- puis les entrées,
+- puis la diversité,
+- puis l’habillage,
+- puis la sortie exploitable.
+
+════════════════════════════════════════════════════════════════════
+11 — CRITÈRES DE FIN DU BLOC M
+════════════════════════════════════════════════════════════════════
+
+Le bloc M est considéré comme FAIT si :
+- RecommendationEngine centralise réellement la logique,
+- RéviZeus peut sortir une recommandation principale crédible,
+- RéviZeus peut sortir 2 ou 3 secondaires cohérentes,
+- les recommandations tiennent compte de la cognition, du profil, du rythme et de la progression,
+- les recommandations ne sont pas répétitives,
+- elles disposent de raisons compréhensibles,
+- elles peuvent mener à des actions concrètes,
+- elles sont déjà prêtes à être affichées dans un Dashboard vivant,
+- l’architecture est prête pour les blocs N, O et P.
+
+════════════════════════════════════════════════════════════════════
+12 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- recommander toujours “révise encore”
+- pousser trop fort sans tenir compte de la fatigue
+- recommander des actions impossibles ou verrouillées
+- faire une IA qui parle beaucoup mais n’agit pas
+- calculer les recommandations dans DashboardActivity
+- dupliquer les règles dans plusieurs écrans
+- oublier l’anti-répétition
+- oublier la hiérarchisation primaire / secondaire
+- faire des messages trop techniques ou trop opaques
+- oublier les CTA réels
+- rendre le système intrusif au lieu d’être utile
+
+════════════════════════════════════════════════════════════════════
+13 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC M : “Recommandations IA + prochaine meilleure action + suggestions stratégiques”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- toutes les sorties textuelles importantes doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- les recommandations doivent être utiles, nobles, non intrusives et actionnables.
+
+Objectif :
+Créer un moteur central de recommandations qui :
+1. définit les structures centrales de recommandation,
+2. réutilise ou enrichit LearningRecommendation si pertinent,
+3. crée RecommendationEngine,
+4. transforme les signaux cognitifs, de progression et d’économie en recommandations,
+5. tient compte du profil d’accompagnement, de l’humeur, de la fatigue et du rythme,
+6. sort 1 recommandation principale + 2 ou 3 secondaires,
+7. évite les répétitions,
+8. verbalise les recommandations via des dieux cohérents,
+9. prépare l’intégration au Dashboard vivant sans tout coder dedans maintenant.
+
+Types de recommandations à couvrir :
+- review now
+- targeted training
+- ultimate training
+- temple return
+- summary reread
+- reformulation
+- visualize with Aphrodite
+- memorize with Apollon
+- translate with Hermès
+- craft useful item
+- explore unlocked zone
+- rest and recover
+- clean and classify
+- challenge mode
+- daily divine recall
+- next major goal
+
+Le moteur doit rester centralisé, extensible et propre.
+Ne code pas un dashboard final complet.
+Code une base recommandationnelle robuste, prête à alimenter le Dashboard et le monde vivant.
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- LearningRecommendation.kt
+- AppDatabase.kt
+- DAO associés
+- CognitiveEngineManager.kt
+- ReviewPriorityManager.kt
+- DemeterRecallManager.kt
+- LearningProfileManager.kt
+- TempleProgressManager.kt
+- Reward / Inventory / Forge managers
+- GodLoreManager.kt
+- DashboardActivity.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles migrations nécessaires, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+14 — RÉSUMÉ ULTRA COURT DU BLOC M
+════════════════════════════════════════════════════════════════════
+
+Ce bloc donne à RéviZeus une vraie capacité de guidance.
+Le jeu ne comprend plus seulement le héros : il sait lui proposer la meilleure suite.
+Il peut dire quoi faire maintenant, pourquoi, avec quel dieu, et vers quelle action concrète,
+sans spam, sans rigidité, et avec une vraie cohérence pédagogique et RPG.

@@ -1,0 +1,503 @@
+==================================================
+BLOC 06 — RESSOURCES CRÉÉES DANS CETTE DISCUSSION
+Mode aventure — backgrounds évolutifs locaux par dieu
+==================================================
+
+OBJET DU FICHIER
+Ce fichier recense les ressources définies dans cette discussion pour le mode aventure de RéviZeus.
+
+NATURE DES RESSOURCES
+- Type : backgrounds de jeu
+- Usage : arrière-plans purs
+- Mode : aventure
+- Orientation : paysage uniquement
+- Intégration : fond seul, sans nodes, sans chemin visible, sans HUD, sans texte
+- Fonction : servir de plaque de fond derrière les autres assets du mode aventure
+- Évolution : visuelle et progressive selon le niveau du temple
+- Règle de vie : à partir du lvl 6, la vie revient peu à peu dans le décor
+- Règle créatures : à partir du lvl 6, petites créatures de décor liées au dieu et à la matière, avec une légère pointe d’humour
+- Rôle global : renforcer la sensation de progression, de restauration divine et de montée en puissance du temple
+
+LOGIQUE COMMUNE D’INTÉGRATION
+Ces backgrounds sont prévus pour recevoir par-dessus :
+- les temples
+- les nodes
+- les routes de progression
+- les monstres
+- les boss
+- les overlays et FX
+- les éléments de gameplay
+
+IMPORTANT
+Ces ressources correspondent à des noms de backgrounds à générer / produire pour le projet, afin de pouvoir être référencées ensuite dans les documents IA, la DA et l’intégration code.
+
+==================================================
+LISTE COMPLÈTE DES RESSOURCES
+==================================================
+
+
+--------------------------------------------------
+ZEUS
+--------------------------------------------------
+Matière / axe associé : Mathématiques
+Thématique visuelle dominante : domaine orageux sacré, géométrie divine, éclairs
+
+Nom : bg_map_temple_zeus_lvl_0
+Rôle : Background paysage du domaine local de Zeus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_zeus_lvl_2
+Rôle : Background paysage du domaine local de Zeus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_zeus_lvl_4
+Rôle : Background paysage du domaine local de Zeus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_zeus_lvl_6
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_8
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_10
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_12
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_14
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_16
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_18
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_20
+Rôle : Background paysage du domaine local de Zeus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+ATHENA
+--------------------------------------------------
+Matière / axe associé : Français / sagesse / langage
+Thématique visuelle dominante : bibliothèque sacrée, lumière blanc-or, savoir vivant
+
+Nom : bg_map_temple_athena_lvl_0
+Rôle : Background paysage du domaine local de Athena, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_athena_lvl_2
+Rôle : Background paysage du domaine local de Athena, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_athena_lvl_4
+Rôle : Background paysage du domaine local de Athena, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_athena_lvl_6
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_8
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_10
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_12
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_14
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_16
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_18
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_20
+Rôle : Background paysage du domaine local de Athena, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+ARES
+--------------------------------------------------
+Matière / axe associé : Histoire / guerre / héroïsme
+Thématique visuelle dominante : champ de bataille noble, fortifications antiques, énergie martiale
+
+Nom : bg_map_temple_ares_lvl_0
+Rôle : Background paysage du domaine local de Ares, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_ares_lvl_2
+Rôle : Background paysage du domaine local de Ares, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_ares_lvl_4
+Rôle : Background paysage du domaine local de Ares, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_ares_lvl_6
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_8
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_10
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_12
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_14
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_16
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_18
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_20
+Rôle : Background paysage du domaine local de Ares, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+POSEIDON
+--------------------------------------------------
+Matière / axe associé : SVT / nature / océan
+Thématique visuelle dominante : sanctuaire marin sacré, eaux turquoise, coraux et vie marine
+
+Nom : bg_map_temple_poseidon_lvl_0
+Rôle : Background paysage du domaine local de Poseidon, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_poseidon_lvl_2
+Rôle : Background paysage du domaine local de Poseidon, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_poseidon_lvl_4
+Rôle : Background paysage du domaine local de Poseidon, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_poseidon_lvl_6
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_8
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_10
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_12
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_14
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_16
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_18
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_20
+Rôle : Background paysage du domaine local de Poseidon, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+HERMES
+--------------------------------------------------
+Matière / axe associé : Anglais / langage / mobilité
+Thématique visuelle dominante : routes célestes, vents divins, messagers ailés
+
+Nom : bg_map_temple_hermes_lvl_0
+Rôle : Background paysage du domaine local de Hermes, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_hermes_lvl_2
+Rôle : Background paysage du domaine local de Hermes, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hermes_lvl_4
+Rôle : Background paysage du domaine local de Hermes, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hermes_lvl_6
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_8
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_10
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_12
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_14
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_16
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_18
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_20
+Rôle : Background paysage du domaine local de Hermes, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+APOLLO
+--------------------------------------------------
+Matière / axe associé : Musique / poésie / lumière
+Thématique visuelle dominante : sanctuaire solaire artistique, rayons, aura musicale
+
+Nom : bg_map_temple_apollon_lvl_0
+Rôle : Background paysage du domaine local de Apollo, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_apollon_lvl_2
+Rôle : Background paysage du domaine local de Apollo, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_apollon_lvl_4
+Rôle : Background paysage du domaine local de Apollo, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_apollon_lvl_6
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_8
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_10
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_12
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_14
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_16
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_18
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_20
+Rôle : Background paysage du domaine local de Apollo, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+APHRODITE
+--------------------------------------------------
+Matière / axe associé : Art / dessin / inspiration
+Thématique visuelle dominante : jardins sacrés de beauté, aura rose, inspiration créative
+
+Nom : bg_map_temple_aphrodite_lvl_0
+Rôle : Background paysage du domaine local de Aphrodite, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_aphrodite_lvl_2
+Rôle : Background paysage du domaine local de Aphrodite, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_aphrodite_lvl_4
+Rôle : Background paysage du domaine local de Aphrodite, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_aphrodite_lvl_6
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_8
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_10
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_12
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_14
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_16
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_18
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_20
+Rôle : Background paysage du domaine local de Aphrodite, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+DEMETER
+--------------------------------------------------
+Matière / axe associé : Mémoire / croissance / nature
+Thématique visuelle dominante : jardins fertiles, moissons, abondance vivante
+
+Nom : bg_map_temple_demeter_lvl_0
+Rôle : Background paysage du domaine local de Demeter, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_demeter_lvl_2
+Rôle : Background paysage du domaine local de Demeter, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_demeter_lvl_4
+Rôle : Background paysage du domaine local de Demeter, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_demeter_lvl_6
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_8
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_10
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_12
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_14
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_16
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_18
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_20
+Rôle : Background paysage du domaine local de Demeter, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+HEPHAESTUS
+--------------------------------------------------
+Matière / axe associé : Forge / craft / fabrication
+Thématique visuelle dominante : forge volcanique sacrée, bronze, lave maîtrisée
+
+Nom : bg_map_temple_hephaistos_lvl_0
+Rôle : Background paysage du domaine local de Hephaestus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_hephaistos_lvl_2
+Rôle : Background paysage du domaine local de Hephaestus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hephaistos_lvl_4
+Rôle : Background paysage du domaine local de Hephaestus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hephaistos_lvl_6
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_8
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_10
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_12
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_14
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_16
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_18
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_20
+Rôle : Background paysage du domaine local de Hephaestus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+PROMETHEUS
+--------------------------------------------------
+Matière / axe associé : Feu du savoir / révélation
+Thématique visuelle dominante : sanctuaire de la flamme savante, braises nobles, lumière ambre
+
+Nom : bg_map_temple_promethee_lvl_0
+Rôle : Background paysage du domaine local de Prometheus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_promethee_lvl_2
+Rôle : Background paysage du domaine local de Prometheus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_promethee_lvl_4
+Rôle : Background paysage du domaine local de Prometheus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_promethee_lvl_6
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_8
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_10
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_12
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_14
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_16
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_18
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_20
+Rôle : Background paysage du domaine local de Prometheus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+CHAOS
+--------------------------------------------------
+Matière / axe associé : Corruption finale / boss ultime
+Thématique visuelle dominante : domaine abyssal corrompu, énergie noire-violette, ruines tordues
+
+Nom : bg_map_temple_chaos_lvl_0
+Rôle : Background paysage du domaine local de Chaos, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_chaos_lvl_2
+Rôle : Background paysage du domaine local de Chaos, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_chaos_lvl_4
+Rôle : Background paysage du domaine local de Chaos, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_chaos_lvl_6
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_8
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_10
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_12
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_14
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_16
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_18
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_20
+Rôle : Background paysage du domaine local de Chaos, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+==================================================
+RÉSUMÉ GLOBAL
+==================================================
+
+Nombre total de ressources listées : 121
+
+Répartition :
+- 11 séries de backgrounds
+- 11 niveaux par série
+- 1 série pour chacun des 10 dieux principaux + Chaos
+
+Séries concernées :
+- bg_map_temple_zeus_lvl_0 à bg_map_temple_zeus_lvl_20
+- bg_map_temple_athena_lvl_0 à bg_map_temple_athena_lvl_20
+- bg_map_temple_ares_lvl_0 à bg_map_temple_ares_lvl_20
+- bg_map_temple_poseidon_lvl_0 à bg_map_temple_poseidon_lvl_20
+- bg_map_temple_hermes_lvl_0 à bg_map_temple_hermes_lvl_20
+- bg_map_temple_apollon_lvl_0 à bg_map_temple_apollon_lvl_20
+- bg_map_temple_aphrodite_lvl_0 à bg_map_temple_aphrodite_lvl_20
+- bg_map_temple_demeter_lvl_0 à bg_map_temple_demeter_lvl_20
+- bg_map_temple_hephaistos_lvl_0 à bg_map_temple_hephaistos_lvl_20
+- bg_map_temple_promethee_lvl_0 à bg_map_temple_promethee_lvl_20
+- bg_map_temple_chaos_lvl_0 à bg_map_temple_chaos_lvl_20
+
+Fin du fichier.

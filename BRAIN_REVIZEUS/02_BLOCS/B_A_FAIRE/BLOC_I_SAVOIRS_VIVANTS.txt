@@ -1,0 +1,750 @@
+RÉVIZEUS — BLOC I
+SAVOIRS VIVANTS, SOUS-DOSSIERS, APPUI LONG, ARTEFACTS GÉNÉRÉS, ÉDITION ET EXPORT UNIVERSEL
+Version : bloc d’implémentation exploitable par IA
+Date : 2026-03-24
+Statut : prêt à lancer après les blocs D à H, avec liens directs vers les blocs J, K, L, M, N et O
+
+══════════════════════════════════════════════════════════════════════════════
+0 — RÔLE DU BLOC I DANS L’ORDRE GLOBAL
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc transforme les savoirs enregistrés en vraies entités vivantes, manipulables, enrichissables et exportables.
+Jusqu’ici, RéviZeus sait déjà mieux stabiliser son socle, homogénéiser les dialogues, piloter l’audio, faire vivre l’Oracle, générer des quiz, distribuer des récompenses, faire exister une économie, gérer des objets et commencer à reconstruire le monde via les temples.
+Le BLOC I vient donner une profondeur structurelle au cœur même du jeu : le savoir.
+
+Mission du BLOC I :
+- sortir définitivement le savoir du statut de simple résumé stocké,
+- faire du Temple du Savoir une vraie bibliothèque RPG vivante,
+- introduire les sous-dossiers et la structuration fine des contenus par temple,
+- créer un menu d’actions divines complet sur appui long,
+- tracer toutes les ressources générées autour d’un savoir,
+- rendre chaque artefact exportable individuellement et, à terme, groupablement,
+- permettre l’édition manuelle, le déplacement, la reclassification et l’enrichissement d’un savoir,
+- préparer le terrain pour les extensions divines créatives du bloc J,
+- préparer le terrain pour les recommandations cognitives, le dashboard intelligent et le mode aventure.
+
+Vision produit :
+Un savoir ne doit jamais être perçu comme un simple texte plat enfermé dans une liste.
+Un savoir doit devenir un objet vivant, riche, durable, évolutif et multi-forme.
+Il doit pouvoir être lu, trié, classé, corrigé, déplacé, transformé, invoqué par différents dieux, historisé, révisé, exporté et relié à des artefacts dérivés.
+
+Position dans l’ordre maître :
+- les blocs D et E fiabilisent la naissance du savoir via Oracle et quiz,
+- le bloc F unifie les récompenses et renforce le sens de l’action,
+- les blocs G et H donnent plus de portée au monde, aux ressources, aux temples et aux systèmes de progression,
+- le BLOC I densifie la matière première du jeu : les savoirs eux-mêmes,
+- le bloc J viendra ensuite brancher proprement Aphrodite, Hermès, Apollon et Prométhée comme transformations créatives riches.
+
+Le BLOC I doit donc absorber tout ce qui concerne :
+- CourseEntry enrichi,
+- sous-catégories / sous-dossiers par temple,
+- bibliothèque des savoirs premium,
+- menu appui long “Actions divines”,
+- édition manuelle des résumés,
+- déplacement entre temples et catégories,
+- GeneratedArtifact ou ResourceArtifact,
+- traçage des créations liées à un savoir,
+- export individuel et groupé,
+- vue premium des savoirs,
+- signaux de savoir enrichi / fragile / favori / récemment transformé,
+- préparation des états mémoire du savoir.
+
+══════════════════════════════════════════════════════════════════════════════
+1 — OBJECTIF FINAL DU BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+À la fin de ce bloc, RéviZeus doit disposer d’un vrai système de savoirs vivants :
+
+1. chaque savoir est stocké avec des métadonnées plus riches,
+2. chaque savoir peut appartenir à un temple et à une sous-catégorie,
+3. la bibliothèque des savoirs devient lisible, triable et plus noble visuellement,
+4. l’utilisateur peut appuyer longuement sur un savoir pour ouvrir un menu maître d’actions divines,
+5. il peut modifier un résumé, le déplacer, le reclasser, le marquer et l’enrichir,
+6. les ressources générées à partir d’un savoir sont tracées proprement,
+7. chaque artefact lié à un savoir peut être exporté individuellement,
+8. le système prépare déjà l’export groupé et l’historique des transformations,
+9. les savoirs enrichis deviennent compatibles avec les futurs dieux créatifs, les analytics, les badges, les recommandations et l’aventure,
+10. le Temple du Savoir cesse d’être une simple liste et devient une vraie bibliothèque RPG interactive.
+
+══════════════════════════════════════════════════════════════════════════════
+2 — PÉRIMÈTRE EXACT DU BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC I couvre :
+- enrichissement de CourseEntry,
+- ajout du support sous-dossiers / sous-catégories,
+- création éventuelle d’une entité SubCategory,
+- création ou fiabilisation d’une entité GeneratedArtifact / ResourceArtifact liée à CourseEntry,
+- DAO et requêtes associés,
+- migration Room si nécessaire,
+- bibliothèque / temple du savoir premium,
+- tri / filtre / recherche / regroupement,
+- menu appui long complet,
+- édition manuelle du résumé,
+- déplacement entre temple et catégorie,
+- marquages utiles : favori, récent, enrichi, exporté, fragile, à revoir,
+- export individuel de toutes les ressources liées à un savoir,
+- préparation de l’export groupé par dossier de savoir,
+- compatibilité avec fatigue divine, dialogues RPG, loadings et limitations API immersives.
+
+Le BLOC I ne doit PAS absorber maintenant :
+- toute la logique créative complète d’Aphrodite / Hermès / Apollon / Prométhée,
+- tous les prompts de génération d’image / musique,
+- tout le dashboard vivant,
+- toute l’IA cognitive profonde,
+- tous les badges, rangs et quêtes,
+- toute la carte du monde ou le mode aventure.
+
+En revanche, il doit préparer des points d’extension propres pour tous ces systèmes.
+
+══════════════════════════════════════════════════════════════════════════════
+3 — DÉPENDANCES ET PRÉREQUIS
+══════════════════════════════════════════════════════════════════════════════
+
+BLOC I dépend fortement de :
+- BLOC A : stabilité compile, lifecycle, navigation,
+- BLOC B : dialogues RPG et feedbacks immersifs,
+- BLOC C : audio, loadings, TTS, vidéo/image,
+- BLOC D : pipeline Oracle → résumé → validation → temple,
+- BLOC E : quiz et corrections fiables,
+- BLOC F : récompenses unifiées et signaux de gain,
+- BLOC H : lecture propre des temples et de leur organisation, si les temples sont déjà visualisés et structurés.
+
+BLOC I doit aussi anticiper :
+- le BLOC J pour les extensions divines créatives,
+- le BLOC K pour dashboard / settings / info / jukebox,
+- le BLOC L pour les états mémoire, fragilité cognitive, recommandations,
+- le BLOC M pour badges et rangs,
+- le BLOC O pour aventure, quêtes et artefacts ayant un impact monde.
+
+Avant de coder I, il faut vérifier :
+- que CourseEntry existe bien comme pivot du savoir,
+- que ResultActivity stocke déjà ou peut stocker les métadonnées utiles,
+- que GodMatiereActivity ou l’écran bibliothèque lit déjà les savoirs sans hacks trop profonds,
+- que le flux de suppression / déplacement / rafraîchissement liste est raisonnablement stable,
+- que les exports peuvent s’appuyer soit sur du texte inline, soit sur un chemin de fichier, soit sur un générateur de contenu temporaire propre.
+
+Si une logique de catégories ou d’actions contextuelles existe déjà partiellement :
+- ne pas la supprimer brutalement,
+- la fiabiliser,
+- garder les IDs XML sensibles,
+- migrer progressivement vers le menu maître,
+- prévoir des fallbacks propres si certaines métadonnées sont absentes sur les anciens savoirs.
+
+══════════════════════════════════════════════════════════════════════════════
+4 — FICHIERS PRINCIPAUX CONCERNÉS
+══════════════════════════════════════════════════════════════════════════════
+
+Fichiers Kotlin probables :
+- CourseEntry.kt
+- IAristoteDao.kt ou DAO savoir dédiés
+- AppDatabase.kt
+- GodMatiereActivity.kt
+- éventuellement LibraryActivity.kt si écran séparé
+- ResultActivity.kt
+- GeneratedArtifact.kt ou ResourceArtifact.kt
+- GeneratedArtifactDao.kt ou ResourceArtifactDao.kt
+- ArtifactManager.kt
+- SubCategory.kt si table dédiée
+- SubCategoryManager.kt
+- CourseActionsBottomSheet.kt
+- CourseEditDialogFragment.kt ou équivalent
+- CourseExportManager.kt
+- CourseMoveDialogFragment.kt ou équivalent
+- CourseFilterState.kt si besoin
+- GeminiManager.kt pour ponts légers vers actions futures
+- GodLoreManager.kt pour textes d’actions / suggestions
+- SpeakerTtsHelper.kt si lecture d’un savoir déjà branchée ici
+
+Fichiers XML probables :
+- layout_god_matiere.xml
+- item_course_entry.xml ou carte équivalente
+- bottom_sheet_course_actions.xml
+- dialog_course_edit.xml
+- dialog_course_move.xml
+- component_subcategory_chip.xml
+- éventuels panneaux de tri / filtre / recherche
+- éventuels indicateurs d’artefacts liés
+- éventuels composants d’export et de fiche détaillée savoir
+
+Ressources pouvant être nécessaires :
+- icônes par type d’action divine,
+- icônes ou badges d’état du savoir (favori, enrichi, exporté, fragile, récent),
+- icônes de sous-catégories,
+- SFX ouverture menu / validation édition / export / déplacement,
+- fonds ou chips dédiés si un manque réel apparaît,
+- éventuels overlays de “savoir enrichi par un dieu”.
+
+Si des ressources manquent :
+- ne pas bloquer le chantier,
+- fallback propre obligatoire,
+- documenter précisément : nom exact, utilité, écrans concernés, connexions, prompt JSON si ressource non présente.
+
+══════════════════════════════════════════════════════════════════════════════
+5 — SOUS-CHANTIERS DU BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+I1 — CourseEntry enrichi et modèle de savoir vivant
+I2 — Sous-dossiers / sous-catégories par temple
+I3 — Entité d’artefacts générés liés à un savoir
+I4 — DAO, migration Room et compatibilité avec l’existant
+I5 — Bibliothèque des savoirs premium et navigation temple
+I6 — Appui long : menu maître “Actions divines”
+I7 — Édition manuelle, déplacement, reclassification
+I8 — Export individuel et préparation de l’export groupé
+I9 — États visuels et signaux premium des savoirs
+I10 — Ponts propres vers J, K, L, M et O
+I11 — Cartographie des ressources manquantes
+I12 — Tests manuels et critères de fin
+
+══════════════════════════════════════════════════════════════════════════════
+6 — I1 : COURSEENTRY ENRICHI ET MODÈLE DE SAVOIR VIVANT
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de CourseEntry une vraie entité centrale de contenu vivant.
+
+Champs à conserver et enrichir proprement, selon ce que ton entité contient déjà :
+- id stable,
+- subject,
+- title,
+- summary,
+- createdAt,
+- updatedAt éventuel,
+- lastReviewedAt,
+- sourceType,
+- sourceReference,
+- manualEdited,
+- exportCount,
+- generatedArtifactsCount,
+- subCategory ou folderId,
+- tagsJson éventuel,
+- memoryState ou stateJson éventuel,
+- isFavorite,
+- isArchived éventuel,
+- lastDivineActionAt,
+- divineActionsAvailableJson éventuel,
+- metadataJson pour extensibilité.
+
+Règles métier :
+- un savoir ne doit jamais perdre son temple d’origine par accident,
+- un savoir peut changer de temple manuellement mais cette action doit être tracée,
+- manualEdited doit refléter les modifications humaines réelles,
+- generatedArtifactsCount doit pouvoir être recalculé ou maintenu proprement,
+- les anciens savoirs doivent recevoir des valeurs par défaut défensives.
+
+Vision produit :
+Le savoir devient une entité stable, historique et réinterprétable.
+Ce n’est plus seulement le résultat ponctuel d’un scan ou d’une requête.
+
+Points d’attention :
+- éviter de casser les lectures existantes de CourseEntry,
+- éviter les migrations Room brutales,
+- conserver la compatibilité avec ResultActivity, GodMatiereActivity, Quiz et futurs analytics.
+
+══════════════════════════════════════════════════════════════════════════════
+7 — I2 : SOUS-DOSSIERS / SOUS-CATÉGORIES PAR TEMPLE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Permettre d’organiser finement les savoirs dans chaque temple.
+
+Deux approches acceptables :
+1. champ simple subCategory dans CourseEntry pour un premier socle rapide ;
+2. vraie table SubCategory si tu veux un système plus riche dès maintenant.
+
+Fonctions attendues :
+- créer une sous-catégorie dans un temple,
+- renommer une sous-catégorie,
+- déplacer un savoir dans une sous-catégorie,
+- afficher les savoirs regroupés par sous-catégorie,
+- trier à l’intérieur d’une sous-catégorie,
+- conserver une catégorie “non classé” défensive,
+- préparer plus tard des sous-catégories suggérées par IA.
+
+Exemples par temple :
+- Mathématiques / Zeus : Algèbre, Géométrie, Analyse, Probabilités, Logique,
+- Français / Athéna : Grammaire, Orthographe, Analyse de texte, Expression, Méthodologie,
+- SVT / Poséidon : Cellule, Écosystèmes, Corps humain, Génétique, Évolution.
+
+Améliorations premium intégrées :
+- icône spécifique par sous-catégorie si possible,
+- compteur de savoirs par sous-catégorie,
+- tri par date / importance / fragilité / enrichissement,
+- repère visuel si une sous-catégorie contient des savoirs fanés ou souvent échoués,
+- préparation de badges “maître d’une sous-catégorie”.
+
+Points d’attention :
+- ne pas rendre l’UX trop lourde trop tôt,
+- conserver une navigation simple,
+- ne pas imposer de sous-catégorie si l’utilisateur veut juste stocker vite.
+
+══════════════════════════════════════════════════════════════════════════════
+8 — I3 : ENTITÉ D’ARTEFACTS GÉNÉRÉS LIÉS À UN SAVOIR
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Tracer proprement tout ce qui naît autour d’un savoir.
+
+Nom possible :
+- GeneratedArtifact,
+- ResourceArtifact,
+- CourseArtifact.
+
+Structure attendue :
+- id technique,
+- courseEntryId,
+- artifactType,
+- title,
+- contentPathOrInline,
+- createdAt,
+- updatedAt éventuel,
+- createdByGod,
+- sourceAction,
+- isExportable,
+- wasExported,
+- exportCount,
+- lastAccessedAt,
+- metadataJson,
+- versionLabel éventuel,
+- isFavorite éventuel.
+
+Types minimaux recommandés :
+- SUMMARY
+- POEM
+- IMAGE
+- DRAWING
+- MUSIC
+- TRANSLATION
+- MNEMONIC
+- NOTE
+- FUTURE_COMBINED_PACK
+
+Règles métier :
+- chaque artefact doit être rattaché à son savoir source,
+- un artefact exporté doit pouvoir être marqué sans casser sa lecture,
+- le contenu peut être inline ou pointer vers un fichier,
+- les artefacts doivent rester lisibles même si le pouvoir créatif complet n’est pas encore finalisé,
+- la suppression d’un savoir doit définir une stratégie claire sur ses artefacts : suppression en cascade contrôlée, archivage ou confirmation utilisateur.
+
+Vision produit :
+Un savoir n’est pas un texte.
+C’est un noyau qui peut engendrer plusieurs formes utiles et créatives.
+
+══════════════════════════════════════════════════════════════════════════════
+9 — I4 : DAO, MIGRATION ROOM ET COMPATIBILITÉ AVEC L’EXISTANT
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Introduire sous-catégories et artefacts sans casser les savoirs existants.
+
+Ce chantier doit couvrir :
+- ajout des nouveaux champs dans CourseEntry ou création de nouvelles tables,
+- migration Room propre,
+- initialisation défensive des champs manquants,
+- insertion des sous-catégories par défaut si une table dédiée est choisie,
+- comptage et lecture des artefacts liés,
+- requêtes performantes pour la bibliothèque temple.
+
+Requêtes attendues selon architecture :
+- getCoursesBySubject(subject)
+- getCoursesBySubjectAndCategory(subject, category)
+- searchCourses(query)
+- updateCourseCategory(courseId, category)
+- updateCourseSubject(courseId, subject)
+- updateCourseSummary(courseId, summary, title, manualEdited)
+- getRecentCourses(limit)
+- getFragileCourses() si état déjà disponible
+- getArtifactsByCourseId(courseId)
+- insertArtifact(...)
+- updateArtifactExportState(...)
+- deleteArtifactsByCourseId(courseId) selon stratégie retenue.
+
+Stratégie recommandée :
+1. enrichir les structures,
+2. migrer proprement,
+3. brancher les lectures existantes sans tout refondre,
+4. seulement ensuite enrichir l’UI.
+
+Points d’attention :
+- migrations testées,
+- pas de perte des savoirs existants,
+- pas de blocage au lancement si un ancien savoir manque de metadata,
+- fallback robuste sur “non classé” et “aucun artefact”.
+
+══════════════════════════════════════════════════════════════════════════════
+10 — I5 : BIBLIOTHÈQUE DES SAVOIRS PREMIUM ET NAVIGATION TEMPLE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire du temple ou de la bibliothèque un espace premium, lisible, stratégique et agréable.
+
+Fonctions attendues :
+- affichage de la liste des savoirs par temple,
+- regroupement par sous-catégorie,
+- tri : date, titre, importance, fragilité cognitive, temple, catégorie,
+- filtres : favoris, enrichis, exportables, récents, à revoir,
+- recherche par titre / résumé / tag si disponible,
+- indicateurs visuels : enrichi, traduit, illustré, poétisé, exporté, fragilisé,
+- compteur de savoirs visibles,
+- empty state immersif si temple vide,
+- compatibilité TTS et lecture rapide.
+
+Améliorations premium intégrées :
+- signal des savoirs qui s’effacent / fanent si un état mémoire existe déjà,
+- marqueur d’un savoir “récent” issu de l’Oracle,
+- mini badges d’artefacts déjà générés,
+- mise en évidence des savoirs recommandés par IA plus tard,
+- tri mémorisé par temple.
+
+Points d’attention :
+- ne pas surcharger l’UI,
+- conserver le portrait plein écran,
+- respecter les IDs XML sensibles,
+- préférer des couches additives plutôt qu’une refonte brutale si l’écran existe déjà.
+
+══════════════════════════════════════════════════════════════════════════════
+11 — I6 : APPUI LONG — MENU MAÎTRE “ACTIONS DIVINES”
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Donner à chaque savoir un vrai menu maître d’actions contextuelles.
+
+Support recommandé :
+- BottomSheetDialogFragment ou équivalent premium,
+- design cohérent avec la DA RéviZeus,
+- ouverture fluide,
+- fermeture sûre,
+- dialogues RPG pour confirmations critiques.
+
+Actions minimales à intégrer :
+- relire le résumé,
+- modifier manuellement le résumé,
+- déplacer vers un autre temple,
+- changer de sous-catégorie,
+- régénérer quiz,
+- lancer la Lyre d’Apollon,
+- dessiner un savoir / image pédagogique,
+- traduire avec Hermès,
+- écouter avec TTS,
+- exporter,
+- supprimer,
+- marquer favori,
+- invoquer un dieu spécifique si contexte pertinent,
+- voir l’historique / les artefacts liés.
+
+Améliorations premium intégrées :
+- icône divine par action,
+- visibilité des quotas ou fatigue divine quand pertinent,
+- suggestion contextuelle type “Ce savoir mériterait la Lyre d’Apollon”,
+- actions grisées proprement si indisponibles,
+- pas de message technique brut : toujours justification diégétique.
+
+Points d’attention :
+- ne pas mettre toute la logique dans l’Activity,
+- centraliser au moins une partie des actions dans un manager ou un contrôleur dédié,
+- ne pas coupler trop tôt tout le bloc J à ce menu, mais préparer les entrées.
+
+══════════════════════════════════════════════════════════════════════════════
+12 — I7 : ÉDITION MANUELLE, DÉPLACEMENT ET RECLASSIFICATION
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Permettre à l’utilisateur de reprendre la main sur un savoir.
+
+À intégrer :
+- édition manuelle du titre,
+- édition manuelle du résumé,
+- changement de temple,
+- changement de sous-catégorie,
+- confirmation propre avant sauvegarde,
+- rafraîchissement de la liste sans effet parasite,
+- marquage manualEdited,
+- recalcul de métadonnées ou au minimum mise à jour cohérente des champs liés.
+
+Règles métier :
+- un changement de temple doit rester explicite,
+- une édition manuelle ne doit pas casser le lien avec les artefacts existants,
+- un résumé modifié peut nécessiter un futur recalcul IA mais cela ne doit pas bloquer la sauvegarde,
+- si l’utilisateur vide presque tout le contenu, des garde-fous doivent exister.
+
+Améliorations premium intégrées :
+- version simple d’historique d’édition si peu coûteuse,
+- proposition “reformuler par Athéna” ultérieurement,
+- suggestion de re-classement si le contenu édité ne semble plus correspondre au temple.
+
+Points d’attention :
+- éviter les pertes de données,
+- éviter de dupliquer un savoir à cause d’une simple édition,
+- gérer les retours arrière proprement.
+
+══════════════════════════════════════════════════════════════════════════════
+13 — I8 : EXPORT INDIVIDUEL ET PRÉPARATION DE L’EXPORT GROUPÉ
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Respecter la règle produit : toute ressource issue d’un savoir doit pouvoir sortir de l’application.
+
+Export individuel minimum à prévoir :
+- résumé,
+- traduction,
+- poème,
+- musique,
+- image,
+- dessin,
+- autres artefacts dérivés présents.
+
+Formats cibles progressifs :
+- TXT,
+- image exportable,
+- audio exportable,
+- éventuellement PDF plus tard,
+- ZIP ou dossier complet de savoir plus tard.
+
+Architecture recommandée :
+- CourseExportManager dédié,
+- API unique d’export par artefact,
+- stratégie uniforme de nommage de fichiers,
+- traçage wasExported / exportCount,
+- feedback utilisateur en dialogue RPG ou panneau premium.
+
+Export groupé à préparer :
+- dossier d’un savoir contenant toutes ses formes,
+- possibilité future d’exporter un pack complet de révision,
+- capacité à regrouper résumé + traduction + image + musique si disponibles.
+
+Points d’attention :
+- droits de stockage / partage,
+- compatibilité Android moderne,
+- feedback clair si fichier introuvable,
+- pas d’erreur technique brute à l’utilisateur.
+
+══════════════════════════════════════════════════════════════════════════════
+14 — I9 : ÉTATS VISUELS ET SIGNAUX PREMIUM DES SAVOIRS
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Rendre visible la richesse ou la fragilité d’un savoir sans saturer l’écran.
+
+Signaux visuels possibles :
+- favori,
+- nouveau,
+- enrichi par un dieu,
+- exporté,
+- fragile / à revoir,
+- traduit,
+- illustré,
+- poétisé,
+- possède plusieurs artefacts,
+- sous-catégorie affichée,
+- recommandé.
+
+Règles :
+- les signaux doivent être lisibles mais discrets,
+- ils ne doivent pas écraser le texte,
+- ils doivent être cohérents avec la DA,
+- ils doivent rester compatibles avec le portrait plein écran.
+
+Améliorations premium intégrées :
+- halo léger pour savoir enrichi,
+- petite icône du dieu ayant créé le dernier artefact,
+- signal d’un savoir “en train de faner” si état mémoire disponible,
+- badge d’action suggérée.
+
+Points d’attention :
+- ne pas transformer la liste en sapin de Noël,
+- rester prioritaire sur la lisibilité.
+
+══════════════════════════════════════════════════════════════════════════════
+15 — I10 : PONTS PROPRES VERS LES BLOCS SUIVANTS
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Préparer les futurs blocs sans les mélanger brutalement maintenant.
+
+Ponts à préparer :
+- vers J : points d’entrée pour Apollon, Aphrodite, Hermès, Prométhée,
+- vers K : affichage de savoirs récents, alertes et conseils sur dashboard,
+- vers L : fragilité cognitive, priorités de révision, suggestions de transformation,
+- vers M : badges “savoir enrichi”, “collection d’artefacts”, “exporteur”,
+- vers O : artefacts ou savoirs requis par certaines quêtes, zones ou boss.
+
+À exposer proprement :
+- compteurs par savoir,
+- savoirs récents,
+- savoirs enrichis,
+- savoirs exportés,
+- savoirs par temple / catégorie,
+- artefacts liés,
+- derniers dieux intervenus.
+
+Points d’attention :
+- éviter les dépendances circulaires,
+- garder des interfaces de service propres,
+- ne pas faire de GodMatiereActivity un monstre métier.
+
+══════════════════════════════════════════════════════════════════════════════
+16 — I11 : CARTOGRAPHIE DES RESSOURCES MANQUANTES
+══════════════════════════════════════════════════════════════════════════════
+
+Toute ressource manquante doit être documentée proprement.
+
+Pour chaque ressource absente, l’IA devra fournir :
+1. nom exact,
+2. utilité,
+3. écran(s) concerné(s),
+4. connexions avec les autres écrans / codes,
+5. prompt JSON de génération conforme à la DA si la ressource n’existe pas déjà.
+
+Exemples potentiels de ressources à lister si absentes :
+- ic_course_favorite,
+- ic_course_exported,
+- ic_course_fragile,
+- ic_divine_action_apollon,
+- ic_divine_action_hermes,
+- ic_divine_action_aphrodite,
+- ic_divine_action_promethee,
+- bg_course_actions_sheet,
+- sfx_course_action_open,
+- sfx_course_export,
+- sfx_course_move,
+- component_course_artifact_badge.
+
+Rappel produit :
+Toujours réutiliser les ressources existantes avant d’en créer de nouvelles.
+
+══════════════════════════════════════════════════════════════════════════════
+17 — I12 : TESTS MANUELS ET CRITÈRES DE FIN
+══════════════════════════════════════════════════════════════════════════════
+
+Tests manuels minimaux :
+- ouvrir un temple contenant plusieurs savoirs,
+- créer et afficher des sous-catégories,
+- déplacer un savoir entre catégories,
+- déplacer un savoir entre temples,
+- éditer titre et résumé d’un savoir,
+- vérifier la persistance après fermeture / relance,
+- ouvrir le menu appui long,
+- exécuter au moins une action simple depuis ce menu,
+- exporter un résumé,
+- afficher la liste des artefacts liés d’un savoir,
+- supprimer un savoir et vérifier la stratégie de gestion des artefacts,
+- vérifier les anciens savoirs après migration,
+- vérifier qu’aucun crash n’apparaît sur back, pause, rotation forcée future ou reprise,
+- vérifier que la liste reste lisible et performante.
+
+Definition of done :
+- CourseEntry enrichi sans casse,
+- sous-dossiers / sous-catégories opérationnels,
+- menu appui long maître présent et propre,
+- édition / déplacement / reclassification fiables,
+- artefacts liés à un savoir tracés proprement,
+- export individuel fonctionnel au moins pour le résumé et les artefacts déjà présents,
+- feedbacks immersifs cohérents,
+- aucune erreur technique brute visible,
+- architecture prête pour les blocs divins créatifs.
+
+══════════════════════════════════════════════════════════════════════════════
+18 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CODER LE BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre recommandé des fichiers à transmettre :
+1. CourseEntry.kt
+2. AppDatabase.kt
+3. DAO savoir actuels
+4. GodMatiereActivity.kt
+5. ResultActivity.kt
+6. XML de l’écran temple / bibliothèque
+7. item de liste savoir actuel
+8. toute logique existante d’export déjà présente
+9. GeminiManager.kt si certains ponts divins sont déjà préparés
+10. managers utiles déjà présents autour des savoirs / temples / TTS
+
+Si un écran bibliothèque séparé existe, l’ajouter immédiatement.
+Si une logique d’artefacts existe déjà, l’ajouter aussi avant toute proposition de DB.
+
+══════════════════════════════════════════════════════════════════════════════
+19 — ORDRE D’EXÉCUTION RECOMMANDÉ DU BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre recommandé :
+I1 → I4 → I5 → I2 → I6 → I7 → I3 → I8 → I9 → I10 → I11 → I12
+
+Pourquoi cet ordre :
+- on verrouille d’abord la donnée,
+- puis la migration et les accès,
+- puis l’affichage,
+- puis les catégories,
+- puis le menu maître,
+- puis les actions d’édition / déplacement,
+- puis le traçage des artefacts,
+- puis l’export,
+- puis les signaux premium,
+- puis les ponts vers le reste du système,
+- puis les ressources et les tests.
+
+Si l’IA préfère un autre ordre, elle doit justifier précisément pourquoi sans casser les dépendances.
+
+══════════════════════════════════════════════════════════════════════════════
+20 — ERREURS À ÉVITER ABSOLUMENT SUR LE BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+- transformer le temple du savoir en écran surchargé et illisible,
+- casser les anciens savoirs lors de la migration,
+- faire dépendre toute l’édition d’un appel IA bloquant,
+- tout mettre dans GodMatiereActivity sans manager ni helpers,
+- utiliser des popups Android bruts pour les actions importantes,
+- rendre l’export incohérent selon le type d’artefact,
+- oublier de tracer l’origine des artefacts,
+- supprimer un savoir sans stratégie claire pour ses artefacts liés,
+- oublier les fallbacks “non classé”, “aucun artefact”, “aucune sous-catégorie”,
+- oublier la cohérence audio / loading / fatigue divine,
+- casser le portrait plein écran,
+- renommer arbitrairement des IDs ou variables existantes.
+
+══════════════════════════════════════════════════════════════════════════════
+21 — PROMPT PRÊT À COPIER-COLLER POUR UNE AUTRE IA
+══════════════════════════════════════════════════════════════════════════════
+
+Voici le BLOC I de RéviZeus. Respecte strictement l’architecture existante. Ne supprime rien. Ne renomme pas arbitrairement les variables, IDs, managers ou flows existants. Génère les fichiers complets modifiés. Conserve le plein écran portrait. Utilise XML + ViewBinding. Pas de Compose. Commente le code intelligemment. Fais d’abord un audit précis des fichiers fournis, puis donne le pack de développement complet, puis les ressources éventuelles, puis les instructions d’intégration et les mises à jour IA_DOCS à ajouter.
+
+Objectif du BLOC I : transformer les savoirs en objets vivants. Il faut enrichir CourseEntry, introduire les sous-dossiers / sous-catégories, fiabiliser l’écran temple / bibliothèque, créer un menu appui long “Actions divines”, permettre l’édition manuelle, le déplacement entre temples et catégories, tracer les artefacts générés liés à un savoir, rendre chaque ressource exportable individuellement, préparer l’export groupé, et préparer des ponts propres vers les futurs blocs divins créatifs, dashboard intelligent, analytics cognitifs, badges et aventure.
+
+Le bloc doit couvrir : CourseEntry, la DB et les DAO liés, éventuellement GeneratedArtifact / ResourceArtifact, GodMatiereActivity, ResultActivity, l’UI des listes de savoirs, le bottom sheet d’actions divines, l’édition, le déplacement, la reclassification, l’export et les signaux visuels premium des savoirs.
+
+Contraintes impératives :
+- conserver la compatibilité avec les savoirs existants,
+- ne jamais casser le flow Oracle → Result → Temple,
+- garder les dialogues importants en mode RPG ou prévoir leur conversion immédiate,
+- toute action longue ou dépendante d’une API doit rester compatible avec les loadings divins et la fatigue divine,
+- toute ressource générée depuis un savoir doit être exportable individuellement,
+- toute ressource manquante doit être listée avec nom exact, utilité, écrans concernés, connexions et prompt JSON si elle n’existe pas déjà,
+- fournir les impacts DB, migration, UI, audio, managers, tests manuels et IA_DOCS.
+
+Livrables attendus :
+1. audit précis des fichiers fournis,
+2. stratégie d’intégration progressive,
+3. fichiers Kotlin complets modifiés,
+4. fichiers XML complets modifiés,
+5. nouveaux fichiers nécessaires complets,
+6. migration Room si nécessaire,
+7. ressources manquantes listées proprement,
+8. instructions d’intégration pas à pas,
+9. bloc MISE À JOUR DES FICHIERS DE COHÉRENCE.
+
+══════════════════════════════════════════════════════════════════════════════
+22 — CONCLUSION DU BLOC I
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC I est le moment où RéviZeus cesse définitivement de manipuler de simples résumés pour commencer à manipuler de vrais savoirs vivants.
+C’est une charnière majeure.
+Si ce bloc est bien codé :
+- les temples deviennent de vraies bibliothèques,
+- les créations divines ont un ancrage durable,
+- l’export devient naturel,
+- les savoirs deviennent transformables,
+- le jeu gagne une profondeur pédagogique et RPG beaucoup plus forte,
+- les futurs blocs créatifs, cognitifs et aventureux peuvent se brancher proprement.
+
+Le résultat attendu n’est pas “une liste de cours un peu mieux rangée”.
+Le résultat attendu est “un sanctuaire de savoirs vivants, enrichissables, exportables et reliés aux dieux”.

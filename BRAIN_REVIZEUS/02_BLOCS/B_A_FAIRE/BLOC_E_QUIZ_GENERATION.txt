@@ -1,0 +1,611 @@
+RÉVIZEUS — BLOC E — QUIZ NOUVELLE GÉNÉRATION + CORRECTIONS + FEEDBACK RÉSULTAT
+VERSION : EXECUTION BLOCK
+DATE : 2026-03-24
+SOURCE : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt + document maître fusionné
+OBJECTIF : fiabiliser totalement la génération des quiz, la qualité des corrections divines et la mise en scène des résultats afin que toute la boucle pédagogique et RPG repose sur quelque chose de crédible, varié, lisible, motivant et extensible.
+
+====================================================================
+0 — POSITION DU BLOC E DANS LE CHANTIER GLOBAL
+====================================================================
+
+Ce bloc arrive après :
+- BLOC A — stabilisation technique et socle transverse ;
+- BLOC B — dialogues RPG universels et feedbacks immersifs ;
+- BLOC C — audio global, TTS, ducking, loadings divins, pattern vidéo → image fixe ;
+- BLOC D — Oracle premium + pipeline résumé → validation → temple → quiz.
+
+Raison :
+- le quiz est le point où l’IA, l’audio, la pédagogie, les récompenses et les dialogues divins se rencontrent ;
+- si les couches A à D ne sont pas au moins amorcées, les quiz risquent d’être techniquement instables, pédagogiquement faibles ou incohérents avec les savoirs validés ;
+- le bloc E prépare directement les blocs F, G, H, L, M et O ;
+- si le quiz n’est pas robuste, tout le reste du jeu perd sa crédibilité : progression, récompenses, badges, analytics, aventure, boss et temples deviennent artificiels.
+
+Le bloc E doit donc être traité comme un chantier cœur, pas comme une simple amélioration de prompts.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+À la fin du bloc E, RéviZeus doit pouvoir :
+- générer des quiz réellement crédibles, variés et adaptés ;
+- éviter les patterns toxiques type “réponse B trop souvent correcte” ;
+- produire des distracteurs plausibles, ni absurdes ni trop faciles ;
+- adapter le ton et la difficulté selon l’âge, la classe, la matière, l’humeur, le profil d’apprentissage et le contexte d’entrée ;
+- proposer de vraies corrections maïeutiques, utiles et non humiliantes ;
+- générer un mnémonique pertinent après erreur quand c’est utile ;
+- expliquer pourquoi la bonne réponse est bonne et pourquoi les autres ne le sont pas ;
+- lire la question, les réponses et les corrections via TTS avec ducking audio ;
+- mettre en scène un résultat final premium et mémorable ;
+- fournir une base de vérité pédagogique sur laquelle pourront s’appuyer les récompenses, les temples, le moteur cognitif, les badges, les quêtes et l’aventure.
+
+Le ressenti visé est :
+- sérieux dans le contenu ;
+- noble dans la mise en scène ;
+- motivant dans le feedback ;
+- juste dans la difficulté ;
+- profondément cohérent avec le dieu, le savoir et le profil de l’utilisateur.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager / BadgeEvalContext
+- KnowledgeFragmentManager
+- QuizRewardManager / QuizTimerManager
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- SpeakerTtsHelper si déjà amorcé ou helper TTS actuel
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran ;
+- toute popup importante doit devenir RPG lettre par lettre avec son ;
+- toute action longue IA doit avoir un loading divin ;
+- toute limite technique doit être diégétique ;
+- les corrections doivent rester bienveillantes, structurées, adaptées à l’âge et au profil ;
+- les résultats ne doivent jamais sembler froids ou purement techniques ;
+- le TTS doit respecter le ducking et le lifecycle ;
+- ne jamais renommer arbitrairement les variables, IDs, managers ou flows existants ;
+- générer les fichiers complets modifiés ;
+- commenter le code intelligemment ;
+- conserver les commentaires déjà présents.
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC E
+====================================================================
+
+Ce bloc doit absorber :
+- génération de quiz robuste depuis résumé validé ou contexte entraînement ;
+- prompts Gemini renforcés avec JSON strict ;
+- vraie randomisation des réponses ;
+- contrôle de répartition des positions de bonnes réponses ;
+- distracteurs crédibles ;
+- variété de types de questions selon matière ;
+- adaptation âge / classe / humeur / profil / matière / contexte ;
+- TTS sur question, réponses et correction ;
+- correction divine maïeutique ;
+- mnémoniques utiles après erreur ;
+- explication “pourquoi la bonne réponse” + “pourquoi pas les autres” ;
+- transitions propres entre question, réponse, correction et résultat ;
+- mise en scène premium de l’écran de résultat ;
+- message divin final adapté à la performance ;
+- verdicts analytics ou patterns détectés si déjà disponibles ;
+- préparation propre pour RewardBundle, badges, rangs, cognitive engine, adaptive difficulty et boss éducatifs.
+
+Ce bloc ne doit PAS :
+- refaire l’économie complète du bloc F ;
+- absorber toute la progression temple du bloc G ;
+- implémenter la totalité de l’adaptive difficulty temps réel du bloc L ;
+- fusionner inventaire, forge, aventure ou cloud dans le chantier quiz ;
+- casser les flows Oracle ou Training pour des raisons de refonte esthétique ;
+- produire des corrections humiliantes, vagues ou trop longues ;
+- laisser des réponses correctes trop facilement détectables via patterns ;
+- afficher des résultats avec des quantités opaques, si les données de reward sont déjà connues.
+
+====================================================================
+4 — VISION PRODUIT DU FLOW QUIZ
+====================================================================
+
+Le flow cible devient :
+
+Entrée dans le quiz
+→ introduction divine éventuelle
+→ question affichée clairement
+→ TTS optionnel question/réponses
+→ choix de la réponse
+→ feedback de validation court
+→ correction maïeutique si nécessaire
+→ mnémonique ou approfondissement si utile
+→ enchaînement vers la question suivante
+→ fin de session
+→ résultat premium séquencé
+→ message divin adapté
+→ application propre des rewards via le bloc F ensuite
+
+Règle fondamentale :
+le quiz ne doit jamais être ressenti comme un tirage aléatoire de QCM plats.
+Il doit être perçu comme une épreuve divine juste, lisible, variée et intelligemment construite.
+
+====================================================================
+5 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+E1 — GÉNÉRATION QUIZ ROBUSTE ET JSON STRICT
+--------------------------------------------------------------------
+
+Objectif
+Empêcher les quiz incohérents, mal formés, incomplets ou pauvres pédagogiquement.
+
+À faire
+- renforcer les prompts Gemini pour imposer une structure JSON stricte et validable ;
+- imposer un nombre clair de questions selon le contexte ;
+- imposer un format stable pour chaque question : énoncé, options, index correct, explication, mnémonique éventuel, type de question, difficulté estimée ;
+- mettre en place une validation post-génération locale : si JSON invalide, si options insuffisantes, si index impossible, si doublons trop forts, régénération contrôlée ;
+- s’assurer que le quiz généré depuis un savoir parte du résumé validé et non d’un état intermédiaire ;
+- distinguer quiz Oracle, quiz entraînement matière et quiz entraînement ultime si la logique métier le demande déjà.
+
+Résultat attendu
+Le moteur génère des quiz exploitables sans bricolage manuel ou patchs permanents dans l’UI.
+
+--------------------------------------------------------------------
+E2 — VARIÉTÉ DE TYPES DE QUESTIONS
+--------------------------------------------------------------------
+
+Objectif
+Éviter la monotonie et adapter le style de question à la matière et au type de savoir.
+
+Types à intégrer ou préparer
+- définition ;
+- compréhension ;
+- calcul ;
+- chronologie ;
+- analogie ;
+- vrai/faux ;
+- cas pratique ;
+- reconnaissance d’erreur ;
+- logique étape par étape ;
+- relation cause/effet ;
+- classification ;
+- mise en contexte.
+
+À faire
+- enrichir les prompts pour demander explicitement plusieurs types ;
+- moduler les types par matière :
+  - maths → calcul, logique, étape par étape ;
+  - français → compréhension, reformulation, sens ;
+  - histoire → chronologie, contexte, causalité ;
+  - SVT → systèmes, cycles, fonctions ;
+  - langues → sens, traduction, usage ;
+- éviter d’avoir 5 questions quasi identiques dans une même session ;
+- stocker si possible le type de question pour analytics futurs.
+
+Résultat attendu
+Une session donne le sentiment d’une vraie épreuve intelligente, pas d’une répétition de variantes plates.
+
+--------------------------------------------------------------------
+E3 — RANDOMISATION RÉELLE DES BONNES RÉPONSES
+--------------------------------------------------------------------
+
+Objectif
+Supprimer le biais de position qui détruit la confiance dans le quiz.
+
+À faire
+- randomiser réellement l’ordre des options après génération ;
+- recalculer l’index correct proprement ;
+- vérifier la distribution sur une session entière ;
+- empêcher des séquences trop suspectes du type même position correcte quatre fois de suite si cela peut être évité sans tricher avec le contenu ;
+- conserver une logique transparente dans le code pour debug si besoin.
+
+Résultat attendu
+L’utilisateur ne peut plus détecter de pattern structurel grossier dans la position de la bonne réponse.
+
+--------------------------------------------------------------------
+E4 — DISTRACTEURS CRÉDIBLES ET NON RIDICULES
+--------------------------------------------------------------------
+
+Objectif
+Faire en sorte que les mauvaises réponses soient pédagogiquement pertinentes.
+
+À faire
+- demander à Gemini des distracteurs plausibles et proches d’erreurs humaines réelles ;
+- interdire les options absurdes, hors sujet ou trop évidemment fausses ;
+- pour certaines matières, forcer des distracteurs issus de confusions classiques ;
+- vérifier localement qu’il n’y a pas d’option dupliquée ou quasi identique à la bonne réponse ;
+- conserver si possible un champ “reasoning trap type” ou équivalent dans les métadonnées debug pour usage ultérieur.
+
+Résultat attendu
+La mauvaise réponse révèle quelque chose d’utile sur la compréhension du joueur.
+
+--------------------------------------------------------------------
+E5 — ADAPTATION AU CONTEXTE JOUEUR
+--------------------------------------------------------------------
+
+Objectif
+Faire varier difficulté, ton et densité selon le joueur réel.
+
+Entrées à exploiter si disponibles
+- âge ;
+- classe / niveau scolaire ;
+- humeur ;
+- profil d’apprentissage ;
+- matière ;
+- type de quiz ;
+- performance précédente ;
+- éventuel score cognitif si déjà amorcé.
+
+À faire
+- enrichir les prompts pour que les questions soient adaptées à la tranche d’âge ;
+- éviter le jargon excessif pour les plus jeunes ;
+- rendre le ton plus progressif si profil fragile ;
+- rendre le défi plus noble si profil challenge ;
+- préparer l’interface avec le futur adaptive difficulty sans surcharger le bloc E.
+
+Résultat attendu
+Le quiz paraît adressé à l’utilisateur, pas généré pour un joueur abstrait.
+
+--------------------------------------------------------------------
+E6 — CORRECTION DIVINE MAÏEUTIQUE
+--------------------------------------------------------------------
+
+Objectif
+Transformer la correction en vraie aide pédagogique.
+
+À faire
+- au lieu de simplement afficher la bonne réponse, générer une correction guidante ;
+- faire parler le dieu de la matière avec un ton cohérent ;
+- expliquer le raisonnement ou l’indice clé ;
+- éviter tout ton humiliant ;
+- proposer une forme courte par défaut et une forme enrichie si l’utilisateur veut approfondir ;
+- intégrer une logique “pourquoi c’est juste” et “pourquoi les autres ne le sont pas”.
+
+Résultat attendu
+Même une erreur devient une progression utile et motivante.
+
+--------------------------------------------------------------------
+E7 — MNÉMONIQUES ET APPROFONDISSEMENTS
+--------------------------------------------------------------------
+
+Objectif
+Rendre l’erreur mémorable et exploitable dans le temps.
+
+À faire
+- générer un mnémonique bref après certaines erreurs ;
+- l’adapter au dieu, à l’âge et à la matière ;
+- éviter les mnémoniques inutiles, trop artificiels ou trop longs ;
+- proposer un bouton ou une option “approfondir” si le joueur veut comprendre davantage ;
+- préparer le lien futur avec GeneratedArtifact, export et transformations divines du bloc I/J.
+
+Résultat attendu
+La correction ne disparaît pas instantanément : elle laisse une trace mentale exploitable.
+
+--------------------------------------------------------------------
+E8 — TTS QUIZ ET CORRECTIONS
+--------------------------------------------------------------------
+
+Objectif
+Rendre l’expérience accessible, confortable et premium.
+
+À faire
+- ajouter ou fiabiliser le speaker sur la question ;
+- permettre la lecture des réponses ;
+- permettre la lecture de la correction ;
+- assurer le ducking propre de la BGM ;
+- permettre arrêt / reprise / nouvelle lecture sans bug ;
+- éviter les overlaps de TTS entre question et correction ;
+- garantir que l’icône speaker soit visible en entier et bien cadrée dans le layout ;
+- gérer correctement le lifecycle.
+
+Résultat attendu
+Le TTS devient une couche naturelle du quiz, pas un gadget fragile.
+
+--------------------------------------------------------------------
+E9 — TRANSITIONS ET MICRO-FEEDBACKS PENDANT LE QUIZ
+--------------------------------------------------------------------
+
+Objectif
+Rendre le quiz vivant sans le surcharger.
+
+À faire
+- feedback visuel propre au clic réponse ;
+- retour sonore cohérent succès / erreur / validation ;
+- animation discrète de passage à la question suivante ;
+- petite respiration entre correction et question suivante ;
+- cohérence audio avec le bloc C ;
+- cohérence dialogue avec le bloc B.
+
+Résultat attendu
+La session garde un rythme noble, lisible et satisfaisant.
+
+--------------------------------------------------------------------
+E10 — RÉSULTAT PREMIUM ET RÉVÉLATION SÉQUENCÉE
+--------------------------------------------------------------------
+
+Objectif
+Faire du résultat un vrai moment de récompense et de lecture de performance.
+
+À faire
+- animation des étoiles ;
+- révélation séquentielle XP puis monnaies puis fragments puis badges si disponibles ;
+- message divin final adapté à la performance ;
+- BGM de résultat selon la qualité de la session ;
+- si level-up, mise en scène dédiée ;
+- si badge débloqué, révélation propre ;
+- si analytics disponibles, afficher un ou deux verdicts réellement utiles ;
+- préparer la comparaison future avec session précédente sans forcer une dépendance lourde.
+
+Résultat attendu
+La fin de quiz devient mémorable, compréhensible et motivante.
+
+--------------------------------------------------------------------
+E11 — COHÉRENCE ENTRE QUIZ ORACLE, ENTRAÎNEMENT MATIÈRE ET ENTRAÎNEMENT ULTIME
+--------------------------------------------------------------------
+
+Objectif
+Éviter trois systèmes divergents qui finissent par se contredire.
+
+À faire
+- identifier les différences légitimes entre les modes ;
+- factoriser la logique commune quand possible ;
+- conserver les spécificités sans dupliquer toute la mécanique ;
+- vérifier que les rewards et les fragments respectent la règle produit déjà posée ;
+- préparer l’extension vers boss, défis et aventure.
+
+Résultat attendu
+Les différents quiz appartiennent au même écosystème, avec des nuances lisibles mais une base commune saine.
+
+--------------------------------------------------------------------
+E12 — ANALYTICS DE SESSION ET TRACES UTILES
+--------------------------------------------------------------------
+
+Objectif
+Poser une base fiable pour le moteur cognitif, les recommandations et les verdicts.
+
+À faire
+- journaliser proprement le type de question, le temps de réponse, le bon/faux, la matière, le contexte du quiz, l’usage du TTS, l’usage d’aides éventuelles ;
+- préparer des points d’entrée propres vers UserAnalyticsEngine ;
+- distinguer ce qui est métier stable et ce qui relève du debug ;
+- éviter de disperser des calculs analytics dans les Activities.
+
+Résultat attendu
+Le bloc E nourrit proprement les futurs blocs L et M.
+
+====================================================================
+6 — FICHIERS GÉNÉRALEMENT CONCERNÉS
+====================================================================
+
+Fichiers Kotlin cœur
+- GeminiManager.kt
+- GodLoreManager.kt
+- QuizActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- QuizRewardManager.kt
+- QuizTimerManager.kt
+- UserAnalyticsEngine.kt ou équivalent
+- éventuel helper de validation JSON quiz
+- éventuel helper de mapping type de question
+- éventuel helper de résultat séquentiel
+
+Layouts / ressources UI
+- activity_quiz.xml ou layout équivalent
+- activity_training_quiz.xml ou layout équivalent
+- activity_quiz_result.xml
+- composants speaker / correction / résultat
+- animations légères succès / erreur / reveal
+- éventuels sons dédiés si déjà prévus
+
+Managers / aides transverses selon architecture réelle
+- SoundManager.kt
+- SpeakerTtsHelper.kt ou helper existant
+- BaseActivity.kt / BaseGameActivity.kt
+- GodSpeechAnimator.kt si utilisé dans les corrections ou résultats
+
+====================================================================
+7 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+====================================================================
+
+Pour traiter le bloc E proprement, il faut idéalement fournir dans cet ordre :
+
+Noyau quiz
+1. GeminiManager.kt
+2. QuizActivity.kt
+3. TrainingQuizActivity.kt
+4. QuizResultActivity.kt
+5. QuizRewardManager.kt
+6. QuizTimerManager.kt
+7. GodLoreManager.kt
+
+Socle transverse utile
+8. BaseActivity.kt
+9. BaseGameActivity.kt
+10. SoundManager.kt
+11. SpeakerTtsHelper.kt ou helper TTS actuel
+12. UserAnalyticsEngine.kt ou AnalyticsManager.kt si le quiz lui parle déjà
+
+UI
+13. XML du quiz
+14. XML du résultat
+15. XML du speaker si séparé
+16. éventuels drawables/anim déjà utilisés dans ces écrans
+
+Si tu veux réduire au strict minimum pour démarrer
+- GeminiManager.kt
+- QuizActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- QuizRewardManager.kt
+- XML du quiz et du résultat
+
+====================================================================
+8 — ORDRE D’EXÉCUTION RECOMMANDÉ À L’INTÉRIEUR DU BLOC E
+====================================================================
+
+Ordre conseillé
+1. E1 — génération quiz robuste
+2. E3 — randomisation réelle
+3. E4 — distracteurs crédibles
+4. E5 — adaptation contexte joueur
+5. E6 — correction divine maïeutique
+6. E7 — mnémoniques et approfondissements
+7. E8 — TTS quiz et corrections
+8. E9 — transitions et micro-feedbacks
+9. E10 — résultat premium
+10. E11 — cohérence entre modes quiz
+11. E12 — analytics de session
+
+Pourquoi cet ordre
+- on fiabilise d’abord la vérité métier du quiz ;
+- ensuite on améliore la qualité pédagogique ;
+- ensuite on ajoute l’accessibilité et la mise en scène ;
+- enfin on consolide le lien avec les autres systèmes.
+
+====================================================================
+9 — DÉPENDANCES VERS LES AUTRES BLOCS
+====================================================================
+
+Dépendances amont
+- BLOC A fortement recommandé ;
+- BLOC B recommandé pour les corrections/dialogues ;
+- BLOC C recommandé pour TTS, ducking, audio, loaders ;
+- BLOC D logique si le quiz Oracle part bien d’un résumé validé.
+
+Dépendances aval
+- BLOC F exploitera directement les résultats et rewards ;
+- BLOC G dépend de résultats fiables pour temple progression ;
+- BLOC L exploitera les analytics et patterns ;
+- BLOC M s’appuiera sur la qualité réelle des performances pour badges et rangs ;
+- BLOC O utilisera cette base pour boss et quiz aventure.
+
+====================================================================
+10 — CRITÈRES DE FIN DU BLOC E
+====================================================================
+
+Le bloc E est considéré comme terminé quand :
+- les quiz générés sont stables, cohérents et lisibles ;
+- les réponses correctes sont vraiment randomisées ;
+- les distracteurs sont crédibles ;
+- plusieurs styles de questions fonctionnent réellement ;
+- la difficulté et le ton tiennent compte du contexte joueur ;
+- les corrections sont utiles, guidantes et adaptées ;
+- le TTS fonctionne sans casser l’audio ;
+- les résultats sont premium, lisibles et satisfaisants ;
+- la base est assez saine pour brancher RewardBundle, temple progression, analytics, badges et boss ;
+- aucune Activity concernée n’introduit de crash ou de régression majeure de navigation/lifecycle.
+
+====================================================================
+11 — ERREURS À ÉVITER ABSOLUMENT
+====================================================================
+
+- corriger seulement les prompts sans valider localement la structure ;
+- laisser l’UI réparer des données quiz mal formées ;
+- mélanger la correction maïeutique avec un pavé trop long et illisible ;
+- faire des distracteurs “drôles” mais pédagogiquement nuls ;
+- afficher toujours le même type de question dans une matière ;
+- laisser l’audio se superposer entre TTS, BGM et SFX ;
+- dupliquer massivement la logique entre QuizActivity et TrainingQuizActivity ;
+- faire du bloc E une refonte totale de l’économie ;
+- ignorer les critères d’âge, d’humeur et de profil ;
+- réintroduire des dialogues Android bruts dans les corrections ou résultats.
+
+====================================================================
+12 — PROMPT PRÊT À COPIER-COLLER À UNE AUTRE IA
+====================================================================
+
+Tu travailles sur RéviZeus.
+Je veux que tu traites uniquement le BLOC E : “Quiz nouvelle génération + corrections + feedback résultat”.
+
+Règles absolues :
+- conserver 100 % de l’architecture actuelle ;
+- ne jamais renommer arbitrairement mes variables, IDs, flows, managers ou mécaniques existantes ;
+- générer les fichiers complets modifiés, jamais des snippets partiels ;
+- commenter intelligemment le code ;
+- rester en XML classique + ViewBinding ;
+- rester compatible minSdk 24 / target 36 / Kotlin 2.3.10 / AGP 9.0.1 ;
+- ne pas utiliser Jetpack Compose ;
+- toute popup importante doit tendre vers le style RPG lettre par lettre avec son ;
+- toute action longue IA doit utiliser le loading divin déjà prévu ;
+- toute limite technique visible doit être rendue diégétique.
+
+Objectif du bloc E :
+- fiabiliser totalement la génération des quiz ;
+- imposer un JSON strict et validé ;
+- randomiser réellement la position des bonnes réponses ;
+- générer des distracteurs crédibles ;
+- varier les types de questions selon matière ;
+- adapter les quiz à l’âge, à la classe, à l’humeur, au profil d’apprentissage et au contexte ;
+- produire des corrections divines maïeutiques ;
+- générer un mnémonique utile après erreur ;
+- expliquer pourquoi la bonne réponse est bonne et pourquoi les autres ne le sont pas ;
+- intégrer ou fiabiliser le TTS question/réponses/correction avec ducking audio ;
+- rendre QuizResultActivity premium : étoiles, révélation séquentielle, message divin, feedback lisible, base saine pour rewards.
+
+Sous-chantiers à traiter dans cet ordre :
+1. génération quiz robuste ;
+2. randomisation réelle ;
+3. distracteurs crédibles ;
+4. adaptation au contexte joueur ;
+5. correction divine maïeutique ;
+6. mnémoniques et approfondissements ;
+7. TTS quiz et corrections ;
+8. transitions et micro-feedbacks ;
+9. résultat premium ;
+10. cohérence entre quiz Oracle, entraînement matière et entraînement ultime ;
+11. analytics de session.
+
+Fichiers à auditer et modifier en priorité si je te les fournis :
+- GeminiManager.kt
+- QuizActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- QuizRewardManager.kt
+- QuizTimerManager.kt
+- GodLoreManager.kt
+- BaseActivity.kt
+- BaseGameActivity.kt
+- SoundManager.kt
+- SpeakerTtsHelper.kt ou helper TTS actuel
+- UserAnalyticsEngine.kt ou AnalyticsManager.kt
+- XML du quiz
+- XML du résultat
+
+Je veux d’abord :
+1. un audit précis des problèmes actuels,
+2. la stratégie d’intégration sans casser l’existant,
+3. ensuite seulement les fichiers complets modifiés.
+
+====================================================================
+13 — RÉSUMÉ OPÉRATIONNEL ULTRA COURT
+====================================================================
+
+Si tu dois expliquer ce bloc en une phrase :
+
+Le bloc E transforme RéviZeus d’un système de QCM potentiellement fragile en véritable moteur d’épreuves divines crédibles, variées, pédagogiques, sonorisées et mémorables, prêt à soutenir toute la progression RPG du jeu.
+

@@ -1,0 +1,859 @@
+RÉVIZEUS — BLOC L
+ANALYTICS PÉDAGOGIQUES AVANCÉES + MOTEUR COGNITIF + RÉVISION INTELLIGENTE + DÉMÉTER
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de faire passer RéviZeus d’un système qui réagit simplement
+aux bonnes et mauvaises réponses à un système qui comprend progressivement
+COMMENT le héros apprend, oublie, rechute, se stabilise et progresse.
+
+Ce chantier ne doit pas être un gadget analytics.
+Il doit devenir une couche métier profonde, utile, élégante, extensible,
+et reliée à la pédagogie, aux dieux, aux révisions et plus tard au monde vivant.
+
+Ce bloc doit construire :
+- une couche de lecture cognitive stable,
+- une couche de scoring utile,
+- une couche de priorisation des révisions,
+- une couche d’interventions intelligentes de Déméter,
+- une base solide pour les futures recommandations IA,
+- une base pour rendre les erreurs, rechutes et réactivations vraiment significatives.
+
+Il ne s’agit pas encore de livrer la totalité de l’IA adaptative finale.
+Il s’agit de livrer la première vraie base de vérité cognitive de RéviZeus.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC L DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC L arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros + IA adaptative V1
+
+Il prépare ensuite :
+- M : recommandations IA, prochaine meilleure action, suggestions stratégiques
+- N : dashboard vivant + widgets d’insight + messages dynamiques
+- O : rangs, badges, progression méta et lecture long terme
+- P : aventure structurée, zones, quêtes, boss éducatifs
+- Q : lore, carte du monde, intro, tension mythologique et polissage transversal
+
+Ce bloc est la couche de vérité métier qui permettra à RéviZeus de ne plus seulement “suivre”
+le joueur, mais de commencer à le comprendre.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Permettre à RéviZeus de mesurer et exploiter progressivement l’état cognitif réel du héros.
+
+Objectifs principaux :
+- suivre la maîtrise réelle et non seulement le score brut,
+- détecter les savoirs fragiles et les rechutes,
+- estimer la stabilité d’une notion,
+- estimer la confiance ou l’illusion de maîtrise,
+- détecter la fatigue cognitive et certains patterns d’erreurs,
+- prioriser les révisions de manière intelligente,
+- faire intervenir Déméter comme gardienne du rappel,
+- préparer les futures recommandations et adaptations plus fines.
+
+Objectifs secondaires :
+- faire remonter des signaux utiles sans polluer l’UX,
+- préparer une lecture fine par matière et par savoir,
+- éviter les révisions génériques peu utiles,
+- créer une matière première fiable pour la suite du système.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+ce bloc ne doit PAS disperser des calculs d’analytics dans toutes les Activities.
+
+INTERDIT :
+- recalculer la stabilité d’un savoir dans plusieurs écrans,
+- stocker des mini scores bricolés directement dans des adapters,
+- faire des heuristiques dupliquées pour savoir “quoi réviser”,
+- produire des verdicts au hasard sans base persistante,
+- coupler directement chaque UI à la logique cognitive.
+
+OBLIGATOIRE :
+- un cœur de données clair,
+- un moteur de calcul central,
+- des points d’entrée identifiés,
+- des sorties exploitées proprement par les autres blocs,
+- une séparation nette entre :
+  - événements bruts,
+  - états cognitifs calculés,
+  - priorités de révision,
+  - messages / recommandations / interventions divines.
+
+Architecture cible recommandée :
+- CognitiveProfileEntity
+- CognitiveSkillStateEntity
+- KnowledgeNodeEntity
+- KnowledgeLinkEntity
+- ReviewPriorityEntity
+- LearningFormatEffectivenessEntity
+- TemplePedagogicStateEntity
+- DivineInterventionLogEntity
+- CognitiveEngineManager
+- ReviewPriorityManager
+- DemeterRecallManager
+- AnalyticsOrchestrator / hooks centralisés si nécessaire
+
+Ce bloc doit s’appuyer sur l’existant :
+- UserAnalytics
+- UserSkillProfile
+- CourseEntry
+- quiz results
+- historique d’erreurs
+- mood actuel
+- éventuels logs déjà présents
+
+Il doit enrichir, pas casser.
+
+════════════════════════════════════════════════════════════════════
+4 — CE QUE RÉVIZEUS DOIT COMMENCER À COMPRENDRE
+════════════════════════════════════════════════════════════════════
+
+RéviZeus doit progressivement pouvoir distinguer :
+- ce que le héros sait vraiment,
+- ce qu’il croit savoir mais ne stabilise pas,
+- ce qu’il a réussi une fois par chance,
+- ce qu’il comprend mieux avec reformulation,
+- ce qui se fragilise,
+- ce qui rechute,
+- ce qu’il récupère vite,
+- ce qui demande une autre forme pédagogique,
+- quand ralentir,
+- quand relancer,
+- quand rappeler,
+- quand ne pas surcharger.
+
+Cela implique de calculer et stocker des dimensions comme :
+- masteryScore
+- stabilityScore
+- confidenceScore
+- fatigueScore
+- responseSpeedScore
+- frustrationScore
+- relapseRiskScore
+- simplificationNeedScore
+- maieuticAffinityScore
+- visualLearningAffinity
+- analogicalLearningAffinity
+- stepByStepAffinity
+- challengeTolerance
+- emotionalRecoverySpeed
+
+Ces dimensions ne doivent pas toutes être affichées.
+Elles servent d’abord de vérité métier interne.
+
+════════════════════════════════════════════════════════════════════
+5 — ENTITÉS ET STRUCTURES À PRÉVOIR
+════════════════════════════════════════════════════════════════════
+
+5.1 CognitiveProfileEntity
+But :
+stocker la photographie globale cognitive du héros.
+
+Champs conseillés :
+- userId
+- masteryScore
+- stabilityScore
+- confidenceScore
+- fatigueScore
+- frustrationScore
+- relapseRiskScore
+- simplificationNeedScore
+- maieuticAffinityScore
+- visualLearningAffinity
+- analogicalLearningAffinity
+- stepByStepAffinity
+- challengeTolerance
+- emotionalRecoverySpeed
+- lastUpdatedAt
+
+5.2 CognitiveSkillStateEntity
+But :
+stocker l’état cognitif par matière.
+
+Champs conseillés :
+- subject
+- masteryScore
+- stabilityScore
+- confidenceScore
+- fatigueScore
+- relapseRiskScore
+- lastSuccessfulReviewAt
+- lastFailureAt
+- lastUpdatedAt
+
+5.3 KnowledgeNodeEntity
+But :
+représenter une notion, un concept ou un point de savoir précis.
+
+Champs conseillés :
+- id
+- courseEntryId
+- subject
+- conceptName
+- masteryLevel
+- stabilityLevel
+- lastReviewedAt
+- nextReviewAt
+- reviewCount
+- failureCount
+- successCount
+- linkedNodesJson
+- metadataJson
+
+5.4 KnowledgeLinkEntity
+But :
+lier plusieurs notions pour préparer une future carte du savoir.
+
+Champs conseillés :
+- id
+- sourceNodeId
+- targetNodeId
+- linkType
+- weight
+- createdAt
+
+5.5 ReviewPriorityEntity
+But :
+stocker la priorité calculée d’un savoir ou d’une notion à réactiver.
+
+Champs conseillés :
+- id
+- targetType (COURSE / NODE / SUBJECT)
+- targetId
+- subject
+- priorityScore
+- urgencyLevel
+- reasonsJson
+- suggestedGod
+- createdAt
+- expiresAt
+
+5.6 LearningFormatEffectivenessEntity
+But :
+mesurer quels formats marchent le mieux pour le héros.
+
+Champs conseillés :
+- id
+- subject
+- formatType
+- effectivenessScore
+- attempts
+- lastUpdatedAt
+
+Formats possibles :
+- SUMMARY
+- QUIZ
+- STEP_BY_STEP
+- ANALOGY
+- IMAGE
+- POEM
+- AUDIO
+- MAIEUTIC_CORRECTION
+- REFORMULATION
+
+5.7 TemplePedagogicStateEntity
+But :
+séparer la reconstruction structurelle d’un temple de son état pédagogique réel.
+
+Champs conseillés :
+- subject
+- pedagogicAura
+- stabilityAura
+- forgettingFog
+- masteryBlessing
+- turbulenceLevel
+- updatedAt
+
+5.8 DivineInterventionLogEntity
+But :
+journaliser les interventions automatiques ou semi-automatiques des dieux.
+
+Champs conseillés :
+- id
+- godName
+- subject
+- targetId
+- triggerType
+- contextJson
+- createdAt
+
+════════════════════════════════════════════════════════════════════
+6 — DIMENSIONS DE CALCUL À CENTRALISER
+════════════════════════════════════════════════════════════════════
+
+Le moteur cognitif doit calculer au minimum des règles simples mais utiles.
+
+Exemples de logique :
+- bonne réponse rapide et répétée sur plusieurs sessions :
+  mastery + stabilité + confiance
+- bonne réponse lente :
+  mastery augmente, stabilité augmente moins
+- mauvaise réponse rapide :
+  baisse de confiance, suspicion d’illusion de maîtrise
+- plusieurs erreurs consécutives :
+  fatigue et frustration augmentent
+- erreur répétée sur une variante proche :
+  relapseRisk augmente fortement
+- réussite après aide :
+  mastery progresse, mais moins qu’une réussite autonome
+- abandon ou temps très long :
+  simplificationNeed augmente
+- correction comprise puis réussite :
+  emotionalRecoverySpeed peut monter
+- recours fréquent à certaines formes :
+  effectiveness par format ajustée
+
+Le moteur doit être compréhensible.
+Il vaut mieux une V1 simple, bien branchée et fiable
+qu’un système pseudo-scientifique opaque et bancal.
+
+════════════════════════════════════════════════════════════════════
+7 — SOUS-CHANTIERS DU BLOC L
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+L1 — FONDATION ROOM DU MOTEUR COGNITIF
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+ajouter les entités cognitives nécessaires sans casser AppDatabase.
+
+À faire :
+- créer les nouvelles entités utiles,
+- créer les DAO associés,
+- brancher AppDatabase,
+- écrire les migrations Room,
+- prévoir valeurs par défaut robustes,
+- garantir compatibilité avec le profil héros actuel id=1.
+
+Version réaliste V1 :
+ne pas tout surconstruire si tu veux sécuriser.
+Priorité minimale :
+- CognitiveProfileEntity
+- CognitiveSkillStateEntity
+- KnowledgeNodeEntity
+- ReviewPriorityEntity
+- DivineInterventionLogEntity
+
+Fichiers concernés :
+- AppDatabase.kt
+- nouvelles entités Room
+- DAO associés
+
+Critère de fin :
+la couche de persistance cognitive est stable, migrée et lisible.
+
+────────────────────────────────────────────────────────────────────
+L2 — COGNITIVEENGINEMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer le cœur métier unique de calcul cognitif.
+
+Responsabilités :
+- lire les événements bruts,
+- mettre à jour le profil global,
+- mettre à jour la matière concernée,
+- mettre à jour la ou les notions concernées,
+- calculer la stabilité, la fatigue, le risque de rechute,
+- signaler ce qui mérite une révision,
+- exposer des helpers pour les autres blocs.
+
+Méthodes recommandées :
+- onQuizAnswered(...)
+- onQuizCompleted(...)
+- onSummaryValidated(...)
+- onCorrectionRead(...)
+- onHelpUsed(...)
+- onReviewCompleted(...)
+- recalculateGlobalProfile(...)
+- recalculateSubjectState(subject)
+- recalculateReviewPriorities(...)
+- getCognitiveSnapshot()
+
+Fichiers concernés :
+- CognitiveEngineManager.kt
+
+Critère de fin :
+un manager central orchestre tout sans logique cognitive dispersée ailleurs.
+
+────────────────────────────────────────────────────────────────────
+L3 — HOOKS SUR LES FLOWS EXISTANTS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+brancher le moteur sans casser les flows actuels.
+
+Points d’entrée à connecter :
+- validation du résumé,
+- début d’un quiz,
+- réponse à chaque question,
+- fin d’un quiz,
+- lecture d’une correction,
+- utilisation d’une aide,
+- révision manuelle d’un savoir,
+- écoute TTS pertinente si nécessaire,
+- transformation d’un savoir si cela devient significatif plus tard.
+
+Fichiers concernés :
+- ResultActivity.kt
+- QuizActivity.kt si présent
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- GodMatiereActivity.kt
+- éventuels managers intermédiaires
+
+Critère de fin :
+le moteur reçoit des événements métier cohérents à des moments clés.
+
+────────────────────────────────────────────────────────────────────
+L4 — KNOWLEDGENODE V1 : NOTIONS ET MAILLAGE MINIMAL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+ne plus considérer un savoir comme un bloc unique opaque.
+
+À faire :
+- lier un CourseEntry à des notions simples,
+- permettre à un savoir d’avoir plusieurs KnowledgeNodes,
+- préparer une granularité plus fine des révisions,
+- préparer plus tard une carte du savoir.
+
+Version V1 raisonnable :
+- extraction simple à partir du résumé ou mots-clés
+- 3 à 8 notions par savoir selon la densité
+- pas de graphe ultra-complexe tout de suite
+- linkedNodesJson ou table simple selon coût
+
+Fichiers concernés :
+- KnowledgeNodeEntity / DAO
+- manager de création / synchronisation des nodes
+- ResultActivity / pipeline résumé si besoin de création initiale
+
+Critère de fin :
+chaque savoir peut être représenté par des notions simples exploitables.
+
+────────────────────────────────────────────────────────────────────
+L5 — REVIEWPRIORITYMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+calculer intelligemment ce qui doit remonter à la surface.
+
+Le calcul de priorité doit tenir compte de :
+- temps écoulé,
+- dernière réussite,
+- dernière rechute,
+- stabilité,
+- confiance,
+- difficulté perçue,
+- performance après aide,
+- vitesse de rappel,
+- matière,
+- humeur récente,
+- profil d’accompagnement si utile.
+
+Sorties utiles :
+- liste des savoirs urgents,
+- liste des notions fragiles,
+- matière la plus prioritaire,
+- rappel du jour,
+- suggestion Déméter.
+
+Fichiers concernés :
+- ReviewPriorityManager.kt
+- ReviewPriorityEntity / DAO
+
+Critère de fin :
+RéviZeus peut sortir une liste réellement utile des éléments à réviser.
+
+────────────────────────────────────────────────────────────────────
+L6 — DÉMÉTER : JARDIN, RAPPELS ET DAILY DIVINE RECALL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+incarner la révision intelligente via Déméter.
+
+Ce bloc doit préparer :
+- le Jardin de Déméter comme future UI forte,
+- le Daily Divine Recall,
+- les rappels doux,
+- les interventions discrètes mais pertinentes.
+
+Concepts à relier :
+- savoirs solides = floraison
+- savoirs fragiles = zones sèches
+- rechutes = parasites cognitifs
+- reprise correcte = terre régénérée
+
+Version V1 à livrer :
+- DemeterRecallManager.kt
+- logique de choix du rappel du jour
+- message/contextualisation de Déméter
+- sortie exploitable par dashboard et temple
+
+Fichiers concernés :
+- DemeterRecallManager.kt
+- DashboardActivity.kt plus tard si affichage léger déjà branché
+- GodLoreManager.kt si texte divin contextualisé
+- CourseEntry / nodes / priorities / cognitive engine
+
+Critère de fin :
+chaque jour ou à chaque session, RéviZeus sait proposer un rappel intelligent porté par Déméter.
+
+────────────────────────────────────────────────────────────────────
+L7 — TEMPLEPEDAGOGICSTATE : AURA PÉDAGOGIQUE DES TEMPLES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+ajouter une couche invisible ou semi-visible au-dessus du niveau structurel des temples.
+
+Ce que cette couche doit mesurer :
+- stabilité du temple,
+- pureté pédagogique,
+- turbulence cognitive,
+- brume d’oubli,
+- bénédiction de maîtrise.
+
+But produit :
+un temple ne doit pas seulement être “reconstruit par fragments”.
+Il doit aussi refléter la santé pédagogique réelle de la matière.
+
+Version V1 raisonnable :
+- stockage simple par matière,
+- mise à jour après quiz et révisions,
+- pas forcément visible partout tout de suite,
+- mais exploitable ensuite par dashboard, aventure et FX.
+
+Fichiers concernés :
+- TemplePedagogicStateEntity
+- manager de mise à jour
+- intégration avec TempleProgressManager si besoin de liaison propre
+
+Critère de fin :
+chaque matière possède un état pédagogique distinct de sa progression structurelle.
+
+────────────────────────────────────────────────────────────────────
+L8 — LEARNINGFORMATEFFECTIVENESS : CE QUI MARCHE LE MIEUX
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+commencer à mesurer les formats qui aident réellement le héros.
+
+Formats à suivre :
+- résumé structuré
+- pas à pas
+- analogie
+- image
+- poème
+- audio
+- traduction
+- correction maïeutique
+- quiz classique
+- quiz challenge
+
+Utilité :
+- nourrir plus tard les recommandations,
+- nourrir les suggestions automatiques des dieux,
+- ajuster l’IA adaptative,
+- éviter les aides peu efficaces.
+
+Version V1 :
+- score très simple,
+- tentative + résultat,
+- sujet / matière / format,
+- pas de pondération trop lourde au début.
+
+Fichiers concernés :
+- LearningFormatEffectivenessEntity / DAO
+- CognitiveEngineManager ou manager dédié léger
+
+Critère de fin :
+RéviZeus commence à savoir quels formats semblent mieux fonctionner.
+
+────────────────────────────────────────────────────────────────────
+L9 — DIVINEINTERVENTIONLOG : TRAÇABILITÉ DES AIDES DIVINES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+journaliser les aides et interventions pour éviter l’opacité totale.
+
+Ce qu’il faut tracer :
+- aide de Prométhée,
+- rappel de Déméter,
+- reformulation d’Athéna,
+- challenge d’Arès,
+- visualisation proposée par Aphrodite,
+- poème d’Apollon,
+- traduction d’Hermès,
+- quotas fatigués si pertinent plus tard.
+
+Utilité :
+- mieux comprendre ce qui a été proposé,
+- préparer les futures recommandations,
+- préparer les analytics avancées,
+- nourrir un futur historique d’accompagnement.
+
+Fichiers concernés :
+- DivineInterventionLogEntity / DAO
+- managers divins si points de hook faciles
+
+Critère de fin :
+les interventions majeures peuvent être retrouvées et exploitées.
+
+────────────────────────────────────────────────────────────────────
+L10 — INSIGHTS PÉDAGOGIQUES V1
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+commencer à transformer les scores internes en lectures utiles.
+
+Exemples d’insights à produire :
+- faiblesse thématique détectée,
+- confusion sur notions proches,
+- bonne progression lente mais réelle,
+- tendance à la précipitation,
+- difficulté récurrente sur une matière,
+- savoir ancien en train de faner,
+- meilleure récupération avec correction guidée,
+- meilleur rendement avec pas à pas.
+
+Attention :
+ces insights ne doivent pas être accusateurs.
+Ils doivent être utiles, nobles et pédagogiques.
+
+Fichiers concernés :
+- CognitiveEngineManager.kt
+- éventuel AnalyticsInsightBuilder.kt ou helper dédié
+- GodLoreManager.kt si verbalisation divine
+- Dashboard widgets plus tard
+
+Critère de fin :
+RéviZeus peut produire quelques insights cohérents et exploitables.
+
+────────────────────────────────────────────────────────────────────
+L11 — EXPLOITATION PAR GODLOREMANAGER ET TEXTES DIVINS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire parler les dieux à partir d’une vraie lecture du héros.
+
+Exemples :
+- Déméter appelle une notion fanée,
+- Athéna identifie une confusion structurante,
+- Zeus remarque une logique presque là mais instable,
+- Prométhée voit qu’un rappel ciblé serait plus utile qu’un nouveau défi.
+
+À faire :
+- injecter quelques signaux cognitifs propres dans GodLoreManager,
+- ne pas surcharger les prompts,
+- garder le style RPG,
+- éviter les formulations pseudo-médicales ou culpabilisantes.
+
+Fichiers concernés :
+- GodLoreManager.kt
+- éventuellement GeminiManager.kt si certaines synthèses sont générées
+
+Critère de fin :
+les dieux peuvent tenir des propos plus intelligents et plus ciblés.
+
+────────────────────────────────────────────────────────────────────
+L12 — PRÉPARATION DES BLOCS SUIVANTS SANS LES CODER TOUT DE SUITE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+laisser une architecture extensible pour :
+- recommandations IA,
+- widgets dashboard,
+- aventure cognitive,
+- rang méta,
+- quêtes de réactivation,
+- Jardin de Déméter complet,
+- carte du savoir,
+- mode monde vivant relié à l’oubli et à la maîtrise.
+
+À NE PAS SURCHARGER DANS L :
+- dashboard géant tout de suite,
+- visualisations complexes prématurées,
+- recommandations ultra riches déjà visibles partout,
+- monde aventure totalement branché à la cognition,
+- machine learning exotique ou pseudo-scientifique.
+
+Critère de fin :
+la base est prête pour M, N, O et P sans refonte brutale.
+
+════════════════════════════════════════════════════════════════════
+8 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- AppDatabase.kt
+- UserProfile.kt
+- CourseEntry.kt
+- UserAnalytics.kt
+- UserSkillProfile.kt
+- DAO principaux existants
+- QuizResultActivity.kt
+- TrainingQuizActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- GodLoreManager.kt
+- GeminiManager.kt si déjà très lié aux signaux
+
+Priorité 2 :
+- TempleProgressManager.kt
+- DashboardActivity.kt
+- éventuels managers d’analytics existants
+- classes de récompense si la lecture cognitive y touche déjà
+- SettingsActivity.kt seulement si exposition debug ou options utiles
+
+Priorité 3 :
+- futurs écrans dédiés comme JardinDemeterActivity.kt
+- widgets dashboard avancés
+- moteurs de recommandation du bloc M
+
+════════════════════════════════════════════════════════════════════
+9 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. créer les entités et DAO cognitifs minimaux
+2. brancher AppDatabase et migrations
+3. créer CognitiveEngineManager
+4. brancher les hooks sur les flows existants
+5. créer ReviewPriorityManager
+6. créer DemeterRecallManager
+7. ajouter TemplePedagogicState et LearningFormatEffectiveness si le socle est stable
+8. créer la journalisation des interventions divines
+9. produire les premiers insights cohérents
+10. injecter quelques signaux dans GodLoreManager
+11. tester la cohérence multi-session
+12. préparer ensuite le bloc M
+
+Pourquoi cet ordre :
+- on verrouille la donnée,
+- puis le moteur,
+- puis les événements,
+- puis les priorités,
+- puis les sorties exploitables,
+- puis les raffinements.
+
+════════════════════════════════════════════════════════════════════
+10 — CRITÈRES DE FIN DU BLOC L
+════════════════════════════════════════════════════════════════════
+
+Le bloc L est considéré comme FAIT si :
+- une couche cognitive minimale existe en base et persiste correctement,
+- CognitiveEngineManager centralise les calculs principaux,
+- les flows quiz/résumé/révision envoient les événements utiles,
+- ReviewPriorityManager peut sortir de vraies priorités de révision,
+- Déméter peut porter un rappel intelligent crédible,
+- quelques insights cognitifs cohérents peuvent être produits,
+- l’état pédagogique des matières peut être estimé,
+- les futures recommandations ont une base fiable,
+- rien n’a été dispersé de manière fragile dans l’UI.
+
+════════════════════════════════════════════════════════════════════
+11 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- transformer ce bloc en usine à gaz pseudo-scientifique
+- dupliquer des heuristiques dans plusieurs écrans
+- tout afficher à l’utilisateur trop tôt
+- confondre score quiz et maîtrise réelle
+- ignorer les rechutes et ne suivre que les réussites
+- faire des insights culpabilisants ou rigides
+- coupler trop tôt la cognition à tous les systèmes visuels
+- oublier les migrations Room
+- oublier la cohérence multi-session
+- oublier l’extensibilité pour les recommandations et le monde vivant
+
+════════════════════════════════════════════════════════════════════
+12 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC L : “Analytics pédagogiques avancées + moteur cognitif + révision intelligente + Déméter”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- toutes les futures sorties textuelles importantes doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- le système doit rester compréhensible, centralisé, extensible et non pseudo-médical.
+
+Objectif :
+Créer une première vraie couche cognitive de RéviZeus qui :
+1. ajoute les structures de données cognitives utiles en Room,
+2. crée un CognitiveEngineManager central,
+3. branche les hooks sur résumé / quiz / correction / révision,
+4. crée ReviewPriorityManager,
+5. crée DemeterRecallManager,
+6. prépare KnowledgeNode, TemplePedagogicState, LearningFormatEffectiveness et DivineInterventionLog,
+7. produit des priorités de révision cohérentes,
+8. produit quelques insights pédagogiques utiles,
+9. prépare les futurs blocs de recommandations, dashboard vivant et aventure cognitive.
+
+Dimensions à calculer ou préparer :
+- mastery,
+- stability,
+- confidence,
+- fatigue,
+- frustration,
+- relapse risk,
+- simplification need,
+- affinités de formats,
+- état pédagogique par matière.
+
+Le système doit être progressif.
+Ne code pas une IA totale opaque.
+Code une base claire, stable, persistante et exploitable.
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- AppDatabase.kt
+- UserProfile.kt
+- CourseEntry.kt
+- UserAnalytics.kt
+- UserSkillProfile.kt
+- DAO existants
+- ResultActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- GodMatiereActivity.kt
+- GodLoreManager.kt
+- GeminiManager.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles migrations nécessaires, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+13 — RÉSUMÉ ULTRA COURT DU BLOC L
+════════════════════════════════════════════════════════════════════
+
+Ce bloc donne à RéviZeus une vraie mémoire pédagogique interne.
+Le jeu commence à comprendre ce que le héros maîtrise, oublie, rechute ou récupère.
+Il peut prioriser des rappels intelligents, faire intervenir Déméter de manière crédible,
+et préparer une vraie suite adaptative sans casser l’architecture actuelle.

@@ -1,0 +1,641 @@
+RÉVIZEUS — BLOC D — ORACLE PREMIUM + PIPELINE RÉSUMÉ → VALIDATION → TEMPLE → QUIZ
+VERSION : EXECUTION BLOCK
+DATE : 2026-03-24
+SOURCE : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt + document maître fusionné
+OBJECTIF : rendre l’Oracle réellement premium, fiable, structuré et central dans la boucle du jeu, en transformant chaque entrée (scan, import, demande libre, conseil) en savoir validé, classé, sauvegardé proprement et capable de générer un quiz cohérent.
+
+====================================================================
+0 — POSITION DU BLOC D DANS LE CHANTIER GLOBAL
+====================================================================
+
+Ce bloc arrive après :
+- BLOC A — stabilisation technique et socle transverse ;
+- BLOC B — dialogues RPG universels ;
+- BLOC C — audio global, TTS, ducking, loadings divins, pattern vidéo → image fixe.
+
+Raison :
+- l’Oracle manipule CameraX, OCR, parsing, IA, validation UI, TTS, loading divin, dialogues RPG et sauvegarde ;
+- si les couches A à C ne sont pas en place ou au moins amorcées, l’Oracle devient vite un point de casse massif.
+
+Le bloc D est le premier très grand chantier cœur-produit.
+Il doit donc être traité comme un pipeline complet et atomique, pas comme une suite de mini-correctifs dispersés.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+Faire de l’Oracle le cœur premium réel de RéviZeus.
+
+À la fin du bloc D, le flow Oracle doit permettre à l’utilisateur de :
+- entrer par trois vraies portes principales, plus une couche de conseil divine ;
+- scanner un document, importer un document, ou créer un savoir depuis une demande ;
+- recevoir un résumé lisible, structuré, adapté à l’âge et au contexte ;
+- entendre ou relire ce résumé ;
+- éditer ou reformuler ce résumé avant sauvegarde ;
+- confirmer manuellement le temple / la matière de destination même si l’IA a détecté une matière ;
+- sauvegarder un savoir propre avec métadonnées riches ;
+- générer un quiz à partir du résumé validé, jamais à partir d’un état intermédiaire sale ;
+- ne jamais voir un résultat brouillon, partiel ou incohérent.
+
+Le ressenti premium visé est :
+- spectaculaire à l’entrée ;
+- fluide pendant l’usage ;
+- noble pendant les chargements ;
+- clair pendant la validation ;
+- cohérent avec les dieux, l’audio, la DA et la logique pédagogique.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager
+- CraftingSystem / ForgeManager
+- KnowledgeFragmentManager
+- QuizRewardManager / QuizTimerManager
+- FirebaseAuthManager / AccountRecoveryManager
+- AccountRegistry / OnboardingSession
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- AnimatedBackgroundHelper
+- OlympianParticlesView
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran ;
+- toute popup importante doit devenir RPG lettre par lettre avec son ;
+- toute action longue IA doit avoir un loading divin ;
+- toute limite technique doit être diégétique ;
+- toute ressource générée à partir d’un savoir doit être exportable ;
+- le scanner CameraX ne doit jamais être cassé par un overlay opaque ;
+- le flow Oracle doit rester jouable même si les fonds animés sont en lecture ;
+- ne jamais renommer arbitrairement les variables, IDs, managers ou flows existants ;
+- générer les fichiers complets modifiés ;
+- commenter le code intelligemment ;
+- conserver les commentaires déjà présents.
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC D
+====================================================================
+
+Ce bloc doit absorber :
+- Oracle premium à 3 portes réelles ;
+- possibilité de conseil des Oracles / aide à formulation ;
+- hub Oracle immédiatement utilisable ;
+- identité visuelle et sonore distincte par voie ;
+- scanner CameraX sans overlay opaque ;
+- support import document ;
+- support texte libre / sujet libre ;
+- pré-analyse de matière ;
+- génération de résumé structuré ;
+- génération de titres pertinents ;
+- validation du résumé obligatoire avant sauvegarde ;
+- édition / reformulation / simplification / changement temple ;
+- explication divine de la matière pressentie ;
+- TTS sur le résumé ;
+- stockage atomique et propre du savoir ;
+- génération du quiz depuis le résumé validé ;
+- métadonnées d’entrée, d’analyse et de validation ;
+- erreurs et cas limites rendus immersifs ;
+- compatibilité future avec artefacts, profils cognitifs, traductions, poèmes, images, export.
+
+Ce bloc ne doit PAS :
+- refaire toute la logique de quiz avancé du bloc E ;
+- imposer une migration Room massive non préparée ;
+- casser les flows actuels au nom d’une refonte esthétique ;
+- mélanger aventure, forge, badges et Oracle dans le même chantier ;
+- générer un savoir automatiquement sans phase de validation humaine ;
+- utiliser directement un résumé intermédiaire brouillon pour le quiz.
+
+====================================================================
+4 — VISION PRODUIT DU FLOW ORACLE
+====================================================================
+
+Le flow cible devient :
+
+Entrée Oracle
+→ choix d’une porte
+→ capture / import / texte libre / conseil
+→ extraction ou structuration matière première
+→ pré-analyse matière + qualité
+→ loading divin
+→ génération du résumé structuré
+→ proposition de titres
+→ écran de validation du résumé
+→ édition / reformulation / changement temple / confirmation
+→ sauvegarde atomique du savoir
+→ proposition ou lancement du quiz à partir du résumé validé
+→ transition propre vers le résultat ou le temple
+
+Règle fondamentale :
+aucune donnée sale ne doit devenir l’état canonique du savoir.
+
+Le savoir canonique doit être :
+- le résumé validé ;
+- le temple validé ;
+- le titre validé ;
+- les métadonnées d’entrée correctement stockées.
+
+====================================================================
+5 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+D1 — HUB ORACLE PREMIUM À 3 PORTES
+--------------------------------------------------------------------
+
+Objectif
+Transformer OracleActivity en véritable salle sacrée d’orientation, lisible et premium.
+
+Portes à rendre réelles
+1. Scanner un document
+2. Importer un document
+3. Créer depuis une demande / idée / sujet libre
+
+Couche complémentaire
+- Conseil des Oracles : aide l’utilisateur à formuler ce qu’il cherche avant génération.
+
+À faire
+- revoir la structure UI d’entrée ;
+- créer trois zones d’action clairement distinctes ;
+- donner à chaque voie une identité visuelle, un micro-texte et un son cohérents ;
+- permettre le clic immédiat même si l’animation ou la vidéo d’ambiance joue encore ;
+- prévoir une intervention Prométhée si l’utilisateur hésite ou reste inactif ;
+- mémoriser la dernière porte utilisée pour proposer un accès rapide futur si pertinent ;
+- brancher loading divin et dialogues RPG via les blocs B et C.
+
+Résultat attendu
+Le joueur comprend instantanément les trois voies et ressent que l’Oracle est un hub noble, pas un écran technique.
+
+--------------------------------------------------------------------
+D2 — SCANNER CAMERAX NON CASSÉ ET EXPLOITABLE IMMÉDIATEMENT
+--------------------------------------------------------------------
+
+Objectif
+Conserver la puissance du scanner sans jamais sacrifier la preview ni l’expérience premium.
+
+À faire
+- vérifier qu’aucun overlay opaque ne casse le viewFinder ;
+- garder les aides visuelles compatibles avec la lecture réelle de la preview ;
+- laisser l’utilisateur scanner même si les animations d’intro sont encore en cours ;
+- donner un feedback premium si le cadrage est mauvais ;
+- proposer de reprendre la capture si qualité insuffisante ;
+- préparer la remontée d’un score ou statut de confiance OCR ;
+- ne jamais afficher un message technique brut si l’OCR lit mal le document.
+
+Cas à couvrir
+- document flou ;
+- document mal cadré ;
+- texte incomplet ;
+- rotation / pause pendant la capture ;
+- retour arrière pendant extraction.
+
+Résultat attendu
+Le scanner reste utilisable, noble et robuste sans sacrifier le cœur CameraX déjà sensible du projet.
+
+--------------------------------------------------------------------
+D3 — IMPORT DOCUMENT / IMAGE / PDF
+--------------------------------------------------------------------
+
+Objectif
+Offrir une vraie voie d’import stable pour documents non scannés en direct.
+
+À faire
+- rendre l’entrée import claire et fiable ;
+- prendre en charge images et PDF selon ce qui est déjà prévu dans l’existant ;
+- unifier le pipeline d’analyse en aval pour éviter d’avoir un résumé de qualité inférieure juste parce que la source venait d’un import ;
+- préparer le parsing propre ;
+- déclencher loading divin pendant extraction et nettoyage ;
+- prévoir feedback immersif si l’import contient peu de texte exploitable.
+
+Règle UX
+Importer un document ne doit pas donner l’impression d’un chemin secondaire dégradé.
+
+Résultat attendu
+Le flow import rejoint proprement le même pipeline que le scan.
+
+--------------------------------------------------------------------
+D4 — DEMANDE LIBRE / SUJET LIBRE / CRÉATION DE SAVOIR IA
+--------------------------------------------------------------------
+
+Objectif
+Permettre à l’utilisateur de demander un savoir même sans document source.
+
+À faire
+- créer ou fiabiliser OraclePromptActivity si séparée ;
+- permettre saisie d’un sujet, d’une idée, d’une notion, d’une question, d’un thème ;
+- brancher un mode “Conseil des Oracles” où l’IA aide à préciser la demande avant génération ;
+- utiliser Gemini pour produire un résumé structuré adapté à l’âge, au niveau et au contexte ;
+- générer ensuite un quiz cohérent ;
+- toujours faire passer par la validation du résumé comme pour les autres voies.
+
+Cas d’usage ciblés
+- “explique-moi la photosynthèse” ;
+- “je veux un résumé sur la Révolution française” ;
+- “aide-moi à comprendre les fractions” ;
+- “je veux créer un cours sur les volcans” ;
+- “je ne sais pas comment formuler mon besoin” → Conseil des Oracles.
+
+Résultat attendu
+L’Oracle devient un générateur de savoir officiel du produit, pas seulement un scanner amélioré.
+
+--------------------------------------------------------------------
+D5 — PRÉ-ANALYSE MATIÈRE, QUALITÉ ET CONTEXTE
+--------------------------------------------------------------------
+
+Objectif
+Déterminer avant la sauvegarde quelle matière, quel dieu et quel temple semblent les plus cohérents.
+
+À faire
+- détecter la matière pressentie ;
+- calculer une confiance matière si possible ;
+- détecter si la matière semble ambiguë ;
+- expliquer en langage divin pourquoi tel temple est pressenti ;
+- conserver un override manuel obligatoire ;
+- préparer les couleurs, le ton, le dieu et potentiellement la BGM du flow de validation.
+
+Méta-informations utiles à préparer
+- méthode d’entrée : scan / import / texte libre / conseil ;
+- confiance matière ;
+- qualité extraction ;
+- date ;
+- humeur ;
+- âge ;
+- profil d’apprentissage si déjà disponible ;
+- éventuellement source brute ou origine.
+
+Résultat attendu
+Le joueur comprend pourquoi l’Oracle propose un temple, mais garde le contrôle final.
+
+--------------------------------------------------------------------
+D6 — GÉNÉRATION DU RÉSUMÉ STRUCTURÉ
+--------------------------------------------------------------------
+
+Objectif
+Faire de chaque résumé produit par l’Oracle une fiche divine lisible, utile, agréable et cohérente.
+
+À imposer dans la logique IA
+- titre propre ;
+- structure claire ;
+- sections ;
+- points clés si utile ;
+- vocabulaire adapté à l’âge ;
+- longueur maîtrisée ;
+- phrases lisibles ;
+- pas de bloc massif illisible ;
+- pas de recyclage brut de la première ligne du document comme faux titre ;
+- pas de résumé vide ou pseudo-résumé OCR brut.
+
+À faire côté produit
+- demander plusieurs propositions de titres si utile ;
+- préparer des variantes de ton ou de niveau ;
+- conserver la source structurée nécessaire pour l’étape de validation ;
+- pouvoir régénérer ou reformuler sans casser le flow.
+
+Résultat attendu
+Le résumé sort déjà propre avant même la validation, puis devient canonique après validation.
+
+--------------------------------------------------------------------
+D7 — ÉCRAN DE VALIDATION DU RÉSUMÉ
+--------------------------------------------------------------------
+
+Objectif
+Instaurer une vraie étape de contrôle humain premium avant toute sauvegarde.
+
+Actions minimum à offrir
+- Confirmer
+- Éditer
+- Changer temple
+- Reformuler
+
+Variantes premium à prévoir
+- rendre plus simple ;
+- rendre plus scolaire ;
+- rendre plus court ;
+- version mnémotechnique ;
+- TTS sur le résumé ;
+- affichage de la matière détectée et du dieu associé ;
+- explication divine du temple pressenti ;
+- possibilité de sélectionner un autre temple manuellement.
+
+Protections obligatoires
+- empêcher validation d’un résumé trop court ;
+- empêcher validation d’un bloc brut OCR ;
+- empêcher validation d’un contenu incohérent ;
+- gérer le cas où la matière détectée est floue ;
+- éviter les résumés trop longs qui cassent l’UI ;
+- s’assurer que le titre final est propre.
+
+Résultat attendu
+L’utilisateur a confiance dans le savoir enregistré, car il l’a vu, compris, corrigé et approuvé.
+
+--------------------------------------------------------------------
+D8 — ÉDITION, REFORMULATION ET OVERRIDE MANUEL
+--------------------------------------------------------------------
+
+Objectif
+Offrir le contrôle nécessaire sans transformer le flow en éditeur complexe.
+
+À faire
+- permettre une édition manuelle raisonnable du résumé ;
+- permettre une reformulation rapide ;
+- permettre un changement de temple/matière ;
+- permettre de garder le contrôle sur le titre ;
+- conserver l’historique minimal ou la distinction entre version générée et version validée si possible ;
+- rendre l’ensemble cohérent avec les dialogues RPG et le TTS.
+
+Règle produit
+Le système doit être assisté par l’IA, mais la validation finale appartient au joueur.
+
+Résultat attendu
+On garde la magie IA sans sacrifier le contrôle utilisateur.
+
+--------------------------------------------------------------------
+D9 — SAUVEGARDE ATOMIQUE DU SAVOIR
+--------------------------------------------------------------------
+
+Objectif
+Empêcher tout état intermédiaire sale dans la base locale.
+
+À faire
+- ne sauvegarder définitivement le CourseEntry qu’après validation ;
+- stocker le résumé validé, le titre validé, la matière/temple validé ;
+- stocker les métadonnées importantes ;
+- empêcher les doublons involontaires liés à plusieurs tap rapides ;
+- rendre la sauvegarde transactionnelle si plusieurs écritures sont nécessaires ;
+- préparer le lien avec GeneratedArtifact si disponible plus tard ;
+- prévoir un état retour arrière propre si l’utilisateur annule avant validation.
+
+Métadonnées recommandées
+- sourceType ;
+- inputMethod ;
+- detectedSubject ;
+- validatedSubject ;
+- confidence ;
+- createdAt ;
+- moodAtCreation ;
+- ageAtCreation ;
+- learningProfileAtCreation ;
+- rawSourceReference éventuelle.
+
+Résultat attendu
+La base ne contient que des savoirs validés et cohérents.
+
+--------------------------------------------------------------------
+D10 — GÉNÉRATION DU QUIZ À PARTIR DU RÉSUMÉ VALIDÉ
+--------------------------------------------------------------------
+
+Objectif
+Verrouiller le principe selon lequel le quiz doit être généré à partir du savoir canonique validé, pas depuis un état de travail intermédiaire.
+
+À faire
+- faire dépendre explicitement la génération du quiz du résumé validé ;
+- empêcher la génération directe depuis la matière première sale ;
+- préparer le passage propre vers le bloc E ;
+- transmettre les bonnes métadonnées au générateur de quiz ;
+- conserver la cohérence entre résumé vu par l’utilisateur et quiz qu’il reçoit.
+
+Règle absolue
+Si le résumé a été modifié ou reformulé, c’est cette version-là qui pilote le quiz.
+
+Résultat attendu
+Le joueur ne ressent plus de décalage entre ce qu’il lit et ce qu’on lui demande ensuite.
+
+--------------------------------------------------------------------
+D11 — ERREURS, LIMITES ET RETOURS DIÉGÉTIQUES
+--------------------------------------------------------------------
+
+Objectif
+Rendre tous les cas limites immersifs et compréhensibles.
+
+À couvrir
+- document illisible ;
+- peu de texte détecté ;
+- matière ambiguë ;
+- génération de résumé incomplète ;
+- échec temporaire réseau ;
+- quota atteint ;
+- import vide ;
+- annulation utilisateur ;
+- retour arrière pendant chargement.
+
+Règle
+Aucun message technique brut.
+Toujours une reformulation diégétique cohérente avec le dieu ou l’Oracle.
+
+Exemples d’intention
+- “Les Oracles perçoivent ce parchemin avec hésitation.”
+- “Le rituel n’a pas encore révélé un savoir assez clair.”
+- “Le dieu concerné se repose avant de reprendre cette invocation.”
+
+Résultat attendu
+Même l’échec reste premium et cohérent avec RéviZeus.
+
+====================================================================
+6 — FICHIERS GÉNÉRALEMENT CONCERNÉS
+====================================================================
+
+Fichiers Kotlin probables
+- OracleActivity.kt
+- ResultActivity.kt
+- OraclePromptActivity.kt si séparée
+- BaseActivity.kt ou BaseGameActivity.kt pour helpers showLoading/hideLoading si nécessaires
+- GeminiManager.kt
+- GodLoreManager.kt si explications divines contextualisées
+- CourseEntry.kt si ajout de champs
+- DAO concernés si ajout de métadonnées de savoir
+- éventuellement manager Oracle dédié si l’activité est trop chargée
+
+Fichiers XML probables
+- activity_oracle.xml ou layout Oracle équivalent
+- layout des 3 portes Oracle
+- layout d’écran de validation du résumé
+- layout d’écran de saisie demande libre
+- composants speaker / panels / boutons premium si besoin d’extension
+
+Ressources potentiellement concernées
+- fond Oracle animé et image fixe correspondante
+- éléments visuels distincts pour chaque porte
+- icônes ou illustrations de porte si absentes
+- textes RPG et variantes par dieu
+- éventuels sons de porte / validation / conseil
+
+====================================================================
+7 — DONNÉES ET MÉTADONNÉES À PRÉPARER
+====================================================================
+
+Même si tout n’est pas forcément migré dans ce bloc, l’architecture doit être préparée pour stocker au minimum :
+- type de source ;
+- méthode d’entrée ;
+- confiance matière ;
+- matière détectée ;
+- matière validée ;
+- titre généré ;
+- titre validé ;
+- date de création ;
+- humeur ;
+- âge ;
+- profil d’apprentissage si disponible ;
+- lien vers texte source brut si utile ;
+- drapeau indiquant que le résumé a été validé.
+
+Règle d’intégration
+Si une vraie migration Room est trop lourde dans ce lot, préparer proprement les points d’extension sans casser l’existant.
+Mais ne pas laisser l’architecture sans plan de stockage cohérent.
+
+====================================================================
+8 — DÉPENDANCES ET INTERFACES AVEC LES AUTRES BLOCS
+====================================================================
+
+Dépend du bloc B
+- pour les dialogues RPG ;
+- pour les aides Prométhée ;
+- pour les retours immersifs.
+
+Dépend du bloc C
+- pour loading divin ;
+- pour TTS résumé ;
+- pour fond vidéo → image fixe ;
+- pour cohérence audio.
+
+Prépare le bloc E
+- le quiz doit partir du résumé validé.
+
+Prépare les blocs I et J
+- les savoirs validés deviendront ensuite des savoirs vivants, transformables, exportables et enrichissables par les dieux.
+
+Prépare le bloc L
+- les métadonnées créées dans l’Oracle serviront ensuite à l’adaptation cognitive et pédagogique.
+
+====================================================================
+9 — ORDRE D’EXÉCUTION RECOMMANDÉ DANS LE BLOC D
+====================================================================
+
+Ordre conseillé
+1. Audit de l’existant OracleActivity / ResultActivity / layouts / GeminiManager.
+2. Stabilisation du hub Oracle et des trois portes.
+3. Vérification stricte du scanner CameraX non masqué.
+4. Intégration demande libre / conseil des Oracles.
+5. Pré-analyse matière + génération du résumé structuré.
+6. Écran de validation du résumé.
+7. Édition / reformulation / changement temple.
+8. Sauvegarde atomique du savoir.
+9. Génération quiz depuis résumé validé.
+10. Traitement des cas limites et retours diégétiques.
+11. Tests manuels complets sur tous les chemins d’entrée.
+
+====================================================================
+10 — CRITÈRES DE FIN (DEFINITION OF DONE)
+====================================================================
+
+Le bloc D est terminé seulement si :
+- les trois portes Oracle sont réellement exploitables ;
+- l’utilisateur comprend clairement chaque voie ;
+- le scanner reste lisible et non cassé ;
+- l’import rejoint proprement le pipeline ;
+- la demande libre génère un vrai savoir structuré ;
+- le résumé affiché est lisible, structuré et adapté ;
+- une validation humaine est obligatoire avant sauvegarde ;
+- le temple peut être changé manuellement ;
+- aucun savoir n’est sauvegardé à l’état brouillon ;
+- les métadonnées essentielles sont conservées ;
+- le quiz part du résumé validé ;
+- TTS, loading, dialogues et vidéo de fond restent cohérents ;
+- les cas d’échec ou de limite sont diégétiques ;
+- aucun crash ou état UI incohérent n’apparaît sur pause / retour / annulation / destruction.
+
+====================================================================
+11 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CE BLOC
+====================================================================
+
+Ordre conseillé d’envoi
+1. OracleActivity.kt
+2. ResultActivity.kt
+3. OraclePromptActivity.kt si elle existe
+4. GeminiManager.kt
+5. CourseEntry.kt
+6. AppDatabase.kt et DAO concernés si tu veux vraiment stocker de nouvelles métadonnées dès ce bloc
+7. XML Oracle principal
+8. XML de validation résumé
+9. XML de saisie demande libre si séparé
+10. tout helper déjà existant lié au loading, TTS, fond vidéo ou dialogues RPG si l’autre IA ne les a pas déjà intégrés dans A/B/C.
+
+====================================================================
+12 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+====================================================================
+
+Voici le BLOC D de RéviZeus. Respecte strictement l’architecture existante. Ne supprime rien. Ne renomme pas arbitrairement les variables, IDs, managers ou flows existants. Génère les fichiers complets modifiés. Conserve le plein écran portrait. Utilise XML + ViewBinding. Pas de Compose. Commente le code intelligemment sans retirer les commentaires déjà présents.
+
+Objectif du bloc : transformer l’Oracle en cœur premium réel du produit avec un pipeline complet et propre : hub à 3 portes (scanner, import, texte libre) + couche Conseil des Oracles, résumé structuré, validation obligatoire, choix/override du temple, sauvegarde atomique, génération du quiz à partir du résumé validé.
+
+Exigences absolues :
+- CameraX ne doit jamais être cassé par un overlay opaque ;
+- l’écran Oracle doit rester jouable même si la vidéo ou l’animation d’ambiance est en lecture ;
+- les trois portes doivent être immédiatement compréhensibles et réellement exploitables ;
+- la demande libre doit être une vraie voie officielle du produit ;
+- le résumé ne doit jamais être un bloc brouillon, brut OCR ou mal titré ;
+- le titre doit être propre ;
+- l’utilisateur doit pouvoir confirmer, éditer, reformuler et changer le temple avant sauvegarde ;
+- aucune sauvegarde sale ou partielle ;
+- le quiz doit être généré depuis le résumé validé, jamais depuis l’état intermédiaire ;
+- loading divin, TTS et dialogues RPG doivent être utilisés proprement ;
+- toute erreur ou limite doit être rendue diégétique.
+
+Travail attendu :
+1. audit précis des fichiers fournis ;
+2. identification des conflits avec l’existant ;
+3. proposition d’architecture d’intégration progressive ;
+4. génération des fichiers complets modifiés ;
+5. détails sur les champs ou métadonnées ajoutés ;
+6. ressources manquantes éventuelles avec nom, utilité, connexions écran/code et prompt JSON si la ressource n’existe pas déjà ;
+7. instructions d’intégration ;
+8. mise à jour des IA_DOCS à ajouter.
+
+====================================================================
+13 — MISE À JOUR DES FICHIERS DE COHÉRENCE À PRÉVOIR APRÈS IMPLÉMENTATION
+====================================================================
+
+Après livraison du bloc D, mettre à jour au minimum :
+- 01_SYSTEM_PROMPT_ULTIME.txt
+- 03_DATA_AND_MANAGERS.md
+- 04_UI_AND_NAVIGATION_MAP.md
+- 05_RESOURCE_MANIFEST.json
+- document de suivi Oracle / quiz / savoirs si tu en as un séparé
+
+Points à noter dans la doc
+- nouvelles portes Oracle réelles ;
+- nouveau pipeline résumé → validation → temple → quiz ;
+- règles de sauvegarde atomique ;
+- métadonnées de savoir ajoutées ;
+- conventions UX de validation ;
+- dépendance du quiz au résumé validé.
+
+====================================================================
+FIN DU BLOC D
+====================================================================

@@ -1,0 +1,3278 @@
+{
+  "document": "05_RESOURCE_MANIFEST",
+  "version": "2026-03-23",
+  "objectif": "Manifest consolidé des ressources RéviZeus à partir du document 05 existant, des documents de cohérence, des captures du dossier res/drawable et res/raw, et du catalogue de badges codé.",
+  "sources_utilisees": [
+    "05_RESOURCE_MANIFEST.json",
+    "04_UI_AND_NAVIGATION_MAP.md",
+    "03_DATA_AND_MANAGERS.md",
+    "06 - [listes de code].txt",
+    "BadgeDefinition.kt",
+    "BadgeManager.kt",
+    "captures 43, 44, 45, 48, 49, 50, 51"
+  ],
+  "note_fiabilite": "Ce manifeste fusionne les ressources explicitement visibles dans les documents et captures. Les ressources hors champ ou trop illisibles n'ont pas été inventées.",
+  "layouts_specifiques": {
+    "activity_dashboard.xml": {
+      "usage": "Écran principal HUD / accès rapides.",
+      "ids_cles": [
+        "btnSettings",
+        "frameDebugML",
+        "btnDebugML",
+        "viewDebugDot",
+        "llRecentBadges",
+        "layoutCurrenciesHud",
+        "chipEclat",
+        "chipAmbroisie",
+        "chipDayStreak",
+        "chipWinStreak",
+        "chipForge",
+        "btnForge",
+        "viewForgeNotif"
+      ]
+    },
+    "activity_quiz_result.xml": {
+      "usage": "Écran résultat quiz."
+    },
+    "dialog_god_explanation.xml": {
+      "usage": "Dialogue d'explication divine."
+    },
+    "dialog_course_hymn.xml": {
+      "usage": "Dialogue de la Lyre d’Apollon."
+    },
+    "item_recipe_card.xml": {
+      "usage": "Carte recette Forge avec ScrollView interne."
+    },
+    "dialog_loading_divine.xml": {
+      "usage": "Loader global IA animé et bloquant."
+    },
+    "item_avatar.xml": {
+      "usage": "Cellule visuelle du carrousel avatar."
+    },
+    "activity_avatar.xml": {
+      "usage": "Écran premium avatar avec ImageView still + PlayerView MP4."
+    },
+    "activity_intro_video.xml": {
+      "usage": "Cinématique d’intro fullscreen."
+    },
+    "activity_gender.xml": {
+      "usage": "Écran filtre garçon/fille avec surfaces vidéo animées."
+    },
+    "activity_result.xml": {
+      "usage": "Écran de validation du résumé Oracle, choix du temple, sauvegarde seule ou sauvegarde + quiz."
+    },
+    "activity_inventory.xml": {
+      "usage": "Inventaire à onglets Fragments / Artefacts / Équipements / Objets / Reliques."
+    },
+    "item_jukebox_track.xml": {
+      "usage": "Ligne de piste audio du Temple des Mélodies / JukeBox."
+    }
+  },
+  "drawables": {
+    "fonds_olympe_et_ui": [
+      {
+        "name": "bg_olympus_dark",
+        "usage": "Fond principal sombre des temples et écrans divins."
+      },
+      {
+        "name": "bg_olympus_school",
+        "usage": "Fond scolaire / pédagogique."
+      },
+      {
+        "name": "bg_olympus",
+        "usage": "Fond Olympus générique."
+      },
+      {
+        "name": "bg_olympus_animated",
+        "usage": "Version animée / premium du fond Olympus."
+      },
+      {
+        "name": "bg_splashscreen_zeus",
+        "usage": "Fond du splash screen."
+      },
+      {
+        "name": "bg_settings_olympus",
+        "usage": "Fond de l'écran paramètres."
+      },
+      {
+        "name": "bg_settings_panel",
+        "usage": "Panneau principal settings."
+      },
+      {
+        "name": "bg_settings_panel_dark",
+        "usage": "Variante sombre panneau settings."
+      },
+      {
+        "name": "bg_settings_sidebar",
+        "usage": "Colonne / sidebar settings."
+      },
+      {
+        "name": "bg_mood_oracle",
+        "usage": "Fond de MoodActivity."
+      },
+      {
+        "name": "bg_sanctuary_base",
+        "usage": "Fond de base des temples / sanctuaires."
+      },
+      {
+        "name": "bg_hero_panel",
+        "usage": "Panneau UI héroïque."
+      },
+      {
+        "name": "bg_hud_panel",
+        "usage": "HUD principal."
+      },
+      {
+        "name": "bg_hud_chip",
+        "usage": "Chip HUD monnaie / stats."
+      },
+      {
+        "name": "bg_divine_card",
+        "usage": "Carte divine pour titres / blocs courts."
+      },
+      {
+        "name": "bg_divine_cardo",
+        "usage": "Variante de carte divine."
+      },
+      {
+        "name": "bg_rpg_dialog",
+        "usage": "Dialogue / overlay RPG."
+      },
+      {
+        "name": "bg_textelayout",
+        "usage": "Fond de zones de texte et boutons multicouches."
+      },
+      {
+        "name": "bg_temple_button",
+        "usage": "Couche principale des boutons d'action / navigation."
+      },
+      {
+        "name": "bg_temple_button_inset",
+        "usage": "Variante inset des boutons temple."
+      },
+      {
+        "name": "bg_debug_button",
+        "usage": "Fond spécifique du bouton debug."
+      },
+      {
+        "name": "bg_action_slot",
+        "usage": "Slot / zone d'action UI."
+      },
+      {
+        "name": "bg_badge_book_card",
+        "usage": "Carte du livre de badges."
+      },
+      {
+        "name": "bg_prestige_panel",
+        "usage": "Panneau prestige / badge mis en avant."
+      },
+      {
+        "name": "bg_forge_hephaistos",
+        "usage": "Fond thématique Forge."
+      },
+      {
+        "name": "bg_oracle_scanline",
+        "usage": "Effet scanline visuel Oracle."
+      },
+      {
+        "name": "bg_laser_scan",
+        "usage": "Fond / overlay scan laser."
+      },
+      {
+        "name": "bg_stat_card_compact",
+        "usage": "Carte statistique compacte."
+      },
+      {
+        "name": "bg_stat_card_hero",
+        "usage": "Carte statistique héros."
+      },
+      {
+        "name": "bg_dashboard",
+        "usage": "Fond dashboard standard."
+      },
+      {
+        "name": "bg_dashboard_happy",
+        "usage": "Fond dashboard humeur heureuse."
+      },
+      {
+        "name": "bg_dashboard_stressed",
+        "usage": "Fond dashboard humeur stressée."
+      },
+      {
+        "name": "bg_dashboard_tired",
+        "usage": "Fond dashboard humeur fatiguée."
+      },
+      {
+        "name": "bg_dashboard_hud_chip",
+        "usage": "Élément HUD dashboard."
+      }
+    ],
+    "fonds_selection_matieres": [
+      {
+        "name": "bg_select_maths_zeus",
+        "usage": "Carte / fond sélection Mathématiques."
+      },
+      {
+        "name": "bg_select_francais_athena",
+        "usage": "Carte / fond sélection Français."
+      },
+      {
+        "name": "bg_select_svt_poseidon",
+        "usage": "Carte / fond sélection SVT."
+      },
+      {
+        "name": "bg_select_histoire_ares",
+        "usage": "Carte / fond sélection Histoire."
+      },
+      {
+        "name": "bg_select_art_aphrodite",
+        "usage": "Carte / fond sélection Art/Musique."
+      },
+      {
+        "name": "bg_select_anglais_hermes",
+        "usage": "Carte / fond sélection Anglais."
+      },
+      {
+        "name": "bg_select_geographie_demeter",
+        "usage": "Carte / fond sélection Géographie."
+      },
+      {
+        "name": "bg_select_physique_hephaistos",
+        "usage": "Carte / fond sélection Physique-Chimie."
+      },
+      {
+        "name": "bg_select_philo_apollon",
+        "usage": "Carte / fond sélection Philo/SES."
+      },
+      {
+        "name": "bg_select_vie_promethee",
+        "usage": "Carte / fond sélection Vie & Projets."
+      }
+    ],
+    "fonds_avatar_stills": [
+      {
+        "name": "bg_avatar_hero1",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero2",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero3",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero4",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero5",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero6",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero7",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero8",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero9",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_hero10",
+        "usage": "Fond fixe avatar onboarding héros."
+      },
+      {
+        "name": "bg_avatar_heroine1",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine2",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine3",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine4",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine5",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine6",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine7",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine8",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine9",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine10",
+        "usage": "Fond fixe avatar onboarding héroïne."
+      }
+    ],
+    "avatars_personnages": [
+      {
+        "name": "avatar_zeus_dialog",
+        "usage": "Portrait dialogue Zeus."
+      },
+      {
+        "name": "avatar_promethee_dialog",
+        "usage": "Portrait dialogue Prométhée."
+      },
+      {
+        "name": "avatar_apollon_dialog",
+        "usage": "Portrait dialogue Apollon."
+      },
+      {
+        "name": "avatar_athena_dialog",
+        "usage": "Portrait dialogue Athéna."
+      },
+      {
+        "name": "avatar_ares_dialog",
+        "usage": "Portrait dialogue Arès."
+      },
+      {
+        "name": "avatar_demeter_dialog",
+        "usage": "Portrait dialogue Déméter."
+      },
+      {
+        "name": "avatar_hephaistos_dialog",
+        "usage": "Portrait dialogue Héphaïstos."
+      },
+      {
+        "name": "avatar_hermes_dialog",
+        "usage": "Portrait dialogue Hermès."
+      },
+      {
+        "name": "avatar_poseidon_dialog",
+        "usage": "Portrait dialogue Poséidon."
+      },
+      {
+        "name": "avatar_aphrodite_dialog",
+        "usage": "Portrait dialogue Aphrodite."
+      },
+      {
+        "name": "avatar_hero1",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero2",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero3",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero4",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero5",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero6",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero7",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero8",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero9",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_hero10",
+        "usage": "Avatar jouable onboarding héros."
+      },
+      {
+        "name": "avatar_heroine1",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine2",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine3",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine4",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine5",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine6",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine7",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine8",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine9",
+        "usage": "Avatar jouable onboarding héroïne."
+      },
+      {
+        "name": "avatar_heroine10",
+        "usage": "Avatar jouable onboarding héroïne."
+      }
+    ],
+    "icones_divines_et_gameplay": [
+      {
+        "name": "ic_zeus_chibi",
+        "usage": "Icône mini Zeus."
+      },
+      {
+        "name": "ic_poseidon_mini",
+        "usage": "Icône mini Poséidon."
+      },
+      {
+        "name": "ic_ares_mini",
+        "usage": "Icône mini Arès."
+      },
+      {
+        "name": "ic_athena_mini",
+        "usage": "Icône mini Athéna."
+      },
+      {
+        "name": "ic_apollon_mini",
+        "usage": "Icône mini Apollon."
+      },
+      {
+        "name": "ic_hephaistos_mini",
+        "usage": "Icône mini Héphaïstos."
+      },
+      {
+        "name": "ic_hermes_mini",
+        "usage": "Icône mini Hermès."
+      },
+      {
+        "name": "ic_demeter_mini",
+        "usage": "Icône mini Déméter."
+      },
+      {
+        "name": "ic_prometheus_mini",
+        "usage": "Icône mini Prométhée."
+      },
+      {
+        "name": "ic_hephaistos_chibi",
+        "usage": "Variante chibi Héphaïstos."
+      },
+      {
+        "name": "ic_ares_chibi",
+        "usage": "Variante chibi Arès."
+      },
+      {
+        "name": "ic_library_scroll",
+        "usage": "Bouton / icône bibliothèque."
+      },
+      {
+        "name": "ic_menu_camera",
+        "usage": "Bouton caméra Oracle."
+      },
+      {
+        "name": "ic_new_img",
+        "usage": "Icône nouvelle image / import média."
+      },
+      {
+        "name": "ic_lock_placeholder",
+        "usage": "Placeholder verrouillage."
+      },
+      {
+        "name": "ic_launcher_background",
+        "usage": "Background launcher Android."
+      },
+      {
+        "name": "ic_launcher_foreground",
+        "usage": "Foreground launcher Android."
+      },
+      {
+        "name": "loading_chibi",
+        "usage": "Mascotte / visuel du loader IA."
+      },
+      {
+        "name": "txt_hero_blue",
+        "usage": "Visuel texte fixe sélection héros."
+      },
+      {
+        "name": "txt_heroine_pink",
+        "usage": "Visuel texte fixe sélection héroïne."
+      },
+      {
+        "name": "txt_hero_animated",
+        "usage": "Version animée panneau héros (référence MP4 associée)."
+      },
+      {
+        "name": "txt_heroine_animated",
+        "usage": "Version animée panneau héroïne (référence MP4 associée)."
+      },
+      {
+        "name": "revizeus",
+        "usage": "Logo principal RéviZeus."
+      },
+      {
+        "name": "revizeus_info_bg_01",
+        "usage": "Image fixe temple / écran info n°1 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_02",
+        "usage": "Image fixe temple / écran info n°2 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_03",
+        "usage": "Image fixe temple / écran info n°3 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_04",
+        "usage": "Image fixe temple / écran info n°4 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_05",
+        "usage": "Image fixe temple / écran info n°5 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_06",
+        "usage": "Image fixe temple / écran info n°6 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_07",
+        "usage": "Image fixe temple / écran info n°7 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_08",
+        "usage": "Image fixe temple / écran info n°8 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_09",
+        "usage": "Image fixe temple / écran info n°9 après intro vidéo."
+      },
+      {
+        "name": "revizeus_info_bg_10",
+        "usage": "Image fixe temple / écran info n°10 après intro vidéo."
+      },
+      {
+        "name": "bg_debut",
+        "usage": "Fond du title screen / écran de démarrage."
+      },
+      {
+        "name": "bg_account_select",
+        "usage": "Fond de l’écran de sélection de compte."
+      },
+      {
+        "name": "ic_demarrer",
+        "usage": "Icône du bouton démarrer sur le title screen."
+      },
+      {
+        "name": "ic_speaker_tts",
+        "usage": "Icône pour le bouton de lecture Text-to-Speech (SpeakerTtsHelper)."
+      }
+    ],
+    "fragments_et_items": [
+      {
+        "name": "ic_fragment_zeus_maths",
+        "usage": "Fragment de Mathématiques."
+      },
+      {
+        "name": "ic_fragment_athena_francais",
+        "usage": "Fragment de Français."
+      },
+      {
+        "name": "ic_fragment_poseidon_svt",
+        "usage": "Fragment de SVT."
+      },
+      {
+        "name": "ic_fragment_ares",
+        "usage": "Fragment d'Histoire."
+      },
+      {
+        "name": "ic_fragment_apollon",
+        "usage": "Fragment de Philo/SES."
+      },
+      {
+        "name": "ic_fragment_demeter",
+        "usage": "Fragment de Géographie."
+      },
+      {
+        "name": "ic_fragment_hephaistos",
+        "usage": "Fragment de Physique-Chimie."
+      },
+      {
+        "name": "ic_fragment_promethee",
+        "usage": "Fragment de Vie & Projets."
+      },
+      {
+        "name": "ic_fragment_hermes",
+        "usage": "Fragment d'Anglais."
+      },
+      {
+        "name": "ic_fragment_aphrodite",
+        "usage": "Fragment d'Art/Musique."
+      },
+      {
+        "name": "ic_fragment_savoir",
+        "usage": "Fragment générique de savoir / méta-économie."
+      },
+      {
+        "name": "ic_forge_hammer",
+        "usage": "Icône marteau Forge."
+      },
+      {
+        "name": "ic_forge_hephaistos",
+        "usage": "Icône / variante Forge Héphaïstos."
+      },
+      {
+        "name": "ic_bouclier_logique",
+        "usage": "Objet forge mathématique."
+      },
+      {
+        "name": "ic_sandales_hermes",
+        "usage": "Objet forge associé à Hermès."
+      },
+      {
+        "name": "ic_plume_athena",
+        "usage": "Objet forge associé à Athéna."
+      },
+      {
+        "name": "ic_diademe_aphrodite",
+        "usage": "Objet forge associé à Aphrodite."
+      },
+      {
+        "name": "ic_shield_memory",
+        "usage": "Bouclier mémoire."
+      },
+      {
+        "name": "ic_shield_nature",
+        "usage": "Bouclier nature."
+      },
+      {
+        "name": "ic_spear_science",
+        "usage": "Lance science."
+      },
+      {
+        "name": "ic_artifact_bouclier_logique",
+        "usage": "Artefact / objet logique."
+      },
+      {
+        "name": "ic_artifact_geographer",
+        "usage": "Artefact géographie."
+      },
+      {
+        "name": "ic_artifact_polymath",
+        "usage": "Artefact polymathe."
+      },
+      {
+        "name": "ic_offering_zeus",
+        "usage": "Offrande Zeus."
+      },
+      {
+        "name": "ic_offering_athena",
+        "usage": "Offrande Athéna."
+      },
+      {
+        "name": "ic_ultime_crown",
+        "usage": "Couronne Épreuve Ultime."
+      },
+      {
+        "name": "ic_currency_ambroisie",
+        "usage": "Icône Ambroisie."
+      },
+      {
+        "name": "ic_currency_eclat_savoir",
+        "usage": "Icône Éclats de Savoir."
+      },
+      {
+        "name": "ic_inventory_bag_olympian",
+        "usage": "Sac d'inventaire olympien."
+      },
+      {
+        "name": "ic_badge_book_olympian",
+        "usage": "Icône livre de badges."
+      },
+      {
+        "name": "ic_badge_book_popup",
+        "usage": "Icône popup livre de badges."
+      },
+      {
+        "name": "ic_oracle_eye",
+        "usage": "Icône œil Oracle."
+      },
+      {
+        "name": "ic_apollo_lyre",
+        "usage": "Icône Lyre d’Apollon."
+      },
+      {
+        "name": "ic_apollo_lyre2",
+        "usage": "Variante icône Lyre d’Apollon."
+      },
+      {
+        "name": "ic_fragment_Zeus",
+        "usage": "Icône divine normalisée du fragment de Zeus / Mathématiques."
+      },
+      {
+        "name": "ic_fragment_Athena",
+        "usage": "Icône divine normalisée du fragment d’Athéna / Français."
+      },
+      {
+        "name": "ic_fragment_Poseidon",
+        "usage": "Icône divine normalisée du fragment de Poséidon / SVT."
+      },
+      {
+        "name": "ic_fragment_Ares",
+        "usage": "Icône divine normalisée du fragment d’Arès / Histoire."
+      },
+      {
+        "name": "ic_fragment_Aphrodite",
+        "usage": "Icône divine normalisée du fragment d’Aphrodite / Art & Musique."
+      },
+      {
+        "name": "ic_fragment_Hermes",
+        "usage": "Icône divine normalisée du fragment d’Hermès / Langues."
+      },
+      {
+        "name": "ic_fragment_Demeter",
+        "usage": "Icône divine normalisée du fragment de Déméter / Géographie."
+      },
+      {
+        "name": "ic_fragment_Hephaistos",
+        "usage": "Icône divine normalisée du fragment d’Héphaïstos / Physique-Chimie."
+      },
+      {
+        "name": "ic_fragment_Apollon",
+        "usage": "Icône divine normalisée du fragment d’Apollon / Philo / SES."
+      },
+      {
+        "name": "ic_fragment_Promethee",
+        "usage": "Icône divine normalisée du fragment de Prométhée / Vie & Projets."
+      }
+    ],
+    "overlays_effets_et_misc": [
+      {
+        "name": "overlay_lightning",
+        "usage": "Overlay éclair standard."
+      },
+      {
+        "name": "overlay_final_lightning",
+        "usage": "Overlay éclair final."
+      },
+      {
+        "name": "overlay_particles_blue",
+        "usage": "Particules bleues."
+      },
+      {
+        "name": "overlay_particles_gold",
+        "usage": "Particules gold."
+      },
+      {
+        "name": "bg_action_slot",
+        "usage": "Slot d'action."
+      },
+      {
+        "name": "button_divine_selector",
+        "usage": "Sélecteur de bouton divin."
+      },
+      {
+        "name": "button_prometheus_selector",
+        "usage": "Sélecteur Prométhée."
+      },
+      {
+        "name": "button_ultime_selector",
+        "usage": "Sélecteur Épreuve Ultime."
+      },
+      {
+        "name": "custom_xp_bar",
+        "usage": "Barre d'XP custom."
+      },
+      {
+        "name": "edittext_bg",
+        "usage": "Fond des EditText."
+      },
+      {
+        "name": "frame_avatar_gold",
+        "usage": "Cadre avatar premium."
+      },
+      {
+        "name": "frame_scan_guide",
+        "usage": "Cadre de scan Oracle."
+      },
+      {
+        "name": "gradient_bottom_vignette",
+        "usage": "Vignette basse pour lisibilité."
+      },
+      {
+        "name": "ic_day_streak_olympian",
+        "usage": "Icône série quotidienne."
+      },
+      {
+        "name": "ic_win_streak_olympian",
+        "usage": "Icône série de victoires."
+      },
+      {
+        "name": "ic_daily_training",
+        "usage": "Bouton entraînement quotidien."
+      },
+      {
+        "name": "ic_training_sword",
+        "usage": "Icône épée entraînement."
+      },
+      {
+        "name": "ic_settings_account",
+        "usage": "Icône settings compte."
+      },
+      {
+        "name": "ic_settings_access",
+        "usage": "Icône settings accès."
+      },
+      {
+        "name": "ic_settings_audio",
+        "usage": "Icône settings audio."
+      },
+      {
+        "name": "ic_settings_display",
+        "usage": "Icône settings affichage."
+      },
+      {
+        "name": "ic_settings_gameplay",
+        "usage": "Icône settings gameplay."
+      },
+      {
+        "name": "ic_settings_notif",
+        "usage": "Icône settings notifications."
+      },
+      {
+        "name": "ic_settings_tutorial",
+        "usage": "Icône settings tutoriel."
+      },
+      {
+        "name": "ic_settings_advance",
+        "usage": "Icône settings avancé."
+      },
+      {
+        "name": "ic_slider_thumb_divine",
+        "usage": "Thumb slider thématique."
+      },
+      {
+        "name": "ic_star_divine",
+        "usage": "Étoile divine."
+      },
+      {
+        "name": "ic_star_empty",
+        "usage": "Étoile vide."
+      },
+      {
+        "name": "ic_star_filled",
+        "usage": "Étoile remplie."
+      },
+      {
+        "name": "statue_hero_abstract_chibi",
+        "usage": "Statue abstraite héros."
+      },
+      {
+        "name": "statue_heroine_abstract_chibi",
+        "usage": "Statue abstraite héroïne."
+      },
+      {
+        "name": "zeus_chibi_body",
+        "usage": "Corps chibi Zeus / élément illustratif."
+      }
+    ],
+    "badges_drawables": [
+      {
+        "id": "streak_first",
+        "nom": "L'Éveil du Héros",
+        "description": "Tu as effectué ta première session.",
+        "description_bloquee": "??? — Reviens demain.",
+        "drawable": "badge_streak_first",
+        "rarete": "COMMUN",
+        "categorie": "STREAK",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'L'Éveil du Héros'."
+      },
+      {
+        "id": "streak_3",
+        "nom": "Rituel de 3 Jours",
+        "description": "3 jours consécutifs sur l'Olympe.",
+        "description_bloquee": "??? — La constance forge les dieux.",
+        "drawable": "badge_streak_3",
+        "rarete": "COMMUN",
+        "categorie": "STREAK",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Rituel de 3 Jours'."
+      },
+      {
+        "id": "streak_7",
+        "nom": "Flamme de 7 Jours",
+        "description": "7 jours consécutifs sans faillir.",
+        "description_bloquee": "??? — La flamme demande une semaine.",
+        "drawable": "badge_streak_7",
+        "rarete": "RARE",
+        "categorie": "STREAK",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Flamme de 7 Jours'."
+      },
+      {
+        "id": "streak_14",
+        "nom": "Deux Semaines de Feu",
+        "description": "14 jours de révision ininterrompus.",
+        "description_bloquee": "??? — Deux semaines sur l'Olympe.",
+        "drawable": "badge_streak_14",
+        "rarete": "RARE",
+        "categorie": "STREAK",
+        "xp_recompense": 350,
+        "usage": "Badge visuel associé au succès 'Deux Semaines de Feu'."
+      },
+      {
+        "id": "streak_30",
+        "nom": "Gardien de la Flamme",
+        "description": "30 jours consécutifs. Chronos t'honore.",
+        "description_bloquee": "??? — Un mois sans faillir.",
+        "drawable": "badge_streak_30",
+        "rarete": "EPIQUE",
+        "categorie": "STREAK",
+        "xp_recompense": 750,
+        "usage": "Badge visuel associé au succès 'Gardien de la Flamme'."
+      },
+      {
+        "id": "streak_60",
+        "nom": "Serviteur de Chronos",
+        "description": "60 jours. Le temps lui-même te respecte.",
+        "description_bloquee": "??? — Deux mois de dévotion.",
+        "drawable": "badge_streak_60",
+        "rarete": "EPIQUE",
+        "categorie": "STREAK",
+        "xp_recompense": 1500,
+        "usage": "Badge visuel associé au succès 'Serviteur de Chronos'."
+      },
+      {
+        "id": "streak_100",
+        "nom": "Immortel",
+        "description": "100 jours consécutifs. Tu es au-delà des mortels.",
+        "description_bloquee": "??? — Les immortels seuls connaissent ce chemin.",
+        "drawable": "badge_streak_100",
+        "rarete": "LEGENDAIRE",
+        "categorie": "STREAK",
+        "xp_recompense": 3000,
+        "usage": "Badge visuel associé au succès 'Immortel'."
+      },
+      {
+        "id": "streak_200",
+        "nom": "Flamme Éternelle",
+        "description": "200 jours consécutifs.",
+        "description_bloquee": "??? — La flamme éternelle.",
+        "drawable": "badge_streak_200",
+        "rarete": "LEGENDAIRE",
+        "categorie": "STREAK",
+        "xp_recompense": 5000,
+        "usage": "Badge visuel associé au succès 'Flamme Éternelle'."
+      },
+      {
+        "id": "streak_365",
+        "nom": "Cycle des Dieux",
+        "description": "365 jours consécutifs.",
+        "description_bloquee": "??? — Une année parfaite.",
+        "drawable": "badge_streak_365",
+        "rarete": "LEGENDAIRE",
+        "categorie": "STREAK",
+        "xp_recompense": 10000,
+        "usage": "Badge visuel associé au succès 'Cycle des Dieux'."
+      },
+      {
+        "id": "level_5",
+        "nom": "Initié",
+        "description": "Tu as atteint le niveau 5.",
+        "description_bloquee": "??? — Progresse jusqu'au niveau 5.",
+        "drawable": "badge_level_5",
+        "rarete": "COMMUN",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Initié'."
+      },
+      {
+        "id": "level_10",
+        "nom": "Héros Confirmé",
+        "description": "Niveau 10 atteint. Les dieux te remarquent.",
+        "description_bloquee": "??? — Le niveau 10 est ton prochain horizon.",
+        "drawable": "badge_level_10",
+        "rarete": "RARE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Héros Confirmé'."
+      },
+      {
+        "id": "level_15",
+        "nom": "Guerrier Ascendant",
+        "description": "Tu as atteint le niveau 15.",
+        "description_bloquee": "??? — L'ascension continue.",
+        "drawable": "badge_level_15",
+        "rarete": "RARE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Guerrier Ascendant'."
+      },
+      {
+        "id": "level_20",
+        "nom": "Demi-Dieu",
+        "description": "Niveau 20. Tu transcendes la condition mortelle.",
+        "description_bloquee": "??? — Seuls les demi-dieux franchissent ce seuil.",
+        "drawable": "badge_level_20",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Demi-Dieu'."
+      },
+      {
+        "id": "level_25",
+        "nom": "Champion de l'Olympe",
+        "description": "Niveau 25 atteint.",
+        "description_bloquee": "??? — Les champions atteignent ce niveau.",
+        "drawable": "badge_level_25",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Champion de l'Olympe'."
+      },
+      {
+        "id": "level_30",
+        "nom": "Ascension Divine",
+        "description": "Niveau 30.",
+        "description_bloquee": "??? — L'ascension continue.",
+        "drawable": "badge_level_30",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Ascension Divine'."
+      },
+      {
+        "id": "level_35",
+        "nom": "Héritier de Zeus",
+        "description": "Niveau 35 atteint.",
+        "description_bloquee": "??? — Zeus observe.",
+        "drawable": "badge_level_35",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Héritier de Zeus'."
+      },
+      {
+        "id": "level_40",
+        "nom": "Élu de l'Olympe",
+        "description": "Niveau 40.",
+        "description_bloquee": "??? — Les élus seuls arrivent ici.",
+        "drawable": "badge_level_40",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Élu de l'Olympe'."
+      },
+      {
+        "id": "level_45",
+        "nom": "Foudre Montante",
+        "description": "Niveau 45.",
+        "description_bloquee": "??? — La foudre gronde.",
+        "drawable": "badge_level_45",
+        "rarete": "EPIQUE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Foudre Montante'."
+      },
+      {
+        "id": "level_50",
+        "nom": "Ascension",
+        "description": "Niveau 50. L'Olympe t'accueille parmi ses pairs.",
+        "description_bloquee": "??? — L'ascension est réservée aux plus grands.",
+        "drawable": "badge_level_50",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 1000,
+        "usage": "Badge visuel associé au succès 'Ascension'."
+      },
+      {
+        "id": "level_55",
+        "nom": "Oracle Vivant",
+        "description": "Niveau 55.",
+        "description_bloquee": "??? — La sagesse grandit.",
+        "drawable": "badge_level_55",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Oracle Vivant'."
+      },
+      {
+        "id": "level_60",
+        "nom": "Colosse de Savoir",
+        "description": "Niveau 60.",
+        "description_bloquee": "??? — Un colosse se forme.",
+        "drawable": "badge_level_60",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Colosse de Savoir'."
+      },
+      {
+        "id": "level_65",
+        "nom": "Titan de Mémoire",
+        "description": "Niveau 65.",
+        "description_bloquee": "??? — Les titans émergent.",
+        "drawable": "badge_level_65",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Titan de Mémoire'."
+      },
+      {
+        "id": "level_70",
+        "nom": "Dieu Mineur",
+        "description": "Niveau 70.",
+        "description_bloquee": "??? — Tu approches du Panthéon.",
+        "drawable": "badge_level_70",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Dieu Mineur'."
+      },
+      {
+        "id": "level_75",
+        "nom": "Divinité Savante",
+        "description": "Niveau 75.",
+        "description_bloquee": "??? — Les dieux observent.",
+        "drawable": "badge_level_75",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Divinité Savante'."
+      },
+      {
+        "id": "level_80",
+        "nom": "Seigneur du Savoir",
+        "description": "Niveau 80.",
+        "description_bloquee": "??? — La maîtrise approche.",
+        "drawable": "badge_level_80",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Seigneur du Savoir'."
+      },
+      {
+        "id": "level_85",
+        "nom": "Oracle Suprême",
+        "description": "Niveau 85.",
+        "description_bloquee": "??? — Les sages atteignent ce seuil.",
+        "drawable": "badge_level_85",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Oracle Suprême'."
+      },
+      {
+        "id": "level_90",
+        "nom": "Archonte du Savoir",
+        "description": "Niveau 90.",
+        "description_bloquee": "??? — Le sommet approche.",
+        "drawable": "badge_level_90",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Archonte du Savoir'."
+      },
+      {
+        "id": "level_95",
+        "nom": "Sage Cosmique",
+        "description": "Niveau 95.",
+        "description_bloquee": "??? — Peu atteignent cette sagesse.",
+        "drawable": "badge_level_95",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Sage Cosmique'."
+      },
+      {
+        "id": "level_100",
+        "nom": "Zeus du Savoir",
+        "description": "Niveau 100 atteint.",
+        "description_bloquee": "??? — Seuls les immortels arrivent ici.",
+        "drawable": "badge_level_100",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 5000,
+        "usage": "Badge visuel associé au succès 'Zeus du Savoir'."
+      },
+      {
+        "id": "xp_1000",
+        "nom": "Mille Éclairs",
+        "description": "1 000 XP accumulés au total.",
+        "description_bloquee": "??? — Accumule 1000 XP.",
+        "drawable": "badge_xp_1000",
+        "rarete": "COMMUN",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Mille Éclairs'."
+      },
+      {
+        "id": "xp_5000",
+        "nom": "Trésor de l'Olympe",
+        "description": "5 000 XP. La richesse divine est en toi.",
+        "description_bloquee": "??? — 5000 XP sont nécessaires.",
+        "drawable": "badge_xp_5000",
+        "rarete": "RARE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Trésor de l'Olympe'."
+      },
+      {
+        "id": "xp_20000",
+        "nom": "Légende Vivante",
+        "description": "20 000 XP. Ton nom sera gravé pour l'éternité.",
+        "description_bloquee": "??? — Un trésor de 20 000 XP attend.",
+        "drawable": "badge_xp_20000",
+        "rarete": "LEGENDAIRE",
+        "categorie": "XP_NIVEAU",
+        "xp_recompense": 500,
+        "usage": "Badge visuel associé au succès 'Légende Vivante'."
+      },
+      {
+        "id": "scan_first",
+        "nom": "Premier Regard",
+        "description": "Tu as utilisé l'Oracle pour la première fois.",
+        "description_bloquee": "??? — L'Oracle attend ton premier regard.",
+        "drawable": "badge_first_scan",
+        "rarete": "COMMUN",
+        "categorie": "ORACLE",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Premier Regard'."
+      },
+      {
+        "id": "scan_5",
+        "nom": "Curieux Éveillé",
+        "description": "5 cours scannés par l'Oracle.",
+        "description_bloquee": "??? — L'Oracle attend 5 offrandes.",
+        "drawable": "badge_scan_5",
+        "rarete": "COMMUN",
+        "categorie": "ORACLE",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Curieux Éveillé'."
+      },
+      {
+        "id": "scan_10",
+        "nom": "Lecteur Assidu",
+        "description": "10 cours dans la bibliothèque divine.",
+        "description_bloquee": "??? — 10 parchemins dans le Savoir.",
+        "drawable": "badge_scan_10",
+        "rarete": "RARE",
+        "categorie": "ORACLE",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Lecteur Assidu'."
+      },
+      {
+        "id": "scan_25",
+        "nom": "Archiviste Divin",
+        "description": "25 cours capturés. Aristote est impressionné.",
+        "description_bloquee": "??? — L'archive divine demande 25 parchemins.",
+        "drawable": "badge_scan_25",
+        "rarete": "RARE",
+        "categorie": "ORACLE",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Archiviste Divin'."
+      },
+      {
+        "id": "scan_50",
+        "nom": "Bibliothécaire de l'Olympe",
+        "description": "50 cours. Ton Savoir rivalise avec celui d'Athéna.",
+        "description_bloquee": "??? — 50 cours pour égaler la déesse.",
+        "drawable": "badge_scan_50",
+        "rarete": "EPIQUE",
+        "categorie": "ORACLE",
+        "xp_recompense": 500,
+        "usage": "Badge visuel associé au succès 'Bibliothécaire de l'Olympe'."
+      },
+      {
+        "id": "scan_100",
+        "nom": "Grand Archiviste",
+        "description": "100 cours scannés.",
+        "description_bloquee": "??? — L'archive grandit.",
+        "drawable": "badge_scan_100",
+        "rarete": "EPIQUE",
+        "categorie": "ORACLE",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Grand Archiviste'."
+      },
+      {
+        "id": "scan_200",
+        "nom": "Oracle Absolu",
+        "description": "200 cours scannés.",
+        "description_bloquee": "??? — L'oracle sait tout.",
+        "drawable": "badge_scan_200",
+        "rarete": "LEGENDAIRE",
+        "categorie": "ORACLE",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Oracle Absolu'."
+      },
+      {
+        "id": "scan_all_subjects",
+        "nom": "Encyclopédie Vivante",
+        "description": "Au moins 1 cours scanné dans chaque matière.",
+        "description_bloquee": "??? — Explore toutes les matières du Panthéon.",
+        "drawable": "badge_all_subjects",
+        "rarete": "LEGENDAIRE",
+        "categorie": "ORACLE",
+        "xp_recompense": 1000,
+        "usage": "Badge visuel associé au succès 'Encyclopédie Vivante'."
+      },
+      {
+        "id": "quiz_first",
+        "nom": "Premier Combat",
+        "description": "Tu as affronté ton premier quiz.",
+        "description_bloquee": "??? — Entre dans l'arène pour la première fois.",
+        "drawable": "badge_first_quiz",
+        "rarete": "COMMUN",
+        "categorie": "QUIZ",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Premier Combat'."
+      },
+      {
+        "id": "quiz_5",
+        "nom": "Combattant Régulier",
+        "description": "5 quiz complétés. L'arène te connaît.",
+        "description_bloquee": "??? — 5 combats dans l'arène.",
+        "drawable": "badge_quiz_5",
+        "rarete": "COMMUN",
+        "categorie": "QUIZ",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Combattant Régulier'."
+      },
+      {
+        "id": "quiz_10",
+        "nom": "Arène Confirmée",
+        "description": "10 quiz réalisés. Zeus est satisfait.",
+        "description_bloquee": "??? — 10 combats sont requis.",
+        "drawable": "badge_quiz_10",
+        "rarete": "RARE",
+        "categorie": "QUIZ",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Arène Confirmée'."
+      },
+      {
+        "id": "quiz_50",
+        "nom": "Gladiateur de l'Olympe",
+        "description": "50 quiz. Tu es une légende de l'arène.",
+        "description_bloquee": "??? — 50 combats forment un gladiateur.",
+        "drawable": "badge_quiz_50",
+        "rarete": "EPIQUE",
+        "categorie": "QUIZ",
+        "xp_recompense": 750,
+        "usage": "Badge visuel associé au succès 'Gladiateur de l'Olympe'."
+      },
+      {
+        "id": "quiz_100",
+        "nom": "Maître de l'Arène",
+        "description": "100 quiz. L'Olympe entier s'incline.",
+        "description_bloquee": "??? — 100 combats pour maîtriser l'arène.",
+        "drawable": "badge_quiz_100",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 2000,
+        "usage": "Badge visuel associé au succès 'Maître de l'Arène'."
+      },
+      {
+        "id": "quiz_250",
+        "nom": "Champion de l'Arène",
+        "description": "250 quiz complétés.",
+        "description_bloquee": "??? — Continue les combats.",
+        "drawable": "badge_quiz_250",
+        "rarete": "EPIQUE",
+        "categorie": "QUIZ",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Champion de l'Arène'."
+      },
+      {
+        "id": "quiz_500",
+        "nom": "Seigneur de l'Arène",
+        "description": "500 quiz complétés.",
+        "description_bloquee": "??? — Un seigneur combat sans cesse.",
+        "drawable": "badge_quiz_500",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Seigneur de l'Arène'."
+      },
+      {
+        "id": "perfect_score",
+        "nom": "Perfection Divine",
+        "description": "Score parfait (100%) à un quiz.",
+        "description_bloquee": "??? — Aucune erreur. La perfection existe.",
+        "drawable": "badge_perfect_score",
+        "rarete": "EPIQUE",
+        "categorie": "QUIZ",
+        "xp_recompense": 500,
+        "usage": "Badge visuel associé au succès 'Perfection Divine'."
+      },
+      {
+        "id": "perfect_score_3",
+        "nom": "Trilogie Parfaite",
+        "description": "3 scores parfaits consécutifs.",
+        "description_bloquee": "??? — Trois fois parfait de suite.",
+        "drawable": "badge_perfect_score_3",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 1500,
+        "usage": "Badge visuel associé au succès 'Trilogie Parfaite'."
+      },
+      {
+        "id": "epreuve_ultime_first",
+        "nom": "Téméraire",
+        "description": "Tu as osé l'Épreuve Ultime.",
+        "description_bloquee": "??? — L'Épreuve Ultime n'est pas pour les timides.",
+        "drawable": "badge_ultime_first",
+        "rarete": "RARE",
+        "categorie": "QUIZ",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Téméraire'."
+      },
+      {
+        "id": "epreuve_ultime_10",
+        "nom": "Guerrier Éternel",
+        "description": "10 Épreuves Ultimes complétées.",
+        "description_bloquee": "??? — 10 fois face au défi ultime.",
+        "drawable": "badge_ultime_10",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 2500,
+        "usage": "Badge visuel associé au succès 'Guerrier Éternel'."
+      },
+      {
+        "id": "star_6",
+        "nom": "Éclat Divin",
+        "description": "Obtenir la 6ème étoile mythique.",
+        "description_bloquee": "??? — Atteins la perfection absolue.",
+        "drawable": "badge_star_6",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 1000,
+        "usage": "Badge visuel associé au succès 'Éclat Divin'."
+      },
+      {
+        "id": "star_chain_5",
+        "nom": "Constellation",
+        "description": "Obtenir 5 étoiles sur 5 quiz d'affilée.",
+        "description_bloquee": "??? — Le ciel s'aligne.",
+        "drawable": "badge_star_5x5",
+        "rarete": "EPIQUE",
+        "categorie": "QUIZ",
+        "xp_recompense": 600,
+        "usage": "Badge visuel associé au succès 'Constellation'."
+      },
+      {
+        "id": "ares_challenge_win",
+        "nom": "Dompteur de Guerre",
+        "description": "Réussir un défi lancé par Arès.",
+        "description_bloquee": "??? — Arès t'observe.",
+        "drawable": "badge_ares_win",
+        "rarete": "EPIQUE",
+        "categorie": "QUIZ",
+        "xp_recompense": 750,
+        "usage": "Badge visuel associé au succès 'Dompteur de Guerre'."
+      },
+      {
+        "id": "ares_rage",
+        "nom": "Colère d'Arès",
+        "description": "Échouer à un défi d'Arès.",
+        "description_bloquee": "??? — Tu as déçu le Dieu de la Guerre.",
+        "drawable": "badge_ares_fail",
+        "rarete": "COMMUN",
+        "categorie": "QUIZ",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Colère d'Arès'."
+      },
+      {
+        "id": "ares_triple",
+        "nom": "Cible Mouvante",
+        "description": "Provoquer Arès 3 fois en une journée.",
+        "description_bloquee": "??? — Tu aimes le danger.",
+        "drawable": "badge_ares_3",
+        "rarete": "LEGENDAIRE",
+        "categorie": "QUIZ",
+        "xp_recompense": 1200,
+        "usage": "Badge visuel associé au succès 'Cible Mouvante'."
+      },
+      {
+        "id": "pantheon_zeus",
+        "nom": "Disciple de Zeus",
+        "description": "5 quiz de Mathématiques complétés.",
+        "description_bloquee": "??? — Prouve ta valeur à Zeus.",
+        "drawable": "badge_zeus_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Disciple de Zeus'."
+      },
+      {
+        "id": "pantheon_athena",
+        "nom": "Voix d'Athéna",
+        "description": "5 quiz de Français complétés.",
+        "description_bloquee": "??? — La stratège du Verbe t'attend.",
+        "drawable": "badge_athena_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Voix d'Athéna'."
+      },
+      {
+        "id": "pantheon_poseidon",
+        "nom": "Marin des Cellules",
+        "description": "5 quiz de SVT complétés.",
+        "description_bloquee": "??? — Explore les profondeurs du vivant.",
+        "drawable": "badge_poseidon_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Marin des Cellules'."
+      },
+      {
+        "id": "pantheon_ares",
+        "nom": "Gardien du Passé",
+        "description": "5 quiz d'Histoire complétés.",
+        "description_bloquee": "??? — Arès juge ceux qui ignorent l'Histoire.",
+        "drawable": "badge_ares_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Gardien du Passé'."
+      },
+      {
+        "id": "pantheon_aphrodite",
+        "nom": "Âme Créatrice",
+        "description": "5 quiz d'Art/Musique complétés.",
+        "description_bloquee": "??? — L'Inspiratrice récompense les sensibles.",
+        "drawable": "badge_aphrodite_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Âme Créatrice'."
+      },
+      {
+        "id": "pantheon_hermes",
+        "nom": "Messager Agile",
+        "description": "5 quiz d'Anglais complétés.",
+        "description_bloquee": "??? — Hermès teste tes mots.",
+        "drawable": "badge_hermes_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Messager Agile'."
+      },
+      {
+        "id": "pantheon_demeter",
+        "nom": "Arpenteur des Terres",
+        "description": "5 quiz de Géographie complétés.",
+        "description_bloquee": "??? — Déméter attend que tu cartographies.",
+        "drawable": "badge_demeter_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Arpenteur des Terres'."
+      },
+      {
+        "id": "pantheon_hephaistos",
+        "nom": "Forgeron de la Science",
+        "description": "5 quiz de Physique-Chimie complétés.",
+        "description_bloquee": "??? — L'atelier d'Héphaïstos t'attend.",
+        "drawable": "badge_hephaistos_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Forgeron de la Science'."
+      },
+      {
+        "id": "pantheon_apollon",
+        "nom": "Chercheur de Vérité",
+        "description": "5 quiz de Philo/SES complétés.",
+        "description_bloquee": "??? — Apollon n'ouvre sa porte qu'aux réfléchis.",
+        "drawable": "badge_apollon_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Chercheur de Vérité'."
+      },
+      {
+        "id": "pantheon_promethee",
+        "nom": "Porteur de Flamme",
+        "description": "5 quiz de Vie & Projets complétés.",
+        "description_bloquee": "??? — Prométhée croit en ceux qui osent.",
+        "drawable": "badge_promethee_master",
+        "rarete": "RARE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Porteur de Flamme'."
+      },
+      {
+        "id": "pantheon_complet",
+        "nom": "Panthéon Complet",
+        "description": "Au moins 1 quiz complété dans chaque matière.",
+        "description_bloquee": "??? — Tous les dieux réclament ton attention.",
+        "drawable": "badge_all_subjects",
+        "rarete": "LEGENDAIRE",
+        "categorie": "PANTHEON",
+        "xp_recompense": 2000,
+        "usage": "Badge visuel associé au succès 'Panthéon Complet'."
+      },
+      {
+        "id": "forge_first",
+        "nom": "Apprenti Forgeron",
+        "description": "Premier objet forgé.",
+        "description_bloquee": "??? — L'enclume t'attend.",
+        "drawable": "badge_forge_first",
+        "rarete": "COMMUN",
+        "categorie": "FORGE",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Apprenti Forgeron'."
+      },
+      {
+        "id": "forge_5",
+        "nom": "Main de Fer",
+        "description": "5 objets forgés.",
+        "description_bloquee": "??? — Frappe encore.",
+        "drawable": "badge_forge_5",
+        "rarete": "RARE",
+        "categorie": "FORGE",
+        "xp_recompense": 250,
+        "usage": "Badge visuel associé au succès 'Main de Fer'."
+      },
+      {
+        "id": "forge_10",
+        "nom": "Maître Artisan",
+        "description": "10 objets forgés.",
+        "description_bloquee": "??? — L'atelier est ton domaine.",
+        "drawable": "badge_forge_10",
+        "rarete": "EPIQUE",
+        "categorie": "FORGE",
+        "xp_recompense": 500,
+        "usage": "Badge visuel associé au succès 'Maître Artisan'."
+      },
+      {
+        "id": "forge_full_inv",
+        "nom": "Collectionneur de Reliques",
+        "description": "Avoir 10 objets différents dans l'inventaire.",
+        "description_bloquee": "??? — Remplis ta sacoche.",
+        "drawable": "badge_forge_full",
+        "rarete": "EPIQUE",
+        "categorie": "FORGE",
+        "xp_recompense": 600,
+        "usage": "Badge visuel associé au succès 'Collectionneur de Reliques'."
+      },
+      {
+        "id": "fragment_100",
+        "nom": "Amas de Savoir",
+        "description": "Posséder 100 fragments d'une même matière.",
+        "description_bloquee": "??? — Accumule la matière brute.",
+        "drawable": "badge_frag_100",
+        "rarete": "COMMUN",
+        "categorie": "FORGE",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Amas de Savoir'."
+      },
+      {
+        "id": "fragment_1000",
+        "nom": "Magnat des Éclats",
+        "description": "Posséder 1000 fragments au total.",
+        "description_bloquee": "??? — Richesse intellectuelle.",
+        "drawable": "badge_frag_1000",
+        "rarete": "LEGENDAIRE",
+        "categorie": "FORGE",
+        "xp_recompense": 1000,
+        "usage": "Badge visuel associé au succès 'Magnat des Éclats'."
+      },
+      {
+        "id": "forge_impatient",
+        "nom": "Le Marteau Vide",
+        "description": "Cliquer 10 fois sur Forger sans les ressources.",
+        "description_bloquee": "??? — Héphaïstos s'énerve.",
+        "drawable": "badge_forge_impatient",
+        "rarete": "COMMUN",
+        "categorie": "FORGE",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Le Marteau Vide'."
+      },
+      {
+        "id": "artefact_pythagore",
+        "nom": "Géomètre Sacré",
+        "description": "Forger le Bouclier de Pythagore.",
+        "description_bloquee": "??? — Recette mathématique requise.",
+        "drawable": "badge_art_pyth",
+        "rarete": "RARE",
+        "categorie": "FORGE",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Géomètre Sacré'."
+      },
+      {
+        "id": "artefact_athena",
+        "nom": "Plume de Sagesse",
+        "description": "Forger la Plume d'Athéna.",
+        "description_bloquee": "??? — Recette de français requise.",
+        "drawable": "badge_art_athena",
+        "rarete": "RARE",
+        "categorie": "FORGE",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Plume de Sagesse'."
+      },
+      {
+        "id": "artefact_ares",
+        "nom": "Glaive du Passé",
+        "description": "Forger le Glaive d'Arès.",
+        "description_bloquee": "??? — Recette d'Histoire requise.",
+        "drawable": "badge_art_ares",
+        "rarete": "RARE",
+        "categorie": "FORGE",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Glaive du Passé'."
+      },
+      {
+        "id": "forge_night",
+        "nom": "Forgeron de Nuit",
+        "description": "Forger un objet entre 0h et 4h du matin.",
+        "description_bloquee": "??? — Le feu ne dort jamais.",
+        "drawable": "badge_forge_night",
+        "rarete": "EPIQUE",
+        "categorie": "FORGE",
+        "xp_recompense": 400,
+        "usage": "Badge visuel associé au succès 'Forgeron de Nuit'."
+      },
+      {
+        "id": "forge_vibration",
+        "nom": "Résonance",
+        "description": "Ressentir les 3 vibrations de forge.",
+        "description_bloquee": "??? — Écoute le métal.",
+        "drawable": "badge_forge_vib",
+        "rarete": "COMMUN",
+        "categorie": "FORGE",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Résonance'."
+      },
+      {
+        "id": "forge_master",
+        "nom": "Héritier d'Héphaïstos",
+        "description": "Débloquer toutes les recettes de forge.",
+        "description_bloquee": "??? — Le catalogue est vaste.",
+        "drawable": "badge_forge_master",
+        "rarete": "LEGENDAIRE",
+        "categorie": "FORGE",
+        "xp_recompense": 2000,
+        "usage": "Badge visuel associé au succès 'Héritier d'Héphaïstos'."
+      },
+      {
+        "id": "divin_talk_10",
+        "nom": "Disciple Attentif",
+        "description": "Entendre 10 feedbacks personnalisés des Dieux.",
+        "description_bloquee": "??? — Écoute les voix d'en haut.",
+        "drawable": "badge_talk_10",
+        "rarete": "RARE",
+        "categorie": "DIVIN",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Disciple Attentif'."
+      },
+      {
+        "id": "divin_mnemo",
+        "nom": "Mémoire d'Éléphant",
+        "description": "Cliquer sur une astuce mnémotechnique secrète.",
+        "description_bloquee": "??? — Les Dieux ont des secrets.",
+        "drawable": "badge_mnemo",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Mémoire d'Éléphant'."
+      },
+      {
+        "id": "demeter_water",
+        "nom": "Main Verte",
+        "description": "Arroser un cours fané après l'alerte de Déméter.",
+        "description_bloquee": "??? — Ne laisse pas mourir le savoir.",
+        "drawable": "badge_demeter_water",
+        "rarete": "RARE",
+        "categorie": "DIVIN",
+        "xp_recompense": 250,
+        "usage": "Badge visuel associé au succès 'Main Verte'."
+      },
+      {
+        "id": "apollon_lyre",
+        "nom": "Poète de l'Olympe",
+        "description": "Transformer 5 cours en hymnes avec Apollon.",
+        "description_bloquee": "??? — Chante tes révisions.",
+        "drawable": "badge_lyre_5",
+        "rarete": "RARE",
+        "categorie": "DIVIN",
+        "xp_recompense": 300,
+        "usage": "Badge visuel associé au succès 'Poète de l'Olympe'."
+      },
+      {
+        "id": "promethee_help",
+        "nom": "Curiosité de Pandore",
+        "description": "Demander 5 explications à Prométhée via le HUD.",
+        "description_bloquee": "??? — Clique sur les symboles.",
+        "drawable": "badge_promethee_help",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Curiosité de Pandore'."
+      },
+      {
+        "id": "zeus_strict",
+        "nom": "Foudre de la Rigueur",
+        "description": "Recevoir un feedback exigeant de Zeus (score < 50%).",
+        "description_bloquee": "??? — Zeus n'est pas content.",
+        "drawable": "badge_zeus_angry",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Foudre de la Rigueur'."
+      },
+      {
+        "id": "divin_wait",
+        "nom": "Sagesse de l'Attente",
+        "description": "Attendre patiemment la fin d'un chargement IA long.",
+        "description_bloquee": "??? — Le savoir prend du temps.",
+        "drawable": "badge_ia_wait",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Sagesse de l'Attente'."
+      },
+      {
+        "id": "divin_all_gods",
+        "nom": "Cercle des Immortels",
+        "description": "Parler à chaque Dieu au moins une fois.",
+        "description_bloquee": "??? — Sois sociable.",
+        "drawable": "badge_all_gods",
+        "rarete": "LEGENDAIRE",
+        "categorie": "DIVIN",
+        "xp_recompense": 1500,
+        "usage": "Badge visuel associé au succès 'Cercle des Immortels'."
+      },
+      {
+        "id": "divin_mnemo_20",
+        "nom": "Mémoire Infinie",
+        "description": "Utiliser 20 astuces mnémotechniques.",
+        "description_bloquee": "??? — Stocke les astuces.",
+        "drawable": "badge_mnemo_20",
+        "rarete": "EPIQUE",
+        "categorie": "DIVIN",
+        "xp_recompense": 750,
+        "usage": "Badge visuel associé au succès 'Mémoire Infinie'."
+      },
+      {
+        "id": "demeter_return",
+        "nom": "Retour au Temple",
+        "description": "Répondre à Déméter après 7j.",
+        "description_bloquee": "??? — Ton jardin revit.",
+        "drawable": "badge_demeter_return",
+        "rarete": "RARE",
+        "categorie": "DIVIN",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Retour au Temple'."
+      },
+      {
+        "id": "hephaistos_verdict",
+        "nom": "Jugement du Fer",
+        "description": "Recevoir un verdict de craft d'Héphaïstos.",
+        "description_bloquee": "??? — Le métal a parlé.",
+        "drawable": "badge_heph_verdict",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Jugement du Fer'."
+      },
+      {
+        "id": "athena_pedagogue",
+        "nom": "Leçon de Stratégie",
+        "description": "Recevoir une leçon pédagogique d'Athéna.",
+        "description_bloquee": "??? — Écoute la sagesse.",
+        "drawable": "badge_athena_talk",
+        "rarete": "COMMUN",
+        "categorie": "DIVIN",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Leçon de Stratégie'."
+      },
+      {
+        "id": "first_connection",
+        "nom": "L'Appel de l'Olympe",
+        "description": "Tu as répondu à l'appel de Zeus.",
+        "description_bloquee": "??? — L'Olympe n'attend que toi.",
+        "drawable": "badge_first_day",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'L'Appel de l'Olympe'."
+      },
+      {
+        "id": "tutorial_done",
+        "nom": "Initié de l'Olympe",
+        "description": "Tu as lu toutes les leçons du tutoriel.",
+        "description_bloquee": "??? — Les sages lisent avant d'agir.",
+        "drawable": "badge_tutorial_done",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 150,
+        "usage": "Badge visuel associé au succès 'Initié de l'Olympe'."
+      },
+      {
+        "id": "night_owl",
+        "nom": "Chouette de Minuit",
+        "description": "Session réalisée entre 23h et 1h du matin.",
+        "description_bloquee": "??? — Les dieux observent même la nuit.",
+        "drawable": "badge_night_owl",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 150,
+        "usage": "Badge visuel associé au succès 'Chouette de Minuit'."
+      },
+      {
+        "id": "early_bird",
+        "nom": "Aube Dorée",
+        "description": "Session réalisée avant 7h du matin.",
+        "description_bloquee": "??? — L'Olympe s'éveille à l'aurore.",
+        "drawable": "badge_early_bird",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 150,
+        "usage": "Badge visuel associé au succès 'Aube Dorée'."
+      },
+      {
+        "id": "settings_explorer",
+        "nom": "Architecte de l'Olympe",
+        "description": "Tu as ouvert les Réglages.",
+        "description_bloquee": "??? — L'atelier d'Héphaïstos est dans les Réglages.",
+        "drawable": "badge_settings_explorer",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 25,
+        "usage": "Badge visuel associé au succès 'Architecte de l'Olympe'."
+      },
+      {
+        "id": "profile_visited",
+        "nom": "Connais-toi Toi-même",
+        "description": "Tu as consulté ton profil héros.",
+        "description_bloquee": "??? — Socrate avait raison.",
+        "drawable": "badge_profile_visited",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 25,
+        "usage": "Badge visuel associé au succès 'Connais-toi Toi-même'."
+      },
+      {
+        "id": "speed_quiz",
+        "nom": "Éclair de Zeus",
+        "description": "Quiz complété en moins de 2 minutes.",
+        "description_bloquee": "??? — Même Zeus n'est pas si rapide.",
+        "drawable": "badge_speed_quiz",
+        "rarete": "EPIQUE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 400,
+        "usage": "Badge visuel associé au succès 'Éclair de Zeus'."
+      },
+      {
+        "id": "comeback",
+        "nom": "Phénix de l'Olympe",
+        "description": "Retour après 7 jours d'absence.",
+        "description_bloquee": "??? — Même les phénix renaissent.",
+        "drawable": "badge_comeback",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Phénix de l'Olympe'."
+      },
+      {
+        "id": "quiz_at_3am",
+        "nom": "Fantôme de 3h du Matin",
+        "description": "Quiz lancé à 3h du matin.",
+        "description_bloquee": "??? — Les fantômes étudient tard.",
+        "drawable": "badge_quiz_at_3am",
+        "rarete": "EPIQUE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Fantôme de 3h du Matin'."
+      },
+      {
+        "id": "rage_fail",
+        "nom": "Crash Olympien",
+        "description": "Score inférieur à 20%.",
+        "description_bloquee": "??? — Même les héros chutent.",
+        "drawable": "badge_rage_fail",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Crash Olympien'."
+      },
+      {
+        "id": "marathon_quiz",
+        "nom": "Marathon de l'Olympe",
+        "description": "10 quiz dans la même session.",
+        "description_bloquee": "??? — L'endurance divine.",
+        "drawable": "badge_marathon_quiz",
+        "rarete": "EPIQUE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 0,
+        "usage": "Badge visuel associé au succès 'Marathon de l'Olympe'."
+      },
+      {
+        "id": "wtf_speed_fail",
+        "nom": "Icare",
+        "description": "Échouer à un quiz en moins de 30 secondes.",
+        "description_bloquee": "??? — Brûlé par le soleil.",
+        "drawable": "badge_icare",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Icare'."
+      },
+      {
+        "id": "wtf_lucky",
+        "nom": "Chance de Tyché",
+        "description": "Réussir un quiz difficile avec exactement 51%.",
+        "description_bloquee": "??? — Sur le fil.",
+        "drawable": "badge_lucky",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Chance de Tyché'."
+      },
+      {
+        "id": "wtf_mute",
+        "nom": "Silence Olympien",
+        "description": "Finir un quiz avec le volume à zéro.",
+        "description_bloquee": "??? — Dans le calme des cieux.",
+        "drawable": "badge_mute",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Silence Olympien'."
+      },
+      {
+        "id": "wtf_volume_max",
+        "nom": "Tonnerre",
+        "description": "Finir une Victoire Divine (100%) avec le son au max.",
+        "description_bloquee": "??? — Que l'Olympe entende !",
+        "drawable": "badge_thunder",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 150,
+        "usage": "Badge visuel associé au succès 'Tonnerre'."
+      },
+      {
+        "id": "wtf_inv_spam",
+        "nom": "Obsessionnel",
+        "description": "Ouvrir son inventaire 20 fois en une session.",
+        "description_bloquee": "??? — Tes trésors sont toujours là.",
+        "drawable": "badge_inv_spam",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 50,
+        "usage": "Badge visuel associé au succès 'Obsessionnel'."
+      },
+      {
+        "id": "wtf_screenshot",
+        "nom": "Souvenir des Dieux",
+        "description": "Prendre un screenshot d'un résultat 6 étoiles.",
+        "description_bloquee": "??? — Capture l'instant divin.",
+        "drawable": "badge_screenshot",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Souvenir des Dieux'."
+      },
+      {
+        "id": "wtf_no_stop",
+        "nom": "Berserker",
+        "description": "Faire 3 quiz sans jamais cliquer sur 'Correction'.",
+        "description_bloquee": "??? — Pas le temps pour les regrets.",
+        "drawable": "badge_no_stop",
+        "rarete": "EPIQUE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 500,
+        "usage": "Badge visuel associé au succès 'Berserker'."
+      },
+      {
+        "id": "wtf_slow_win",
+        "nom": "Tortue d'Hermès",
+        "description": "Mettre plus de 20 min pour un quiz et avoir 100%.",
+        "description_bloquee": "??? — La réflexion est longue.",
+        "drawable": "badge_slow_win",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 200,
+        "usage": "Badge visuel associé au succès 'Tortue d'Hermès'."
+      },
+      {
+        "id": "wtf_perfect_333",
+        "nom": "Cauchemar de Tartare",
+        "description": "Réussir un 100% à 3h33 du matin précisément.",
+        "description_bloquee": "??? — Une heure maudite.",
+        "drawable": "badge_333",
+        "rarete": "LEGENDAIRE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 3333,
+        "usage": "Badge visuel associé au succès 'Cauchemar de Tartare'."
+      },
+      {
+        "id": "wtf_shake",
+        "nom": "Séisme de Poséidon",
+        "description": "Secouer son téléphone violemment sur l'écran de défaite.",
+        "description_bloquee": "??? — Calme ta rage.",
+        "drawable": "badge_shake",
+        "rarete": "RARE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 100,
+        "usage": "Badge visuel associé au succès 'Séisme de Poséidon'."
+      },
+      {
+        "id": "wtf_tap_spam",
+        "nom": "Doigts de Foudre",
+        "description": "Cliquer plus de 50 fois pendant le chargement IA.",
+        "description_bloquee": "??? — La patience est une vertu.",
+        "drawable": "badge_tap_spam",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 10,
+        "usage": "Badge visuel associé au succès 'Doigts de Foudre'."
+      },
+      {
+        "id": "wtf_oracle_spam",
+        "nom": "Aveuglement",
+        "description": "Scanner le même cours 5 fois de suite.",
+        "description_bloquee": "??? — L'Oracle a bien vu.",
+        "drawable": "badge_oracle_spam",
+        "rarete": "COMMUN",
+        "categorie": "SPECIAL",
+        "xp_recompense": 25,
+        "usage": "Badge visuel associé au succès 'Aveuglement'."
+      },
+      {
+        "id": "all_badges",
+        "nom": "Panthéon Absolu",
+        "description": "Tous les badges débloqués.",
+        "description_bloquee": "????",
+        "drawable": "all_badges",
+        "rarete": "LEGENDAIRE",
+        "categorie": "SPECIAL",
+        "xp_recompense": 10000,
+        "usage": "Badge visuel associé au succès 'Panthéon Absolu'."
+      }
+    ]
+  },
+  "raw": {
+    "videos_avatar": [
+      {
+        "name": "bg_avatar_hero1_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero2_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero3_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero4_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero5_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero6_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero7_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero8_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero9_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_hero10_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héros."
+      },
+      {
+        "name": "bg_avatar_heroine1_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine2_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine3_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine4_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine5_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine6_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine7_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine8_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine9_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      },
+      {
+        "name": "bg_avatar_heroine10_animated",
+        "usage": "Vidéo MP4 muette du fond avatar héroïne."
+      }
+    ],
+    "videos_ui_et_temples": [
+      {
+        "name": "txt_hero_animated",
+        "usage": "Vidéo MP4 du panneau héros sélectionné dans GenderActivity."
+      },
+      {
+        "name": "txt_heroine_animated",
+        "usage": "Vidéo MP4 du panneau héroïne sélectionné dans GenderActivity."
+      },
+      {
+        "name": "revizeus_intro",
+        "usage": "Cinématique d’intro fullscreen avant MoodActivity."
+      },
+      {
+        "name": "revizeus_info_bg_01",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_02",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_03",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_04",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_05",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_06",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_07",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_08",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_09",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "revizeus_info_bg_10",
+        "usage": "Vidéo d’intro locale de temple / écran info, remplacée ensuite par l’image fixe homonyme."
+      },
+      {
+        "name": "bg_debut_animated",
+        "usage": "Vidéo d’ambiance du title screen."
+      },
+      {
+        "name": "demarrer_aventure",
+        "usage": "Cinématique de démarrage jouée dans VideoPlayerActivity."
+      }
+    ],
+    "bgm": [
+      {
+        "name": "bgm_dashboard",
+        "usage": "BGM dashboard standard."
+      },
+      {
+        "name": "bgm_dashboard_happy",
+        "usage": "BGM dashboard humeur happy."
+      },
+      {
+        "name": "bgm_dashboard_stressed",
+        "usage": "BGM dashboard humeur stressée."
+      },
+      {
+        "name": "bgm_dashboard_tired",
+        "usage": "BGM dashboard humeur fatiguée."
+      },
+      {
+        "name": "bgm_savoir",
+        "usage": "BGM écran savoir / temples éducatifs."
+      },
+      {
+        "name": "bgm_apollo_lyre",
+        "usage": "BGM ou ambiance Lyre d’Apollon."
+      },
+      {
+        "name": "bgm_debug",
+        "usage": "BGM debug / écran debug."
+      },
+      {
+        "name": "bgm_avatar_homme",
+        "usage": "BGM onboarding camp héros."
+      },
+      {
+        "name": "bgm_avatar_fille",
+        "usage": "BGM onboarding camp héroïne."
+      },
+      {
+        "name": "bgm_avatar_selection",
+        "usage": "BGM générique sélection avatar."
+      },
+      {
+        "name": "bgm_avatar_theo",
+        "usage": "BGM supplémentaire onboarding / test thématique."
+      },
+      {
+        "name": "music_gender_selection",
+        "usage": "Ancien / alias BGM sélection genre."
+      },
+      {
+        "name": "bgm_training_select",
+        "usage": "BGM écran de sélection d'entraînement."
+      },
+      {
+        "name": "bgm_training_quiz",
+        "usage": "BGM quiz entraînement."
+      },
+      {
+        "name": "music_quiz",
+        "usage": "BGM quiz standard."
+      },
+      {
+        "name": "bgm_oracle",
+        "usage": "BGM Oracle."
+      },
+      {
+        "name": "bgm_forge",
+        "usage": "BGM Forge."
+      },
+      {
+        "name": "bgm_inventaire",
+        "usage": "BGM Inventaire."
+      },
+      {
+        "name": "bgm_badge",
+        "usage": "BGM Livre de badges."
+      },
+      {
+        "name": "bgm_offrande",
+        "usage": "BGM écran / popup offrande."
+      },
+      {
+        "name": "bgm_result_fail",
+        "usage": "BGM résultat échec."
+      },
+      {
+        "name": "bgm_result_moyen",
+        "usage": "BGM résultat moyen."
+      },
+      {
+        "name": "bgm_result_parfait",
+        "usage": "BGM résultat parfait."
+      },
+      {
+        "name": "bgm_result_bien",
+        "usage": "BGM résultat bien / intermédiaire."
+      },
+      {
+        "name": "olympus_theme",
+        "usage": "Thème musical Olympus global."
+      },
+      {
+        "name": "revizeus1",
+        "usage": "Piste BGM / ambiance RéviZeus 1."
+      },
+      {
+        "name": "revizeus2",
+        "usage": "Piste BGM / ambiance RéviZeus 2."
+      },
+      {
+        "name": "theme_splash",
+        "usage": "Audio du splash screen."
+      },
+      {
+        "name": "bgm_select_maths_zeus",
+        "usage": "BGM sélection Maths."
+      },
+      {
+        "name": "bgm_select_francais_athena",
+        "usage": "BGM sélection Français."
+      },
+      {
+        "name": "bgm_select_svt_poseidon",
+        "usage": "BGM sélection SVT."
+      },
+      {
+        "name": "bgm_select_histoire_ares",
+        "usage": "BGM sélection Histoire."
+      },
+      {
+        "name": "bgm_select_art_aphrodite",
+        "usage": "BGM sélection Art/Musique."
+      },
+      {
+        "name": "bgm_select_anglais_hermes",
+        "usage": "BGM sélection Anglais."
+      },
+      {
+        "name": "bgm_select_geographie_demeter",
+        "usage": "BGM sélection Géographie."
+      },
+      {
+        "name": "bgm_select_physique_hephaistos",
+        "usage": "BGM sélection Physique-Chimie."
+      },
+      {
+        "name": "bgm_select_philo_apollon",
+        "usage": "BGM sélection Philo/SES."
+      },
+      {
+        "name": "bgm_select_vie_promethee",
+        "usage": "BGM sélection Vie & Projets."
+      },
+      {
+        "name": "bgm_title_select",
+        "usage": "BGM du TitleScreenActivity, MainMenuActivity et AccountSelectActivity."
+      },
+      {
+        "name": "bgm_oracle_prompt",
+        "usage": "BGM écran OraclePromptActivity (boucle texte libre)."
+      },
+      {
+        "name": "bgm_migration",
+        "usage": "BGM écran de réalignement GameUpdateActivity."
+      }
+    ],
+    "sfx": [
+      {
+        "name": "sfx_app_start_pop",
+        "usage": "Pop de démarrage."
+      },
+      {
+        "name": "sfx_avatar_confirm",
+        "usage": "Confirmation avatar."
+      },
+      {
+        "name": "sfx_avatar_scroll",
+        "usage": "Scroll carrousel avatar."
+      },
+      {
+        "name": "sfx_badge_unlock",
+        "usage": "Déblocage badge."
+      },
+      {
+        "name": "sfx_dialogue_blip",
+        "usage": "Blip du typewriter / dialogues divins."
+      },
+      {
+        "name": "sfx_epic_chibi_select",
+        "usage": "Sélection chibi épique."
+      },
+      {
+        "name": "sfx_epreuve_ultime",
+        "usage": "Effet Épreuve Ultime."
+      },
+      {
+        "name": "sfx_error",
+        "usage": "Erreur UI / action refusée."
+      },
+      {
+        "name": "sfx_forge_success",
+        "usage": "Craft réussi."
+      },
+      {
+        "name": "sfx_fragment_reward",
+        "usage": "Récompense fragments."
+      },
+      {
+        "name": "sfx_loading_loop",
+        "usage": "Boucle audio du loader IA."
+      },
+      {
+        "name": "sfx_lvl",
+        "usage": "Montée de niveau."
+      },
+      {
+        "name": "sfx_lvl_animal",
+        "usage": "Variante montée de niveau."
+      },
+      {
+        "name": "sfx_lyre_strum",
+        "usage": "Strum de la Lyre d’Apollon."
+      },
+      {
+        "name": "sfx_module_open",
+        "usage": "Ouverture module / popup."
+      },
+      {
+        "name": "sfx_mood_happy",
+        "usage": "SFX humeur happy."
+      },
+      {
+        "name": "sfx_mood_stressed",
+        "usage": "SFX humeur stressée."
+      },
+      {
+        "name": "sfx_mood_tired",
+        "usage": "SFX humeur fatiguée."
+      },
+      {
+        "name": "sfx_notif_divine",
+        "usage": "Notification divine."
+      },
+      {
+        "name": "sfx_oracle_scan",
+        "usage": "Scan Oracle."
+      },
+      {
+        "name": "sfx_orb_open",
+        "usage": "Ouverture orbe."
+      },
+      {
+        "name": "sfx_select_wisdom",
+        "usage": "Sélection de sagesse."
+      },
+      {
+        "name": "sfx_settings_save",
+        "usage": "Sauvegarde settings."
+      },
+      {
+        "name": "sfx_settings_tab",
+        "usage": "Changement d’onglet settings."
+      },
+      {
+        "name": "sfx_statue_select",
+        "usage": "Sélection statue / avatar."
+      },
+      {
+        "name": "sfx_success",
+        "usage": "Succès UI."
+      },
+      {
+        "name": "sfx_thunder_confirm",
+        "usage": "Confirmation foudre."
+      },
+      {
+        "name": "sfx_training_start",
+        "usage": "Début entraînement."
+      },
+      {
+        "name": "sfx_transition_thunder",
+        "usage": "Transition avec tonnerre."
+      },
+      {
+        "name": "sfx_demarrer",
+        "usage": "SFX du tap sur le bouton Démarrer."
+      },
+      {
+        "name": "sfx_timer_alert",
+        "usage": "Alerte des 5 dernières secondes du chronomètre (TrainingQuizActivity)."
+      }
+    ],
+    "lottie": [
+      {
+        "name": "lottie_avatar_aura",
+        "usage": "Aura avatar."
+      },
+      {
+        "name": "lottie_bg_forge",
+        "usage": "Background animé Forge."
+      },
+      {
+        "name": "lottie_forge_fire",
+        "usage": "Animation feu de craft réussi."
+      },
+      {
+        "name": "lottie_fragment_reward_burst",
+        "usage": "Burst de récompense visuelle lors du gain de fragments."
+      }
+    ]
+  },
+  "config_et_assets": {
+    "config_files": [
+      {
+        "name": "google-services.json",
+        "location": "app/google-services.json",
+        "usage": "Configuration Firebase Android pour com.revizeus.app."
+      }
+    ],
+    "assets_reserves": [
+      {
+        "name": "revizeus.txt",
+        "location": "app/src/main/assets/revizeus.txt",
+        "usage": "Texte source de l'écran info RéviZeus."
+      },
+      {
+        "name": "maj.txt",
+        "location": "app/src/main/assets/maj.txt",
+        "usage": "Texte source de l'overlay premium MAJ dashboard."
+      }
+    ],
+    "audio_futur": [
+      {
+        "name": "revizeus_info",
+        "location": "app/src/main/res/raw/revizeus_info.mp3",
+        "usage": "BGM future de l'écran info RéviZeus."
+      }
+    ]
+  },
+  "badge_prompt_library": {
+    "badge_frag_1000": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une immense montagne stylisée de cristaux multicolores accumulés, scintillant intensément. Contours nets, couleurs extrêmement saturées et variées (arc-en-ciel), éclairage magique éblouissant.",
+    "badge_forge_impatient": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un marteau chibi frappant désespérément dans le vide, superposé d'un grand panneau 'Interdit' rouge vif et universel. Contours nets, couleurs très saturées (rouge d'alerte), éclairage magique focalisé sur le symbole d'interdiction.",
+    "badge_art_pyth": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un bouclier grec rond (Hoplon) en bronze, sur lequel est gravé un triangle rectangle parfait brillant comme un néon bleu électrique. Contours nets, couleurs très saturées, éclairage magique néon contrastant avec le bronze.",
+    "badge_art_athena": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une magnifique plume blanche rayonnante plongeant dans un encrier stylisé fait de lumière pure. Contours nets, couleurs très saturées (blanc divin, bleu lumière), éclairage magique doux et éthéré.",
+    "badge_art_ares": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un glaive spartiate court et ébréché, incrusté de gemmes rouges foncées et menaçantes. Contours nets, couleurs très saturées (rouge sang/carmin), éclairage magique sombre et agressif autour des gemmes.",
+    "badge_forge_night": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une enclume de forgeron paisible, baignée par la lumière douce d'un croissant de lune et de petites étoiles scintillantes. Contours nets, couleurs très saturées (bleu nuit, argent), éclairage magique lunaire.",
+    "badge_forge_vib": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un smartphone dessiné en style chibi mignon qui vibre frénétiquement, émettant des ondes de choc dorées et radiales. Contours nets, couleurs très saturées (or), éclairage magique dynamique suivant les ondes.",
+    "badge_forge_master": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Le dieu Héphaïstos en version chibi triomphante, levant bien haut un sceptre légendaire et victorieux. Contours nets, couleurs très saturées (or, rouge feu), éclairage magique divin célébrant la réussite.",
+    "badge_star_6": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une étoile à six branches géométrique sculptée dans un diamant violet, pulsant d'une énergie cosmique mystérieuse. Contours nets, couleurs très saturées (violet profond), éclairage magique à effet pulsation.",
+    "badge_star_5x5": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Cinq petites étoiles dorées et mignonnes, reliées entre elles par des traits lumineux formant une constellation sur fond sombre. Contours nets, couleurs très saturées (or éclatant), éclairage magique astral.",
+    "badge_ares_win": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un casque de spartiate à crinière, nettement tranché en deux par un éclair divin s'abattant dessus, sur un fond rouge intense. Contours nets, couleurs très saturées (rouge, or), éclairage magique violent et dramatique de l'éclair.",
+    "badge_ares_fail": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un bouclier en bois rond, brisé en multiples morceaux pathétiques et fumant encore après un impact. Contours nets, couleurs très saturées (brun terre, gris fumée), éclairage magique résiduel de la destruction.",
+    "badge_ares_3": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une cible de tir à l'arc traditionnelle, percée exactement en son centre par trois lances enflammées. Contours nets, couleurs très saturées (rouge, orange feu), éclairage magique flamboyant provenant des lances.",
+    "badge_talk_10": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une bulle de bande dessinée au contour holographique brillant, contenant à l'intérieur un petit temple grec miniature. Contours nets, couleurs très saturées (bleu cyan holographique), éclairage magique futuriste.",
+    "badge_mnemo": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un cerveau stylisé de manière mignonne (chibi), avec une clé dorée brillante plantée verticalement dedans. Contours nets, couleurs très saturées (rose, or), éclairage magique symbolisant la révélation de la connaissance.",
+    "badge_demeter_water": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un arrosoir en terre cuite antique versant de l'eau sacrée et scintillante sur une jeune pousse verte et vigoureuse. Contours nets, couleurs très saturées (vert plante, bleu eau), éclairage magique frais et vitalisant.",
+    "badge_lyre_5": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une lyre grecque dorée et lumineuse, de laquelle s'échappent des notes de musique flottantes aux couleurs de l'arc-en-ciel. Contours nets, couleurs très saturées, éclairage magique mélodieux et coloré.",
+    "badge_promethee_help": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une main de personnage chibi tenant fermement la torche de Prométhée, dont le feu brille d'un rouge vif et intense. Contours nets, couleurs très saturées (rouge feu), éclairage magique puissant et chaleureux.",
+    "badge_zeus_angry": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Le visage de Zeus en version chibi, arborant une expression très fâchée et sévère, émergeant d'un nuage orageux violet sombre. Contours nets, couleurs très saturées (violet, blanc éclair), éclairage magique électrique et menaçant.",
+    "badge_ia_wait": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un sablier antique en bronze dont le sable est remplacé par de la poudre d'étoiles filantes scintillante. Contours nets, couleurs très saturées (bronze, bleu nuit étoilé), éclairage magique cosmique et temporel.",
+    "badge_all_gods": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un cercle parfait formé par 12 silhouettes divines stylisées se tenant toutes par la main en signe d'unité. Contours nets, couleurs très saturées (or divin), éclairage magique unificateur émanant du centre du cercle.",
+    "badge_mnemo_20": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un épais grimoire ancien ouvert, duquel s'échappent magiquement des symboles mathématiques dorés et flottants (Pi, Sigma, etc.). Contours nets, couleurs très saturées (brun vieux cuir, or), éclairage magique de pur savoir.",
+    "badge_demeter_return": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une fleur unique, initialement fanée et grise, qui se redresse et reprend vie sous un éclat de lumière divine verte. Contours nets, couleurs très saturées (vert éclatant), éclairage magique de renaissance.",
+    "badge_heph_verdict": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une bulle de texte au fond noir uni, contenant simplement une icône d'enclume rouge vif en son centre. Contours nets, couleurs très saturées (rouge sur noir contrasté), éclairage magique focalisé et sec.",
+    "badge_athena_talk": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une chouette chibi mignonne portant de petites lunettes rondes et une toge académique, lisant attentivement un parchemin déroulé. Contours nets, couleurs très saturées (brun chouette, blanc toge), éclairage magique intellectuel douillet.",
+    "badge_icare": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Des ailes faites de plumes et de cire fondant lamentablement et tombant en gouttes devant un grand soleil jaune triomphant. Contours nets, couleurs très saturées (jaune soleil, blanc plume), éclairage magique chaud et destructeur du soleil.",
+    "badge_lucky": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une pièce d'or grecque antique (Drachme) avec un visage de dieu gravé, tenant en équilibre parfait exactement sur sa tranche fine. Contours nets, couleurs très saturées (or), éclairage magique mettant en valeur cet équilibre impossible.",
+    "badge_mute": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une lyre grecque sculptée dans le marbre blanc, barrée distinctement par un gros trait de silence rouge vif. Contours nets, couleurs très saturées (rouge d'interdiction, blanc marbre), éclairage magique froid et silencieux.",
+    "badge_thunder": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une énorme enceinte de sonorisation moderne dont le design reprend la forme d'une colonne grecque dorique massive. Contours nets, couleurs très saturées (gris pierre, or), éclairage magique vibrant au rythme du son.",
+    "badge_inv_spam": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une sacoche d'aventurier secouée frénétiquement dans tous les sens, laissant échapper quelques pièces de monnaie dans le mouvement. Contours nets, couleurs très saturées, éclairage magique dynamique accentuant le mouvement de secousse.",
+    "badge_screenshot": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un appareil photo au design antique, taillé directement dans la pierre, émettant un flash divin aveuglant et magique. Contours nets, couleurs très saturées (gris pierre, blanc flash), éclairage magique instantané et puissant.",
+    "badge_no_stop": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Le visage d'un gladiateur chibi portant un bandeau sur les yeux, avec une expression déterminée du style 'je fonce tête baissée'. Contours nets, couleurs très saturées (rouge bandeau, peau), éclairage magique focalisé sur la détermination.",
+    "badge_slow_win": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une tortue chibi adorable portant fièrement sur sa carapace un casque de guerrier spartiate trop grand pour elle. Contours nets, couleurs très saturées (vert tortue, or casque), éclairage magique doux et victorieux.",
+    "badge_333": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une horloge spectrale et éthérée flottant dans un brouillard vert mystérieux, affichant les chiffres numériques '3:33'. Contours nets, couleurs très saturées (vert fantomatique), éclairage magique spectral et intrigant.",
+    "badge_shake": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. La terre se fendant violemment sous l'effet d'un séisme, avec le trident de Poséidon planté fermement au milieu de la crevasse. Contours nets, couleurs très saturées (brun terre, bleu trident), éclairage magique chaotique et puissant.",
+    "badge_tap_spam": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un doigt chibi de couleur rouge, chauffé à blanc par la vitesse, tapant frénétiquement et à répétition sur un bouton virtuel. Contours nets, couleurs très saturées (rouge chaleur), éclairage magique dynamique et rapide.",
+    "badge_oracle_spam": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. L'Oeil de l'Oracle stylisé qui louche de fatigue ou porte des lunettes de vue cassées et de travers. Contours nets, couleurs très saturées, éclairage magique comique et un peu flou autour de l'oeil.",
+    "badge_0_xp_session": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un panier d'offrandes tressé, posé sur un autel, complètement vide à l'exception d'une petite mouche chibi qui vole au-dessus. Contours nets, couleurs très saturées (brun panier), éclairage magique blafard symbolisant l'échec.",
+    "badge_dawn_perfect": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un soleil levant stylisé et souriant, couronné de branches de lauriers sculptées dans l'or pur. Contours nets, couleurs très saturées (orange aube, or), éclairage magique glorieux et chaleureux de début de journée.",
+    "badge_night_marathon": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une chouette chibi dormant debout, les yeux mi-clos, tenant fermement une tasse de café au design antique. Contours nets, couleurs très saturées (bleu nuit, brun chouette), éclairage magique tamisé de fin de nuit.",
+    "badge_close_call": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. La balance de la justice de Thémis, avec ses deux plateaux chargés, maintenue dans un équilibre parfait et immobile. Contours nets, couleurs très saturées (or balance), éclairage magique mettant en valeur la précision de l'équilibre.",
+    "badge_overkill": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une hache de guerre double géante et disproportionnée, en train d'écraser totalement un minuscule parchemin d'étude au sol. Contours nets, couleurs très saturées (acier hache), éclairage magique brutal et exagéré de l'impact.",
+    "badge_rage_quit": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Une lourde porte de temple grec claquée violemment, provoquant un grand nuage de poussière et de débris dynamiques. Contours nets, couleurs très saturées, éclairage magique dramatique focalisé sur le mouvement de fermeture brutale.",
+    "badge_god_spam": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. La statue de marbre d'un dieu grec arborant une expression agacée, avec une grosse goutte de sueur style manga sur le front. Contours nets, couleurs très saturées (blanc marbre), éclairage magique comique.",
+    "badge_wtf_50": "Icône de jeu mobile circulaire, style Chibi Mythologique grec, sans arrière-plan. Un énorme point d'interrogation aux couleurs psychédéliques et multicolores, enfermé et scellé à l'intérieur d'un cristal magique facetté. Contours nets, couleurs extrêmement saturées, éclairage magique mystérieux."
+  },
+  "badges_resume": {
+    "total_definitions_detectees_dans_le_catalogue": 116,
+    "repartition_par_categorie": {
+      "STREAK": 9,
+      "XP_NIVEAU": 23,
+      "ORACLE": 8,
+      "QUIZ": 16,
+      "PANTHEON": 11,
+      "FORGE": 13,
+      "DIVIN": 12,
+      "SPECIAL": 24
+    },
+    "frames_badges": [
+      {
+        "name": "bg_badge_frame_commun",
+        "usage": "Cadre de rareté Commun."
+      },
+      {
+        "name": "bg_badge_frame_rare",
+        "usage": "Cadre de rareté Rare."
+      },
+      {
+        "name": "bg_badge_frame_epique",
+        "usage": "Cadre de rareté Épique."
+      },
+      {
+        "name": "bg_badge_frame_legendaire",
+        "usage": "Cadre de rareté Légendaire."
+      },
+      {
+        "name": "all_badges",
+        "usage": "Illustration du badge final Panthéon Absolu."
+      }
+    ]
+  },
+  "integration_updates": {
+    "settingsactivity_kt": "ordre des onglets révisé, JukeBox déplacé sous Avancé",
+    "activity_settings_xml": "spinners allégés visuellement, JukeBox déplacé sous Avancé",
+    "inventoryactivity_kt": "onglets complets de l’inventaire ajoutés",
+    "activity_inventory_xml": "barre d’onglets complète de l’inventaire",
+    "forgeactivity_kt": "fragments matière affichés avec icône divine derrière le compteur",
+    "godmatiereactivity_kt": "intro vidéo cliquable + header temple premium",
+    "quizresultactivity_kt": "récompenses XP / Éclats / Ambroisie visibles avec icônes",
+    "resultactivity_kt": "choix du temple + nom auto du cours après résumé Oracle",
+    "trainingselectactivity_kt": "chargement visible avant le dialogue d’entraînement",
+    "revizeusinfoactivity_kt": "restauration correcte de la BGM à la sortie"
+  }
+}
+
+
+
+
+==================================================
+BLOC 06 — RESSOURCES CRÉÉES DANS CETTE DISCUSSION
+Mode aventure — backgrounds évolutifs locaux par dieu
+==================================================
+
+OBJET DU FICHIER
+Ce fichier recense les ressources définies dans cette discussion pour le mode aventure de RéviZeus.
+
+NATURE DES RESSOURCES
+- Type : backgrounds de jeu
+- Usage : arrière-plans purs
+- Mode : aventure
+- Orientation : paysage uniquement
+- Intégration : fond seul, sans nodes, sans chemin visible, sans HUD, sans texte
+- Fonction : servir de plaque de fond derrière les autres assets du mode aventure
+- Évolution : visuelle et progressive selon le niveau du temple
+- Règle de vie : à partir du lvl 6, la vie revient peu à peu dans le décor
+- Règle créatures : à partir du lvl 6, petites créatures de décor liées au dieu et à la matière, avec une légère pointe d’humour
+- Rôle global : renforcer la sensation de progression, de restauration divine et de montée en puissance du temple
+
+LOGIQUE COMMUNE D’INTÉGRATION
+Ces backgrounds sont prévus pour recevoir par-dessus :
+- les temples
+- les nodes
+- les routes de progression
+- les monstres
+- les boss
+- les overlays et FX
+- les éléments de gameplay
+
+IMPORTANT
+Ces ressources correspondent à des noms de backgrounds à générer / produire pour le projet, afin de pouvoir être référencées ensuite dans les documents IA, la DA et l’intégration code.
+
+==================================================
+LISTE COMPLÈTE DES RESSOURCES
+==================================================
+
+
+--------------------------------------------------
+ZEUS
+--------------------------------------------------
+Matière / axe associé : Mathématiques
+Thématique visuelle dominante : domaine orageux sacré, géométrie divine, éclairs
+
+Nom : bg_map_temple_zeus_lvl_0
+Rôle : Background paysage du domaine local de Zeus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_zeus_lvl_2
+Rôle : Background paysage du domaine local de Zeus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_zeus_lvl_4
+Rôle : Background paysage du domaine local de Zeus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_zeus_lvl_6
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_8
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_10
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_12
+Rôle : Background paysage du domaine local de Zeus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mathématiques.
+
+Nom : bg_map_temple_zeus_lvl_14
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_16
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_18
+Rôle : Background paysage du domaine local de Zeus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_zeus_lvl_20
+Rôle : Background paysage du domaine local de Zeus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+ATHENA
+--------------------------------------------------
+Matière / axe associé : Français / sagesse / langage
+Thématique visuelle dominante : bibliothèque sacrée, lumière blanc-or, savoir vivant
+
+Nom : bg_map_temple_athena_lvl_0
+Rôle : Background paysage du domaine local de Athena, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_athena_lvl_2
+Rôle : Background paysage du domaine local de Athena, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_athena_lvl_4
+Rôle : Background paysage du domaine local de Athena, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_athena_lvl_6
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_8
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_10
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_12
+Rôle : Background paysage du domaine local de Athena, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Français / sagesse / langage.
+
+Nom : bg_map_temple_athena_lvl_14
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_16
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_18
+Rôle : Background paysage du domaine local de Athena, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_athena_lvl_20
+Rôle : Background paysage du domaine local de Athena, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+ARES
+--------------------------------------------------
+Matière / axe associé : Histoire / guerre / héroïsme
+Thématique visuelle dominante : champ de bataille noble, fortifications antiques, énergie martiale
+
+Nom : bg_map_temple_ares_lvl_0
+Rôle : Background paysage du domaine local de Ares, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_ares_lvl_2
+Rôle : Background paysage du domaine local de Ares, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_ares_lvl_4
+Rôle : Background paysage du domaine local de Ares, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_ares_lvl_6
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_8
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_10
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_12
+Rôle : Background paysage du domaine local de Ares, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Histoire / guerre / héroïsme.
+
+Nom : bg_map_temple_ares_lvl_14
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_16
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_18
+Rôle : Background paysage du domaine local de Ares, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_ares_lvl_20
+Rôle : Background paysage du domaine local de Ares, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+POSEIDON
+--------------------------------------------------
+Matière / axe associé : SVT / nature / océan
+Thématique visuelle dominante : sanctuaire marin sacré, eaux turquoise, coraux et vie marine
+
+Nom : bg_map_temple_poseidon_lvl_0
+Rôle : Background paysage du domaine local de Poseidon, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_poseidon_lvl_2
+Rôle : Background paysage du domaine local de Poseidon, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_poseidon_lvl_4
+Rôle : Background paysage du domaine local de Poseidon, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_poseidon_lvl_6
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_8
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_10
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_12
+Rôle : Background paysage du domaine local de Poseidon, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à SVT / nature / océan.
+
+Nom : bg_map_temple_poseidon_lvl_14
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_16
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_18
+Rôle : Background paysage du domaine local de Poseidon, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_poseidon_lvl_20
+Rôle : Background paysage du domaine local de Poseidon, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+HERMES
+--------------------------------------------------
+Matière / axe associé : Anglais / langage / mobilité
+Thématique visuelle dominante : routes célestes, vents divins, messagers ailés
+
+Nom : bg_map_temple_hermes_lvl_0
+Rôle : Background paysage du domaine local de Hermes, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_hermes_lvl_2
+Rôle : Background paysage du domaine local de Hermes, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hermes_lvl_4
+Rôle : Background paysage du domaine local de Hermes, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hermes_lvl_6
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_8
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_10
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_12
+Rôle : Background paysage du domaine local de Hermes, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Anglais / langage / mobilité.
+
+Nom : bg_map_temple_hermes_lvl_14
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_16
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_18
+Rôle : Background paysage du domaine local de Hermes, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hermes_lvl_20
+Rôle : Background paysage du domaine local de Hermes, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+APOLLO
+--------------------------------------------------
+Matière / axe associé : Musique / poésie / lumière
+Thématique visuelle dominante : sanctuaire solaire artistique, rayons, aura musicale
+
+Nom : bg_map_temple_apollon_lvl_0
+Rôle : Background paysage du domaine local de Apollo, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_apollon_lvl_2
+Rôle : Background paysage du domaine local de Apollo, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_apollon_lvl_4
+Rôle : Background paysage du domaine local de Apollo, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_apollon_lvl_6
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_8
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_10
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_12
+Rôle : Background paysage du domaine local de Apollo, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Musique / poésie / lumière.
+
+Nom : bg_map_temple_apollon_lvl_14
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_16
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_18
+Rôle : Background paysage du domaine local de Apollo, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_apollon_lvl_20
+Rôle : Background paysage du domaine local de Apollo, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+APHRODITE
+--------------------------------------------------
+Matière / axe associé : Art / dessin / inspiration
+Thématique visuelle dominante : jardins sacrés de beauté, aura rose, inspiration créative
+
+Nom : bg_map_temple_aphrodite_lvl_0
+Rôle : Background paysage du domaine local de Aphrodite, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_aphrodite_lvl_2
+Rôle : Background paysage du domaine local de Aphrodite, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_aphrodite_lvl_4
+Rôle : Background paysage du domaine local de Aphrodite, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_aphrodite_lvl_6
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_8
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_10
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_12
+Rôle : Background paysage du domaine local de Aphrodite, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Art / dessin / inspiration.
+
+Nom : bg_map_temple_aphrodite_lvl_14
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_16
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_18
+Rôle : Background paysage du domaine local de Aphrodite, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_aphrodite_lvl_20
+Rôle : Background paysage du domaine local de Aphrodite, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+DEMETER
+--------------------------------------------------
+Matière / axe associé : Mémoire / croissance / nature
+Thématique visuelle dominante : jardins fertiles, moissons, abondance vivante
+
+Nom : bg_map_temple_demeter_lvl_0
+Rôle : Background paysage du domaine local de Demeter, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_demeter_lvl_2
+Rôle : Background paysage du domaine local de Demeter, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_demeter_lvl_4
+Rôle : Background paysage du domaine local de Demeter, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_demeter_lvl_6
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_8
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_10
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_12
+Rôle : Background paysage du domaine local de Demeter, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Mémoire / croissance / nature.
+
+Nom : bg_map_temple_demeter_lvl_14
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_16
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_18
+Rôle : Background paysage du domaine local de Demeter, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_demeter_lvl_20
+Rôle : Background paysage du domaine local de Demeter, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+HEPHAESTUS
+--------------------------------------------------
+Matière / axe associé : Forge / craft / fabrication
+Thématique visuelle dominante : forge volcanique sacrée, bronze, lave maîtrisée
+
+Nom : bg_map_temple_hephaistos_lvl_0
+Rôle : Background paysage du domaine local de Hephaestus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_hephaistos_lvl_2
+Rôle : Background paysage du domaine local de Hephaestus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hephaistos_lvl_4
+Rôle : Background paysage du domaine local de Hephaestus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_hephaistos_lvl_6
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_8
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_10
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_12
+Rôle : Background paysage du domaine local de Hephaestus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Forge / craft / fabrication.
+
+Nom : bg_map_temple_hephaistos_lvl_14
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_16
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_18
+Rôle : Background paysage du domaine local de Hephaestus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_hephaistos_lvl_20
+Rôle : Background paysage du domaine local de Hephaestus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+PROMETHEUS
+--------------------------------------------------
+Matière / axe associé : Feu du savoir / révélation
+Thématique visuelle dominante : sanctuaire de la flamme savante, braises nobles, lumière ambre
+
+Nom : bg_map_temple_promethee_lvl_0
+Rôle : Background paysage du domaine local de Prometheus, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_promethee_lvl_2
+Rôle : Background paysage du domaine local de Prometheus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_promethee_lvl_4
+Rôle : Background paysage du domaine local de Prometheus, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_promethee_lvl_6
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_8
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_10
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_12
+Rôle : Background paysage du domaine local de Prometheus, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Feu du savoir / révélation.
+
+Nom : bg_map_temple_promethee_lvl_14
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_16
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_18
+Rôle : Background paysage du domaine local de Prometheus, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_promethee_lvl_20
+Rôle : Background paysage du domaine local de Prometheus, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+--------------------------------------------------
+CHAOS
+--------------------------------------------------
+Matière / axe associé : Corruption finale / boss ultime
+Thématique visuelle dominante : domaine abyssal corrompu, énergie noire-violette, ruines tordues
+
+Nom : bg_map_temple_chaos_lvl_0
+Rôle : Background paysage du domaine local de Chaos, version temple détruit / corrompu. Sert d’état initial du temple avant restauration.
+
+Nom : bg_map_temple_chaos_lvl_2
+Rôle : Background paysage du domaine local de Chaos, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_chaos_lvl_4
+Rôle : Background paysage du domaine local de Chaos, version restauration faible. Sert à montrer les premiers signes de reconstruction sans retour fort de la vie.
+
+Nom : bg_map_temple_chaos_lvl_6
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_8
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_10
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_12
+Rôle : Background paysage du domaine local de Chaos, version restauration intermédiaire. Sert à montrer le retour progressif de la vie, de la lumière divine et des petites créatures de décor liées à Corruption finale / boss ultime.
+
+Nom : bg_map_temple_chaos_lvl_14
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_16
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_18
+Rôle : Background paysage du domaine local de Chaos, version restauration avancée. Sert à montrer un temple presque sanctifié, riche en identité divine, en vie et en puissance visuelle.
+
+Nom : bg_map_temple_chaos_lvl_20
+Rôle : Background paysage du domaine local de Chaos, version sanctifiée finale. Sert d’état ultime du temple restauré pour l’aventure.
+
+
+==================================================
+RÉSUMÉ GLOBAL
+==================================================
+
+Nombre total de ressources listées : 121
+
+Répartition :
+- 11 séries de backgrounds
+- 11 niveaux par série
+- 1 série pour chacun des 10 dieux principaux + Chaos
+
+Séries concernées :
+- bg_map_temple_zeus_lvl_0 à bg_map_temple_zeus_lvl_20
+- bg_map_temple_athena_lvl_0 à bg_map_temple_athena_lvl_20
+- bg_map_temple_ares_lvl_0 à bg_map_temple_ares_lvl_20
+- bg_map_temple_poseidon_lvl_0 à bg_map_temple_poseidon_lvl_20
+- bg_map_temple_hermes_lvl_0 à bg_map_temple_hermes_lvl_20
+- bg_map_temple_apollon_lvl_0 à bg_map_temple_apollon_lvl_20
+- bg_map_temple_aphrodite_lvl_0 à bg_map_temple_aphrodite_lvl_20
+- bg_map_temple_demeter_lvl_0 à bg_map_temple_demeter_lvl_20
+- bg_map_temple_hephaistos_lvl_0 à bg_map_temple_hephaistos_lvl_20
+- bg_map_temple_promethee_lvl_0 à bg_map_temple_promethee_lvl_20
+- bg_map_temple_chaos_lvl_0 à bg_map_temple_chaos_lvl_20
+
+Fin du fichier.

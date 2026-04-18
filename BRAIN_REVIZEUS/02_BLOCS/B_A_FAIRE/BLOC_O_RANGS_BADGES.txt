@@ -1,0 +1,963 @@
+RÉVIZEUS — BLOC O
+RANGS HÉROS + RANGS SAVOIR + RANG MÉTA + BADGES À 3 NIVEAUX + TITRES + CONSTELLATIONS
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de donner à RéviZeus une vraie progression longue durée,
+noble, lisible, désirable et émotionnellement marquante,
+sans casser l’économie existante ni transformer le jeu en distributeur de popups.
+
+Le système doit reconnaître :
+- la montée du héros,
+- la montée réelle du savoir,
+- la qualité profonde du parcours,
+- la constance,
+- la créativité,
+- la persévérance,
+- le courage après échec,
+- l’exploration du panthéon,
+- le soin des savoirs,
+- la progression invisible pilotant l’IA,
+- et la beauté de la collection dans le temps.
+
+Ce bloc n’est pas un simple “système de badges”.
+C’est une couche d’identité, de prestige, de mémoire émotionnelle et d’ascension mythique.
+
+Ce bloc doit produire :
+- un rang héros visible et noble,
+- un rang savoir visible et mérité,
+- un rang méta invisible mais utile,
+- des badges évolutifs à 3 niveaux,
+- des titres secondaires,
+- des snapshots de progression cohérents,
+- une UI noble : popups, livre, profil, dashboard discret,
+- une lecture long terme sans inflation de récompenses.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC O DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC O arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros + IA adaptative V1
+- L : analytics pédagogiques avancées + moteur cognitif + révision intelligente + Déméter
+- M : recommandations IA + prochaine meilleure action + suggestions stratégiques
+- N : dashboard vivant + widgets d’insight + agora divine + monde réactif
+
+Il prépare ensuite :
+- P : aventure structurée, zones, quêtes, boss éducatifs
+- Q : lore, carte du monde, intro, tension mythologique et polissage transversal
+
+Ce bloc doit venir quand les boucles d’apprentissage, de progression, d’analytics
+et de récompenses sont déjà assez stables pour supporter une progression méta durable.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Donner au héros une ascension lente, prestigieuse et lisible,
+sans trahir la pédagogie réelle.
+
+Objectifs principaux :
+- rendre visible la progression RPG du héros,
+- rendre visible la noblesse intellectuelle du savoir,
+- garder une couche méta invisible qui ajuste l’IA,
+- faire des badges de vraies reliques désirables,
+- reconnaître différents styles de mérite,
+- relier la progression à l’émotion, à la mémoire et à l’identité du joueur,
+- garder un rythme modéré à lent,
+- préparer une intégration propre dans Dashboard, Profil, QuizResult, Temple, Inventaire et futurs écrans.
+
+Objectifs secondaires :
+- donner envie de revenir sans tomber dans la saturation,
+- reconnaître l’effort même hors performance brute,
+- faire sentir que RéviZeus voit, comprend et magnifie le parcours,
+- préparer plus tard des liens avec aventure, monde, dieux et constellations.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+les rangs et badges ne doivent jamais être calculés dans chaque Activity.
+Ils doivent être centralisés via des managers dédiés, des snapshots cohérents,
+une persistance claire et une UI découplée.
+
+INTERDIT :
+- calculer le rang dans QuizResultActivity, puis ailleurs différemment,
+- faire progresser les badges par des incréments bricolés dans plusieurs écrans,
+- mélanger la logique UI de popup avec le cœur métier des rangs,
+- afficher le rang méta comme une statistique brute,
+- rendre l’ambroisie, l’XP ou les fragments triviaux à cause des récompenses dérivées,
+- créer des badges décoratifs sans lien réel avec le gameplay.
+
+OBLIGATOIRE :
+- RankManager central,
+- BadgeManager central,
+- éventuellement ProgressionRepository central,
+- snapshots cohérents,
+- stockages Room propres,
+- branchements clairs dans les flows métier,
+- UI noble mais non envahissante,
+- différenciation claire entre visible et invisible.
+
+Architecture cible recommandée :
+- HeroRankType
+- KnowledgeRankType
+- MetaRankState
+- RankSnapshot
+- BadgeDefinition
+- BadgeProgress
+- BadgeTier
+- BadgeFamily
+- ProgressionRepository
+- RankManager
+- BadgeManager
+- BadgeRewardPolicy / BadgeResonancePolicy léger si utile
+- TitleManager / TitleDefinition
+- éventuellement RewardLedger si le pipeline de récompenses le justifie
+
+════════════════════════════════════════════════════════════════════
+4 — LES 3 COUCHES DE PROGRESSION À DISTINGUER
+════════════════════════════════════════════════════════════════════
+
+4.1 Rang du Héros
+- visible
+- RPG
+- noble
+- basé surtout sur le parcours global, l’XP, la progression réelle et la persistance
+
+Il représente :
+la stature mythologique du joueur dans RéviZeus.
+
+4.2 Rang du Savoir
+- visible
+- plus intellectuel
+- plus exigeant
+- basé sur la qualité réelle d’apprentissage, la stabilité, la régularité et la maîtrise
+
+Il représente :
+la noblesse de la relation du héros au savoir.
+
+4.3 Rang Méta
+- invisible ou très indirect
+- moteur interne
+- utilisé pour piloter l’IA, les densités, la profondeur de certaines aides
+
+Il représente :
+la lecture profonde et silencieuse du niveau d’autonomie, de finesse et de maturité de progression.
+
+Important :
+le rang méta ne doit jamais être exposé comme un chiffre brut.
+Il sert à régler le jeu, pas à créer une pression frontale supplémentaire.
+
+════════════════════════════════════════════════════════════════════
+5 — HIÉRARCHIES RECOMMANDÉES
+════════════════════════════════════════════════════════════════════
+
+5.1 Hiérarchie de Rang Héros
+Proposition noble et progressive :
+1. Mortel
+2. Initié
+3. Aspirant du Panthéon
+4. Guerrier Sacré
+5. Champion des Temples
+6. Héraut Divin
+7. Demi-Dieu
+8. Ascendant Olympien
+9. Héritier du Tonnerre
+10. Légende de l’Olympe
+
+Calibrage recommandé :
+- rang 1 : niveaux 1 à 4
+- rang 2 : niveaux 5 à 9
+- rang 3 : niveaux 10 à 14
+- rang 4 : niveaux 15 à 24
+- rang 5 : niveaux 25 à 34
+- rang 6 : niveaux 35 à 49
+- rang 7 : niveaux 50 à 69
+- rang 8 : niveaux 70 à 89
+- rang 9 : niveaux 90 à 119
+- rang 10 : niveau 120+
+
+5.2 Hiérarchie de Rang Savoir
+Proposition visible, plus intellectuelle, plus méritée :
+1. Novice du Savoir
+2. Apprenti des Muses
+3. Disciple du Logos
+4. Analyste Sacré
+5. Archiviste d’Athéna
+6. Stratège de l’Esprit
+7. Maître du Savoir
+8. Oracle Mineur
+9. Sage Olympien
+10. Flamme de Vérité
+
+Important :
+ce rang ne doit pas être du simple grind.
+Il doit dépendre d’une vraie qualité d’apprentissage.
+
+5.3 États de Rang Méta
+Proposition interne :
+1. Guidage Sacré
+2. Progression Accompagnée
+3. Éveil Stratégique
+4. Maîtrise Exigeante
+5. Niveau Olympien
+
+Important :
+ces états servent à l’IA, à la densité, à la profondeur des corrections,
+à la manière d’aider ou challenger, sans devenir un écran de score visible.
+
+════════════════════════════════════════════════════════════════════
+6 — BADGES À 3 NIVEAUX : PHILOSOPHIE ET CALIBRAGE
+════════════════════════════════════════════════════════════════════
+
+Le badge doit devenir un moteur de reconnaissance lente et désirable.
+
+Structure générale :
+- niveau I = seuil de base
+- niveau II = seuil renforcé
+- niveau III = seuil rare
+
+Philosophie de calibration :
+- niveau I : fréquent au début
+- niveau II : notable
+- niveau III : rare et désirable
+
+Exemples conceptuels :
+- badge de 10 quiz :
+  I = 10
+  II = 25
+  III = 50
+
+- badge de 5 scans :
+  I = 5
+  II = 15
+  III = 35
+
+- badge niveau 20 :
+  I = 20
+  II = 35
+  III = 50
+
+- badge perfect score :
+  I = 1
+  II = 5
+  III = 15
+
+- badge streak 7 :
+  I = 7
+  II = 21
+  III = 49
+
+Le système doit faire évoluer les badges existants selon une logique dérivée,
+pas forcément en recréant tout de zéro.
+
+Important :
+les badges ne doivent pas popper puis être oubliés.
+Ils doivent devenir beaux, prestigieux, mémorables et liés au style de jeu.
+
+════════════════════════════════════════════════════════════════════
+7 — FAMILLES DE BADGES ET STYLES DE MÉRITE
+════════════════════════════════════════════════════════════════════
+
+Les badges doivent reconnaître différents styles de mérite :
+- découverte
+- constance
+- précision
+- courage après échec
+- créativité
+- exploration du panthéon
+- soin du jardin mémoire
+- invocation intelligente
+- export / partage / valorisation du savoir
+- organisation et conservation
+- craft et artisanat
+- progression d’Oracle
+- fidélité à une matière ou un dieu
+- capacité à revenir après difficulté
+
+Familles recommandées :
+- Persévérance
+- Progression
+- Oracle
+- Combat / Quiz
+- Panthéon
+- Forge
+- Inventaire / Artefacts
+- Interactions / Export
+- Jardin / Mémoire
+- Spéciaux / Secrets
+
+L’objectif est qu’un joueur puisse se sentir reconnu
+même s’il n’est pas seulement “meilleur score”.
+
+════════════════════════════════════════════════════════════════════
+8 — TITRES SECONDAIRES ET IDENTITÉ DU JOUEUR
+════════════════════════════════════════════════════════════════════
+
+Le bloc O doit aussi prévoir une couche de titres secondaires.
+
+Rôle :
+- donner une identité de style de jeu,
+- permettre une personnalisation noble,
+- récompenser certaines familles de badges,
+- enrichir l’écran de profil.
+
+Exemples de titres :
+- Érudit du Panthéon
+- Flamme de Persévérance
+- Favori d’Athéna
+- Forgeron de l’Esprit
+- Gardien des Savoirs
+- Messager des Langues
+- Jardinier du Logos
+- Héraut de la Constance
+- Stratège Sacré
+- Conservateur des Reliques
+
+À terme, le profil héros peut afficher :
+- titre héroïque actuel
+- titre de savoir actuel
+- phrase divine associée
+
+La “Salle des titres” est une idée premium à préparer,
+au moins au niveau data et logique.
+
+════════════════════════════════════════════════════════════════════
+9 — CONSTELLATIONS, LIVRE DES BADGES ET PRESTIGE VISUEL
+════════════════════════════════════════════════════════════════════
+
+Les badges ne doivent pas être une liste plate.
+Ils peuvent être regroupés en constellations de familles.
+
+Concept :
+les badges d’une même famille remplissent une constellation.
+Quand la constellation progresse :
+- la page devient plus belle,
+- le fond évolue,
+- un texte divin s’enrichit,
+- une résonance légère se débloque.
+
+Le livre des badges doit pouvoir évoluer lui-même :
+- fond plus noble
+- lumière plus riche
+- sonorité plus prestigieuse
+- animation subtile des badges mythiques
+- prestige de page
+
+Le joueur doit avoir envie de rendre son livre magnifique.
+
+Idées premium à préparer :
+- prestige de page
+- page sanctifiée
+- page restaurée
+- état mythique
+- dates de gloire
+- animations subtiles des badges rares
+
+Important :
+cela ne doit pas casser les performances ni saturer l’UI.
+Il faut une V1 propre, puis une montée en sophistication.
+
+════════════════════════════════════════════════════════════════════
+10 — RÉSONANCE LÉGÈRE ET BONUS À MICRO-IMPACT
+════════════════════════════════════════════════════════════════════
+
+Les badges peuvent avoir une résonance légère,
+mais ne doivent jamais casser l’économie du jeu.
+
+Principe :
+chaque badge actif ou niveau de badge peut offrir un micro-effet.
+
+Exemples de bonus très légers :
+- +0,5 % XP sur une famille d’actions
+- +0,5 % fragments sur un contexte précis
+- +0,5 % stabilité de progression
+- +1 % sur un axe ultra localisé
+- léger lissage de confort
+
+Cap global recommandé :
+6 % à 8 % maximum à très long terme
+
+Ainsi :
+- le joueur ressent quelque chose
+- l’économie reste intacte
+- les badges restent désirables
+
+Si cette couche est trop risquée à implémenter immédiatement,
+elle peut être préparée côté architecture sans être activée partout.
+
+════════════════════════════════════════════════════════════════════
+11 — RÉACTIONS DIVINES ET RECONNAISSANCE ÉMOTIONNELLE
+════════════════════════════════════════════════════════════════════
+
+Le plus fort n’est pas le bonus.
+C’est la reconnaissance.
+
+Les dieux doivent pouvoir commenter certaines montées :
+- Athéna sur les badges intellectuels
+- Arès sur les exploits de courage ou défi
+- Zeus sur certaines ascensions majeures
+- Prométhée sur les badges liés à l’effort et au sens
+- Déméter sur les badges de constance et mémoire
+- Héphaïstos sur forge et artisanat
+- Hermès sur langues et circulation du savoir
+- Apollon sur créativité et mémorisation artistique
+- Aphrodite sur visualisation et beauté
+- Poséidon sur compréhension systémique et vivant
+
+Moments recommandés :
+- popup badge obtenu
+- montée de rang
+- grande étape de savoir
+- cérémonie rare
+- profil héros
+- livre des badges enrichi
+- dashboard discret
+
+Cette reconnaissance émotionnelle a un coût technique modéré
+et une valeur perçue très forte.
+
+════════════════════════════════════════════════════════════════════
+12 — SOUS-CHANTIERS DU BLOC O
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+O1 — FONDATIONS DATA DE LA MÉTA-PROGRESSION
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+mettre en place la persistance propre de la progression longue durée.
+
+Structures recommandées :
+- RewardLedger si nécessaire
+- RankSnapshot
+- BadgeDefinition
+- BadgeProgress
+- extensions UserAnalytics / UserProfile / CourseEntry / MemoryScore si utile
+- éventuellement TitleDefinition ou UserTitleState
+- éventuellement metaScore / metaState / lastUpdated
+
+À faire :
+- auditer l’existant
+- éviter les doublons
+- ajouter les migrations Room nécessaires
+- préparer des snapshots cohérents
+
+Fichiers concernés :
+- AppDatabase.kt
+- nouvelles entités Room
+- UserProfile.kt
+- DAO associés
+
+Critère de fin :
+la couche de progression longue durée est persistée proprement.
+
+────────────────────────────────────────────────────────────────────
+O2 — RANKMANAGER CENTRAL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+centraliser tous les calculs de rang.
+
+Responsabilités :
+- calculer rang héros
+- calculer rang savoir
+- calculer rang méta
+- comparer ancien / nouveau snapshot
+- détecter les promotions
+- préparer les données UI
+- ne jamais laisser les Activities recalculer
+
+Méthodes recommandées :
+- getHeroRank(...)
+- getKnowledgeRank(...)
+- getMetaRankState(...)
+- buildRankSnapshot(...)
+- compareSnapshots(...)
+- getRankPromotionEvent(...)
+- getRankDisplayData(...)
+
+Fichiers concernés :
+- RankManager.kt
+- RankSnapshot.kt
+
+Critère de fin :
+un moteur unique calcule toutes les couches de rang.
+
+────────────────────────────────────────────────────────────────────
+O3 — BADGEMANAGER CENTRAL ET PROGRESSION À 3 NIVEAUX
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire évoluer le système de badges vers une progression noble et maintenable.
+
+Responsabilités :
+- stocker les définitions
+- suivre les progressions
+- appliquer les seuils I / II / III
+- reconnaître les familles
+- produire les événements badge obtenu
+- préparer les récompenses symboliques
+- préparer les constellations
+- éviter les doublons de logique
+
+À faire :
+- auditer BadgeManager existant si présent
+- créer BadgeDefinition
+- créer BadgeProgress
+- créer BadgeTier
+- créer BadgeFamily
+- centraliser les calculs
+
+Fichiers concernés :
+- BadgeManager.kt
+- BadgeDefinition.kt
+- BadgeProgress.kt
+- BadgeTier.kt
+- BadgeFamily.kt
+
+Critère de fin :
+les badges progressent en 3 niveaux selon une logique centralisée.
+
+────────────────────────────────────────────────────────────────────
+O4 — PROGRESSION REPOSITORY / SNAPSHOTS COHÉRENTS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer une couche cohérente entre événements bruts et affichage.
+
+Rôle :
+- agréger les événements
+- produire snapshots cohérents
+- éviter les comparaisons bricolées
+- servir de source pour popups et profil
+
+Fichiers concernés :
+- ProgressionRepository.kt
+- RankSnapshot.kt
+- éventuels modèles intermédiaires
+
+Critère de fin :
+les mises à jour et comparaisons de progression sont robustes.
+
+────────────────────────────────────────────────────────────────────
+O5 — BRANCHEMENT DANS LE REWARD PIPELINE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire progresser rangs et badges depuis les vrais événements.
+
+À brancher notamment dans :
+- Oracle / Result
+- TrainingQuiz
+- QuizResult
+- export / transformations si déjà existants
+- forge
+- bibliothèque / temple / inventaire / savoirs vivants
+
+Moments parfaits à utiliser :
+- fin de quiz
+- fin de training
+- résultat Oracle
+- forge réussie
+- consultation / organisation / export / conservation
+- retour après échec
+- réussite sur savoir fragile
+
+Important :
+journaliser les événements métier, pas seulement les résultats globaux.
+
+Fichiers concernés :
+- ResultActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- GodMatiereActivity.kt
+- ForgeActivity.kt
+- InventoryActivity.kt
+- autres flows concernés
+
+Critère de fin :
+la progression badge/rang suit le gameplay réel.
+
+────────────────────────────────────────────────────────────────────
+O6 — POPUPS RPG DE PROMOTION ET DE BADGE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire des montées de progression de vrais moments premium.
+
+Popup de promotion de rang :
+- ancien rang
+- nouveau rang
+- phrase divine
+- récompense symbolique éventuelle
+- son / halo / effet selon thème ou dieu dominant
+
+Popup badge obtenu :
+- nom badge
+- rareté
+- tier atteint
+- description courte
+- progression restante si tiers suivants existent
+
+Important :
+pas de toast brut.
+
+Fichiers concernés :
+- DialogRPGManager.kt / DialogRPGFragment.kt
+- QuizResultActivity.kt
+- autres écrans de déclenchement
+- SoundManager.kt si SFX dédiés
+
+Critère de fin :
+les montées importantes sont célébrées noblement et brièvement.
+
+────────────────────────────────────────────────────────────────────
+O7 — PROFIL HÉROS ET SALLE DES TITRES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+rendre la progression visible dans l’identité du héros.
+
+Le profil doit pouvoir afficher :
+- rang héros
+- rang savoir
+- quelques badges favoris
+- titres secondaires
+- progression globale
+- éventuellement journal des ascensions plus tard
+
+Idées premium à préparer :
+- salle des titres
+- phrase divine associée
+- aura évolutive selon rangs / badges / constellations
+- derniers badges élevés
+- date de gloire
+
+Fichiers concernés :
+- HeroProfileActivity.kt si présent
+- DashboardActivity.kt pour exposition légère
+- UserProfile.kt
+- TitleManager.kt / models associés si créés
+
+Critère de fin :
+le profil du héros devient un lieu de prestige et de mémoire.
+
+────────────────────────────────────────────────────────────────────
+O8 — LIVRE DES BADGES ET CONSTELLATIONS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+transformer le livre des badges en écran désirable.
+
+Fonctions attendues :
+- filtres :
+  - tous
+  - obtenus
+  - verrouillés
+  - par rareté
+  - par famille
+  - par dieu
+  - progression en cours
+- lecture des constellations de badges
+- mise en valeur des badges mythiques
+- progression visuelle des familles
+- présentation noble sans surcharge
+
+Fichiers concernés :
+- BadgeActivity.kt ou écran équivalent
+- layouts badges / book
+- BadgeManager.kt
+- éventuel Constellation / BadgeBook presenter
+
+Critère de fin :
+le livre des badges devient un vrai lieu de collection et de prestige.
+
+────────────────────────────────────────────────────────────────────
+O9 — TITRES SECONDAIRES ET AFFINITÉS DIVINES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+lier style de jeu, badges et panthéon.
+
+Exemples :
+- beaucoup de badges d’Athéna = petite phrase spéciale
+- beaucoup de badges de Zeus = reconnaissance différente
+- fidélité à un dieu = badge ou titre dédié
+- invocation répétée d’un dieu = titres ou affinité plus tard
+
+À faire :
+- centraliser les titres débloqués
+- relier certains groupes de badges à des titres
+- préparer la reconnaissance divine ciblée
+
+Fichiers concernés :
+- TitleManager.kt
+- BadgeManager.kt
+- GodLoreManager.kt
+- GodMatiereActivity.kt plus tard si fidélité par dieu
+
+Critère de fin :
+les titres et affinités deviennent une vraie couche d’identité.
+
+────────────────────────────────────────────────────────────────────
+O10 — RANG MÉTA ET BRANCHEMENT IA
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+utiliser la progression invisible pour mieux régler l’IA.
+
+À faire :
+- calcul méta interne
+- adaptation prompts / correction / densité via GeminiManager et GodLoreManager
+- ne jamais afficher le rang méta comme une stat brute
+- relier le rang méta au niveau de finesse, d’autonomie, de profondeur de défi et d’aide
+
+Fichiers concernés :
+- RankManager.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+- CognitiveEngineManager.kt
+- LearningProfileManager.kt
+
+Critère de fin :
+l’IA profite du rang méta sans l’imposer visuellement au joueur.
+
+────────────────────────────────────────────────────────────────────
+O11 — CÉRÉMONIES RARES ET JOURNAL DES ASCENSIONS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+préparer quelques moments très mémorables, sans spam.
+
+Moments rares recommandés :
+- rang savoir 5, 8, 10
+- rang héros 5, 7, 10
+- badge mythique rare
+- constellation majeure complétée
+
+Fonctions à préparer :
+- cérémonie plus noble qu’un popup standard
+- journal des ascensions dans le profil
+- dernières montées de rang
+- derniers badges élevés
+- date de gloire
+
+Important :
+très rare, très marquant, jamais banal.
+
+Fichiers concernés :
+- HeroProfileActivity.kt
+- DialogRPGManager.kt
+- RankManager.kt
+- BadgeManager.kt
+- éventuel AscensionLogEntity / model
+
+Critère de fin :
+l’architecture permet des moments de prestige rares sans surcharger le présent.
+
+────────────────────────────────────────────────────────────────────
+O12 — PRÉPARATION DE L’INTÉGRATION AVEC DASHBOARD, AVENTURE ET MONDE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+préparer les liens avec N, P et Q sans tout coder ici.
+
+À prévoir :
+- dashboard discret :
+  - badges récents
+  - montée de rang récente
+  - titre actuel
+- aventure :
+  - certains seuils débloquent du prestige ou des rites
+- monde :
+  - constellations, prestige de page, reconnaissance divine
+- profil :
+  - identité visuelle et historique
+
+À NE PAS SURCHARGER TOUT DE SUITE :
+- rang par temple complet
+- reliques majeures partout
+- avantages passifs trop puissants
+- mur de badges sur dashboard
+- UI infinie
+
+Critère de fin :
+la progression méta est prête à nourrir les autres blocs sans refonte.
+
+════════════════════════════════════════════════════════════════════
+13 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- BadgeManager.kt
+- BadgeActivity.kt si présent
+- AppDatabase.kt
+- UserProfile.kt
+- CourseEntry.kt
+- MemoryScore.kt
+- UserAnalytics.kt
+- UserSkillProfile.kt
+- QuizResultActivity.kt
+- TrainingQuizActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+
+Priorité 2 :
+- HeroProfileActivity.kt si présent
+- DashboardActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+- ForgeActivity.kt
+- InventoryActivity.kt
+- éventuels repositories / DAOs de progression
+
+Priorité 3 :
+- futurs écrans de constellations
+- futurs liens aventure / monde
+- futurs systèmes de rangs par temple ou fidélité divine avancée
+
+════════════════════════════════════════════════════════════════════
+14 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. auditer l’existant badges / progression
+2. créer les fondations data
+3. créer RankManager
+4. créer ou refondre BadgeManager
+5. créer snapshots et repository cohérents
+6. brancher le reward pipeline réel
+7. créer les popups RPG de promotion / badge
+8. intégrer le profil héros et titres
+9. intégrer le livre des badges
+10. préparer les constellations
+11. brancher le rang méta sur l’IA
+12. préparer cérémonies rares et intégrations futures
+
+Pourquoi cet ordre :
+- on verrouille d’abord la donnée,
+- puis les calculs,
+- puis les événements,
+- puis la mise en scène,
+- puis les raffinements premium.
+
+════════════════════════════════════════════════════════════════════
+15 — CRITÈRES DE FIN DU BLOC O
+════════════════════════════════════════════════════════════════════
+
+Le bloc O est considéré comme FAIT si :
+- le rang héros existe et est calculé centralement,
+- le rang savoir existe et reflète une progression méritée,
+- le rang méta existe et pilote l’IA sans devenir une stat brute,
+- les badges progressent sur 3 niveaux,
+- les familles et constellations sont préparées proprement,
+- les popups de progression sont nobles et brefs,
+- le profil héros et le livre des badges gagnent en prestige,
+- la progression est lente, lisible, désirée et non inflationniste,
+- l’architecture est prête à nourrir Dashboard, Aventure et Monde vivant.
+
+════════════════════════════════════════════════════════════════════
+16 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- calculer les rangs dans chaque Activity
+- mélanger UI et logique badge
+- mettre 500 récompenses à chaque écran
+- rendre l’ambroisie triviale
+- transformer le rang savoir en volume de grind
+- afficher le rang méta comme statistique brute
+- faire des badges sans rapport clair avec le gameplay réel
+- créer des seuils absurdes ou punitifs
+- progression trop rapide
+- UI trop chargée
+- trop de notifications
+- bonus trop puissants qui cassent l’équilibrage
+
+════════════════════════════════════════════════════════════════════
+17 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC O : “Rangs héros + rangs savoir + rang méta + badges à 3 niveaux + titres + constellations”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- tous les moments de montée importante doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- la progression doit rester modérée à lente,
+- le rang méta ne doit pas être exposé comme une stat brute,
+- les badges doivent reconnaître le gameplay réel, pas être décoratifs.
+
+Objectif :
+Créer une vraie méta-progression RéviZeus qui :
+1. ajoute les fondations data de la progression longue durée,
+2. crée RankManager,
+3. crée ou refond BadgeManager avec tiers I / II / III,
+4. prépare snapshots et repository de progression,
+5. branche les événements réels depuis Oracle / Quiz / Training / Forge / Inventaire / Savoirs,
+6. crée les popups RPG de rang et badge,
+7. enrichit le profil héros avec rangs, titres et badges favoris,
+8. enrichit le livre des badges avec filtres et logique de constellations,
+9. prépare des micro-résonances légères et des réactions divines,
+10. branche le rang méta sur l’IA sans l’afficher directement.
+
+Philosophie de progression :
+- rang héros visible, prestigieux, RPG
+- rang savoir visible, plus intellectuel et mérité
+- rang méta invisible, adaptatif, intelligent
+- badges à 3 niveaux, progression lente, désirables
+- titres secondaires, affinités divines, constellations et prestige de collection
+- popups nobles et non envahissants
+- équilibre économique intact
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- BadgeManager.kt
+- BadgeActivity.kt
+- AppDatabase.kt
+- UserProfile.kt
+- CourseEntry.kt
+- MemoryScore.kt
+- UserAnalytics.kt
+- UserSkillProfile.kt
+- QuizResultActivity.kt
+- TrainingQuizActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- HeroProfileActivity.kt si présent
+- DashboardActivity.kt
+- GeminiManager.kt
+- GodLoreManager.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles migrations nécessaires, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+18 — RÉSUMÉ ULTRA COURT DU BLOC O
+════════════════════════════════════════════════════════════════════
+
+Ce bloc donne à RéviZeus sa montée en prestige long terme.
+Le héros gagne un rang noble.
+Le savoir gagne une noblesse propre.
+L’IA reçoit une lecture méta invisible.
+Les badges deviennent des reliques évolutives à trois niveaux.
+Les titres, constellations et réactions divines donnent au joueur le sentiment que son parcours est vu, compris et magnifié.

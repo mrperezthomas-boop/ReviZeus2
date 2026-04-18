@@ -1,0 +1,2312 @@
+RÉVIZEUS — BLOC P FINAL ULTIME TIERCE++
+MODE AVENTURE RPG ADAPTATIF GÉNÉRATIF PAR UTILISATEUR
+Version : GOD TIER ULTIMATE FINAL
+Date : 2026-03-24
+Statut : VERSION DE RÉFÉRENCE À UTILISER À LA PLACE DE TOUTES LES VERSIONS PRÉCÉDENTES DU BLOC P
+
+══════════════════════════════════════════════════════════════════════════════
+0 — RÔLE ABSOLU DE CE BLOC
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de définir la version finale de référence du mode aventure de RéviZeus.
+
+Ce mode aventure ne doit pas être :
+- un simple habillage RPG posé sur des quiz,
+- un menu supplémentaire de défis scolaires,
+- une succession de QCM avec décor,
+- un mode secondaire décoratif.
+
+Ce mode aventure doit devenir :
+- un vrai RPG éducatif tactique,
+- un système de campagne mythologique complet,
+- un moteur de combats à PV,
+- un espace où les dieux combattent réellement,
+- un lieu où les savoirs enregistrés deviennent la matière première des affrontements,
+- un système où la difficulté, les ennemis, les récompenses, les rencontres, les boss et les accès sont adaptés au profil réel de chaque utilisateur,
+- un moteur où l’IA ne se contente pas de produire des questions, mais structure l’expérience entière du combat et de la progression du monde.
+
+Le principe ultime est le suivant :
+
+RéviZeus doit faire sentir au joueur que :
+- ses vrais savoirs nourrissent la puissance des dieux,
+- ses vraies réussites blessent les monstres,
+- ses vraies erreurs exposent les dieux,
+- ses vrais temples renforcent le monde,
+- ses vrais objets forgés changent le combat,
+- ses vraies habitudes d’apprentissage modifient la campagne,
+- ses vraies forces et fragilités façonnent les ennemis rencontrés et la manière de les combattre.
+
+Le mode aventure devient donc un RPG adaptatif génératif contraint par les règles du monde.
+
+Le contenu n’est pas totalement figé.
+Le contenu n’est pas totalement aléatoire.
+Le contenu est :
+- mythologiquement fixe dans son identité,
+- structurellement piloté par des règles,
+- tactiquement généré selon le profil réel du joueur,
+- pédagogiquement nourri par les savoirs réellement enregistrés,
+- émotionnellement mis en scène comme une campagne épique.
+
+══════════════════════════════════════════════════════════════════════════════
+1 — CE QUE CE BLOC REMPLACE ET CE QU’IL ABSORBE
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc remplace les versions précédentes du BLOC P.
+
+Il absorbe, remplace et étend directement :
+- le bloc aventure structuré simple,
+- le bloc aventure avec zones / quêtes / boss,
+- le bloc aventure RPG à combats basés sur QCM,
+- la version étendue avec équipements et progression monde.
+
+Cette version finale doit être considérée comme la seule référence valide pour la conception du mode aventure.
+
+Elle conserve les bonnes idées des versions précédentes, mais elle ajoute noir sur blanc ce qui est devenu indispensable :
+- adaptation par utilisateur,
+- génération logique des combats,
+- génération logique des PV, difficultés et patterns,
+- sourcing des questions par temple réel,
+- déblocages par règles,
+- boss à identité fixe mais calibrage dynamique,
+- objets et équipements forgeables vraiment liés aux dieux,
+- progression aventure liée aux temples, à la cognition, aux savoirs, aux rangs et au monde.
+
+══════════════════════════════════════════════════════════════════════════════
+2 — POSITION DU BLOC P DANS LE PLAN GLOBAL
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC P final arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels et feedbacks immersifs
+- C : audio global, TTS, ducking, loadings, fonds vidéo/image
+- D : Oracle premium, résumé, validation, temple, quiz
+- E : quiz nouvelle génération, corrections, résultat
+- F : récompenses unifiées, fragments, économie, gains
+- G : forge, inventaire, objets, craft, tri, filtres
+- H : progression des temples, reconstruction, déblocages monde
+- I : savoirs vivants, sous-dossiers, long press, artefacts, export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros et IA adaptative V1
+- L : analytics pédagogiques, cognition, révision intelligente, Déméter
+- M : recommandations IA et prochaine meilleure action
+- N : dashboard vivant, insights, agora, monde réactif
+- O : rangs, badges, titres, constellations, méta-progression
+
+Il prépare ensuite :
+- Q : lore, carte du monde, intro, tension mythologique, bestiaire officiel, polissage transversal
+
+Le BLOC P final ne vit pas à côté des autres blocs.
+Il les réutilise tous.
+
+Le mode aventure doit être l’endroit où tout converge :
+- savoirs,
+- quiz,
+- dieux,
+- temples,
+- forge,
+- objets,
+- IA adaptative,
+- cognition,
+- recommandations,
+- rangs,
+- badges,
+- monde vivant,
+- lore.
+
+══════════════════════════════════════════════════════════════════════════════
+3 — VISION PRODUIT FINALE DU MODE AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Le mode aventure doit être perçu par le joueur comme un vrai RPG de campagne.
+
+Le joueur entre dans une zone.
+Un dieu ou une équipe de dieux avance dans un décor vivant.
+Une menace apparaît.
+Une rencontre se déclenche.
+Le combat démarre.
+Les barres de vie apparaissent.
+Le monstre attaque.
+Le dieu répond.
+Le QCM devient le moteur tactique du combat.
+Chaque bonne réponse frappe réellement.
+Chaque mauvaise réponse coûte réellement quelque chose.
+Chaque question est une action de bataille.
+Chaque combat purifie ou aggrave le monde.
+Chaque victoire change l’état d’une zone, d’un temple ou d’un chapitre.
+Chaque équipement forgé a un vrai impact.
+Chaque boss est une épreuve mythologique.
+Chaque utilisateur vit une version cohérente, mais partiellement différente, de l’aventure.
+
+Il faut que le joueur sente :
+- une montée en puissance,
+- une tension,
+- une logique de build,
+- une identité des dieux,
+- une identité des monstres,
+- une difficulté juste,
+- une adaptation discrète,
+- une vraie progression de campagne,
+- une vraie logique d’objets et de préparation,
+- une vraie lecture de ses forces et faiblesses,
+- une vraie sensation de “je pars en aventure”.
+
+══════════════════════════════════════════════════════════════════════════════
+4 — PRINCIPE FONDAMENTAL : RPG ADAPTATIF GÉNÉRATIF CONTRAINT
+══════════════════════════════════════════════════════════════════════════════
+
+Le mode aventure ne doit pas être totalement scripté.
+Le mode aventure ne doit pas être totalement aléatoire.
+Le mode aventure ne doit pas être totalement figé.
+Le mode aventure ne doit pas être totalement libre.
+
+Le bon modèle est :
+
+4.1 Ce qui doit être fixe
+- identité des dieux,
+- identité des zones,
+- identité des familles de monstres,
+- identité des boss,
+- identité des chapitres,
+- identité des mécaniques signatures,
+- identité des objets majeurs,
+- identité des raretés,
+- identité du monde,
+- identité des règles de progression.
+
+4.2 Ce qui doit être généré
+- difficulté réelle d’une rencontre,
+- nombre de questions dans un combat,
+- longueur réelle de certaines phases,
+- PV exacts d’un monstre ou d’un boss,
+- fréquence des questions spéciales,
+- nombre d’ennemis dans une rencontre,
+- sévérité des punitions,
+- type de soutien implicite accordé,
+- sous-sélection d’ennemis rencontrés,
+- forme précise des récompenses dans une enveloppe cohérente,
+- suggestions d’équipement ou de duo,
+- accès à certains combats contextuels,
+- priorisation de certaines zones ou quêtes.
+
+4.3 Ce qui doit être généré sous contrainte
+- la génération doit rester dans des enveloppes de cohérence,
+- un boss doit rester lui-même,
+- une zone doit rester elle-même,
+- un dieu doit rester lui-même,
+- une matière doit rester elle-même,
+- le joueur doit reconnaître l’identité du système,
+- la génération ne doit jamais paraître arbitraire ou injuste.
+
+Ainsi :
+un même boss pourra avoir des PV différents selon le joueur,
+mais gardera :
+- son nom,
+- son rôle,
+- son esthétique,
+- ses familles de compétences,
+- sa narration,
+- ses phases principales,
+- ses points faibles structurels.
+
+══════════════════════════════════════════════════════════════════════════════
+5 — GRANDE BOUCLE DU MODE AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Boucle globale :
+
+Dashboard / recommandation / hub aventure
+→ choix de zone
+→ lecture de la menace
+→ choix du dieu ou de l’équipe
+→ préparation équipements / outils / reliques
+→ entrée dans la zone
+→ exploration légère / narration / rencontre
+→ combat RPG piloté par QCM
+→ récompense / dégâts / purification / progression quête
+→ état de zone mis à jour
+→ boss ou suite de quêtes
+→ zone purifiée ou encore menacée
+→ progression monde et retour au hub
+
+Cette boucle doit permettre :
+- des sessions courtes,
+- des sessions moyennes,
+- des sessions longues de boss,
+- des sessions de préparation,
+- des sessions de chasse à certaines créatures,
+- des sessions de montée de temple,
+- des sessions d’équipement / forge en préparation d’une aventure.
+
+══════════════════════════════════════════════════════════════════════════════
+6 — DÉFINITION DU COMBAT RPG
+══════════════════════════════════════════════════════════════════════════════
+
+Le combat RPG doit être un système central à part entière.
+
+6.1 Le combat possède
+- un camp divin,
+- un camp ennemi,
+- des barres de vie,
+- des boucliers éventuels,
+- des statuts,
+- des capacités,
+- des effets passifs,
+- une logique de tours,
+- des moments de question,
+- des phases,
+- une résolution de dégâts,
+- une issue de victoire, défaite ou retraite éventuelle.
+
+6.2 Le combat est piloté par le QCM
+Chaque question représente la résolution d’une action ou d’un tour.
+
+6.3 Une bonne réponse
+- inflige des dégâts,
+- peut charger l’ultime,
+- peut déclencher une capacité,
+- peut briser un bouclier,
+- peut purifier un effet,
+- peut faire progresser un combo.
+
+6.4 Une mauvaise réponse
+- inflige des dégâts au camp divin,
+- peut appliquer un malus,
+- peut renforcer l’ennemi,
+- peut casser un combo,
+- peut accélérer une phase ennemie,
+- peut déclencher une invocation ou une attaque spéciale.
+
+6.5 Une réponse parfaite
+- augmente les dégâts,
+- charge plus vite l’ultime,
+- peut déclencher critique ou invocation,
+- peut soigner légèrement,
+- peut provoquer une rupture de phase.
+
+6.6 Une erreur grave
+sur question spéciale ou situation critique peut :
+- déclencher une attaque lourde,
+- déclencher une altération forte,
+- faire apparaître une chimère ennemie,
+- faire entrer le boss en rage,
+- faire perdre un avantage tactique important.
+
+══════════════════════════════════════════════════════════════════════════════
+7 — LE COMBAT EST CALCULÉ À PARTIR DU JOUEUR RÉEL
+══════════════════════════════════════════════════════════════════════════════
+
+C’est le point le plus important de cette version finale.
+
+Les combats ne doivent pas être construits seulement à partir :
+- du niveau de zone,
+- du type de boss,
+- du chapitre.
+
+Ils doivent aussi être construits à partir du joueur réel.
+
+Le système doit lire :
+- le profil d’accompagnement du héros,
+- les scores cognitifs,
+- la fatigue,
+- la frustration,
+- la stabilité de la matière,
+- les savoirs existants dans le temple concerné,
+- les notions faibles ou fortes,
+- le nombre de savoirs enregistrés,
+- les derniers résultats de quiz,
+- les dernières défaites ou victoires en aventure,
+- les équipements disponibles,
+- les dieux et duos déjà débloqués,
+- les patterns de jeu du joueur,
+- les ressources de forge possédées,
+- le rang héros,
+- le rang savoir,
+- le rang méta,
+- l’humeur,
+- la progression narrative du monde.
+
+Conséquence :
+chaque combat devient une version personnalisée mais cohérente d’un archétype de rencontre.
+
+══════════════════════════════════════════════════════════════════════════════
+8 — COMBATPROFILESNAPSHOT : SNAPSHOT DU JOUEUR AU MOMENT DU COMBAT
+══════════════════════════════════════════════════════════════════════════════
+
+Le moteur de combat doit créer un snapshot précis du joueur avant chaque rencontre importante.
+
+Structure recommandée : CombatProfileSnapshot
+
+Champs recommandés :
+- userId
+- currentMood
+- learningProfile
+- heroRank
+- knowledgeRankBySubject
+- metaRankState
+- templeLevel
+- templePedagogicState
+- masteryScoreSubject
+- stabilityScoreSubject
+- confidenceScoreSubject
+- fatigueScore
+- frustrationScore
+- relapseRiskScore
+- challengeTolerance
+- simplificationNeedScore
+- numberOfSavedKnowledgesInTemple
+- fragileKnowledgeCount
+- masteredKnowledgeCount
+- recentWinRate
+- recentLossRate
+- recentBossFails
+- recentBossWins
+- equippedItemsSummary
+- availableConsumablesSummary
+- unlockedDivineSynergies
+- unlockedPartySize
+- narrativeChapter
+- worldThreatState
+
+Ce snapshot ne doit pas être un gadget debug.
+Il doit être la base réelle de la personnalisation du combat.
+
+══════════════════════════════════════════════════════════════════════════════
+9 — ADVENTUREADAPTIVEDIRECTOR : DIRECTEUR ADAPTATIF DU MODE AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC P final doit prévoir un directeur adaptatif central.
+
+Nom recommandé :
+AdventureAdaptiveDirector
+
+Rôle :
+prendre toutes les données du joueur et du monde,
+puis déterminer la forme concrète du contenu aventure.
+
+Il doit décider :
+- quel type de rencontre lancer,
+- combien d’ennemis générer,
+- quelle difficulté réelle attribuer,
+- quel budget de combat autoriser,
+- combien de PV allouer à l’ennemi ou au boss,
+- combien de questions inclure,
+- quel type de questions mettre en avant,
+- quel pacing utiliser,
+- quel niveau de punition appliquer,
+- si un soutien discret doit intervenir,
+- si une super question est pertinente,
+- si une phase finale doit être déclenchée,
+- si le combat doit être bref, moyen ou long.
+
+Il ne doit pas tout inventer de zéro.
+Il doit générer dans les bornes fixées par les définitions.
+
+══════════════════════════════════════════════════════════════════════════════
+10 — ENCOUNTERBUDGETGENERATOR : BUDGET DE RENCONTRE
+══════════════════════════════════════════════════════════════════════════════
+
+Plutôt que de dire :
+“ce boss a toujours 1000 PV et fait toujours 50 dégâts”,
+le système doit fonctionner par budget.
+
+Le budget de rencontre représente :
+- la pression totale autorisée,
+- la durée visée,
+- la létalité attendue,
+- la densité cognitive du combat,
+- le nombre d’événements spéciaux autorisés,
+- la quantité d’erreurs supportables.
+
+Ce budget est ensuite réparti entre :
+- PV
+- dégâts
+- boucliers
+- invocations
+- nombre de phases
+- fréquence de questions spéciales
+- quantité de statuts
+- sévérité des punitions
+
+Avantage :
+- combats plus élégants,
+- meilleure adaptation,
+- meilleure testabilité,
+- possibilité de conserver l’identité d’un boss tout en le calibrant dynamiquement.
+
+══════════════════════════════════════════════════════════════════════════════
+11 — QUESTION SOURCING : D’OÙ VIENNENT LES QUESTIONS DU COMBAT
+══════════════════════════════════════════════════════════════════════════════
+
+Le combat ne doit jamais utiliser des QCM hors-sol s’il peut utiliser les savoirs réels du joueur.
+
+Le système doit utiliser un QuestionSourceResolver.
+
+Ordre de priorité recommandé :
+
+11.1 Source principale
+Les savoirs enregistrés dans le temple du dieu concerné.
+
+11.2 Source secondaire
+Les nœuds de connaissance ou notions extraites des savoirs de cette matière.
+
+11.3 Source tertiaire
+Les savoirs fragiles de cette matière.
+
+11.4 Source quaternaire
+Les notions récemment ratées, instables ou mal stabilisées.
+
+11.5 Source de secours
+Un pool pédagogique de fallback cohérent avec :
+- âge,
+- classe,
+- matière,
+- temple,
+- chapitre aventure.
+
+11.6 Source spéciale boss
+Pour certains boss :
+- questions portant sur les notions faibles récurrentes,
+- questions sur un axe thématique lié au boss,
+- questions de rupture adaptées à l’état réel du joueur.
+
+Le combat doit donc donner la sensation :
+“je me bats avec ce que j’ai appris”
+et non
+“je subis un quiz générique”.
+
+══════════════════════════════════════════════════════════════════════════════
+12 — TYPES DE QUESTIONS DE COMBAT
+══════════════════════════════════════════════════════════════════════════════
+
+12.1 Question standard
+- résout un tour simple
+- dégâts normaux
+- progression fluide
+
+12.2 Question renforcée
+- plus difficile
+- meilleur effet si réussite
+- plus lourde punition si échec
+
+12.3 Question divine
+- liée fortement au dieu actif
+- peut déclencher une compétence signature
+
+12.4 Question de rupture
+- casse un bouclier
+- interrompt une charge de boss
+- brise une invocation
+
+12.5 Question d’invocation
+- réussite = invocation alliée / chimère divine
+- échec = invocation ennemie / corruption
+
+12.6 Question ultime
+- rare
+- permet le déclenchement d’un ultime
+
+12.7 Question de phase
+- liée à un moment critique d’un boss
+- pilote le passage de phase
+
+12.8 Super question
+- très rare
+- enjeux élevés
+- réussite spectaculaire
+- échec également spectaculaire
+
+══════════════════════════════════════════════════════════════════════════════
+13 — TYPES DE COMBATS À GÉRER
+══════════════════════════════════════════════════════════════════════════════
+
+13.1 Combat simple
+- un dieu
+- une créature
+- 3 à 7 questions
+- idéal début de zone
+
+13.2 Combat de patrouille
+- un dieu
+- 2 à 4 ennemis légers
+- combat court à moyen
+
+13.3 Combat élite
+- un dieu
+- un ennemi fort
+- pattern spécial
+- plus de tension
+
+13.4 Combat de groupe
+- 2 dieux possibles
+- plusieurs cibles
+- demande contrôle et priorisation
+
+13.5 Mini-boss
+- ennemi scénarisé
+- jauge notable
+- mécanique lisible
+- récompense importante
+
+13.6 Boss majeur
+- plusieurs phases
+- forte identité
+- combat plus long
+- conditions d’entrée et de réussite spécifiques
+
+13.7 Boss ultime
+- 2 ou 3 dieux
+- plusieurs phases
+- patterns complexes
+- invocations
+- super questions
+- véritable sommet de chapitre ou de matière
+
+══════════════════════════════════════════════════════════════════════════════
+14 — SYSTÈME DE PV, ÉNERGIE, BOUCLIERS ET STATUTS
+══════════════════════════════════════════════════════════════════════════════
+
+14.1 Ressources d’un dieu
+- hp
+- maxHp
+- divineEnergy
+- maxDivineEnergy
+- shieldValue
+- supportGauge
+- ultimateGauge
+- passiveStackCount éventuel
+
+14.2 Ressources d’un ennemi
+- hp
+- maxHp
+- corruptionArmor
+- rageGauge
+- shieldValue
+- bossPhase
+- summonCharges
+
+14.3 Statuts négatifs possibles
+- confusion
+- silence
+- oubli
+- poison mythique
+- corrosion
+- lenteur
+- brisure
+- panique
+- fatigue de combat
+- brouillard mental
+
+14.4 Statuts positifs possibles
+- inspiration
+- clairvoyance
+- protection
+- régénération
+- célérité
+- harmonie
+- égide
+- floraison
+- lumière purificatrice
+- feu lucide
+
+14.5 Boucliers
+- bouclier divin
+- égide de savoir
+- barrière mentale
+- armure de forge
+- voile de grâce
+- courant de protection
+- halo solaire
+- cage de foudre
+
+Les statuts doivent être lisibles et exploitables par les compétences.
+
+══════════════════════════════════════════════════════════════════════════════
+15 — FORMULES DE RÉSOLUTION CONCEPTUELLES
+══════════════════════════════════════════════════════════════════════════════
+
+15.1 Dégâts infligés sur bonne réponse
+damage =
+(baseAttack + equipmentAttack + skillAttackBonus)
+× questionWeight
+× subjectAffinity
+× difficultyScalar
+× comboMultiplier
+× phaseModifier
+× critModifier éventuel
+
+15.2 Dégâts subis sur erreur
+incomingDamage =
+(enemyAttack + phaseAttackBonus)
+× enemyPressureScalar
+× mistakeSeverityScalar
+× defenseReductionFactor
+× shieldMitigation éventuel
+
+15.3 Charge d’ultime
+ultChargeGain =
+baseGain
++ bonusPerfect
++ bonusDivineQuestion
++ bonusCombo
++ equipmentChargeBonus éventuel
+
+15.4 Rupture de bouclier
+shieldBreak =
+baseBreak
+× questionTypeModifier
+× deityBreakAffinity
+× tacticalBonus
+
+15.5 Soin
+heal =
+baseHeal
+× supportPower
+× deitySupportAffinity
+× gearHealingBonus
+× contextModifier
+
+15.6 Purification
+purificationPower =
+basePurification
+× subjectRelevance
+× godPurificationAffinity
+× equipmentPurificationBonus
+× phaseOpportunityBonus
+
+Toutes les formules doivent être centralisées dans CombatFormulaManager.
+
+══════════════════════════════════════════════════════════════════════════════
+16 — LES 10 DIEUX EN VERSION COMBAT RPG
+══════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+16.1 ZEUS — TANK OFFENSIF / BURST / RUPTURE
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- gros dégâts mono-cible
+- rupture de boucliers
+- présence d’autorité
+- protection du groupe
+- excellent contre boss lourds
+
+Style :
+- tank offensif
+- burst logique
+- forte lisibilité
+
+Compétences :
+- Foudre du Raisonnement
+- Mur du Tonnerre
+- Éclair de Rupture
+- Sentence Olympienne
+- Ultime : Colère du Ciel
+
+Affinités :
+- cyclopes
+- golems
+- titans
+- monstres lourds blindés
+
+Faiblesses relatives :
+- peu de soin
+- moins souple sur les combats d’usure mentale prolongée
+
+────────────────────────────────────────────────────────────────────
+16.2 ATHÉNA — SUPPORT STRATÉGIQUE / PRÉCISION / CONTRÔLE
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- structure
+- vision stratégique
+- soutien
+- révélation des faiblesses
+- contrôle tactique
+
+Style :
+- support / contrôle / mitigation
+
+Compétences :
+- Égide de la Clarté
+- Regard Stratégique
+- Fil du Logos
+- Failles de la Pensée
+- Ultime : Plan d’Athéna
+
+Affinités :
+- sphinx
+- pièges logiques
+- ennemis trompeurs
+- combats de précision
+
+Faiblesses relatives :
+- dégâts purs plus faibles
+- dépend d’une bonne orchestration
+
+────────────────────────────────────────────────────────────────────
+16.3 POSÉIDON — AOE / CYCLE / PURIFICATION
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- dégâts de zone
+- nettoyage
+- petits soins
+- contrôle de groupe
+- fluidité
+
+Style :
+- mage de zone / sustain partiel
+
+Compétences :
+- Marée du Vivant
+- Courant de Guérison
+- Vague Purificatrice
+- Noyade des Parasites
+- Ultime : Déluge Sacré
+
+Affinités :
+- groupes
+- parasites
+- créatures du vivant
+- combats à pollution de statuts
+
+Faiblesses relatives :
+- moins performant en pur duel mono-cible très blindé
+
+────────────────────────────────────────────────────────────────────
+16.4 ARÈS — DPS / RAGE / FINISHER
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- dégâts élevés
+- exécution
+- montée de rage
+- défi
+- domination offensive
+
+Style :
+- dps agressif
+- très gratifiant si le joueur tient la pression
+
+Compétences :
+- Frappe du Conquérant
+- Cri de Guerre
+- Lame de l’Épreuve
+- Rupture Sanglante
+- Ultime : Carnage Sacré
+
+Affinités :
+- combats de tension
+- exécutions de mini-boss
+- ennemis fragiles mais dangereux
+
+Faiblesses relatives :
+- protection faible
+- dépend d’un timing propre
+
+────────────────────────────────────────────────────────────────────
+16.5 DÉMÉTER — SOIN / MÉMOIRE / ENDURANCE
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- soin
+- stabilité
+- reprise
+- protection contre l’oubli
+- sécurisation des combats longs
+
+Style :
+- healer / support mémoire
+
+Compétences :
+- Floraison de Mémoire
+- Récolte de Lumière
+- Jardin Protecteur
+- Sève de Reprise
+- Ultime : Printemps Éternel
+
+Affinités :
+- combats longs
+- corrosion
+- fanement
+- boss d’usure
+
+Faiblesses relatives :
+- dégâts faibles
+- dépend du temps
+
+────────────────────────────────────────────────────────────────────
+16.6 HÉPHAÏSTOS — FORTIFICATION / OUTILS / ARMURES
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- défense
+- outils
+- boucliers
+- runes
+- sécurisation technique
+
+Style :
+- tank technique / ingénieur
+
+Compétences :
+- Marteau de Forge
+- Bastion d’Acier
+- Rune Incandescente
+- Atelier d’Urgence
+- Ultime : Fournaise Primordiale
+
+Affinités :
+- automates
+- golems
+- boss lourds
+- combats nécessitant préparation
+
+Faiblesses relatives :
+- moins rapide
+- demande une bonne préparation
+
+────────────────────────────────────────────────────────────────────
+16.7 APOLLON — MAGIE / HARMONIE / CRITIQUE
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- dégâts magiques
+- inspiration
+- amplification de groupe
+- critique lumineux
+
+Style :
+- mage offensif / buffer
+
+Compétences :
+- Flèche Solaire
+- Chant de Mémoire
+- Harmonie Radieuse
+- Rayon du Chœur
+- Ultime : Hymne du Soleil
+
+Affinités :
+- spectres
+- ombres
+- dissonances
+- boss de corruption artistique
+
+Faiblesses relatives :
+- résistance moyenne
+- demande bon tempo
+
+────────────────────────────────────────────────────────────────────
+16.8 HERMÈS — VITESSE / TOUR BONUS / RELAIS
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- vitesse
+- relance
+- mobilité
+- multi-hit
+- ouverture de fenêtres tactiques
+
+Style :
+- éclaireur / accélérateur
+
+Compétences :
+- Sandales Fulgurantes
+- Tour du Messager
+- Vent des Langues
+- Trajectoire Divine
+- Ultime : Traversée Divine
+
+Affinités :
+- combats rapides
+- ennemis mobiles
+- combats techniques
+- chaînes de questions
+
+Faiblesses relatives :
+- moins tanky
+- demande synergies
+
+────────────────────────────────────────────────────────────────────
+16.9 APHRODITE — CONTRÔLE VISUEL / ILLUSION / DÉSORIENTATION
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- affaiblit la précision ennemie
+- crée des fenêtres de respiration
+- contrôle
+- soutien de visualisation
+
+Style :
+- support disruption / visuel
+
+Compétences :
+- Miroir Enchanteur
+- Grâce Lumineuse
+- Fresque Vivante
+- Voile des Reflets
+- Ultime : Vision Sublime
+
+Affinités :
+- illusions
+- reflets
+- monstres de faux sens
+- boss de confusion visuelle
+
+Faiblesses relatives :
+- dégâts directs modérés
+- nécessite bonne lecture des moments
+
+────────────────────────────────────────────────────────────────────
+16.10 PROMÉTHÉE — SUPPORT JOKER / SECOURS / FEU LUCIDE
+────────────────────────────────────────────────────────────────────
+
+Rôle :
+- secours
+- réorientation
+- adaptation
+- réduction de frustration
+- soutien narratif et tactique rare
+
+Style :
+- joker premium / sauveur
+
+Compétences :
+- Flamme de Compréhension
+- Étincelle de Secours
+- Voie du Sens
+- Reprise du Feu
+- Ultime : Feu de l’Éveil
+
+Affinités :
+- combats tutoriels
+- combats pivots
+- rencontres de récupération
+- chaos pur
+- épreuves narratives
+
+Faiblesses relatives :
+- doit rester précieux
+- ne doit pas trivialiser les combats
+
+══════════════════════════════════════════════════════════════════════════════
+17 — DUOS ET TRIOS DE DIEUX
+══════════════════════════════════════════════════════════════════════════════
+
+17.1 Duos recommandés
+- Zeus + Athéna = précision + rupture + protection
+- Zeus + Arès = burst + exécution
+- Zeus + Héphaïstos = fortification + gros impact
+- Athéna + Hermès = stratégie + vitesse
+- Poséidon + Déméter = sustain + purification
+- Poséidon + Apollon = AoE + rythme
+- Déméter + Athéna = stabilité + guidage
+- Apollon + Aphrodite = lumière + illusion
+- Hermès + Aphrodite = mobilité + disruption
+- Prométhée + n’importe quel dieu = adaptation + secours
+
+17.2 Trios recommandés
+- Zeus + Athéna + Arès = conquête tactique
+- Poséidon + Déméter + Apollon = endurance sacrée
+- Athéna + Hermès + Aphrodite = contrôle fluide
+- Zeus + Déméter + Héphaïstos = équipe forteresse
+- Apollon + Hermès + Aphrodite = virtuosité légère
+- Prométhée + Zeus + Athéna = équipe premium d’éveil
+- Poséidon + Athéna + Hermès = stratégie mobile
+- Arès + Zeus + Apollon = exécution flamboyante
+
+17.3 Déblocage des équipes
+Ne doit pas être disponible de manière brute.
+
+Le déblocage des duos et trios doit dépendre de :
+- niveau de temple,
+- nombre de savoirs par temple,
+- quêtes spécifiques,
+- relations inter-divines si système ajouté plus tard,
+- rang héros,
+- boss vaincus,
+- chapitre aventure,
+- état du monde.
+
+══════════════════════════════════════════════════════════════════════════════
+18 — NIVEAUX DE TEMPLES 1 À 10 ET IMPACT AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Le temple ne doit pas seulement faire monter un nombre.
+Il doit transformer la puissance aventure réelle du dieu.
+
+Niveau 1 :
+- forme basique
+- PV modestes
+- attaque simple
+- une seule compétence utile
+
+Niveau 2 :
+- premier renforcement passif
+- stats plus stables
+- première vraie spécialité
+
+Niveau 3 :
+- mini-boss possibles
+- premier duo conditionnel
+- meilleure charge d’énergie divine
+
+Niveau 4 :
+- meilleure robustesse
+- compétences plus cohérentes
+- rencontre d’élite possibles
+
+Niveau 5 :
+- accès à un premier vrai boss de temple
+- premier palier fort d’équipement rare
+- début des builds tactiques
+
+Niveau 6 :
+- combats majeurs
+- premières vraies phases complexes
+- meilleure survie et meilleures synergies
+
+Niveau 7 :
+- duos pleinement rentables
+- certains trios contextuels
+- accès à certaines armes épique ou légendaires basses
+
+Niveau 8 :
+- grands boss
+- épreuves corrompues
+- capacité de supporter combats longs
+
+Niveau 9 :
+- quasi endgame de matière
+- reliques très fortes
+- possibilité de combats héroïques très scénarisés
+
+Niveau 10 :
+- forme glorieuse du dieu
+- ultime pleinement activable
+- accès aux épreuves mythiques majeures
+- contenu de matière ultime
+
+══════════════════════════════════════════════════════════════════════════════
+19 — CATÉGORIES D’ENNEMIS
+══════════════════════════════════════════════════════════════════════════════
+
+19.1 Créatures mineures
+- Nuées d’Oubli
+- Brumes Confuses
+- Larves d’Inattention
+- Échos de Doute
+- Ronces d’Erreur
+- Ombres de la Distraction
+- Fragments de Panique
+- Moucherons du Brouillard
+- Taches de Mémoire Dissoute
+- Cendres de Confusion
+
+19.2 Créatures standards
+- Harpies du Doute
+- Loups de Panique
+- Golems d’Erreur
+- Sphinx Mineurs
+- Méduses de Confusion
+- Spectres de Contresens
+- Parasites de Fanement
+- Corbeaux du Contresens
+- Veilleurs du Faux Sens
+- Drakes d’Oubli
+
+19.3 Élites
+- Chimères de l’Ignorance
+- Cyclopes Fracturés
+- Mantes du Vide
+- Minotaures du Labyrinthe Mental
+- Gorgones de Désorganisation
+- Cerbères de Pression
+- Archivistes Corrompus
+- Juges de la Faille
+- Dévoreurs de Structure
+- Cavaliers d’Érosion
+
+19.4 Mini-boss
+- Gardien des Ruines
+- Sphinx Stratège
+- Kraken Mineur
+- Golem de Cendres
+- Dryade Corrompue
+- Maître des Reflets
+- Cerbère d’Entrave
+- Juge de la Faille
+- Prêtre de l’Oubli
+- Forgeron Fendu
+
+19.5 Boss majeurs
+- Cyclope du Raisonnement
+- Sphinx des Mots
+- Kraken Cellulaire
+- Général du Passé
+- Golem d’Alliage
+- Griffon Polyglotte
+- Moissonneur de Mémoire
+- Masque Solaire
+- Dame des Reflets Corrompus
+- Titan des Possibles
+
+19.6 Boss ultimes
+- Chimère du Chaos de l’Oubli
+- Hydre des Erreurs Répétées
+- Titan de la Dissolution
+- Cerbère des Trois Échecs
+- Avatar du Néant Scolaire
+- Colosse des Temples Brisés
+- Reine du Brouillard Mnésique
+- Leviathan de la Mémoire Noyée
+- Sphinx des Mille Ruptures
+- Empereur des Pages Brûlées
+
+══════════════════════════════════════════════════════════════════════════════
+20 — BOSS PAR DIEU ET PAR MATIÈRE
+══════════════════════════════════════════════════════════════════════════════
+
+20.1 Zeus / Mathématiques
+Créatures :
+- Serpents du Paradoxe
+- Cyclopes du Calcul Brisé
+- Golems de Démonstration
+Mini-boss :
+- Gardien des Théorèmes Fendus
+- Magistrat des Équations Mutilées
+Boss :
+- Cyclope du Raisonnement
+Boss ultime :
+- Titan de l’Absurde Numérique
+
+20.2 Athéna / Français
+Créatures :
+- Corbeaux de Contresens
+- Sphinx de Syntaxe
+- Ombres d’Interprétation
+Mini-boss :
+- Héraut de la Phrase Brisée
+- Gardienne des Paragraphes Dissous
+Boss :
+- Sphinx des Mots
+Boss ultime :
+- Reine des Discours Brisés
+
+20.3 Poséidon / SVT
+Créatures :
+- Méduses Organiques
+- Parasites du Cycle
+- Essaims de Dérive
+Mini-boss :
+- Gardien du Récif Corrompu
+- Kraken Vascularisé Mineur
+Boss :
+- Kraken Cellulaire
+Boss ultime :
+- Leviathan des Écosystèmes Rompus
+
+20.4 Arès / Histoire
+Créatures :
+- Spectres de Bataille
+- Cavaliers de Brume
+- Légionnaires de l’Oubli
+Mini-boss :
+- Stratège des Guerres Perdues
+- Centurion des Chronologies Brisées
+Boss :
+- Général du Passé
+Boss ultime :
+- Tyran des Ères Perdues
+
+20.5 Héphaïstos / Physique-Chimie
+Créatures :
+- Automates Instables
+- Braises Mutantes
+- Golems d’Alliage
+Mini-boss :
+- Forgeron Fendu
+- Maître des Pressions Folles
+Boss :
+- Golem d’Alliage
+Boss ultime :
+- Colosse de Fusion
+
+20.6 Hermès / Langues
+Créatures :
+- Échos de Babel
+- Rapaces de Traduction Faussée
+- Griffons Mineurs
+Mini-boss :
+- Courrier du Faux Sens
+- Messager des Langues Déchirées
+Boss :
+- Griffon Polyglotte
+Boss ultime :
+- Maître des Mille Langues Brisées
+
+20.7 Déméter / Mémoire / Géographie / Révision
+Créatures :
+- Ronces d’Oubli
+- Moisissures de Savoir
+- Parasites de Fanement
+Mini-boss :
+- Dryade Flétrie
+- Jardinier des Terres Mortes
+Boss :
+- Moissonneur de Mémoire
+Boss ultime :
+- Reine des Saisons Brisées
+
+20.8 Apollon / Art / Philosophie / Harmonie
+Créatures :
+- Masques Solaires
+- Sirènes de Faux Sens
+- Ombres Dissonantes
+Mini-boss :
+- Chantre Corrompu
+- Danseur des Accords Perdus
+Boss :
+- Masque Solaire
+Boss ultime :
+- Oracle du Chant Brisé
+
+20.9 Aphrodite / Visualisation / Esthétique
+Créatures :
+- Miroirs Déformants
+- Illusions Dévorantes
+- Fresques Ruinées
+Mini-boss :
+- Sculptrice du Faux Regard
+- Gardienne des Images Tordues
+Boss :
+- Dame des Reflets Corrompus
+Boss ultime :
+- Fresque Dévorante
+
+20.10 Prométhée / Transversal
+Créatures :
+- Braises Inversées
+- Veilleurs du Feu Volé
+Mini-boss :
+- Gardien de la Flamme Fendue
+- Porteur du Feu Inversé
+Boss :
+- Juge du Feu Volé
+Boss ultime :
+- Épreuve de la Braise Lucide
+
+══════════════════════════════════════════════════════════════════════════════
+21 — PHASES DE BOSS
+══════════════════════════════════════════════════════════════════════════════
+
+Chaque boss important doit avoir 2 à 4 phases.
+
+Phase 1 :
+- lecture du boss
+- pattern simple
+- découverte de l’identité du combat
+
+Phase 2 :
+- bouclier
+- invocation
+- corruption spéciale
+- première tension tactique
+
+Phase 3 :
+- rage
+- gros dégâts
+- questions plus lourdes
+- nécessité de rupture ou de combo
+
+Phase 4 éventuelle :
+- purification finale
+- phase héroïque
+- super question
+- invocation divine rare
+- ultime boss
+- tension maximale
+
+Les boss doivent rester lisibles.
+Les phases ne doivent pas être purement décoratives.
+Chaque phase doit changer quelque chose de réel :
+- dégâts,
+- rythme,
+- questions,
+- pattern d’attaque,
+- invocations,
+- boucliers,
+- punition,
+- opportunité de rupture.
+
+══════════════════════════════════════════════════════════════════════════════
+22 — SUPER QUESTIONS, INVOCATIONS ET CHIMÈRES
+══════════════════════════════════════════════════════════════════════════════
+
+22.1 Super questions
+Moments rares et très impactants.
+
+Réussite :
+- dégâts massifs
+- rupture de phase
+- critique
+- ultime plus rapide
+- soin
+- activation d’une chimère divine
+- renversement de combat
+
+Échec :
+- attaque lourde
+- grosse altération
+- invocation ennemie
+- rage du boss
+- perte de bouclier
+- échec narratif local de la phase
+
+22.2 Chimères divines
+Réussite de certaines conditions :
+- Zeus : Aigle-Foudre
+- Athéna : Chouette de Sagesse
+- Poséidon : Hippocampe Sacré
+- Arès : Loup de Guerre
+- Déméter : Cerf de Floraison
+- Héphaïstos : Automate de Forge
+- Apollon : Phénix Harmonique
+- Hermès : Faucon du Vent
+- Aphrodite : Paon de Vision
+- Prométhée : Salamandre de Flamme Lucide
+
+22.3 Effets des chimères divines
+- dégâts supplémentaires
+- bouclier
+- soin
+- purification
+- interruption
+- buff de groupe
+- combo rallongé
+- protection contre une altération
+
+22.4 Invocations ennemies
+- adds
+- ombres
+- doubles corrompus
+- totems
+- larves
+- chimères du chaos
+- tentacules
+- miroirs malveillants
+- pages maudites
+- soldats spectraux
+
+══════════════════════════════════════════════════════════════════════════════
+23 — ÉQUIPEMENTS, OUTILS, RELIQUES ET CONSOMMABLES
+══════════════════════════════════════════════════════════════════════════════
+
+Chaque dieu doit pouvoir être configuré comme un vrai personnage de RPG.
+
+23.1 Slots recommandés par dieu
+- 1 arme / focus principal
+- 1 armure / vêtement / égide
+- 1 ou 2 reliques
+- 1 ou 2 outils / artefacts tactiques
+- 1 emplacement de consommable préparé
+
+23.2 Types d’objets
+- arme
+- armure
+- relique
+- outil
+- talisman
+- totem
+- catalyseur
+- potion
+- artefact de déclenchement
+- sceau d’invocation
+
+23.3 Règle d’usage
+Les objets ne doivent pas être spammables librement en combat.
+
+Utilisations autorisées :
+- préparés avant combat
+- passifs
+- activables sous condition
+- utilisables entre phases
+- utilisables à une fenêtre précise
+- déclenchés par compétence d’un dieu
+
+23.4 Effets possibles
+- PV max
+- attaque
+- défense
+- résistance
+- critique
+- vitesse
+- énergie divine
+- ultCharge
+- break power
+- purification
+- réduction de dégâts sur erreur
+- résistance à une famille d’ennemis
+- meilleure synergie de duo
+- effet anti-boss
+- invocation rare
+- reprise légère après erreur grave
+
+══════════════════════════════════════════════════════════════════════════════
+24 — RARETÉS, PALIERS ET ÉVOLUTIONS
+══════════════════════════════════════════════════════════════════════════════
+
+Raretés recommandées :
+- COMMUN
+- PEU COMMUN
+- RARE
+- ÉPIQUE
+- LÉGENDAIRE
+- MYTHIQUE
+- RELIQUE UNIQUE
+
+Évolutions possibles :
+- forge initiale
+- amélioration +1 à +5
+- Éveil I
+- Éveil II
+- Sanctification finale
+
+Chaque palier peut améliorer :
+- stats
+- passifs
+- interactions de skills
+- probabilité de critiques
+- résistance
+- vitesse de charge
+- puissance de rupture
+- puissance de purification
+- interaction avec les super questions
+
+Les objets rares doivent être rares sans casser le jeu.
+La forge doit être valorisée, pas rendue obligatoire à outrance.
+
+══════════════════════════════════════════════════════════════════════════════
+25 — RESSOURCES DE FORGE ET D’AMÉLIORATION
+══════════════════════════════════════════════════════════════════════════════
+
+Le système doit réutiliser les ressources du jeu déjà présentes.
+
+Ressources exploitables :
+- fragments de connaissance liés au dieu / matière
+- éclats de savoir
+- ambroisie
+- ressources de forge déjà présentes
+- matériaux rares
+- embryons si confirmés côté jeu
+- composants de boss
+- noyaux de corruption purifiés
+- reliques de purification
+- essences de zone
+- trophées de boss
+
+Exemples de logique :
+- équipement commun : fragments + éclats
+- équipement rare : fragments spécialisés + éclats + ambroisie
+- équipement épique : fragments + ambroisie + composant mini-boss
+- légendaire : composant boss + fragments du dieu + ambroisie + progression temple
+- mythique : quête + boss + ressources rares + haut niveau de temple
+- relique unique : événement narratif, boss ou chapitre
+
+══════════════════════════════════════════════════════════════════════════════
+26 — LIGNES D’ÉQUIPEMENTS PAR DIEU
+══════════════════════════════════════════════════════════════════════════════
+
+26.1 Zeus
+Armes :
+- Sceptre de Foudre
+- Lance du Jugement
+- Aiguille du Tonnerre
+- Masse de l’Orage
+Armures :
+- Égide Orageuse
+- Manteau des Nuées
+- Cuirasse du Ciel Ouvert
+Reliques :
+- Œil du Ciel
+- Électrum Sacré
+- Nœud de Tempête
+
+26.2 Athéna
+Armes :
+- Lance du Logos
+- Plume de Stratégie
+- Javelot de Clarté
+Armures :
+- Égide de Sagesse
+- Robe de l’Analyse
+- Tunique des Plans Justes
+Reliques :
+- Chouette d’Argent
+- Fragment de Bibliothèque Sacrée
+- Bague des Schémas
+
+26.3 Poséidon
+Armes :
+- Trident des Marées
+- Harpon du Vivant
+- Bâton des Courants
+Armures :
+- Tunique Abyssale
+- Armure de Récif
+- Manteau des Profondeurs
+Reliques :
+- Coquille Primordiale
+- Perle des Cycles
+- Nacre Purificatrice
+
+26.4 Arès
+Armes :
+- Lame des Conquêtes
+- Hache du Défi
+- Glaive de l’Assaut
+Armures :
+- Cuirasse de Guerre
+- Cape Rouge du Combat
+- Harnois du Duel
+Reliques :
+- Dent de Loup Sacré
+- Étendard de Fureur
+- Sceau du Conquérant
+
+26.5 Déméter
+Armes :
+- Faucille de Floraison
+- Bâton des Récoltes
+- Faux du Retour
+Armures :
+- Manteau de Verdure
+- Tresse des Saisons
+- Voile des Germinations
+Reliques :
+- Graine d’Éternité
+- Calice de Mémoire
+- Couronne des Récoltes
+
+26.6 Héphaïstos
+Armes :
+- Marteau de Forge
+- Canon de Braise
+- Masse du Four
+Armures :
+- Cuirasse de Fournaise
+- Exosquelette d’Atelier
+- Égide du Creuset
+Reliques :
+- Noyau de Four
+- Rouage Sacré
+- Pierre de Fusion
+
+26.7 Apollon
+Armes :
+- Arc Solaire
+- Lyre de Guerre
+- Dard de Lumière
+Armures :
+- Cape de Rayon
+- Tunique de Chœur
+- Voile Harmonique
+Reliques :
+- Hélios Fragmenté
+- Plume d’Harmonie
+- Corde d’Or Sacrée
+
+26.8 Hermès
+Armes :
+- Dague des Vents
+- Caducée Rapide
+- Couteau des Routes
+Armures :
+- Sandales Fulgurantes
+- Manteau du Messager
+- Cape des Passages
+Reliques :
+- Sceau des Routes
+- Boussole des Langues
+- Jeton des Traversées
+
+26.9 Aphrodite
+Armes :
+- Miroir de Grâce
+- Lame des Reflets
+- Sceptre des Formes
+Armures :
+- Voile de Vision
+- Parure Enchanteresse
+- Robe des Apparences Vraies
+Reliques :
+- Rose de Clarté
+- Perle de Beauté
+- Joyau des Reflets
+
+26.10 Prométhée
+Armes :
+- Torche du Feu Volé
+- Braise de l’Éveil
+- Flambeau de Compréhension
+Armures :
+- Manteau du Porte-Flamme
+- Égide du Sacrifice
+- Cape de la Braise Lucide
+Reliques :
+- Étincelle Primordiale
+- Cœur de Braise Lucide
+- Fragment du Feu Volé
+
+══════════════════════════════════════════════════════════════════════════════
+27 — SYSTÈME D’AMÉLIORATION DES ÉQUIPEMENTS
+══════════════════════════════════════════════════════════════════════════════
+
+Le système d’amélioration doit être profond mais lisible.
+
+Paliers recommandés :
+- +1
+- +2
+- +3
+- +4
+- +5
+- Éveil I
+- Éveil II
+- Sanctification
+
+Effets possibles d’amélioration :
+- PV
+- attaque
+- défense
+- critique
+- énergie divine
+- résistance
+- purification
+- affinité contre boss
+- charge d’ultime
+- support power
+- duo synergy power
+- chance de réponse parfaite valorisée
+- réduction de punition sur erreur
+
+Spécialisation possible plus tard :
+- branche offensive
+- branche défensive
+- branche soutien
+- branche rupture
+- branche purification
+- branche boss
+- branche endurance
+
+══════════════════════════════════════════════════════════════════════════════
+28 — UTILISATION DES OBJETS EN COMBAT
+══════════════════════════════════════════════════════════════════════════════
+
+Tu as demandé explicitement à éviter le soin libre n’importe quand.
+La logique finale doit respecter cela.
+
+Règle recommandée :
+- la majorité des objets sont passifs ou préparés avant combat,
+- certains objets sont activables uniquement :
+  - entre deux phases,
+  - pendant une fenêtre donnée,
+  - avant un boss,
+  - après un certain événement,
+  - via compétence d’un dieu.
+
+Types de fenêtres d’usage :
+- pré-combat
+- inter-phase
+- après un perfect combo
+- après une rupture
+- après une chute sous 30 % PV
+- après une invocation ennemie
+
+Exemples d’objets :
+- baume de reprise
+- talisman de garde
+- catalyseur d’ultime
+- graine de floraison
+- rune de rupture
+- miroir anti-illusion
+- plume de vitesse
+- braise de résilience
+- goutte de marée
+- sceau anti-corruption
+
+══════════════════════════════════════════════════════════════════════════════
+29 — ADAPTATION COGNITIVE DU COMBAT
+══════════════════════════════════════════════════════════════════════════════
+
+La difficulté doit être ajustée intelligemment à l’utilisateur.
+
+Le système peut modifier :
+- nombre total de questions
+- difficulté perçue
+- longueur du combat
+- sévérité de certaines erreurs
+- fréquence des questions renforcées
+- nombre d’ennemis dans une rencontre
+- tolérance de dégâts
+- nombre de phases actives
+- fréquence d’apparition des super questions
+- soutien implicite discret
+- accessibilité des duos ou outils recommandés
+
+Il ne doit jamais :
+- humilier le joueur
+- rendre l’adaptation visible comme une punition
+- tricher brutalement
+- casser la cohérence du boss
+- donner une victoire gratuite
+- enlever le sentiment de mérite
+
+Le système doit viser :
+- tension juste,
+- sensation de danger,
+- lisibilité,
+- impression de progression,
+- adaptation discrète.
+
+══════════════════════════════════════════════════════════════════════════════
+30 — DÉBLOCAGES PAR RÈGLES ET NON PAR BRUTALITÉ DE CODE
+══════════════════════════════════════════════════════════════════════════════
+
+Tu as demandé quelque chose de très important :
+tu veux que les déblocages ne soient pas seulement des “if” bruts partout.
+
+La bonne solution est un UnlockRulesEngine.
+
+Ce moteur doit pouvoir interpréter des règles du type :
+
+- si au moins X savoirs sont présents dans Y temples
+- si le temple de Zeus est niveau 5 et celui d’Athéna niveau 4
+- si le joueur a stabilisé N notions d’une matière
+- si tel boss a été vaincu
+- si tel chapitre a été atteint
+- si tel duo divin a été débloqué
+- si le rang héros est suffisant
+- si le rang savoir en telle matière est suffisant
+- si la progression monde a atteint tel seuil
+- si la fatigue n’est pas trop haute pour déclencher un défi
+
+Exemples de déblocages pilotés par règles :
+- accès à une zone
+- accès à un mini-boss
+- accès à un boss
+- accès à une invocation
+- accès à un duo
+- accès à un trio
+- accès à une super question
+- accès à une relique
+- accès à une quête rare
+- accès à un objet mythique
+
+Ainsi :
+la logique paraît fluide, logique, organique,
+et pas “brutale”.
+
+══════════════════════════════════════════════════════════════════════════════
+31 — ZONES ET CAMPAGNE
+══════════════════════════════════════════════════════════════════════════════
+
+Zones principales :
+- Olympe central
+- temples des matières
+- Tartare
+- Bibliothèque Interdite
+- Palais des Titans
+
+Zones secondaires futures préparées :
+- Labyrinthe des Muses
+- Champs Élysées
+- Vallée des Reliques
+- Ateliers Volcaniques
+- Forêt des Savoirs Fanants
+- Abîmes des Cycles Brisés
+- Routes de Babel
+- Galerie des Reflets
+
+Chaque zone doit posséder :
+- menace
+- thème
+- roster d’ennemis
+- mini-boss potentiels
+- boss potentiels
+- règles de déblocage
+- quêtes associées
+- état de purification
+- relation avec un ou plusieurs dieux
+- récompenses signatures
+
+══════════════════════════════════════════════════════════════════════════════
+32 — QUÊTES DU MODE AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Les quêtes doivent exploiter le vrai gameplay.
+
+Types de quêtes :
+- battre une famille de créatures
+- purifier un certain nombre de rencontres
+- vaincre un mini-boss
+- battre un boss
+- réussir avec peu de dégâts subis
+- survivre à une épreuve de zone
+- sauver un savoir fané avant d’entrer en boss
+- forger un équipement requis
+- améliorer un équipement à un palier
+- utiliser un duo spécifique
+- utiliser une invocation
+- stabiliser une matière avant d’ouvrir une zone
+- terminer une campagne de temple
+- battre un boss sans utiliser telle aide
+- purifier une zone en plusieurs étapes
+
+Les quêtes doivent être reliées à :
+- QuestManager
+- AdventureCombatManager
+- RewardBundle
+- BossManager
+- TempleProgressManager
+- BadgeManager
+- RankManager
+- RecommendationEngine
+
+══════════════════════════════════════════════════════════════════════════════
+33 — RÉCOMPENSES AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Le mode aventure doit utiliser RewardBundle autant que possible.
+
+Récompenses possibles :
+- XP
+- ambroisie
+- éclats de savoir
+- fragments de dieu / matière
+- objets
+- composants de boss
+- reliques
+- titres
+- badges
+- prestige de campagne
+- accès à une zone
+- accès à un duo
+- accès à un équipement
+- accès à une chimère divine
+- accès à une quête rare
+- état narratif purifié
+
+Les récompenses doivent rester cohérentes avec l’économie globale.
+Elles ne doivent pas rendre le reste du jeu inutile.
+
+══════════════════════════════════════════════════════════════════════════════
+34 — ARCHITECTURE TECHNIQUE À PRÉVOIR
+══════════════════════════════════════════════════════════════════════════════
+
+Managers recommandés :
+- AdventureAdaptiveDirector
+- CombatProfileSnapshotBuilder
+- EncounterBudgetGenerator
+- QuestionSourceResolver
+- UnlockRulesEngine
+- AdventureCombatManager
+- CombatStateManager
+- CombatFormulaManager
+- CombatAnimationCoordinator
+- AdventurePartyManager
+- DivineSkillManager
+- AdventureEquipmentManager
+- EnemyDefinitionRepository
+- BossDefinitionRepository
+- AdventureEncounterManager
+- QuestManager
+- BossManager
+- AdventureProgressRepository
+- AdaptiveLootAndRewardResolver
+- EquipmentRecommendationResolver
+- DynamicBossPhaseBuilder
+- DivineTeamSynergyResolver
+- AdventureDifficultyManager
+
+Models / entités recommandés :
+- AdventureZoneDefinition
+- AdventureZoneProgress
+- AdventureWorldState
+- EncounterDefinition
+- EnemyDefinition
+- EnemyInstance
+- BossDefinition
+- BossPhaseDefinition
+- BossState
+- QuestDefinition
+- QuestProgress
+- CombatState
+- CombatTurnResolution
+- CombatQuestionContext
+- EquipmentDefinition
+- EquipmentUpgradeState
+- ConsumableDefinition
+- PartyFormation
+- CombatProfileSnapshot
+
+Screens / Activities recommandés :
+- AdventureActivity
+- AdventureZoneActivity
+- AdventureBattleActivity
+- BossActivity ou mode Boss dans AdventureBattleActivity
+- AdventureResultActivity
+- AdventurePreparationActivity si nécessaire
+- AdventurePartySetupDialog / screen
+- AdventureEquipmentDialog / screen
+
+══════════════════════════════════════════════════════════════════════════════
+35 — SOUS-CHANTIERS DU BLOC P FINAL
+══════════════════════════════════════════════════════════════════════════════
+
+P1 — Fondations data aventure et combat
+P2 — AdventureAdaptiveDirector et CombatProfileSnapshot
+P3 — EncounterBudgetGenerator et QuestionSourceResolver
+P4 — UnlockRulesEngine
+P5 — AdventureCombatManager
+P6 — CombatStateManager et CombatFormulaManager
+P7 — AdventurePartyManager
+P8 — DivineSkillManager
+P9 — Enemy / Encounter / Boss repositories et managers
+P10 — AdventureEquipmentManager et système d’équipement
+P11 — Système d’amélioration, éveil et sanctification
+P12 — AdventureBattleActivity / BossActivity
+P13 — AdventureActivity et AdventureZoneActivity
+P14 — Quêtes aventure branchées au vrai gameplay
+P15 — Récompenses aventure, badges, rangs et progression monde
+P16 — Intégration Dashboard / Recommandations / Lore / Monde vivant
+
+Détail synthétique :
+
+P1 — Fondations data aventure et combat
+- entités
+- DAOs
+- migrations
+- snapshots
+- sérialisation
+
+P2 — AdaptiveDirector
+- personnalisation de la campagne
+- personnalisation des combats
+- lecture des profils joueur
+
+P3 — Budget et sourcing de questions
+- budget combat
+- sourcing temple réel
+- fallback pédagogique
+
+P4 — UnlockRulesEngine
+- zones
+- boss
+- duos
+- équipements
+- super questions
+- contenus rares
+
+P5 — AdventureCombatManager
+- logique centrale de combat
+- orchestration des tours
+- déclenchement d’attaques et dégâts
+
+P6 — CombatState et formules
+- états de combat
+- calculs
+- statuts
+- boucliers
+- ultimes
+
+P7 — PartyManager
+- composition divine
+- duos
+- trios
+- limitations
+
+P8 — SkillManager
+- compétences
+- ultimes
+- coûts
+- interactions
+
+P9 — Ennemis et boss
+- définitions
+- rencontres
+- patterns
+- invocations
+- phases
+
+P10 — Équipements
+- objets par dieu
+- raretés
+- slots
+- effets
+
+P11 — Améliorations
+- +1 à +5
+- éveils
+- sanctification
+- spécialisation
+
+P12 — Écran de combat
+- HUD
+- animations
+- transitions
+- questions
+
+P13 — Hub aventure et zones
+- progression
+- quêtes
+- menace
+- purification
+
+P14 — Quêtes
+- événements réels
+- kills
+- boss
+- savoirs
+- forge
+- stabilisations
+
+P15 — Progression monde et rewards
+- RewardBundle
+- badges
+- titres
+- progression chapitre
+
+P16 — Ponts avec le reste du jeu
+- dashboard
+- recommandations
+- lore
+- monde vivant
+- état narratif
+
+══════════════════════════════════════════════════════════════════════════════
+36 — FICHIERS À FOURNIR EN PRIORITÉ À UNE IA DE CODAGE
+══════════════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- AppDatabase.kt
+- UserProfile.kt
+- TempleProgressManager.kt
+- QuestManager.kt si présent
+- RewardBundle.kt
+- RewardManager.kt
+- InventoryActivity.kt
+- ForgeActivity.kt
+- DashboardActivity.kt
+- RecommendationEngine.kt
+- GodLoreManager.kt
+- SoundManager.kt
+
+Priorité 2 :
+- AdventureUnlockManager.kt
+- AdventureActivity.kt
+- AdventureZoneActivity.kt
+- DialogRPGManager.kt
+- AnimatedBackgroundHelper.kt
+- OlympianParticlesView.kt
+
+Priorité 3 :
+- futurs fichiers de combat :
+  - AdventureBattleActivity.kt
+  - AdventureCombatManager.kt
+  - CombatStateManager.kt
+  - CombatFormulaManager.kt
+  - AdventurePartyManager.kt
+  - DivineSkillManager.kt
+  - AdventureEquipmentManager.kt
+  - BossManager.kt
+  - AdventureAdaptiveDirector.kt
+
+Priorité 4 :
+- layouts combat / zone / aventure
+- assets de boss
+- assets de créatures
+- assets UI combat
+- SFX d’attaques et impacts
+- ressources de zones
+
+══════════════════════════════════════════════════════════════════════════════
+37 — ORDRE D’EXÉCUTION RECOMMANDÉ
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. fondations data aventure et combat
+2. AdventureAdaptiveDirector + CombatProfileSnapshot
+3. EncounterBudgetGenerator + QuestionSourceResolver
+4. UnlockRulesEngine
+5. AdventureCombatManager + CombatStateManager + CombatFormulaManager
+6. Enemy / Boss / Encounter definitions
+7. AdventurePartyManager + DivineSkillManager
+8. AdventureEquipmentManager
+9. système d’amélioration et raretés
+10. AdventureBattleActivity / BossActivity
+11. hub aventure et zones
+12. quêtes réelles et progression monde
+13. rewards / badges / rangs aventure
+14. intégration dashboard / reco / lore / monde vivant
+
+Pourquoi cet ordre :
+- on verrouille d’abord la logique générative,
+- puis la logique de combat,
+- puis les personnages,
+- puis les ennemis,
+- puis les objets,
+- puis les écrans,
+- puis les ponts avec le reste du jeu.
+
+══════════════════════════════════════════════════════════════════════════════
+38 — CRITÈRES DE FIN DU BLOC P FINAL
+══════════════════════════════════════════════════════════════════════════════
+
+Le bloc P final est considéré comme FAIT si :
+- le mode aventure est un vrai RPG,
+- les combats ont des PV, des tours, des attaques, des défenses et des statuts,
+- le QCM pilote directement le combat,
+- les questions proviennent réellement des temples et savoirs du joueur,
+- les combats sont adaptés au profil réel du joueur,
+- les boss gardent une identité fixe mais une difficulté générée dans des bornes cohérentes,
+- les déblocages se font via des règles et non par brutalisme dispersé,
+- les dieux ont des rôles de combat cohérents,
+- les duos et trios fonctionnent,
+- les objets, outils, reliques et consommables existent et servent vraiment,
+- la forge devient un arsenal divin utile,
+- les équipements ont raretés, améliorations et éveils,
+- les quêtes utilisent les vrais combats,
+- le mode aventure se branche proprement au lore, au dashboard, aux recommandations, aux rangs, aux badges et au monde.
+
+══════════════════════════════════════════════════════════════════════════════
+39 — ERREURS À ÉVITER
+══════════════════════════════════════════════════════════════════════════════
+
+- faire du faux RPG avec juste un quiz décoré
+- coder des combats statiques identiques pour tous
+- ignorer les savoirs réellement enregistrés
+- calculer les dégâts dans l’UI
+- mélanger forge, inventaire, boss et combat dans une seule classe
+- rendre l’adaptation cognitive humiliante
+- rendre les boss injustes ou opaques
+- créer une inflation d’objets sans identité
+- casser l’économie globale
+- créer des raretés sans intérêt tactique
+- créer trop d’ennemis sans familles cohérentes
+- oublier la lisibilité du HUD
+- surcharger les combats de mécaniques invisibles
+- oublier les règles de déblocage organiques
+- rendre les soins exploitables librement n’importe quand
+- dissocier complètement l’aventure du reste de RéviZeus
+
+══════════════════════════════════════════════════════════════════════════════
+40 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+══════════════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC P FINAL :
+“Mode aventure RPG adaptatif génératif par utilisateur”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- toutes les couches textuelles importantes doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- le mode aventure doit être un vrai RPG de combat,
+- le combat doit être adaptatif selon l’utilisateur,
+- le combat doit utiliser les savoirs réels enregistrés dans les temples,
+- les déblocages doivent être gérés par des règles centralisées,
+- les équipements doivent être forgeables, améliorables et réellement utiles.
+
+Objectif :
+Créer un mode aventure où :
+1. la campagne se structure par zones, quêtes, boss, chapitres et progression monde,
+2. les combats ont des PV, attaques, défenses, statuts, boucliers, ultimes et phases,
+3. le QCM pilote directement les tours de combat,
+4. les questions proviennent en priorité des savoirs réels du temple concerné,
+5. la difficulté, les PV, les phases et les rencontres sont générés dans des bornes cohérentes selon le profil réel de l’utilisateur,
+6. les dieux ont des kits de combat cohérents,
+7. les duos et trios existent et se débloquent logiquement,
+8. les monstres, mini-boss, boss et boss ultimes existent comme roster structuré,
+9. les dieux peuvent être équipés avec armes, armures, reliques, outils et consommables,
+10. ces équipements sont forgeables, rares, améliorables, éveillables et sanctifiables via les ressources déjà présentes dans le jeu,
+11. l’aventure reste branchée à RewardBundle, TempleProgress, Dashboard, Recommendations, Lore, Badges, Ranks et Monde vivant.
+
+Sous-systèmes à créer :
+- AdventureAdaptiveDirector
+- CombatProfileSnapshot
+- EncounterBudgetGenerator
+- QuestionSourceResolver
+- UnlockRulesEngine
+- AdventureCombatManager
+- CombatStateManager
+- CombatFormulaManager
+- AdventurePartyManager
+- DivineSkillManager
+- AdventureEquipmentManager
+- EnemyDefinition / BossDefinition / EncounterDefinition
+- AdventureBattleActivity
+- QuestManager
+- BossManager
+- AdventureProgressRepository
+
+Le combat doit gérer :
+- PV alliés et ennemis
+- bonne réponse = action divine
+- mauvaise réponse = action ennemie
+- questions standard, renforcées, divines, de rupture, d’invocation, ultimes et de phase
+- phases de boss
+- invocations
+- statuts
+- boucliers
+- combos
+- super questions
+- adaptation cognitive discrète
+
+Les équipements doivent gérer :
+- slots par dieu
+- raretés
+- forge
+- amélioration
+- éveil
+- sanctification
+- ressources du jeu existantes
+- effets passifs et actifs
+- synergies de duo ou trio
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- AppDatabase.kt
+- UserProfile.kt
+- TempleProgressManager.kt
+- QuestManager.kt si présent
+- RewardBundle.kt
+- RewardManager.kt
+- InventoryActivity.kt
+- ForgeActivity.kt
+- DashboardActivity.kt
+- RecommendationEngine.kt
+- GodLoreManager.kt
+- SoundManager.kt
+- AdventureUnlockManager.kt
+- AdventureActivity.kt
+- AdventureZoneActivity.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles migrations nécessaires, et ensuite génère les fichiers complets.
+
+══════════════════════════════════════════════════════════════════════════════
+41 — RÉSUMÉ ULTRA COURT DU BLOC P FINAL
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc fait de RéviZeus un vrai RPG adaptatif.
+Les dieux combattent avec de vrais PV.
+Les boss existent comme menaces mythologiques à phases.
+Le QCM devient la logique des attaques.
+Les questions viennent des vrais savoirs du joueur.
+Les combats se génèrent selon son profil réel.
+La forge devient un arsenal divin.
+Les équipements deviennent stratégiques.
+Les quêtes et les zones prennent vie.
+Et l’apprentissage devient une guerre sacrée, personnalisée et cohérente, pour restaurer l’Olympe.

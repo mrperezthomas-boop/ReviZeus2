@@ -1,0 +1,591 @@
+RÉVIZEUS — BLOC C
+AUDIO GLOBAL + TTS + DUCKING + LOADINGS + FONDS VIDÉO/IMAGE
+Version : exécution IA détaillée
+Date : 2026-03-24
+Source : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt + document maître fusionné
+
+====================================================================
+0 — RÔLE DE CE BLOC
+====================================================================
+
+Ce bloc sert à industrialiser toute la couche audiovisuelle transverse de RéviZeus.
+Il ne s’agit pas seulement de “faire du son plus propre” ou de lire du texte à voix haute.
+Il s’agit de transformer tous les systèmes sensibles du jeu pour qu’ils reposent sur une base cohérente, stable, immersive et réutilisable : musiques, transitions, TTS, ducking, loadings divins, vidéos de fond, gel image fixe, lifecycle, reprise après interruption, et compatibilité avec les blocs cœur du jeu.
+
+Sans ce bloc :
+- les activités peuvent se couper ou se chevaucher musicalement ;
+- le TTS risque de gêner la BGM ou d’être imprévisible ;
+- les futures actions IA longues donnent une sensation de bug ou de vide ;
+- les fonds vidéo restent dispersés et non homogènes ;
+- l’Oracle, les quiz, les résultats, les actions divines et les futurs écrans premium héritent d’une base instable ;
+- les futurs prompts donnés à une IA risquent de recoder localement le son, la voix, les chargements et les vidéos au lieu de s’appuyer sur une couche centrale.
+
+Ce bloc est donc le chantier qui transforme l’audio et l’habillage animé en infrastructure premium partagée.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+Créer une couche audiovisuelle transverse capable de gérer, de façon homogène et réutilisable :
+- la mémoire musicale entre écrans ;
+- les transitions musicales différées et sûres ;
+- le ducking de la BGM sous la voix ;
+- la lecture TTS sur tous les contenus longs utiles ;
+- l’arrêt, la reprise et l’abandon propres du TTS ;
+- un bouton speaker universel cohérent ;
+- un LoadingDivineDialog central, noble, immersif, réutilisable ;
+- des textes de chargement contextuels par dieu et par action ;
+- la traduction immersive des délais, indisponibilités et quotas en fatigue divine ;
+- un helper universel vidéo -> image fixe ;
+- le pattern raw xxx_animated -> drawable xxx ;
+- un fallback instantané si la vidéo manque ;
+- l’absence de son parasite sur les vidéos décoratives ;
+- un comportement propre dans le lifecycle ;
+- une base prête pour Oracle, quiz, résultats, actions divines, écran info, intro, temples, Jukebox et futurs contenus.
+
+À la fin du bloc C, RéviZeus doit disposer d’un socle audio/voix/loading/background suffisamment robuste pour que les blocs D à O n’aient plus à bricoler localement leur audiovisuel.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager
+- CraftingSystem / ForgeManager
+- KnowledgeFragmentManager
+- QuizRewardManager / QuizTimerManager
+- FirebaseAuthManager / AccountRecoveryManager
+- AccountRegistry / OnboardingSession
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- AnimatedBackgroundHelper
+- OlympianParticlesView
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Intro vidéo possible avant MoodActivity selon le flux réel en place
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran ;
+- toute action longue IA doit avoir un loading divin ;
+- toute popup importante doit devenir RPG lettre par lettre avec son ;
+- toute limite technique visible doit être diégétique ;
+- toute ressource générée à partir d’un savoir doit être exportable ;
+- tout écran doit conserver un rendu premium cohérent avec la DA RéviZeus ;
+- ne jamais renommer arbitrairement les variables, IDs, managers ou flows existants ;
+- générer les fichiers complets modifiés ;
+- commenter le code intelligemment ;
+- conserver les commentaires déjà présents ;
+- ne jamais laisser une vidéo décorative lancer son propre son parasite ;
+- ne jamais casser la preview CameraX à cause d’un overlay opaque.
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC C
+====================================================================
+
+Ce bloc doit absorber :
+- stabilisation et enrichissement de SoundManager ;
+- mémoire de la dernière musique utile ;
+- lecture différée des musiques pour éviter les conflits de transition ;
+- reprise différée de la musique mémorisée ;
+- annulation d’une reprise planifiée si l’écran change ;
+- séparation plus propre musique / SFX / TTS ;
+- TTS global unifié via SpeakerTtsHelper ;
+- bouton speaker cohérent sur tous les contenus longs ;
+- TTS sur résumés, quiz, corrections, résultats, dialogues longs clés, écran info futur ;
+- ducking automatique de la BGM pendant TTS ;
+- restauration propre de la BGM après TTS ;
+- stop immédiat et fiable du TTS si l’utilisateur le demande ou si l’écran change ;
+- LoadingDivineDialog universel et réutilisable ;
+- une seule instance de loading à la fois ;
+- messages de chargement contextuels par dieu et par action ;
+- boucle SFX légère pendant chargement si activée ;
+- prise en charge des quotas / fatigue divine / attente douce ;
+- helper universel de fond vidéo jouée une fois puis gel sur image fixe ;
+- fallback immédiat sur image si vidéo absente ou incompatible ;
+- convention de nommage stricte _animated -> still ;
+- fade propre vidéo -> image ;
+- pause/reprise/stop propre selon lifecycle ;
+- intégration centrale pour les blocs D, E, J, K et N.
+
+Ce bloc ne doit PAS :
+- refondre tout l’Oracle au niveau métier ;
+- refaire la logique de quiz, récompense ou aventure ;
+- ajouter une grosse refonte visuelle non liée au son, au loading ou au background ;
+- casser les flows actuels sous prétexte d’homogénéiser l’audio ;
+- multiplier les helpers parallèles au lieu de consolider ;
+- imposer des APIs incompatibles avec l’existant.
+
+====================================================================
+4 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+C1 — SOUNDMANAGER GLOBAL ET MÉMOIRE MUSICALE
+--------------------------------------------------------------------
+
+Objectif
+Faire de SoundManager la façade audio réellement fiable du projet, au lieu d’un simple lanceur de musiques.
+
+À créer ou fiabiliser
+- rememberMusic(resId, loop = true)
+- getRememberedMusicResId()
+- playMusicDelayed(resId, loop = true, delayMs = 300)
+- resumeRememberedMusicDelayed(delayMs = 300)
+- cancelDelayedMusic()
+- stopMusic() / stopAllIfNeeded() si déjà présents
+- garde-fous contre doubles play successifs
+- gestion propre du changement d’activité rapide
+- gestion sûre après pause / reprise / back / finish
+
+Responsabilités attendues
+- mémoriser la musique de référence d’un écran ou d’un état ;
+- éviter les superpositions ou écrasements sauvages ;
+- lisser les transitions entre écrans ;
+- empêcher un ancien écran de reprendre sa musique après destruction ;
+- donner un comportement cohérent entre Dashboard, Temples, Oracle, Quiz, Résultats, Jukebox et écrans futurs.
+
+Améliorations à intégrer directement
+- journal audio léger pour debug ;
+- stratégie simple pour savoir si une musique est déjà en cours ;
+- garde-fou contre restart identique inutile ;
+- priorité simple entre BGM standard, BGM de résultat, Jukebox, loading sonore et TTS ;
+- base extensible pour variations par humeur / temple / rang plus tard.
+
+Livrables
+- SoundManager stabilisé ;
+- transitions audio plus propres ;
+- mémoire musicale réellement exploitable par tout le jeu.
+
+--------------------------------------------------------------------
+C2 — TTS GLOBAL UNIFIÉ AVEC SPEAKERTTSHELPER
+--------------------------------------------------------------------
+
+Objectif
+Créer un moteur TTS central réutilisable partout, au lieu d’avoir des implémentations locales disparates.
+
+À créer ou fiabiliser
+- SpeakerTtsHelper.kt global ;
+- API simple pour speak(text), stop(), pause si possible, resume si possible ;
+- gestion du lifecycle ;
+- nettoyage des listeners ;
+- callback de fin de lecture ;
+- état de lecture isSpeaking ;
+- possibilité de lier un bouton speaker à différents écrans sans duplication ;
+- arrêt propre si l’activité change ou se ferme.
+
+Écrans et contenus cibles minimum
+- résumés ;
+- validation de résumé ;
+- questions de quiz ;
+- corrections ;
+- résultats ;
+- dialogues longs critiques quand pertinent ;
+- futur écran info ;
+- futurs artefacts textuels (poème, traduction, reformulations).
+
+Améliorations à intégrer directement
+- support vitesse de lecture configurable ;
+- paramètre activation/désactivation TTS ;
+- structure permettant plus tard des voix différenciées ou styles de lecture ;
+- structure permettant plus tard mise en évidence du texte lu ;
+- stop immédiat à tout moment ;
+- comportement idempotent si l’utilisateur spamme le speaker.
+
+Livrables
+- moteur TTS central fiable ;
+- API simple pour les futurs blocs ;
+- suppression du bricolage TTS local.
+
+--------------------------------------------------------------------
+C3 — BOUTON SPEAKER UNIVERSEL ET USAGES ÉCRAN
+--------------------------------------------------------------------
+
+Objectif
+Éviter que chaque écran invente sa propre logique de bouton speaker, son placement, son état et son comportement.
+
+À faire
+- définir le comportement standard du speaker ;
+- homogénéiser l’icône, la taille et le feedback d’état ;
+- prévoir état lecture / arrêt ;
+- éviter les icônes coupées, trop zoomées ou mal cadrées ;
+- prévoir intégration simple dans les layouts XML existants ;
+- garder une logique de clic cohérente entre résumé, quiz, résultat et dialogues.
+
+Règles UX
+- un appui démarre la lecture ;
+- un second appui stoppe ;
+- la lecture doit se couper proprement quand l’utilisateur change d’écran ;
+- la BGM doit être duckée pendant la lecture ;
+- le bouton ne doit pas être caché, tronqué ou disproportionné ;
+- le composant doit rester premium et lisible en portrait.
+
+Améliorations à intégrer directement
+- état visuel lecture en cours ;
+- animation légère si pertinent ;
+- préparation pour highlight du segment lu ;
+- cohérence avec la charte audio globale.
+
+Livrables
+- comportement speaker unifié ;
+- intégration cohérente des écrans prioritaires.
+
+--------------------------------------------------------------------
+C4 — DUCKING AUDIO ET ARBITRAGE ENTRE BGM / TTS / SFX
+--------------------------------------------------------------------
+
+Objectif
+Faire du ducking un comportement central, invisible, fiable et agréable.
+
+À mettre en place
+- baisse automatique de la BGM pendant la voix ;
+- restauration à la fin de la lecture ;
+- restauration sûre en cas d’arrêt manuel ;
+- protection si l’écran change pendant la lecture ;
+- éviter toute remontée brutale ou décalée ;
+- éviter les cas où la voix et la musique se battent ;
+- éviter qu’un SFX critique soit masqué ou que la voix masque tout.
+
+Cas à tester impérativement
+- lecture d’un résumé puis arrêt manuel ;
+- lecture d’une question puis changement de question ;
+- lecture d’une correction puis retour en arrière ;
+- lecture avec changement d’activité ;
+- lecture avec BGM spécifique d’écran ;
+- lecture pendant ou après un loading ;
+- lecture dans un écran déjà riche en SFX.
+
+Améliorations à intégrer directement
+- intensité de ducking configurable ;
+- méthode centrale au lieu de bricolage par écran ;
+- stratégie de priorité minimale : TTS > BGM, mais sans tuer tous les SFX utiles ;
+- base future pour accessibilité et profils d’apprentissage.
+
+Livrables
+- ducking réellement stable ;
+- coexistence propre entre musique et voix.
+
+--------------------------------------------------------------------
+C5 — LOADING DIVIN UNIVERSEL
+--------------------------------------------------------------------
+
+Objectif
+Faire des attentes IA un moment immersif, noble, lisible et sécurisé.
+
+À créer ou fiabiliser
+- LoadingDivineDialog.kt central ;
+- une seule instance à la fois ;
+- helpers showLoading()/hideLoading() dans BaseActivity ou BaseGameActivity ;
+- gestion non cancelable si critique ;
+- gestion cancelable si non critique selon contexte ;
+- fermeture sûre même si retour erreur ;
+- aucun écran noir ou blanc entre loading et résultat ;
+- aucune fuite de fenêtre.
+
+Cas d’usage prioritaires
+- génération de résumé ;
+- génération de quiz ;
+- OCR lourd ;
+- traduction Hermès ;
+- dessin Aphrodite ;
+- Lyre d’Apollon ;
+- corrections IA longues ;
+- futures générations de musique ou artefacts créatifs.
+
+Améliorations à intégrer directement
+- messages aléatoires ou contextuels ;
+- style de message par dieu ;
+- micro animation portrait / chibi / particules ;
+- SFX de boucle légère, stoppée proprement ;
+- reprise automatique de la BGM précédente après fermeture ;
+- texte d’attente non technique ;
+- timeout doux avec message immersif si l’attente dure.
+
+Livrables
+- loading central robuste ;
+- disparition des attentes “muettes” ;
+- base premium pour tous les blocs IA.
+
+--------------------------------------------------------------------
+C6 — FATIGUE DIVINE ET INDISPONIBILITÉS AUDIO/IA
+--------------------------------------------------------------------
+
+Objectif
+Transformer les indisponibilités, délais et quotas en retours diégétiques cohérents au lieu d’erreurs sèches.
+
+À couvrir
+- quota image atteint ;
+- quota musique atteint ;
+- quota traduction atteint ;
+- génération temporairement indisponible ;
+- service lent ou interrompu ;
+- réessai conseillé plus tard ;
+- action longue encore en cours.
+
+Règles
+- ne pas mentir techniquement ;
+- ne pas afficher le jargon brut ;
+- toujours proposer une formulation cohérente avec le dieu ;
+- si utile, donner un délai estimé ou une alternative ;
+- ne pas laisser le joueur sans explication ni issue.
+
+Exemples attendus
+- Apollon accorde encore sa lyre, reviens bientôt ;
+- Aphrodite est fatiguée, sa vision du savoir se reposera avant une nouvelle peinture ;
+- Les vents d’Hermès sont troublés, la traduction devra patienter ;
+- Les Oracles poursuivent encore leur lecture, attends un instant.
+
+Livrables
+- helpers ou référentiel de textes immersifs ;
+- usage intégré au loading ou aux dialogs RPG si disponibles.
+
+--------------------------------------------------------------------
+C7 — VIDEOBACKGROUNDHELPER ET PATTERN VIDÉO -> IMAGE FIXE
+--------------------------------------------------------------------
+
+Objectif
+Uniformiser définitivement le comportement des écrans à fond animé.
+
+À créer ou fiabiliser
+- VideoBackgroundHelper.kt universel ;
+- gestion raw vidéo muette ;
+- gel ou remplacement par still drawable ;
+- fallback direct si vidéo absente ;
+- convention stricte de nommage ;
+- support pause/reprise/stop selon lifecycle ;
+- non-répétition si l’écran doit jouer la vidéo une seule fois ;
+- interaction possible avant la fin de certaines vidéos si l’écran l’exige.
+
+Convention de ressource à respecter
+- raw : xxx_animated.mp4
+- drawable still : xxx
+- exemple : bg_oracle_animated.mp4 -> bg_oracle.png ;
+- exemple : bg_resultat_animated.mp4 -> bg_resultat.png ;
+- exemple : bg_avatar_x_animated.mp4 -> still correspondante si prévue.
+
+Écrans prioritaires
+- GodMatiereActivity ;
+- OracleActivity ;
+- ResultActivity ;
+- TrainingSelectActivity si retenu ;
+- écrans info ;
+- intro vidéo ;
+- autres écrans déjà prévus avec fonds animés.
+
+Améliorations à intégrer directement
+- fade propre vidéo -> image ;
+- journal debug si ressource manquante ;
+- pas de son parasite sur vidéo décorative ;
+- préparation pour plusieurs résolutions si besoin futur ;
+- préchargement léger si pertinent.
+
+Livrables
+- helper vidéo central ;
+- comportement homogène sur tous les écrans clés.
+
+--------------------------------------------------------------------
+C8 — INTÉGRATION BASEACTIVITY / BASEGAMEACTIVITY
+--------------------------------------------------------------------
+
+Objectif
+Faire des couches audio, TTS, loading et vidéo des comportements centraux du socle, pas des hacks d’écran en écran.
+
+À intégrer
+- helpers communs showLoading/hideLoading ;
+- point de cleanup TTS ;
+- point de cleanup ou coordination audio ;
+- hooks lifecycle pour éviter les fuites ;
+- conventions simples pour les écrans héritant de BaseActivity ou BaseGameActivity.
+
+À vérifier
+- pas de fuite de DialogFragment ;
+- pas de reprise musicale d’un écran mort ;
+- pas de TTS orphelin ;
+- pas de vidéo qui continue hors écran ;
+- pas de coroutine non annulée déclenchant un play tardif.
+
+Livrables
+- base transverse plus propre ;
+- moins de duplication dans les blocs futurs.
+
+--------------------------------------------------------------------
+C9 — PARAMÈTRES AUDIO ET ACCESSIBILITÉ MINIMALE
+--------------------------------------------------------------------
+
+Objectif
+Préparer dès maintenant les réglages indispensables sans retarder inutilement le chantier.
+
+À prévoir
+- activation/désactivation TTS ;
+- vitesse de lecture ;
+- conservation du volume BGM/SFX si déjà géré ;
+- option de ducking si nécessaire ;
+- structure de prefs claire et extensible.
+
+Ce sous-chantier n’impose pas une refonte complète des réglages, mais la structure ne doit pas bloquer les usages futurs.
+
+Livrables
+- préférences minimales branchées ;
+- base propre pour Settings premium du bloc K.
+
+====================================================================
+5 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CE BLOC
+====================================================================
+
+Niveau 1 — Quasi obligatoires
+- SoundManager.kt
+- SpeakerTtsHelper.kt si déjà existant, sinon équivalent TTS actuel
+- LoadingDivineDialog.kt si déjà existant
+- BaseActivity.kt
+- BaseGameActivity.kt
+- AnimatedBackgroundHelper.kt
+- helpers vidéo déjà présents s’il y en a
+
+Niveau 2 — Écrans prioritaires pour première intégration
+- OracleActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- TrainingSelectActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+- DashboardActivity.kt si musique contextuelle ou dialogues longs concernés
+- écran info / intro si déjà présents dans le projet
+
+Niveau 3 — XML et ressources utiles
+- layouts de loading déjà existants
+- layouts des écrans avec speaker
+- drawables et raw utilisés pour fonds animés
+- ressources audio BGM/SFX concernées
+- icônes speaker existantes
+- éventuels drawables chibi/avatars du loading
+
+Niveau 4 — Si présents dans le projet
+- ReviZeusPrefs.kt ou équivalent
+- wrappers TTS existants
+- wrappers vidéo existants
+- MediaPlayer helpers existants
+- ExoPlayer wrappers si déjà utilisés
+- classes de gestion des musiques du mood / dashboard
+
+====================================================================
+6 — ORDRE D’EXÉCUTION INTERNE RECOMMANDÉ
+====================================================================
+
+Ordre conseillé à donner à l’IA
+1. Audit global du moteur audio/TTS/loading/vidéo existant
+2. Stabilisation de SoundManager et mémoire musicale
+3. Stabilisation de SpeakerTtsHelper et API TTS centrale
+4. Mise en place du ducking global
+5. Standardisation du comportement du bouton speaker
+6. Mise en place ou refonte de LoadingDivineDialog
+7. Intégration BaseActivity / BaseGameActivity
+8. Création ou fiabilisation de VideoBackgroundHelper
+9. Première intégration concrète sur écrans prioritaires
+10. Récapitulatif des écrans encore à raccorder dans les blocs suivants
+
+====================================================================
+7 — CE QUE L’IA DOIT FOURNIR À LA FIN DU BLOC C
+====================================================================
+
+Obligatoire
+- audit précis du moteur audio/TTS/loading/vidéo avant code ;
+- fichiers complets modifiés ;
+- nouveaux fichiers créés en entier ;
+- explication claire des responsabilités de SoundManager, SpeakerTtsHelper, LoadingDivineDialog et VideoBackgroundHelper ;
+- stratégie de branchement dans BaseActivity / BaseGameActivity ;
+- procédures de test manuel ;
+- liste des ressources éventuellement manquantes ;
+- mise à jour IA_DOCS / docs de cohérence si nécessaire.
+
+Très souhaitable
+- tableau simple des écrans déjà compatibles TTS ;
+- tableau simple des écrans déjà convertis au pattern vidéo -> image fixe ;
+- liste des actions IA longues déjà couvertes par loading ;
+- backlog des écrans encore à harmoniser après ce bloc.
+
+====================================================================
+8 — CRITÈRES DE FIN RÉELS
+====================================================================
+
+Le bloc C est terminé seulement si :
+- la musique ne se superpose plus de manière incohérente ;
+- la mémoire musicale et les transitions différées sont réellement fiables ;
+- le TTS est utilisable sur les contenus longs prioritaires ;
+- le ducking fonctionne et se restaure correctement ;
+- le bouton speaker a un comportement homogène ;
+- les actions IA longues affichent un loading divin propre ;
+- les quotas et indisponibilités peuvent être traduits en fatigue divine ;
+- le pattern vidéo -> image fixe est homogène sur les écrans prioritaires ;
+- les blocs D, E, J et K peuvent réutiliser ce socle sans repartir de zéro.
+
+====================================================================
+9 — PROMPT PRÊT À DONNER À UNE IA POUR LE BLOC C
+====================================================================
+
+Voici le BLOC C de RéviZeus : Audio global + TTS + ducking + loadings + fonds vidéo/image.
+Respecte strictement l’architecture existante. Ne supprime rien. Ne renomme pas arbitrairement les variables, IDs, managers ou flows existants. Génère les fichiers complets modifiés. Conserve le plein écran portrait. Utilise XML + ViewBinding. Pas de Compose. Commente le code intelligemment. Fais d’abord un audit précis des fichiers fournis.
+
+Objectif du bloc :
+- stabiliser SoundManager comme façade audio centrale ;
+- ajouter ou fiabiliser rememberMusic, playMusicDelayed, resumeRememberedMusicDelayed, cancelDelayedMusic ;
+- unifier SpeakerTtsHelper pour les résumés, questions, corrections, résultats et dialogues longs utiles ;
+- mettre en place un ducking BGM fiable pendant le TTS avec restauration propre ;
+- homogénéiser le comportement du bouton speaker ;
+- créer ou refondre LoadingDivineDialog pour toutes les actions IA longues ;
+- afficher des messages de chargement contextuels par dieu ;
+- traduire les quotas et indisponibilités en fatigue divine immersive ;
+- créer ou fiabiliser VideoBackgroundHelper avec le pattern raw xxx_animated -> drawable xxx ;
+- assurer un fallback direct sur image si la vidéo manque ;
+- intégrer proprement tout cela dans BaseActivity / BaseGameActivity et les écrans prioritaires.
+
+Sous-chantiers obligatoires :
+C1 SoundManager global et mémoire musicale
+C2 TTS global unifié avec SpeakerTtsHelper
+C3 Bouton speaker universel et usages écran
+C4 Ducking audio et arbitrage entre BGM / TTS / SFX
+C5 Loading divin universel
+C6 Fatigue divine et indisponibilités audio/IA
+C7 VideoBackgroundHelper et pattern vidéo -> image fixe
+C8 Intégration BaseActivity / BaseGameActivity
+C9 Paramètres audio et accessibilité minimale
+
+Règles impératives :
+- aucune superposition sauvage de musiques ;
+- aucun TTS orphelin ;
+- aucune fuite de loading ;
+- aucune vidéo décorative avec son parasite ;
+- aucun écran noir/blanc entre loading et résultat ;
+- aucune cassure du plein écran portrait ;
+- aucune régression sur les flows Oracle, Training, Dashboard et Temples.
+
+Livrables attendus :
+- audit précis de l’existant ;
+- nouveaux helpers ou fichiers complets créés ;
+- fichiers complets modifiés ;
+- stratégie de branchement par écran ;
+- tests manuels à effectuer ;
+- ressources manquantes éventuelles avec nom, utilité, connexions et prompt JSON si absentes.

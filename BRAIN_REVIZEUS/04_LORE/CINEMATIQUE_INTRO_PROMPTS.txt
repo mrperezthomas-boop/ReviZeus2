@@ -1,0 +1,215 @@
+
+REVIZEUS – INTRO CINEMATIC GENERATION FILE
+FORMAT: VERTICAL 9:16
+USE WITH: Nanobanana (images) + Veo3 (video)
+
+GLOBAL VISUAL STYLE (ALREADY INCLUDED IN EACH PROMPT)
+-----------------------------------------------------
+vertical 9:16 portrait frame
+stylized 3D chibi greek mythology
+"Clay & Gold" aesthetic
+hand sculpted clay style characters and architecture
+gold ornaments and marble temples
+fantasy RPG animated movie look
+cinematic lighting
+NOT photorealistic
+NOT realistic humans
+
+CINEMATIC STRUCTURE (90 seconds total)
+--------------------------------------
+0–20s   Ancient Olympus
+20–40s  Chaos rising
+40–60s  Fall of Olympus
+60–75s  Prophecy
+75–90s  Mission
+
+=====================================================
+SCENE 1 – ANCIENT OLYMPUS
+Duration: 0–10s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Mount Olympus floating above golden clouds, gigantic greek temples made of marble and gold, libraries glowing with divine knowledge, magical scrolls floating around the temples, constellations forming symbols of knowledge in the sky.
+stylized 3D chibi greek mythology, Clay & Gold aesthetic, fantasy RPG animated movie look, cinematic lighting.
+NOT photorealistic.
+
+VIDEO PROMPT (Veo3)
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: slow aerial cinematic fly forward through Olympus temples.
+Environment: divine golden light, floating magical scrolls.
+Narrator speaks in French with deep calm cinematic storytelling voice:
+"Il fut un temps où l’Olympe ne gardait pas seulement les dieux… mais le savoir du monde."
+
+=====================================================
+SCENE 2 – THE GODS
+Duration: 10–20s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Ten greek gods above Olympus:
+Zeus lightning,
+Athena owl and scroll,
+Poseidon ocean waves,
+Ares spear,
+Aphrodite art aura,
+Hermes winged sandals,
+Demeter nature energy,
+Hephaistos forging glowing formulas,
+Apollo radiant halo,
+Prometheus flame of knowledge.
+Clay & Gold chibi mythology aesthetic.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: slow circular pan around pantheon.
+Actions:
+Zeus lightning forms equations.
+Athena writes glowing words.
+Poseidon raises a wave shaped like a cell.
+Hephaistos sparks from anvil.
+Narrator in French:
+"Dix gardiens veillaient sur les temples du savoir."
+
+=====================================================
+SCENE 3 – THE SHADOW
+Duration: 20–30s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Dark cosmic shadow spreading across Olympus sky, golden temples losing light, scrolls turning into dust, purple storm clouds forming.
+Clay & Gold stylized mythology aesthetic.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: slow dramatic zoom toward darkness.
+Action: divine light fading as shadow spreads.
+Narrator in French:
+"Mais un jour… les humains cessèrent d’apprendre."
+
+=====================================================
+SCENE 4 – BIRTH OF CHAOS
+Duration: 30–40s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Giant shadow entity made of broken fragments of knowledge rising above Olympus, purple lightning inside storm clouds.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: upward dramatic reveal.
+Narrator in French:
+"Et dans ce silence… naquit le Chaos de l’Oubli."
+
+=====================================================
+SCENE 5 – FALL OF TEMPLES
+Duration: 40–50s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Greek temples collapsing dramatically, marble pillars breaking, statues of gods falling during lightning storm.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: slow motion destruction.
+Narrator in French:
+"Les temples du savoir tombèrent."
+
+=====================================================
+SCENE 6 – RUINS
+Duration: 50–60s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Ruined Olympus temples, broken statues, abandoned libraries, dust floating in the air.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 10 seconds.
+Camera: slow traveling shot through ruins.
+Narrator in French:
+"Même les dieux ne pouvaient sauver un monde qui refusait d’apprendre."
+
+=====================================================
+SCENE 7 – PROMETHEUS
+Duration: 60–68s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Prometheus standing in ruins holding glowing flame of knowledge.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 8 seconds.
+Camera: slow push toward flame.
+Prometheus voice in French, calm mentor tone:
+"Tant qu’un humain cherchera à comprendre… l’Olympe pourra renaître."
+
+=====================================================
+SCENE 8 – AWAKENING
+Duration: 68–75s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Student opening glowing book releasing golden energy toward sky.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 7 seconds.
+Camera: golden light rising toward Olympus.
+Narrator in French:
+"Un élève posa une question."
+
+=====================================================
+SCENE 9 – ZEUS
+Duration: 75–83s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Zeus awakening above ruined Olympus with lightning behind him.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 8 seconds.
+Camera: low angle heroic shot.
+Zeus speaks French with deep thunder voice:
+"Humain… L’Olympe est tombé."
+
+=====================================================
+SCENE 10 – THE MISSION
+Duration: 83–90s
+=====================================================
+
+IMAGE PROMPT
+Vertical 9:16 portrait frame.
+Mount Olympus beginning to rebuild with golden divine light rising.
+
+VIDEO PROMPT
+Vertical 9:16 cinematic video.
+Duration: 7 seconds.
+Camera: slow cinematic zoom toward glowing Olympus.
+Zeus speaks French with powerful voice:
+"Apprends… et relève l’Olympe."
+
+=====================================================
+AUDIO TIMELINE FOR EDITING
+=====================================================
+
+0–20s  Lyre + harp mystical atmosphere
+20–40s Low strings tension
+40–60s Dramatic choir + slow percussion
+60–75s Piano + lyre hopeful tone
+75–90s Epic orchestral finale

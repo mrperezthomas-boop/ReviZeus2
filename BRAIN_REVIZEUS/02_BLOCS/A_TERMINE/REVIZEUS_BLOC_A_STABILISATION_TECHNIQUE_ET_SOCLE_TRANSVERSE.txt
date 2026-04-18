@@ -1,0 +1,453 @@
+RÉVIZEUS — BLOC A
+STABILISATION TECHNIQUE ET SOCLE TRANSVERSE
+Version : exécution IA détaillée
+Date : 2026-03-24
+Source : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt
+
+====================================================================
+0 — RÔLE DE CE BLOC
+====================================================================
+
+Ce bloc ne sert pas à ajouter des features visibles massives.
+Ce bloc sert à assainir, sécuriser et fiabiliser la base technique de RéviZeus avant les gros chantiers.
+
+Sans ce bloc :
+- les futurs ajouts peuvent générer des régressions invisibles,
+- les dialogues, loaders, vidéos, TTS, audio et navigation peuvent devenir instables,
+- les futures corrections données à une IA risquent de casser plus qu’elles ne réparent.
+
+Ce bloc est donc le chantier de pré-assainissement obligatoire.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+Rendre RéviZeus :
+- compilable proprement,
+- stable sur navigation simple,
+- stable sur pause / reprise / destruction,
+- stable sur chargements IA interrompus,
+- stable sur audio / TTS / vidéo / animations,
+- stable sur bindings / coroutines / loaders,
+- prêt à accueillir les blocs suivants sans effet domino destructeur.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager
+- CraftingSystem / ForgeManager
+- KnowledgeFragmentManager
+- QuizRewardManager / QuizTimerManager
+- FirebaseAuthManager / AccountRecoveryManager
+- AccountRegistry / OnboardingSession
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- AnimatedBackgroundHelper
+- OlympianParticlesView
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Intro vidéo possible avant MoodActivity selon le flux réel en place
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran
+- toute popup importante doit devenir RPG lettre par lettre avec son
+- toute action longue IA doit avoir un loading divin
+- toute limite technique doit être diégétique
+- toute ressource générée à partir d’un savoir doit être exportable
+- tout écran doit avoir un rendu premium cohérent avec la DA
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC A
+====================================================================
+
+Ce bloc doit absorber :
+- purge des erreurs de compile récurrentes,
+- sécurisation imports / overrides / appels showLoading / onBackPressed / adapters,
+- sécurisation des Intent extras,
+- sécurisation des bindings et du lifecycle,
+- sécurisation MediaPlayer / TTS / VideoView / animations / coroutines,
+- sécurisation des retours arrière et sorties d’écran pendant chargements,
+- correction des états UI incohérents après pause / reprise,
+- réduction des feedbacks techniques bruts,
+- vérification du plein écran portrait partout,
+- préparation des prochains blocs sans refonte lourde.
+
+Ce bloc ne doit PAS :
+- lancer une grosse migration Room structurelle,
+- refondre l’Oracle premium complet,
+- refondre tout le système de dialogues RPG,
+- implémenter le mode aventure,
+- ajouter massivement de nouvelles ressources si non nécessaire.
+
+====================================================================
+4 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+A1 — COMPILE ET SIGNATURES
+--------------------------------------------------------------------
+
+Objectif
+Supprimer toutes les fragilités de compilation et les incohérences de signatures accumulées.
+
+À vérifier et corriger
+- imports manquants,
+- références non résolues,
+- classes Android non importées,
+- appels de méthodes supprimées ou renommées,
+- surcharges invalides,
+- signatures d’Adapter incorrectes,
+- signatures Activity / Fragment incorrectes,
+- appels d’extensions coroutines ou lifecycle incorrects,
+- appels Room non compatibles avec suspend / thread IO,
+- appels showLoading / hideLoading non existants ou incohérents,
+- appels onBackPressedDispatcher / onBackPressed désalignés selon SDK,
+- références view binding mal typées.
+
+Exemples typiques à chasser
+- Unresolved reference Toast,
+- méthode appelée mais non définie,
+- override d’une méthode inexistante,
+- import androidx manquant,
+- adapter avec méthode onCreateViewHolder ou getItemCount mal signée,
+- callback de permissions mal branché,
+- binding utilisé hors scope de vie de la vue.
+
+Livrables
+- compilation propre,
+- suppression des erreurs évidentes de typage,
+- suppression des warnings dangereux liés à API dépréciées quand cela casse la stabilité.
+
+--------------------------------------------------------------------
+A2 — LIFECYCLE ACTIVITY / FRAGMENT / DIALOG
+--------------------------------------------------------------------
+
+Objectif
+Éliminer les crashes et fuites liés à la destruction d’écran, aux animations actives, à l’audio ou au TTS.
+
+À vérifier et corriger
+- arrêt propre GodSpeechAnimator en onPause / onDestroy,
+- arrêt propre TTS sur pause, back, fermeture activité,
+- arrêt ou restauration propre de la musique selon l’écran,
+- libération VideoView / ExoPlayer si présents,
+- arrêt MediaPlayer ou SFX de boucle,
+- annulation des coroutines longues si écran détruit,
+- fermeture des DialogFragment / AlertDialog / loader pour éviter WindowLeaked,
+- nettoyage des callbacks différés postDelayed,
+- arrêt ObjectAnimator / AlphaAnimation / handlers actifs,
+- protection contre update UI quand binding n’est plus valide.
+
+Cas critiques
+- utilisateur quitte un écran pendant génération IA,
+- utilisateur appuie retour pendant TTS,
+- vidéo de fond toujours vivante après navigation,
+- animation de scan continue alors que l’écran est fermé,
+- dialogue RPG continue à écrire après onPause,
+- coroutine termine et tente de binder une vue détruite.
+
+Livrables
+- lifecycle stable,
+- pas de fuite visible,
+- pas de callback zombie.
+
+--------------------------------------------------------------------
+A3 — NAVIGATION ET RETOURS
+--------------------------------------------------------------------
+
+Objectif
+Stabiliser tous les retours et transitions pour éviter les flows cassés, écrans doublons ou états incohérents.
+
+À vérifier et corriger
+- retour Dashboard cohérent,
+- retour vers TitleScreen / Mood / Auth selon logique déjà voulue,
+- cas où un écran est quitté pendant un chargement IA,
+- empilement multiple de la même Activity,
+- extras perdus ou null inattendus,
+- finish() / startActivity() mal ordonnés,
+- retour système Android qui casse un flow sacré,
+- écran résultat qui se réouvre en double,
+- écran training ou temple relancé plusieurs fois,
+- transitions qui relancent la musique ou les animations inutilement.
+
+Points de vigilance
+- DashboardActivity,
+- OracleActivity,
+- ResultActivity,
+- GodMatiereActivity,
+- TrainingSelectActivity,
+- TrainingQuizActivity,
+- QuizResultActivity,
+- écrans d’auth / onboarding si déjà touchés récemment.
+
+Livrables
+- navigation sans doublon simple,
+- retour propre,
+- flows sacrés préservés.
+
+--------------------------------------------------------------------
+A4 — BINDING, UI ET ÉTATS D’ÉCRAN
+--------------------------------------------------------------------
+
+Objectif
+Éviter les NullPointerException, les vues fantômes, les états visuels cassés ou les écrans qui restent partiellement actifs après fermeture.
+
+À vérifier et corriger
+- binding nul ou utilisé après destroy,
+- findViewById résiduel fragile à sécuriser si nécessaire,
+- vues mises à jour après fermeture,
+- overlay ou panel laissés visibles après reprise,
+- animations non relancées proprement,
+- composants speaker / reward / badges mal cadrés si déjà identifiés,
+- z-order d’éléments critiques,
+- root layout en plein écran portrait bien verrouillé,
+- flags fullscreen réappliqués proprement sur les écrans concernés.
+
+Cas critiques connus
+- overlays scanner,
+- scan_line,
+- composants speaker,
+- loaders,
+- popups,
+- HUD Dashboard,
+- panneaux textes mal proportionnés,
+- composants encore “debug”.
+
+Livrables
+- états UI plus robustes,
+- écrans propres à la reprise,
+- moins de comportements fantômes.
+
+--------------------------------------------------------------------
+A5 — AUDIO, TTS ET VIDÉO EN MODE DÉFENSIF
+--------------------------------------------------------------------
+
+Objectif
+Sans implémenter encore tout le bloc audio premium complet, verrouiller les protections minimales pour éviter la casse.
+
+À vérifier et corriger
+- aucune musique ne continue n’importe comment après fermeture d’écran,
+- aucun TTS ne parle sur l’écran suivant,
+- aucun SFX de boucle ne reste actif,
+- aucune vidéo ne reste accrochée en arrière-plan,
+- les activités n’essaient pas toutes de reprendre une musique en même temps,
+- la dernière musique mémorisée n’est pas écrasée de manière incohérente,
+- le speaker ne lance pas plusieurs lectures simultanées.
+
+Livrables
+- couche défensive stable,
+- support sain pour le futur BLOC C.
+
+--------------------------------------------------------------------
+A6 — COROUTINES, THREADS ET APPELS IA
+--------------------------------------------------------------------
+
+Objectif
+Empêcher les résultats asynchrones de casser l’UI si le contexte n’est plus valide.
+
+À vérifier et corriger
+- toute coroutine longue lancée depuis lifecycleScope ne doit plus binder une vue détruite,
+- tout withContext(Dispatchers.IO) doit revenir en main thread seulement si écran vivant,
+- toute action IA doit vérifier l’état de l’activité avant d’afficher un résultat,
+- éviter doubles clics qui lancent deux jobs concurrents,
+- éviter ré-entrance sur boutons sensibles,
+- éviter spinner / loader jamais refermés.
+
+Livrables
+- exécution asynchrone moins fragile,
+- base saine pour Oracle, quiz, traduction, dessin, musique, loading divin.
+
+--------------------------------------------------------------------
+A7 — LOGS PROPRES ET DETTE TECHNIQUE VISIBLE
+--------------------------------------------------------------------
+
+Objectif
+Préparer le terrain pour les blocs suivants avec des logs utiles et une détection des zones à convertir / polir.
+
+À ajouter
+- logs tagués proprement par écran / manager,
+- logs warning quand un extra attendu est absent,
+- logs warning quand une ressource vidéo/image attendue manque,
+- logs warning quand une popup non RPG importante est encore utilisée,
+- logs simples sur reprise audio/TTS/vidéo,
+- logs simples sur erreurs de navigation.
+
+Checklists à produire idéalement
+- écrans utilisant encore AlertDialog standard,
+- écrans avec feedbacks Toast encore trop bruts,
+- écrans avec fond/panneau mal proportionné,
+- écrans à risque lifecycle.
+
+Livrables
+- visibilité technique améliorée,
+- chantier des blocs suivants plus précis.
+
+====================================================================
+5 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CE BLOC
+====================================================================
+
+Niveau 1 — Quasi obligatoires
+- BaseActivity.kt
+- BaseGameActivity.kt
+- SoundManager.kt
+- GodSpeechAnimator.kt
+- SpeakerTtsHelper.kt si déjà existant
+- LoadingDivineDialog.kt si déjà existant
+
+Niveau 2 — Écrans critiques à stabiliser en premier
+- DashboardActivity.kt
+- OracleActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- TrainingSelectActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+
+Niveau 3 — Si récemment touchés ou instables
+- LoginActivity.kt
+- AuthActivity.kt
+- GenderActivity.kt
+- AvatarActivity.kt
+- MoodActivity.kt
+- TitleScreenActivity.kt / MainMenuActivity.kt si présents
+
+Niveau 4 — Si concernés
+- helpers vidéo / fond animé
+- adapters récemment modifiés
+- XML des écrans signalés comme cassés visuellement
+
+====================================================================
+6 — ORDRE D’EXÉCUTION INTERNE RECOMMANDÉ
+====================================================================
+
+Ordre conseillé à donner à l’IA
+1. Audit global des fichiers fournis
+2. Correction compile/signatures
+3. Correction lifecycle
+4. Correction navigation/retours
+5. Correction binding/UI défensive
+6. Correction audio/TTS/vidéo défensive
+7. Ajout logs/checklists
+8. Récapitulatif des dettes restantes à traiter dans B, C, D
+
+====================================================================
+7 — CE QUE L’IA DOIT FOURNIR À LA FIN DU BLOC A
+====================================================================
+
+Obligatoire
+- audit précis avant code,
+- liste des conflits détectés,
+- fichiers complets modifiés,
+- explication claire des correctifs,
+- risques restants,
+- procédures de test manuel,
+- liste des ressources éventuellement manquantes,
+- mise à jour IA_DOCS / docs de cohérence si nécessaire.
+
+====================================================================
+8 — CRITÈRES DE FIN RÉELS
+====================================================================
+
+Le bloc A est terminé seulement si :
+- compile sans erreur,
+- pas de fuite window / media / TTS sur navigation normale,
+- pas de crash simple sur back / pause / reprise,
+- pas d’écran qui continue à parler ou à jouer après fermeture,
+- pas de loader zombie visible,
+- les flows sacrés restent intacts,
+- le plein écran portrait est conservé,
+- les blocs B et C peuvent se brancher sans refaire de nettoyage de base.
+
+====================================================================
+9 — PROMPT PRÊT À DONNER À UNE IA POUR LE BLOC A
+====================================================================
+
+Voici le BLOC A de RéviZeus : Stabilisation technique et socle transverse.
+Respecte strictement l’architecture existante. Ne supprime rien. Ne renomme pas arbitrairement les variables, IDs, managers ou flows existants. Génère les fichiers complets modifiés. Conserve le plein écran portrait. Utilise XML + ViewBinding. Pas de Compose. Commente le code intelligemment. Fais d’abord un audit précis des fichiers fournis.
+
+Objectif du bloc :
+- purge des erreurs de compile récurrentes,
+- sécurisation imports / overrides / appels showLoading / onBackPressed / adapters,
+- sécurisation des Intent extras,
+- sécurisation des bindings et du lifecycle,
+- sécurisation MediaPlayer / TTS / VideoView / animations / coroutines,
+- sécurisation des retours arrière et sorties d’écran pendant chargements,
+- correction des états UI incohérents après pause/reprise,
+- stabilisation des feedbacks techniques trop bruts,
+- vérification du plein écran portrait partout.
+
+Sous-chantiers obligatoires :
+A1 Compile et signatures
+A2 Lifecycle Activity / Fragment / Dialog
+A3 Navigation et retours
+A4 Binding, UI et états d’écran
+A5 Audio, TTS et vidéo en mode défensif
+A6 Coroutines, threads et appels IA
+A7 Logs propres et dette technique visible
+
+Moteurs à ne jamais casser :
+XpCalculator, CurrencyManager, GeminiManager, GodManager / PantheonConfig, SoundManager, AnalyticsManager / UserAnalyticsEngine, BadgeManager, CraftingSystem / ForgeManager, KnowledgeFragmentManager, QuizRewardManager / QuizTimerManager, FirebaseAuthManager / AccountRecoveryManager, AccountRegistry / OnboardingSession, BaseActivity / BaseGameActivity, GodSpeechAnimator, AnimatedBackgroundHelper, OlympianParticlesView.
+
+Flows sacrés à préserver :
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+À la fin, je veux :
+1. audit détaillé des conflits
+2. pack de développement complet
+3. fichiers complets modifiés
+4. stratégie de test manuel
+5. liste des dettes restantes à traiter dans les blocs suivants
+6. mises à jour IA_DOCS à ajouter
+
+====================================================================
+10 — MISE À JOUR DES FICHIERS DE COHÉRENCE À AJOUTER APRÈS CE BLOC
+====================================================================
+
+01_SYSTEM_PROMPT_ULTIME.txt
+- rappeler que tout nouveau bloc doit hériter d’un socle stable lifecycle / audio / TTS / vidéo / navigation
+
+02_BUILD_AND_TECH_STACK.md
+- documenter protections lifecycle ajoutées
+- documenter helpers défensifs créés ou fiabilisés
+
+03_DATA_AND_MANAGERS.md
+- documenter les responsabilités exactes de BaseActivity / BaseGameActivity / SoundManager / helpers techniques après stabilisation
+
+04_UI_AND_NAVIGATION_MAP.md
+- documenter corrections de retours arrière et de navigation
+- documenter écrans encore à convertir en RPG / encore à polir
+
+05_RESOURCE_MANIFEST.json
+- ne rien ajouter sauf si une ressource technique ou graphique manque réellement pour stabiliser un écran
+
+====================================================================
+FIN DU BLOC A
+====================================================================

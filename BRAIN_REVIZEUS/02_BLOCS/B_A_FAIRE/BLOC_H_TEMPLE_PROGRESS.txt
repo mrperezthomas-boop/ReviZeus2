@@ -1,0 +1,639 @@
+RÉVIZEUS — BLOC H
+TEMPLEPROGRESS, RECONSTRUCTION DES TEMPLES, PALIERS VISUELS, DÉBLOCAGES GLOBAUX ET LIEN APPRENTISSAGE → MONDE
+Version : bloc d’implémentation exploitable par IA
+Date : 2026-03-24
+Statut : prêt à lancer après les blocs A à F, et à articuler proprement avec les blocs déjà produits
+
+══════════════════════════════════════════════════════════════════════════════
+0 — RÔLE DU BLOC H DANS L’ORDRE GLOBAL
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc transforme enfin les temples en système central de progression visible.
+Jusqu’ici, RéviZeus peut déjà apprendre, générer, interroger, corriger, récompenser et commencer à manipuler des objets.
+Le BLOC H relie tout cela au monde du jeu.
+
+Mission du BLOC H :
+- sortir définitivement la progression des temples des bricolages dispersés,
+- créer une persistance propre par temple et par matière,
+- relier les gains pédagogiques à une reconstruction visuelle du monde,
+- faire des temples une vraie colonne vertébrale du metagame,
+- préparer les déblocages de zones, de boss, de contenus et de systèmes avancés.
+
+Vision produit :
+Le joueur ne doit plus avoir la sensation de “gagner des points dans le vide”.
+Chaque savoir enregistré, chaque quiz réussi, chaque révision utile, chaque victoire importante doit pouvoir contribuer à restaurer concrètement un temple.
+Cette restauration doit se voir, s’entendre, se ressentir et influencer l’ensemble de l’expérience.
+
+Position dans l’ordre maître :
+- les blocs A à C rendent le socle stable, immersif et techniquement fiable,
+- les blocs D à F fiabilisent le cœur savoir → quiz → récompense,
+- le BLOC H transforme ces récompenses et cette progression en impact monde,
+- les futurs blocs K, N et O s’appuieront fortement dessus.
+
+Le BLOC H doit donc absorber tout ce qui concerne :
+- TempleProgress,
+- persistance par matière,
+- XP temple,
+- niveaux temple,
+- états visuels de reconstruction,
+- récompenses de palier,
+- déblocages globaux,
+- préparation de l’aventure,
+- musiques et ambiances temple évolutives,
+- apparition plus forte des dieux selon la progression,
+- liens entre progression pédagogique et reconstruction mythologique.
+
+══════════════════════════════════════════════════════════════════════════════
+1 — OBJECTIF FINAL DU BLOC H
+══════════════════════════════════════════════════════════════════════════════
+
+À la fin de ce bloc, RéviZeus doit disposer d’un vrai système de temples persistants et évolutifs :
+
+1. chaque matière possède son état de temple propre,
+2. la progression temple est stockée proprement en base,
+3. les gains de temple ne sont plus dispersés dans des JSON fragiles ou des hacks locaux,
+4. un temple évolue visuellement par paliers lisibles,
+5. un dieu devient plus présent, plus lumineux, plus puissant symboliquement quand son temple progresse,
+6. les récompenses de palier sont déclenchées proprement une seule fois,
+7. les déblocages globaux du monde s’appuient sur des conditions fiables,
+8. le Dashboard, les temples, les futurs écrans monde et aventure peuvent lire cette progression facilement,
+9. les musiques, particules et variantes d’ambiance peuvent évoluer sans refaire l’architecture,
+10. le lien apprendre → restaurer l’Olympe devient concret.
+
+══════════════════════════════════════════════════════════════════════════════
+2 — PÉRIMÈTRE EXACT DU BLOC H
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC H couvre :
+- création ou fiabilisation de l’entité TempleProgress,
+- DAO dédié,
+- migration Room,
+- TempleProgressManager,
+- attribution d’XP temple depuis les actions utiles,
+- calcul de niveau temple,
+- visualStage indépendant du level si nécessaire,
+- récompenses de palier et protections anti-doublons,
+- lecture simplifiée de l’état d’un temple depuis les Activities,
+- évolution visuelle temple en fonction du niveau,
+- déblocages globaux : aventure, Tartare, Bibliothèque Interdite, Palais des Titans, boss de matière,
+- messages / popups de déblocage immersifs,
+- préparation du Dashboard vivant,
+- préparation de la carte du monde et du mode aventure.
+
+Le BLOC H ne doit PAS absorber maintenant :
+- toute la carte du monde complète,
+- toutes les quêtes narratives,
+- tous les boss complets,
+- tout le système de lore détaillé,
+- toute la météo du Dashboard,
+- le bestiaire,
+- le compagnon chimérique,
+- les cinématiques avancées d’aventure.
+
+En revanche, il doit préparer des points d’extension propres pour tout cela.
+
+══════════════════════════════════════════════════════════════════════════════
+3 — DÉPENDANCES ET PRÉREQUIS
+══════════════════════════════════════════════════════════════════════════════
+
+BLOC H dépend fortement de :
+- BLOC A : stabilité compile, lifecycle, sécurité,
+- BLOC B : dialogues RPG universels,
+- BLOC C : audio global, feedbacks et fonds,
+- BLOC D : pipeline savoir et temple fiable,
+- BLOC E : quiz et corrections fiables,
+- BLOC F : récompenses unifiées et économie lisible.
+
+Peut aussi dialoguer avec :
+- le bloc déjà produit autour de la Forge / Inventaire / objets,
+- les futurs blocs Dashboard vivant, lore, aventure, badges, rangs.
+
+Avant de coder H, il faut vérifier :
+- qu’un mapping matière → dieu → temple existe déjà ou est clairement centralisé,
+- que les matières principales de RéviZeus sont figées ou au moins compatibles avec le système,
+- que les récompenses de quiz et d’enregistrement de savoirs sont assez stables pour nourrir TempleProgress,
+- que la DB peut accueillir une migration supplémentaire proprement.
+
+Si une logique temple existe déjà dans UserProfile ou dans des JSON locaux :
+- ne pas la supprimer brutalement,
+- lire l’existant,
+- migrer,
+- conserver des fallbacks défensifs,
+- ne jamais casser les sauvegardes actuelles sans stratégie claire.
+
+══════════════════════════════════════════════════════════════════════════════
+4 — FICHIERS PRINCIPAUX CONCERNÉS
+══════════════════════════════════════════════════════════════════════════════
+
+Fichiers Kotlin probables :
+- TempleProgress.kt
+- TempleProgressDao.kt
+- AppDatabase.kt
+- TempleProgressManager.kt
+- AdventureUnlockManager.kt
+- TempleVisualStateManager.kt (nouveau si besoin)
+- GodMatiereActivity.kt
+- DashboardActivity.kt
+- éventuellement ResultActivity.kt
+- éventuellement QuizResultActivity.kt
+- éventuellement RewardManager.kt / RewardBundle.kt pour brancher les gains temple
+- éventuellement UserProfile.kt si des flags globaux restent là
+- éventuellement GodManager / PantheonConfig pour mapper les ressources par temple
+
+Fichiers XML probables :
+- layout_god_matiere.xml
+- layout_dashboard.xml
+- éventuels composants de progression temple
+- éventuels panneaux de récompense ou de palier
+- éventuels overlays / backgrounds évolutifs
+- éventuels dialogues ou bottom sheets de déblocage immersif
+
+Ressources pouvant être nécessaires :
+- variantes de backgrounds temple par palier,
+- variantes de particules / overlays,
+- icônes ou badges de niveau temple,
+- SFX de restauration / niveau de temple / déblocage monde,
+- éventuelles couches musicales selon niveau.
+
+Si des ressources visuelles manquent :
+- ne pas bloquer le chantier,
+- prévoir fallback propre,
+- documenter précisément la ressource manquante,
+- donner nom exact, utilité, écrans concernés, connexions, prompt JSON si nécessaire.
+
+══════════════════════════════════════════════════════════════════════════════
+5 — SOUS-CHANTIERS DU BLOC H
+══════════════════════════════════════════════════════════════════════════════
+
+H1 — Entité TempleProgress et modèle de données
+H2 — DAO temple et requêtes métier
+H3 — Migration Room et compatibilité avec l’existant
+H4 — TempleProgressManager central
+H5 — Attribution de l’XP temple et règles de progression
+H6 — Paliers visuels et état de reconstruction
+H7 — Récompenses de palier et protections anti-doublons
+H8 — Déblocages globaux du monde
+H9 — Intégration UI dans GodMatiereActivity et Dashboard
+H10 — Pont vers audio, particules, dieux et futurs écrans monde
+H11 — Cartographie des ressources manquantes
+H12 — Tests manuels et critères de fin
+
+══════════════════════════════════════════════════════════════════════════════
+6 — H1 : ENTITÉ TEMPLEPROGRESS ET MODÈLE DE DONNÉES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Créer un stockage stable, lisible et extensible pour l’état de chaque temple.
+
+Structure attendue, ou équivalent compatible avec ton architecture :
+- subject : clé stable de la matière,
+- level : niveau du temple,
+- currentXp : XP actuelle dans le niveau en cours,
+- totalXpEarned : total cumulé, utile pour analytics et logique future,
+- visualStage : état visuel éventuellement distinct du level,
+- lastLevelUpAt : timestamp,
+- unlockedRewardsJson : liste des récompenses déjà données,
+- restorationStateJson : état visuel ou flags riches,
+- metadataJson éventuel si besoin.
+
+Règles métier de base :
+- subject doit être unique et stable,
+- aucun temple ne doit avoir d’XP négative,
+- aucun level ne doit descendre sous 0,
+- visualStage peut être découplé du level si tu veux des transitions visuelles plus fines,
+- les récompenses déjà données doivent rester traçables,
+- restorationStateJson doit permettre des ajouts sans casser le schéma.
+
+Recommandation produit :
+Conserver une logique simple et robuste d’abord.
+Ne pas partir trop tôt dans des structures ultra complexes si un modèle clair suffit.
+Il faut pouvoir lire l’état d’un temple très vite depuis n’importe quel écran.
+
+══════════════════════════════════════════════════════════════════════════════
+7 — H2 : DAO TEMPLE ET REQUÊTES MÉTIER
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Rendre les lectures et écritures des temples propres, atomiques et centralisées.
+
+Requêtes attendues :
+- getTempleProgressBySubject(subject)
+- getAllTempleProgress()
+- insertOrReplaceTempleProgress(...)
+- updateTempleXpAndLevel(...)
+- updateTempleVisualStage(...)
+- updateTempleRewardsJson(...)
+- resetTempleIfNeeded(...) seulement si logique contrôlée ultérieure
+- éventuellement getTemplesAtOrAboveLevel(level)
+- éventuellement countUnlockedTemples()
+
+Règles :
+- les opérations critiques doivent passer par des transactions quand nécessaire,
+- l’Activity ne doit pas bricoler elle-même des calculs de temple,
+- le DAO doit rester simple, le calcul métier doit vivre dans TempleProgressManager.
+
+À anticiper :
+- lecture rapide pour Dashboard,
+- lecture rapide pour carte du monde future,
+- lecture rapide pour conditions de déblocage aventure.
+
+══════════════════════════════════════════════════════════════════════════════
+8 — H3 : MIGRATION ROOM ET COMPATIBILITÉ AVEC L’EXISTANT
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Introduire TempleProgress sans casser les profils existants ni perdre les données déjà acquises.
+
+Ce chantier doit couvrir :
+- augmentation de version DB,
+- ajout de la nouvelle table,
+- initialisation propre des temples manquants,
+- migration des éventuelles données historiques issues de UserProfile / JSON / stockage local,
+- fallback défensif si certaines matières n’avaient jamais encore été créées côté temple.
+
+Stratégie recommandée :
+1. Ajouter la table.
+2. Au premier accès, hydrater les entrées manquantes pour les matières principales.
+3. Si des données temple historiques existent, les transférer.
+4. Garder un fallback de lecture ancien si besoin pendant une phase de transition.
+5. Une fois stable, débrancher progressivement les anciennes lectures bricolées.
+
+Point critique :
+Si ton existant stocke les niveaux de temple sous une forme partielle ou JSON, il faut faire une migration prudente et testable, pas une suppression brutale.
+
+══════════════════════════════════════════════════════════════════════════════
+9 — H4 : TEMPLEPROGRESSMANAGER CENTRAL
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Centraliser toute la logique temple dans un manager dédié.
+
+Responsabilités du manager :
+- créer / hydrater les entrées temple manquantes,
+- attribuer de l’XP temple,
+- calculer si un level up a eu lieu,
+- calculer le visualStage,
+- déterminer les récompenses de palier à débloquer,
+- remonter un état simple aux Activities,
+- déclencher les déblocages globaux si des conditions changent,
+- servir d’interface propre entre RewardManager, quiz, savoirs et UI.
+
+Méthodes cibles recommandées :
+- ensureTempleExists(subject)
+- grantTempleXp(subject, amount, source)
+- grantTempleXpBulk(map, source)
+- getTempleState(subject)
+- getAllTempleStates()
+- computeVisualStage(level, currentXp)
+- getPendingTempleUnlocks()
+- consumeTempleRewardIfNew(...)
+- refreshGlobalUnlocksIfNeeded()
+
+Règle d’architecture :
+- les Activities affichent,
+- le manager calcule,
+- le DAO persiste,
+- les autres managers consomment des états propres.
+
+══════════════════════════════════════════════════════════════════════════════
+10 — H5 : ATTRIBUTION DE L’XP TEMPLE ET RÈGLES DE PROGRESSION
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Définir des règles claires pour faire progresser les temples à partir des actions utiles du joueur.
+
+Sources d’XP temple possibles :
+- enregistrement d’un savoir validé dans un temple,
+- réussite de quiz liés à cette matière,
+- entraînement matière,
+- entraînement ultime multi-matière avec distribution contrôlée,
+- révision d’un savoir ancien,
+- quêtes futures liées à cette matière,
+- événements spéciaux ou bonus temporaires.
+
+Recommandation :
+Le système doit récompenser la qualité et la régularité, pas juste le spam.
+
+Exemple de logique :
+- ajout de savoir validé : XP temple importante,
+- quiz correct moyen : XP temple modérée,
+- perfect quiz : bonus,
+- révision d’un savoir fané : bonus doux mais utile,
+- entraînement ultime : distribution pondérée selon matières réellement concernées.
+
+Paliers visés :
+- niveau 0 à 10 au minimum si tu gardes ce modèle,
+- progression lente mais lisible,
+- seuils suffisamment espacés pour créer un sentiment de reconstruction, pas une montée instantanée.
+
+Important :
+Le calcul de niveau doit rester déterministe, centralisé et documenté.
+Aucune formule de level up ne doit être cachée dans plusieurs Activities.
+
+══════════════════════════════════════════════════════════════════════════════
+11 — H6 : PALIERS VISUELS ET ÉTAT DE RECONSTRUCTION
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de la progression des temples un spectacle lisible et gratifiant.
+
+Structure recommandée :
+- Niveau 0-1 : temple en ruines,
+- Niveau 2-3 : premières pierres relevées,
+- Niveau 4-5 : reconstruction avancée,
+- Niveau 6-7 : sanctuaire actif,
+- Niveau 8-9 : temple rayonnant,
+- Niveau 10 : temple glorieux.
+
+Si tu veux garder un visualStage distinct :
+- visualStage 0 à 5 pour les états majeurs,
+- level continue d’exprimer la progression fine,
+- visualStage pilote surtout fonds, particules, overlays, présence divine, musique.
+
+Ce chantier doit prévoir :
+- mapping niveau → background / overlay / ambiance,
+- mapping niveau → intensité de particules,
+- mapping niveau → visibilité du dieu,
+- mapping niveau → textes ou discours divins possibles,
+- fallback propre si une ressource visuelle manque encore.
+
+Important :
+Le visuel ne doit jamais casser l’accessibilité ni la lisibilité du texte.
+
+══════════════════════════════════════════════════════════════════════════════
+12 — H7 : RÉCOMPENSES DE PALIER ET PROTECTIONS ANTI-DOUBLONS
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire des niveaux de temple une vraie source de gratification sans bug de duplication.
+
+Récompenses possibles par palier :
+- fragments bonus,
+- ambroisie,
+- objets,
+- musiques débloquées,
+- nouvelles catégories temple,
+- boss matière,
+- accès de zone,
+- dialogues spéciaux,
+- badges,
+- contenus créatifs ou décoratifs.
+
+Règles indispensables :
+- chaque récompense de palier doit être donnée une seule fois,
+- unlockedRewardsJson doit être la source de vérité minimale si tu restes sur JSON,
+- si une récompense ne peut pas être donnée immédiatement, il faut la mettre en pending proprement,
+- feedback visuel et sonore obligatoire,
+- feedback RPG immersif recommandé pour les gros paliers.
+
+Exemples de gros paliers :
+- niveau 3 : première reconstruction visible,
+- niveau 5 : structure mature / sous-catégories,
+- niveau 6 : boss matière débloqué,
+- niveau 8 : reliques / zone supérieure,
+- niveau 10 : apogée temple et contenu ultime lié.
+
+══════════════════════════════════════════════════════════════════════════════
+13 — H8 : DÉBLOCAGES GLOBAUX DU MONDE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire dépendre l’ouverture du monde de la progression réelle des temples.
+
+AdventureUnlockManager ou équivalent doit gérer au minimum :
+- aventure de base,
+- Tartare,
+- Bibliothèque Interdite,
+- Palais des Titans,
+- boss de matière,
+- éventuellement quêtes spéciales.
+
+Exemples de règles déjà cohérentes avec RéviZeus :
+- aventure : au moins un savoir ou une progression minimale dans chaque temple principal,
+- Tartare : tous les temples niveau 3+,
+- Bibliothèque Interdite : tous les temples niveau 5+,
+- Palais des Titans : tous les temples niveau 8+,
+- boss matière : temple concerné niveau 6+.
+
+Ce chantier doit prévoir :
+- calcul centralisé des conditions,
+- stockage éventuel des flags déjà débloqués,
+- popups RPG de révélation,
+- possibilité d’afficher une progression partielle sur Dashboard,
+- compatibilité future avec carte du monde.
+
+Important :
+Le déblocage ne doit jamais être perdu par erreur lors d’une reprise d’application.
+
+══════════════════════════════════════════════════════════════════════════════
+14 — H9 : INTÉGRATION UI DANS GODMATIEREACTIVITY ET DASHBOARD
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Afficher la progression temple sans rendre l’UI lourde ni fragile.
+
+GodMatiereActivity doit pouvoir afficher :
+- niveau du temple,
+- progression actuelle,
+- état visuel du temple,
+- éventuellement prochain palier,
+- éventuellement récompenses majeures visées,
+- feedbacks divins liés au niveau.
+
+DashboardActivity doit pouvoir afficher :
+- progression globale de restauration,
+- temples les plus avancés,
+- temple faible ou à réveiller,
+- jauge ou indicateur global du monde,
+- nouveaux déblocages disponibles.
+
+Règles UX :
+- rester lisible en portrait,
+- rester cohérent avec la DA,
+- ne pas polluer l’écran,
+- utiliser des cartes, jauges ou modules compacts,
+- garder les IDs critiques déjà existants.
+
+Si un écran temple possède déjà un fond vidéo / image fixe :
+- brancher le visuel temple dessus proprement,
+- ne pas casser le pattern vidéo → image fixe déjà demandé.
+
+══════════════════════════════════════════════════════════════════════════════
+15 — H10 : PONT VERS AUDIO, PARTICULES, DIEUX ET FUTURS ÉCRANS MONDE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de TempleProgress une source d’ambiance transversale, pas juste un chiffre.
+
+À préparer dès maintenant :
+- intensité de particules selon temple,
+- variantes de fonds ou overlays,
+- couches audio supplémentaires selon niveau du temple,
+- dialogue divin plus noble à haut niveau,
+- comportement spécial quand un temple atteint un palier majeur,
+- données simples consommables par Dashboard vivant, WorldMapActivity et AdventureActivity futurs.
+
+Exemples :
+- temple faible : ambiance plus sombre, dieu plus discret,
+- temple médian : présence stable, musique enrichie,
+- temple glorieux : particules nobles, musique plus ample, dieu pleinement présent.
+
+Important :
+Ne pas coder tout le spectacle final ici si les ressources ne sont pas prêtes.
+Préparer des états propres, des hooks et des mappings stables.
+
+══════════════════════════════════════════════════════════════════════════════
+16 — H11 : CARTOGRAPHIE DES RESSOURCES MANQUANTES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Ne pas bloquer le chantier si certains assets manquent encore.
+
+Pour chaque ressource absente mais réellement utile au BLOC H, il faut documenter :
+1. nom exact,
+2. utilité,
+3. écran(s) concernés,
+4. connexions avec les autres écrans ou systèmes,
+5. prompt JSON de génération conforme à la DA si la ressource n’existe pas encore.
+
+Ressources typiques potentiellement manquantes :
+- variations visuelles de temple par palier,
+- overlays de reconstruction,
+- FX de révélation de palier,
+- icônes de niveaux temple,
+- assets de déblocage monde,
+- SFX restauration / déblocage.
+
+Important :
+Toujours prioriser les ressources déjà existantes avant de demander du neuf.
+
+══════════════════════════════════════════════════════════════════════════════
+17 — H12 : TESTS MANUELS ET CRITÈRES DE FIN
+══════════════════════════════════════════════════════════════════════════════
+
+Tests manuels minimaux :
+- créer ou ouvrir un profil existant et vérifier que les temples se créent correctement,
+- enregistrer un savoir dans une matière et vérifier le gain temple,
+- faire un quiz et vérifier l’incrément temple attendu,
+- faire monter un temple de niveau et vérifier la persistance,
+- tuer/reprendre l’application et vérifier la conservation,
+- vérifier qu’une récompense de palier n’est pas donnée deux fois,
+- vérifier qu’un déblocage global ne se retrigger pas en boucle,
+- vérifier l’affichage du niveau temple dans GodMatiereActivity,
+- vérifier l’affichage global dans Dashboard si intégré,
+- vérifier qu’aucune Activity ne calcule localement un niveau temple différemment du manager,
+- vérifier qu’aucune migration ne casse les anciennes données.
+
+Definition of done :
+- TempleProgress existe réellement en base ;
+- le calcul temple est centralisé ;
+- les temples montent de niveau proprement ;
+- les paliers visuels sont lisibles ;
+- les récompenses de palier ne se dupliquent pas ;
+- les déblocages globaux sont fiables ;
+- les écrans peuvent lire l’état temple sans hacks ;
+- l’apprentissage a enfin un impact monde concret et persistant.
+
+══════════════════════════════════════════════════════════════════════════════
+18 — ERREURS À ÉVITER ABSOLUMENT
+══════════════════════════════════════════════════════════════════════════════
+
+- calculer le niveau temple à plusieurs endroits différents,
+- laisser des JSON historiques concurrencer la nouvelle table sans stratégie claire,
+- stocker des flags critiques uniquement dans l’UI,
+- mélanger progression temple et progression héros globale sans séparation,
+- lier trop tôt les temples à des cinématiques lourdes non prêtes,
+- introduire des récompenses de palier sans anti-doublon,
+- casser l’UI actuelle des temples pour y ajouter trop d’informations d’un coup,
+- dépendre d’assets non prêts sans fallback.
+
+══════════════════════════════════════════════════════════════════════════════
+19 — FICHIERS À FOURNIR EN PRIORITÉ À UNE IA POUR CE BLOC
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre conseillé des fichiers à donner :
+1. AppDatabase.kt
+2. UserProfile.kt
+3. éventuels DAO actuels liés au profil ou aux temples
+4. GodMatiereActivity.kt
+5. DashboardActivity.kt
+6. RewardManager.kt / RewardBundle.kt / QuizRewardManager.kt si déjà présents
+7. PantheonConfig / GodManager / mapping matière ↔ dieu
+8. toute logique existante de niveau temple ou de fragments par matière
+9. XML temple et dashboard concernés
+
+Si des ressources visuelles existent déjà pour les temples :
+- les fournir aussi,
+- au minimum leur nomenclature et leur usage actuel.
+
+══════════════════════════════════════════════════════════════════════════════
+20 — ORDRE D’EXÉCUTION CONSEILLÉ POUR L’IA QUI CODE LE BLOC H
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre recommandé :
+H1 → H2 → H3 → H4 → H5 → H7 → H8 → H6 → H9 → H10 → H11 → H12
+
+Pourquoi cet ordre :
+- on commence par la vérité data,
+- on fiabilise la persistance,
+- on centralise le calcul,
+- on branche l’XP et les rewards,
+- on déclenche les déblocages,
+- puis seulement on connecte fortement la couche visuelle et les écrans.
+
+══════════════════════════════════════════════════════════════════════════════
+21 — PROMPT PRÊT À COPIER-COLLER À UNE AUTRE IA
+══════════════════════════════════════════════════════════════════════════════
+
+Tu vas implémenter le BLOC H de RéviZeus : TempleProgress, reconstruction des temples, paliers visuels, récompenses de palier et déblocages globaux du monde.
+
+Contraintes absolues :
+- conserver 100 % de l’architecture existante,
+- ne jamais renommer arbitrairement les variables, IDs, managers et flows existants,
+- produire tous les fichiers modifiés en entier,
+- rester en XML classique + ViewBinding,
+- rester compatible minSdk 24, target/compileSdk 36, Kotlin toolchain 17, AGP 9.0.1, Room via KSP,
+- rester plein écran portrait,
+- toute popup importante doit être RPG ou prévue pour conversion immédiate,
+- toute ressource manquante réellement nécessaire doit être documentée avec nom exact, utilité, connexions écran/code et prompt JSON si absente du référentiel,
+- ne jamais casser les flows : Dashboard → Temple / Oracle / Training.
+
+Objectif produit :
+Faire des temples un vrai système persistant et évolutif qui relie l’apprentissage à la reconstruction du monde.
+
+Tu dois absorber dans ce bloc :
+- TempleProgress entity,
+- TempleProgressDao,
+- migration Room,
+- TempleProgressManager,
+- attribution d’XP temple,
+- calcul de level temple,
+- visualStage si nécessaire,
+- récompenses de palier anti-doublons,
+- AdventureUnlockManager ou équivalent,
+- déblocages globaux : aventure, Tartare, Bibliothèque Interdite, Palais des Titans, boss matière,
+- intégration UI dans GodMatiereActivity et DashboardActivity,
+- préparation des hooks visuels/audio pour l’évolution des temples.
+
+Règles métier minimales :
+- un temple est identifié par sa matière,
+- la progression temple est persistée en base,
+- aucun niveau ou XP négative,
+- les level up sont centralisés dans un manager,
+- les rewards de palier ne sont données qu’une seule fois,
+- les déblocages globaux sont persistants et ne retrigger pas en boucle,
+- l’UI lit des états simples fournis par le manager.
+
+Ordre d’implémentation à respecter :
+1. audit de l’existant temple dans UserProfile / JSON / managers,
+2. création TempleProgress + DAO + migration,
+3. création TempleProgressManager,
+4. branchement des gains d’XP temple,
+5. branchement récompenses de palier,
+6. branchement déblocages globaux,
+7. intégration GodMatiereActivity,
+8. intégration DashboardActivity,
+9. ajout des hooks visuels/audio,
+10. tests manuels.
+
+Commence par me demander les fichiers exacts nécessaires à ce bloc avant de générer le code.

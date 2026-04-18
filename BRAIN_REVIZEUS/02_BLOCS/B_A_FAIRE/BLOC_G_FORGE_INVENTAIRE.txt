@@ -1,0 +1,731 @@
+RÉVIZEUS — BLOC G
+FORGE PREMIUM, INVENTAIRE COMPLET, EFFETS D’OBJETS, CRAFT, TRI, FILTRES ET PERSISTANCE RPG
+Version : bloc d’implémentation exploitable par IA
+Date : 2026-03-24
+Statut : prêt à lancer après le BLOC F
+
+══════════════════════════════════════════════════════════════════════════════
+0 — RÔLE DU BLOC G DANS L’ORDRE GLOBAL
+══════════════════════════════════════════════════════════════════════════════
+
+Ce bloc correspond au moment où les récompenses et l’économie deviennent réellement utiles dans le gameplay.
+Après le BLOC F, RéviZeus sait déjà mieux générer, afficher et distribuer les gains.
+Le BLOC G transforme ces gains en systèmes jouables, persistants et gratifiants.
+
+Mission du BLOC G :
+- rendre la Forge pleinement jouable,
+- rendre l’Inventaire réellement exploitable,
+- transformer les objets en éléments de gameplay concrets,
+- fiabiliser les recettes, consommations et effets,
+- donner une vraie valeur aux fragments, à l’ambroisie et aux récompenses gagnées.
+
+Vision produit :
+Le joueur ne doit plus seulement “gagner des ressources”.
+Il doit sentir qu’il construit, équipe, améliore, collectionne, optimise et prépare ses futures sessions de quiz, d’entraînement, d’Oracle et d’aventure.
+
+Position dans l’ordre maître :
+- le cœur données / récompenses doit déjà être plus propre,
+- la duplication des gains doit déjà être réduite,
+- l’économie doit déjà être lisible,
+- puis seulement la Forge et l’Inventaire deviennent pleinement jouables.
+
+Le BLOC G doit donc absorber tout ce qui concerne :
+- craft,
+- recettes,
+- objets,
+- rareté,
+- stack,
+- favoris,
+- verrouillage,
+- tri,
+- filtres,
+- fiche détaillée,
+- effets gameplay,
+- consommation transactionnelle,
+- objets secrets,
+- bonus par matière,
+- objets liés aux dieux,
+- préparation future des synergies avancées.
+
+══════════════════════════════════════════════════════════════════════════════
+1 — OBJECTIF FINAL DU BLOC G
+══════════════════════════════════════════════════════════════════════════════
+
+À la fin de ce bloc, RéviZeus doit disposer d’un vrai socle RPG d’objets :
+
+1. la Forge permet de fabriquer des objets de manière fiable,
+2. les recettes sont lisibles et triées intelligemment,
+3. les fragments sont consommés proprement,
+4. les objets existent réellement en base,
+5. l’Inventaire sait les afficher, les classer, les filtrer et les détailler,
+6. certains objets ont déjà de vrais effets de gameplay,
+7. les objets forgés servent aux quiz / entraînements / progression future,
+8. l’utilisateur perçoit une progression lente mais gratifiante,
+9. la DA et les dialogues restent RPG premium,
+10. le système reste additif et ne casse rien dans l’architecture existante.
+
+══════════════════════════════════════════════════════════════════════════════
+2 — PÉRIMÈTRE EXACT DU BLOC G
+══════════════════════════════════════════════════════════════════════════════
+
+Le BLOC G couvre :
+
+- enrichissement ou fiabilisation de InventoryItem,
+- requêtes DAO et persistance inventaire,
+- logique de craft,
+- logique d’effets d’objets,
+- logique de catégories et raretés,
+- ForgeActivity,
+- InventoryActivity,
+- cartes UI de recette et d’objet,
+- fiche détaillée d’objet,
+- consommation / rollback,
+- stack et fusion d’objets,
+- favoris / verrouillage / équipé,
+- tri / filtre / onglets,
+- premiers objets actifs et passifs,
+- préparation des objets secrets et évolutifs,
+- connexion aux récompenses du BLOC F,
+- préparation des synergies futures avec temples, aventure, badges, rangs.
+
+Le BLOC G ne doit PAS absorber maintenant :
+- toute l’aventure complète,
+- les rangs finaux,
+- la totalité des badges à trois niveaux,
+- les synergies ultra complexes multi-équipements,
+- les recettes narratives avancées dépendantes de boss non encore codés,
+- le cloud snapshot complet,
+- le balancing final de endgame.
+
+En revanche, il doit préparer des points d’extension propres pour tout cela.
+
+══════════════════════════════════════════════════════════════════════════════
+3 — DÉPENDANCES ET PRÉREQUIS
+══════════════════════════════════════════════════════════════════════════════
+
+BLOC G dépend fortement de :
+- BLOC A : stabilisation technique et socle transversal,
+- BLOC B : dialogues RPG universels,
+- BLOC C : audio / loadings / feedbacks transversaux,
+- BLOC F : récompenses unifiées et économie fiable.
+
+Avant de coder G, il faut vérifier :
+- que les fragments par matière sont fiables,
+- que les récompenses ne sont pas dupliquées,
+- que les Managers critiques existent ou peuvent être enrichis,
+- que les données de base liées à l’inventaire ne sont pas fragiles,
+- que les popups de confirmation / erreur / succès peuvent être rendus en RPG.
+
+Si un vieux système de Forge ou d’Inventaire est déjà présent :
+- ne pas le jeter,
+- le fiabiliser,
+- l’encapsuler,
+- garder ses IDs XML si sensibles,
+- migrer progressivement vers le nouveau comportement.
+
+══════════════════════════════════════════════════════════════════════════════
+4 — FICHIERS PRINCIPAUX CONCERNÉS
+══════════════════════════════════════════════════════════════════════════════
+
+Fichiers Kotlin probables :
+- InventoryItem.kt
+- IAristoteDao.kt ou DAO inventaire dédiés
+- AppDatabase.kt
+- InventoryActivity.kt
+- ForgeActivity.kt
+- InventoryManager.kt (nouveau si absent)
+- InventoryEffectManager.kt (nouveau)
+- CraftingSystem.kt
+- ForgeManager.kt (si souhaité ou déjà existant)
+- ForgeRecipe.kt
+- ItemDetailDialog.kt ou DialogFragment équivalent
+- éventuellement RewardManager.kt / RewardBundle.kt pour branchement final
+- éventuellement BadgeManager.kt pour triggers simples
+- éventuellement GodManager / PantheonConfig pour affinités matière / dieu
+
+Fichiers XML probables :
+- layout_inventory.xml
+- item_inventory_card.xml
+- layout_forge.xml ou layout_forge_activity.xml
+- item_recipe_card.xml
+- dialog_item_detail.xml
+- composants onglets / chips / filtres si nécessaires
+- éventuels backgrounds ou drawables si un manque réel apparaît
+
+Ressources pouvant être nécessaires :
+- icônes de catégories,
+- overlays de rareté,
+- halos / bordures,
+- icônes de favoris / verrouillage / équipé,
+- SFX craft réussi / craft refusé / sélection objet,
+- éventuels visuels d’objets si certains n’existent pas encore.
+
+══════════════════════════════════════════════════════════════════════════════
+5 — SOUS-CHANTIERS DU BLOC G
+══════════════════════════════════════════════════════════════════════════════
+
+G1 — Modèle de données inventaire robuste
+G2 — DAO inventaire et requêtes métier
+G3 — Manager central inventaire
+G4 — Forge et recettes transactionnelles
+G5 — Effets gameplay des objets
+G6 — InventoryActivity premium complète
+G7 — ForgeActivity premium complète
+G8 — Fiche détaillée objet et actions contextuelles
+G9 — Rareté, stack, favoris, verrouillage, équipement
+G10 — Pont avec récompenses, badges, temples et avenir aventure
+G11 — Cartographie des ressources manquantes
+G12 — Tests manuels et critères de fin
+
+══════════════════════════════════════════════════════════════════════════════
+6 — G1 : MODÈLE DE DONNÉES INVENTAIRE ROBUSTE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de InventoryItem une vraie entité RPG exploitable durablement.
+
+Structure attendue, ou équivalent compatible avec ton architecture :
+- id technique,
+- itemId stable,
+- name,
+- category,
+- rarity,
+- quantity,
+- isEquipped,
+- isLocked,
+- isFavorite,
+- obtainedAt,
+- sourceType,
+- sourceReference,
+- effectJson,
+- iconResName,
+- flavorText,
+- subjectAffinity,
+- durability éventuelle,
+- stackable,
+- metadataJson si nécessaire.
+
+Catégories minimales recommandées :
+- FRAGMENT
+- ARTIFACT
+- EQUIPMENT
+- CONSUMABLE
+- RELIC
+
+Raretés minimales recommandées :
+- COMMON
+- UNCOMMON
+- RARE
+- EPIC
+- LEGENDARY
+- MYTHIC
+
+Règles métier de base :
+- itemId doit être stable et utilisé comme ancre de logique,
+- quantity ne doit jamais devenir négative,
+- les objets stackables fusionnent intelligemment,
+- les objets uniques ne doivent pas être dupliqués sans intention,
+- l’affinité matière doit rester exploitable plus tard pour temples / quiz / aventure,
+- effectJson doit permettre une montée progressive sans casser la DB.
+
+À faire aussi :
+- prévoir une migration Room si nécessaire,
+- préparer les helpers de lecture sécurisée,
+- documenter les champs pour éviter les dérives futures.
+
+══════════════════════════════════════════════════════════════════════════════
+7 — G2 : DAO INVENTAIRE ET REQUÊTES MÉTIER
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Avoir des requêtes suffisamment riches pour ne pas remettre la logique dans l’Activity.
+
+À prévoir au minimum :
+- getAllInventoryItems()
+- getItemsByCategory(category)
+- getItemsByRarity(rarity)
+- getItemByItemId(itemId)
+- insertItem(...)
+- updateItem(...)
+- deleteItem(...)
+- incrementQuantity(itemId, amount)
+- consumeQuantity(itemId, amount)
+- getFavoriteItems()
+- getEquippedItems()
+- getCraftableContext() si utile
+- requêtes de tri : nom, rareté, date, quantité, source
+
+Exigences :
+- fonctions suspend,
+- aucun calcul critique en Activity,
+- requêtes robustes face aux quantités nulles ou entrées anciennes,
+- support facile des futurs onglets et filtres.
+
+Point important :
+Si ton DAO actuel mélange trop de responsabilités, il faut enrichir sans casser.
+Mieux vaut ajouter des méthodes ciblées que tordre des requêtes génériques trop lourdes.
+
+══════════════════════════════════════════════════════════════════════════════
+8 — G3 : INVENTORYMANAGER CENTRAL
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Créer une source de vérité métier unique pour l’inventaire.
+
+Responsabilités du manager :
+- lecture de l’inventaire,
+- ajout d’objets,
+- consommation d’objets,
+- fusion stackable,
+- vérification unicité,
+- verrouillage / favoris / équipé,
+- calcul d’affichage utilitaire,
+- préparation du détail objet,
+- pont avec effets gameplay.
+
+Méthodes cibles possibles :
+- addItem(itemId, quantity, sourceType, sourceReference)
+- addItemsBulk(...)
+- consumeItem(itemId, quantity)
+- toggleFavorite(itemId)
+- toggleLock(itemId)
+- equipItem(itemId)
+- unequipItem(itemId)
+- getDisplayInventory(...)
+- getCategoryCounts()
+- getInventoryCapacityInfo() si tu veux préparer la suite
+
+Règles d’architecture :
+- pas de logique complexe directement dans InventoryActivity,
+- pas de consommation sauvage depuis la Forge sans validation manager,
+- le manager doit rester testable,
+- les objets doivent garder une traçabilité minimale.
+
+══════════════════════════════════════════════════════════════════════════════
+9 — G4 : FORGE ET RECETTES TRANSACTIONNELLES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Rendre la Forge vraiment fiable, lisible et gratifiante.
+
+Ce sous-chantier doit livrer :
+- une liste claire de recettes,
+- un calcul craftable / non craftable,
+- la consommation atomique des fragments et ressources,
+- la création d’objet en inventaire si craft réussi,
+- un rollback si une étape échoue,
+- une UI qui affiche proprement pourquoi une recette est ou non craftable.
+
+Recettes de base recommandées à fiabiliser :
+- Bouclier de Logique (Zeus)
+- Sandales d’Hermès
+- Plume de Stratégie (Athéna)
+- Diadème de Charisme (Aphrodite)
+- Torche d’Héphaïstos
+- Trident de Poséidon
+- Amphore d’Ambroisie
+
+Pour chaque recette il faut définir :
+- itemId produit,
+- nom affiché,
+- catégorie,
+- rareté,
+- coût précis par matière,
+- coût éventuel ambroisie / éclats,
+- type d’effet,
+- flavor text,
+- affinité matière / dieu,
+- disponibilité (always / temple level / badge / quête future),
+- icône associée.
+
+Règles critiques :
+- si les ressources sont insuffisantes, refus propre en dialogue RPG,
+- si la recette réussit, insertion objet + consommation ressource + feedback sonore / visuel,
+- si une exception survient, aucune demi-consommation ne doit subsister,
+- ne jamais dupliquer un objet unique si la logique dit qu’il doit être unique,
+- les recettes craftables doivent remonter en premier dans la liste.
+
+À prévoir :
+- CraftingSystem ou ForgeManager calcule,
+- l’Activity affiche,
+- les dialogues confirment,
+- le Reward / InventoryManager encaisse proprement.
+
+══════════════════════════════════════════════════════════════════════════════
+10 — G5 : EFFETS GAMEPLAY DES OBJETS
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire en sorte que certains objets servent réellement.
+
+Exemples d’effets V1 recommandés :
+- annuler une erreur,
+- ajouter quelques secondes au timer,
+- fournir un indice mnémotechnique,
+- donner un bonus de fragments,
+- augmenter légèrement l’ambroisie gagnée,
+- bonus sur une matière liée,
+- protection légère contre pénalité.
+
+Le système doit distinguer :
+- passif équipé,
+- consommable à usage unique,
+- bonus conditionnel,
+- bonus contextuel (matière, mode de quiz, temple, aventure future).
+
+Responsabilités de InventoryEffectManager :
+- lire les objets actifs,
+- déterminer leurs effets applicables,
+- exposer une config simple aux écrans de quiz / résultat / forge / aventure future,
+- éviter les doubles applications,
+- documenter les conflits potentiels.
+
+Exigences V1 :
+- peu d’effets mais vrais,
+- application stable,
+- aucun spaghetti entre quiz et inventaire,
+- pas de dépendance à des systèmes futurs non stabilisés.
+
+Effets V2/V3 à préparer mais pas surcharger maintenant :
+- set bonus,
+- upgrade objet II / III,
+- objets miroir selon profil cognitif,
+- objets temporaires d’aventure,
+- synergies multi-dieux.
+
+══════════════════════════════════════════════════════════════════════════════
+11 — G6 : INVENTORYACTIVITY PREMIUM COMPLÈTE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Transformer l’Inventaire en écran RPG lisible, filtrable et utile.
+
+À livrer :
+- navigation par onglets ou catégories,
+- tri : rareté, date, nom, quantité, favoris,
+- filtres : matière, source, équipé / non équipé, verrouillé / non verrouillé,
+- stack lisible,
+- long press ou tap détaillé,
+- actions contextuelles propres,
+- indication visuelle des objets équipés,
+- meilleure hiérarchie visuelle.
+
+Structure suggérée :
+- Fragments
+- Artefacts
+- Équipements
+- Consommables
+- Reliques
+
+Points UX importants :
+- ne pas écraser l’écran avec du décor inutile,
+- éviter les fonds mal proportionnés,
+- rendre la lecture des noms et quantités immédiate,
+- montrer la rareté sans rendre le texte illisible,
+- conserver le portrait plein écran premium.
+
+Améliorations premium à intégrer :
+- favoris,
+- verrouillage anti-suppression / anti-consommation involontaire,
+- comparaison avec l’objet équipé,
+- historique obtention simple si coût modéré,
+- indication d’origine (forge, quête future, récompense divine, etc.).
+
+══════════════════════════════════════════════════════════════════════════════
+12 — G7 : FORGEACTIVITY PREMIUM COMPLÈTE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Faire de la Forge un lieu noble, clair et satisfaisant.
+
+À livrer :
+- tri des recettes craftables en premier,
+- fiche recette claire,
+- coûts visibles par ressource,
+- indication immédiate de ce qui manque,
+- bouton craft stable,
+- animation / SFX de craft réussi,
+- refus premium si impossible,
+- feedback instantané si nouvelle recette devient craftable.
+
+Améliorations premium :
+- micro animation d’apparition des recettes,
+- halo ou pulse discret sur les nouvelles craftables,
+- ligne ou message d’Héphaïstos / Prométhée selon contexte,
+- possibilité plus tard de mini-jeu forge, mais non requis en V1,
+- préparation des évolutions version II / III sans les imposer maintenant.
+
+À éviter :
+- logique métier dans l’Activity,
+- coûts codés en dur dans plusieurs endroits,
+- calcul craftable dupliqué,
+- confusion entre fragments de matière et objets classiques.
+
+══════════════════════════════════════════════════════════════════════════════
+13 — G8 : FICHE DÉTAILLÉE OBJET ET ACTIONS CONTEXTUELLES
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Donner de la valeur à chaque objet et éviter l’effet “liste morte”.
+
+À livrer :
+- panneau détail objet,
+- nom,
+- rareté,
+- icône,
+- quantité,
+- description / flavor text,
+- source,
+- affinité matière / dieu,
+- effet réel,
+- statut équipé / verrouillé / favori,
+- actions disponibles.
+
+Actions possibles :
+- équiper,
+- déséquiper,
+- verrouiller,
+- déverrouiller,
+- mettre en favori,
+- retirer favori,
+- utiliser si consommable,
+- consulter recette source si pertinent,
+- préparation future pour export fiche d’objet si tu le veux un jour.
+
+Format UX :
+- idéalement dialogue / panneau premium cohérent avec le RPG,
+- lisible,
+- pas un simple AlertDialog Android brut,
+- tap / fermeture sûrs.
+
+══════════════════════════════════════════════════════════════════════════════
+14 — G9 : RARETÉ, STACK, FAVORIS, VERROUILLAGE, ÉQUIPEMENT
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Finaliser les comportements attendus d’un vrai inventaire.
+
+Règles à livrer :
+- stack automatique si objet stackable même itemId,
+- quantité visible,
+- verrouillage empêchant certaines suppressions / consommations accidentelles,
+- favoris visibles et triables,
+- équipement exclusif si nécessaire par slot logique,
+- déséquipement sûr,
+- un objet non stackable reste distinct si nécessaire.
+
+À préparer proprement :
+- notion de slot si ton design évolue,
+- séparation future “équipé en quiz”, “équipé en aventure”,
+- compatibilité avec synergies futures.
+
+Rareté visuelle :
+- bordures,
+- petits halos,
+- labels,
+- jamais au détriment de la lisibilité.
+
+══════════════════════════════════════════════════════════════════════════════
+15 — G10 : PONT AVEC RÉCOMPENSES, BADGES, TEMPLES ET AVENIR AVENTURE
+══════════════════════════════════════════════════════════════════════════════
+
+Objectif :
+Ne pas coder la Forge et l’Inventaire comme des îlots isolés.
+
+Connexions obligatoires :
+- BLOC F : les récompenses peuvent ajouter des objets / ressources,
+- temples : certains objets peuvent avoir une affinité matière / dieu,
+- badges : premiers triggers simples possibles (premier craft, 10 crafts, craft rare),
+- dashboard futur : notification “forge prête” ou contenu craftable,
+- aventure future : prévoir objets utiles sans coder toute l’aventure maintenant.
+
+Exemples de triggers simples :
+- premier objet crafté,
+- premier objet légendaire,
+- premier équipement utilisé avec effet réel,
+- total de crafts cumulés,
+- collection de X objets d’un dieu.
+
+Important :
+- brancher quelques hooks propres,
+- ne pas implémenter tout l’écosystème futur d’un coup,
+- laisser des points d’extension nommés et documentés.
+
+══════════════════════════════════════════════════════════════════════════════
+16 — G11 : CARTOGRAPHIE DES RESSOURCES MANQUANTES
+══════════════════════════════════════════════════════════════════════════════
+
+Si une ressource manque, il faut la documenter proprement.
+
+Pour chaque ressource manquante :
+1. nom exact,
+2. type (drawable/raw/audio),
+3. utilité,
+4. écrans / fichiers connectés,
+5. fallback temporaire,
+6. prompt JSON si génération nécessaire,
+7. cohérence DA RéviZeus.
+
+Exemples possibles de ressources à cartographier si absentes :
+- ic_item_bouclier_logique
+- ic_item_sandales_hermes
+- ic_item_plume_strategie
+- ic_item_diademe_charisme
+- ic_item_torche_hephaistos
+- ic_item_trident_poseidon
+- ic_item_amphore_ambroisie
+- sfx_forge_success
+- sfx_forge_denied
+- bg_forge_glow_overlay
+- frame_item_rare / epic / legendary si nécessaire
+
+Ne pas inventer des ressources inutiles.
+Réutiliser l’existant en priorité.
+Créer seulement ce qui manque vraiment au socle du bloc.
+
+══════════════════════════════════════════════════════════════════════════════
+17 — G12 : TESTS MANUELS ET CRITÈRES DE FIN
+══════════════════════════════════════════════════════════════════════════════
+
+Le bloc G est considéré comme FAIT si :
+
+1. les objets existent réellement en base,
+2. les ajouts et consommations ne corrompent pas les quantités,
+3. une recette craftable fonctionne de bout en bout,
+4. une recette non craftable affiche un refus propre,
+5. l’inventaire affiche les catégories, quantités et raretés sans confusion,
+6. l’utilisateur peut marquer favori / verrouiller / équiper au moins certains objets,
+7. au moins quelques effets d’objets existent réellement,
+8. le craft n’entraîne ni duplication sauvage ni consommation fantôme,
+9. les écrans restent lisibles, premium et cohérents en portrait,
+10. la logique métier n’est pas enterrée dans les Activities.
+
+Tests manuels minimaux :
+- gagner des fragments via quiz,
+- ouvrir la Forge,
+- craft une recette simple,
+- vérifier la consommation exacte,
+- retrouver l’objet en inventaire,
+- afficher sa fiche,
+- l’équiper ou l’utiliser,
+- vérifier l’effet sur un quiz compatible,
+- tester verrouillage / favori / tri,
+- relancer l’app et vérifier la persistance.
+
+══════════════════════════════════════════════════════════════════════════════
+18 — ERREURS À ÉVITER
+══════════════════════════════════════════════════════════════════════════════
+
+- dupliquer la logique de craft dans plusieurs classes,
+- calculer les effets d’objets directement dans l’UI,
+- mélanger fragments et objets sans séparation claire,
+- oublier le rollback en cas d’échec,
+- faire une UI décorative mais peu lisible,
+- créer trop d’objets sans effets réels,
+- introduire des dépendances à l’aventure avant l’heure,
+- oublier les dialogues RPG sur les confirmations / refus importants,
+- ignorer les favoris / verrouillage / stack dès le socle.
+
+══════════════════════════════════════════════════════════════════════════════
+19 — FICHIERS À FOURNIR EN PRIORITÉ À UNE IA DE CODAGE
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre recommandé des fichiers à donner :
+
+1. InventoryItem.kt
+2. DAO inventaire (ou IAristoteDao.kt si centralisé)
+3. AppDatabase.kt
+4. CraftingSystem.kt et/ou ForgeManager.kt
+5. InventoryManager.kt
+6. InventoryEffectManager.kt
+7. ForgeRecipe.kt
+8. InventoryActivity.kt
+9. ForgeActivity.kt
+10. XML de l’inventaire
+11. XML de la forge
+12. item_inventory_card.xml
+13. item_recipe_card.xml
+14. éventuel dialog détail objet
+15. RewardManager / RewardBundle si branchements requis
+
+Si le code existe déjà partiellement :
+- commencer par l’audit,
+- relever les dettes locales,
+- corriger de manière additive,
+- conserver toutes les variables / IDs / mécaniques existants.
+
+══════════════════════════════════════════════════════════════════════════════
+20 — ORDRE D’EXÉCUTION INTERNE RECOMMANDÉ
+══════════════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+
+Étape 1 — audit des classes actuelles Forge / Inventaire
+Étape 2 — fiabilisation data model et DAO
+Étape 3 — manager inventaire
+Étape 4 — recettes et craft transactionnel
+Étape 5 — effets d’objets V1
+Étape 6 — InventoryActivity
+Étape 7 — ForgeActivity
+Étape 8 — fiche détail / actions contextuelles
+Étape 9 — tests persistance + craft + effet
+Étape 10 — polish audio / feedback / dialogues RPG
+
+Ne pas commencer par le polish avant d’avoir un craft réel et une persistance propre.
+
+══════════════════════════════════════════════════════════════════════════════
+21 — PROMPT PRÊT À COPIER-COLLER À UNE AUTRE IA
+══════════════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, minSdk 24, target/compileSdk 36, Kotlin toolchain 17, AGP 9.0.1, Room via KSP, sans Jetpack Compose.
+
+Tu dois implémenter le BLOC G : Forge premium, Inventaire complet, effets d’objets, craft, tri, filtres et persistance RPG.
+
+Contraintes absolues :
+- ne jamais renommer arbitrairement mes variables, IDs, managers, mécaniques ou flows existants,
+- ne jamais casser l’architecture actuelle,
+- toujours rester en plein écran portrait,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires utiles et la logique existante,
+- faire une intégration additive et propre,
+- tout dialogue important doit tendre vers un rendu RPG premium,
+- toute nouvelle ressource manquante doit être documentée avec nom, utilité, connexions et prompt JSON si nécessaire,
+- si un fichier contient déjà un backlog en commentaires, tu dois le traiter comme un backlog embarqué vivant.
+
+Objectif du bloc :
+- fiabiliser InventoryItem et la persistance inventaire,
+- créer ou enrichir les DAO nécessaires,
+- créer un InventoryManager central,
+- rendre la Forge vraiment transactionnelle et fiable,
+- ajouter au moins une première couche réelle d’effets d’objets,
+- rendre InventoryActivity lisible avec tri, filtres, catégories, favoris, verrouillage, équipement,
+- rendre ForgeActivity pleinement exploitable avec recettes craftables en premier, refus propres, feedbacks clairs,
+- éviter toute logique métier lourde dans les Activities,
+- préparer le lien futur avec badges, temples et aventure sans tout coder d’un coup.
+
+Je vais te fournir les fichiers concernés. Tu dois d’abord faire un audit précis des dépendances, conflits, risques de migration et points à sécuriser, puis produire les fichiers complets.
+
+Critères de réussite :
+- craft stable,
+- consommation exacte,
+- objet obtenu et persisté,
+- inventaire triable et filtrable,
+- au moins quelques effets d’objets réellement utilisés,
+- aucune duplication sauvage,
+- aucune régression du flow existant.
+
+══════════════════════════════════════════════════════════════════════════════
+22 — RÉSULTAT ATTENDU DU BLOC G
+══════════════════════════════════════════════════════════════════════════════
+
+Quand le BLOC G est terminé, RéviZeus cesse d’être un jeu qui “donne des ressources” et devient un jeu où les ressources servent vraiment.
+
+Le joueur doit sentir :
+- qu’il gagne pour construire quelque chose,
+- qu’il forge pour mieux jouer,
+- qu’il collectionne des objets utiles et désirables,
+- que les dieux et les matières laissent une empreinte sur ses objets,
+- que son inventaire raconte déjà une histoire,
+- et que la progression RPG du projet prend enfin de la densité réelle.
+
+FIN DU BLOC G

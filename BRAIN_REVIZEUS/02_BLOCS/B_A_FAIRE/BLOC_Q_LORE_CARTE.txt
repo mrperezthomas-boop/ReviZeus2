@@ -1,0 +1,908 @@
+RÉVIZEUS — BLOC Q
+LORE BIBLE + CARTE DU MONDE + INTRO CINÉMATIQUE + TENSION MYTHOLOGIQUE + BESTIAIRE + POLISSAGE TRANSVERSAL
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de donner à RéviZeus sa couche finale de cohérence mythologique,
+narrative, audiovisuelle et émotionnelle.
+
+Tous les blocs précédents construisent :
+- les fondations techniques,
+- les dialogues,
+- l’audio,
+- l’Oracle,
+- les quiz,
+- les récompenses,
+- la forge,
+- les temples,
+- les savoirs vivants,
+- les extensions divines,
+- les profils d’accompagnement,
+- la cognition,
+- les recommandations,
+- le Dashboard vivant,
+- les rangs / badges / titres,
+- et l’Aventure structurée.
+
+Le BLOC Q vient couronner l’ensemble en donnant au joueur :
+- une vraie mythologie interne,
+- une grande cohérence narrative,
+- une carte du monde lisible,
+- une intro de très haut niveau,
+- une tension progressive entre restauration et oubli,
+- des créatures et menaces incarnées,
+- des documents de lore consultables,
+- une mise en scène finale premium,
+- et un polissage transversal qui transforme RéviZeus
+  d’un excellent système en monde habité.
+
+Ce bloc n’est pas facultatif.
+Sans lui, le jeu peut être puissant mais restera partiellement perçu comme un empilement
+de systèmes premium.
+Avec lui, le joueur ressentira une vraie campagne mythologique vivante.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC Q DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC Q arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros + IA adaptative V1
+- L : analytics pédagogiques avancées + moteur cognitif + révision intelligente + Déméter
+- M : recommandations IA + prochaine meilleure action + suggestions stratégiques
+- N : dashboard vivant + widgets d’insight + agora divine + monde réactif
+- O : rangs, badges, titres, constellations et méta-progression
+- P : aventure structurée, zones, quêtes, boss éducatifs et progression monde
+
+Le BLOC Q ne remplace rien.
+Il densifie, relie, explique, magnifie et harmonise.
+Il doit donc être branché sur les blocs existants, jamais vécu à côté.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Transformer RéviZeus en monde mythologique éducatif total,
+où le joueur comprend :
+- pourquoi l’Olympe est en ruine,
+- ce que signifie restaurer un temple,
+- pourquoi les dieux ont besoin du savoir,
+- quelle force s’oppose à eux,
+- quelles créatures incarnent les faiblesses cognitives,
+- pourquoi chaque zone du monde a une importance,
+- quelle est la grande trajectoire narrative du héros,
+- et pourquoi continuer à apprendre a une portée mythique.
+
+Objectifs principaux :
+- formaliser un lore central consultable,
+- donner une intro forte et mémorable,
+- créer une carte du monde cohérente,
+- installer une tension narrative croissante,
+- incarner les menaces via un bestiaire,
+- créer une couche de polissage premium sur tous les écrans clés,
+- renforcer la cohérence émotionnelle entre gameplay et fiction.
+
+Objectifs secondaires :
+- améliorer la désirabilité globale du jeu,
+- augmenter la valeur perçue des quêtes, temples et boss,
+- préparer des futures cinématiques et arcs plus profonds,
+- donner un cadre solide à la DA, aux prompts assets et aux textes futurs.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+le lore et la narration ne doivent pas être dispersés en petits textes incohérents
+dans plusieurs Activities.
+
+INTERDIT :
+- textes narratifs contradictoires d’un écran à l’autre,
+- noms de zones ou créatures changeant selon les fichiers,
+- dialogues qui ignorent le lore officiel,
+- carte du monde décorative sans lien avec la progression réelle,
+- intro cinématique déconnectée du vrai but du jeu,
+- bestiaire isolé du système de boss / quêtes / monde.
+
+OBLIGATOIRE :
+- une Lore Bible centrale,
+- un LoreManager / NarrativeManager programmatique,
+- des définitions de zones, dieux, créatures, chapitres et menaces,
+- une carte du monde reliée aux vraies zones et verrous,
+- une intro compatible avec les états du monde réels,
+- une couche de cohérence qui peut être relue et alimenter :
+  - DialogRPGManager
+  - GodLoreManager
+  - AdventureActivity
+  - Dashboard
+  - Bestiary
+  - carte du monde
+  - quêtes
+  - boss
+  - prompts de ressources futures
+
+Architecture cible recommandée :
+- 09_LORE_BIBLE_REVIZEUS.md enrichi
+- LoreManager.kt
+- NarrativeStateManager.kt
+- WorldMapActivity.kt
+- IntroCinematicActivity.kt
+- BestiaryActivity.kt
+- CreatureDefinition.kt
+- CreatureManager.kt
+- WorldMapZoneDefinition.kt
+- WorldMapState.kt
+- AdventureNarrativeManager.kt
+- éventuellement ChapterNarrationDefinition.kt
+
+════════════════════════════════════════════════════════════════════
+4 — AXES MAÎTRES DU LORE À FORMALISER
+════════════════════════════════════════════════════════════════════
+
+Le lore officiel doit clarifier au minimum :
+
+4.1 L’Olympe du Savoir
+- autrefois centre vivant du savoir humain
+- nourri par la curiosité, la mémoire, la transmission et la compréhension
+- chaque temple entretenait une forme de connaissance
+
+4.2 Le Chaos de l’Oubli
+- force mythique née de la négligence, de la confusion, de la fragmentation
+- pas seulement “méchant”, mais entité de dissolution cognitive
+- il ronge les temples, assombrit les zones et déforme les créatures
+
+4.3 L’Affaiblissement des Dieux
+- les dieux ne disparaissent pas, mais perdent leur éclat
+- ils deviennent moins capables d’aider tant que les savoirs se fanent
+- leurs interventions redeviennent fortes grâce au héros
+
+4.4 Le Héros
+- l’élève n’est pas “juste un joueur”
+- il est l’élu capable de réanimer les voies du savoir
+- sa progression réelle a un impact direct sur le monde
+
+4.5 Les Temples
+- chaque temple est à la fois un lieu, une matière et un état du savoir
+- leur reconstruction n’est pas purement visuelle : elle restaure des forces du monde
+
+4.6 Les Zones du Monde
+- Tartare
+- Bibliothèque Interdite
+- Palais des Titans
+- zones secondaires
+- chaque zone a une histoire, une menace et une fonction
+
+4.7 Les Créatures
+- elles incarnent des types d’oubli, de confusion, de rigidité ou de chaos
+- elles ne sont pas juste décoratives : elles matérialisent des obstacles cognitifs
+
+4.8 La Prophétie de Prométhée
+- le savoir restaurera l’Olympe
+- mais pas sans confrontation majeure
+- le héros doit dépasser la simple réussite scolaire pour devenir restaurateur du monde
+
+4.9 L’Objectif Ultime
+- restaurer l’Olympe
+- vaincre le Chaos de l’Oubli
+- devenir une vraie force de lumière intellectuelle
+
+════════════════════════════════════════════════════════════════════
+5 — INTRO CINÉMATIQUE : RÔLE ET STRUCTURE
+════════════════════════════════════════════════════════════════════
+
+L’intro cinématique doit servir à :
+- contextualiser le monde,
+- donner du poids à la mission,
+- installer la grandeur du projet,
+- créer une émotion de départ,
+- justifier la reconstruction des temples,
+- annoncer les dieux, les ruines, les forces de l’oubli et l’appel du héros.
+
+Structure narrative recommandée :
+1. L’Olympe était le foyer du savoir.
+2. Les humains ont cessé d’apprendre vraiment.
+3. Le Chaos de l’Oubli s’est éveillé.
+4. Les temples ont été brisés.
+5. Les dieux se sont affaiblis.
+6. Prométhée a aperçu un héros capable de restaurer les voies du savoir.
+7. Zeus appelle le joueur.
+8. Le voyage commence.
+
+Formats possibles :
+- vidéo 9:16
+- diaporama illustré
+- séquence images fixes + dialogues RPG + effets
+- combinaison vidéo / freeze / texte / voix
+
+Règles :
+- skippable après première lecture
+- persistée via flag introSeen
+- cohérente avec onboarding existant
+- premium sans bloquer le flow
+
+════════════════════════════════════════════════════════════════════
+6 — CARTE DU MONDE : FONCTION ET STRUCTURE
+════════════════════════════════════════════════════════════════════
+
+La carte du monde doit être :
+- lisible,
+- belle,
+- connectée à la progression réelle,
+- non décorative,
+- exploitée dans l’aventure,
+- cohérente avec les déblocages du bloc P.
+
+Zones minimales à représenter :
+- Mont Olympe / centre
+- 9 temples
+- Tartare
+- Bibliothèque Interdite
+- Palais des Titans
+- éventuels futurs lieux
+
+Fonctions attendues :
+- voir les zones verrouillées / disponibles / purifiées / menacées
+- cliquer sur une zone
+- afficher un état synthétique
+- comprendre visuellement l’ampleur du monde
+- préparer les futures extensions
+
+Règles de lisibilité :
+- pas une carte surchargée
+- zones cliquables propres
+- légende ou guidance d’Hermès possible
+- états visuels cohérents
+- pas de pur décor impossible à comprendre
+
+════════════════════════════════════════════════════════════════════
+7 — TENSION MYTHOLOGIQUE ET ÉTAT NARRATIF
+════════════════════════════════════════════════════════════════════
+
+Le monde ne doit pas rester narrativement plat.
+
+La tension mythologique doit pouvoir refléter :
+- le chaos qui gagne,
+- l’espoir qui renaît,
+- la montée en puissance des dieux,
+- l’approche d’un boss majeur,
+- la restauration d’une grande zone,
+- les moments où l’Olympe vacille ou se relève.
+
+États narratifs possibles :
+- Veille Fragile
+- Aube du Retour
+- Brume de l’Oubli
+- Fureur du Tartare
+- Réveil des Temples
+- Ascension du Panthéon
+- Nuit des Titans
+- Lumière des Muses
+
+Ces états peuvent influencer :
+- dialogues
+- agora
+- ambiance dashboard
+- accès aventure
+- intensité des effets
+- formulation des messages divins
+- présentation de la carte
+
+Version V1 raisonnable :
+- pas besoin d’un moteur narratif ultra complexe,
+- mais un state machine claire et persistée est recommandée.
+
+════════════════════════════════════════════════════════════════════
+8 — BESTIAIRE ET CRÉATURES
+════════════════════════════════════════════════════════════════════
+
+Le bestiaire doit devenir :
+- une encyclopédie vivante,
+- une galerie de menaces,
+- une extension du lore,
+- un miroir des épreuves éducatives.
+
+Fonctions attendues :
+- consulter les créatures rencontrées
+- voir leur lore
+- voir leur lien avec une matière / zone / boss
+- voir leurs faiblesses symboliques
+- voir leur état de défaite / purification
+- préparer des récompenses de collection
+
+Créatures déjà cohérentes avec le projet :
+- Chimères de l’Ignorance
+- Harpies du Doute
+- Hydre de la Confusion
+- Cerbère de l’Oubli
+- Sphinx variantes
+- Gorgones
+- Cyclopes
+- Kraken
+- Titans corrompus
+
+Le bestiaire doit pouvoir se lier à :
+- boss
+- zones
+- quêtes
+- lore
+- récompenses de collection
+- cartes monde
+
+════════════════════════════════════════════════════════════════════
+9 — POLISSAGE TRANSVERSAL PREMIUM
+════════════════════════════════════════════════════════════════════
+
+Le BLOC Q doit aussi assurer un polissage transversal final.
+
+Axes à vérifier / améliorer :
+- cohérence des textes d’un écran à l’autre
+- cohérence des noms de zones, dieux, créatures, objets
+- cohérence des habillages
+- cohérence des feedbacks divins
+- cohérence des musiques par contexte
+- cohérence des fonds et overlays
+- cohérence des cinématiques / freezes / stills
+- cohérence du rythme des écrans
+- cohérence des messages d’erreur diégétiques
+- cohérence des prompts de ressources futures
+
+Ce bloc est l’endroit idéal pour :
+- consolider la DA narrative,
+- verrouiller les terminologies officielles,
+- corriger les dissonances de ton,
+- préparer les manifestes de ressources finaux.
+
+════════════════════════════════════════════════════════════════════
+10 — SOUS-CHANTIERS DU BLOC Q
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+Q1 — LORE BIBLE OFFICIELLE ET DOCUMENTAIRE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+formaliser le document maître du lore.
+
+À faire :
+- enrichir 09_LORE_BIBLE_REVIZEUS.md
+- définir clairement :
+  - monde
+  - dieux
+  - temples
+  - chaos
+  - créatures
+  - zones
+  - chapitres
+  - prophétie
+  - objectif ultime
+- fixer les noms officiels
+- fixer les rôles narratifs
+- prévoir sections consultables par l’UI plus tard
+
+Fichiers concernés :
+- 09_LORE_BIBLE_REVIZEUS.md
+- éventuels fichiers de doc internes
+
+Critère de fin :
+le lore officiel existe et peut servir de référence unique.
+
+────────────────────────────────────────────────────────────────────
+Q2 — LOREMANAGER / NARRATIVESTATEMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+rendre le lore et l’état narratif exploitables dans le jeu.
+
+Responsabilités :
+- exposer les textes courts et longs
+- exposer les résumés de chapitres
+- exposer l’état narratif actuel
+- relier les zones, dieux et menaces
+- fournir des données pour dashboard, aventure, carte et bestiaire
+
+Méthodes recommandées :
+- getWorldLoreSummary()
+- getZoneLore(zoneId)
+- getGodLore(godName)
+- getCreatureLore(creatureId)
+- getCurrentNarrativeState()
+- getChapterSummary(chapterId)
+- getIntroSegments()
+- getWorldStateFlavor()
+
+Fichiers concernés :
+- LoreManager.kt
+- NarrativeStateManager.kt
+- éventuellement fichiers JSON/MD auxiliaires
+
+Critère de fin :
+le lore n’est plus seulement un document texte, il devient exploitable côté code.
+
+────────────────────────────────────────────────────────────────────
+Q3 — INTROCINEMATICACTIVITY
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer ou finaliser l’intro cinématique.
+
+À faire :
+- écran dédié
+- lecture vidéo / diaporama / séquence narrative
+- dialogues typewriter si nécessaire
+- BGM dédiée
+- possibilité de skip après première vue
+- flag introSeen
+- intégration propre dans le flow onboarding
+
+Améliorations premium :
+- transitions cinématiques
+- freeze sur image clé
+- texte premium
+- rythme maîtrisé
+- DA forte
+- prompts ressources manquantes si besoin
+
+Fichiers concernés :
+- IntroCinematicActivity.kt
+- layout_intro_cinematic.xml
+- SoundManager.kt
+- UserProfile.kt pour flag
+- ressources vidéo / images / audio
+
+Critère de fin :
+l’intro est mémorable, compréhensible, cohérente et intégrée sans friction.
+
+────────────────────────────────────────────────────────────────────
+Q4 — WORLDMAPACTIVITY
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer la carte du monde jouable.
+
+À faire :
+- écran dédié
+- carte centrale
+- zones cliquables
+- états verrouillés / débloqués / purifiés / menacés
+- panneaux d’information zone
+- liens vers aventure / zone si disponibles
+
+Améliorations premium :
+- guidance d’Hermès
+- petites animations ou halos
+- labels nobles
+- progression globale visible
+- style carte sacrée / atlas
+
+Fichiers concernés :
+- WorldMapActivity.kt
+- layout_world_map.xml
+- WorldMapZoneDefinition.kt
+- WorldMapState.kt
+- AdventureUnlockManager.kt
+- LoreManager.kt
+
+Critère de fin :
+le joueur peut lire et comprendre le monde à travers une vraie carte.
+
+────────────────────────────────────────────────────────────────────
+Q5 — BESTIARYACTIVITY ET CREATUREMANAGER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer le bestiaire consultable.
+
+À faire :
+- écran bestiaire
+- entités ou définitions créatures
+- progression découverte / défaite / purification
+- fiches de créature
+- liens zone / matière / boss
+- progression de collection
+
+Améliorations premium :
+- artwork plein cadre
+- voix ou TTS optionnelle
+- commentaire divin
+- filtre par zone, matière, danger, type
+- récompense légère de collection
+
+Fichiers concernés :
+- BestiaryActivity.kt
+- CreatureDefinition.kt
+- CreatureManager.kt
+- layout_bestiary.xml
+- layout_bestiary_entry.xml
+- liens avec BossManager et LoreManager
+
+Critère de fin :
+les menaces du monde sont incarnées et consultables.
+
+────────────────────────────────────────────────────────────────────
+Q6 — WORLD STATE / TENSION NARRATIVE PERSISTÉE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+suivre un vrai état narratif du monde.
+
+À faire :
+- currentNarrativeState
+- currentWorldChapter
+- threatLevel
+- hopeLevel
+- titanPressure
+- templesRestoredCount
+- majorVictoryFlags
+- majorLoreUnlocks
+
+Version V1 :
+- stockage simple dans UserProfile ou structure dédiée
+- quelques états clairs
+- mise à jour via aventure, temples, boss et quêtes
+
+Fichiers concernés :
+- UserProfile.kt ou entité dédiée
+- NarrativeStateManager.kt
+- AdventureActivity.kt
+- DashboardAssembler.kt
+- AgoraMessageManager.kt
+
+Critère de fin :
+le monde peut entrer dans de vrais états narratifs persistés.
+
+────────────────────────────────────────────────────────────────────
+Q7 — RÉACTIONS DIVINES AUX ÉTATS NARRATIFS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire parler le panthéon en fonction du monde.
+
+Exemples :
+- Zeus parle différemment si un temple majeur est restauré
+- Déméter parle différemment si beaucoup de savoirs fanent
+- Athéna réagit à la bibliothèque
+- Arès réagit avant un boss dur
+- Prométhée relit le sens du parcours à l’approche d’un grand seuil
+
+Fichiers concernés :
+- GodLoreManager.kt
+- LoreManager.kt
+- NarrativeStateManager.kt
+- Dashboard / Aventure / Intro selon besoin
+
+Critère de fin :
+le discours divin ne semble plus figé, mais relié au monde.
+
+────────────────────────────────────────────────────────────────────
+Q8 — TERMINOLOGIE OFFICIELLE ET COHÉRENCE NARRATIVE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+verrouiller le vocabulaire officiel du jeu.
+
+À fixer clairement :
+- noms de zones
+- noms de chapitres
+- noms des boss
+- noms des créatures
+- noms des états du monde
+- noms des reliques
+- titres majeurs
+- appellations du chaos
+- formulations officielles de la mission du héros
+
+Utilité :
+- éviter les incohérences futures
+- nourrir les autres IA
+- stabiliser tous les prompts et textes
+
+Fichiers concernés :
+- Lore Bible
+- strings / manifests si centralisés
+- documents de cohérence projet
+
+Critère de fin :
+la terminologie officielle est stable et partagée.
+
+────────────────────────────────────────────────────────────────────
+Q9 — RESSOURCES NARRATIVES ET MANIFESTE ASSET
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+recenser et préparer toutes les ressources manquantes du bloc narratif.
+
+À documenter pour chaque ressource manquante :
+- nom exact
+- utilité
+- écran(s) concerné(s)
+- connexions avec autres écrans / code
+- prompt JSON conforme à la DA
+
+Ressources typiques :
+- cartes
+- illustrations de zones
+- illustrations de créatures
+- visuels d’intro
+- transitions chapitres
+- panneaux narratifs
+- badges / constellations / titres rares si besoin d’habillage
+
+Fichiers concernés :
+- 05_RESOURCE_MANIFEST.json
+- documents d’assets
+- prompts JSON annexes
+
+Critère de fin :
+aucune ressource narrative future importante n’est “oubliée” sans tracking clair.
+
+────────────────────────────────────────────────────────────────────
+Q10 — POLISSAGE AUDIOVISUEL FINAL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire monter la perception premium du jeu entier.
+
+À harmoniser :
+- musiques par contexte
+- transitions d’écran majeures
+- hiérarchie des fonds
+- overlays / halos / effets discrets
+- rythme des dialogues
+- ton des popups majeures
+- intégration vidéo → image fixe
+- cohérence des chargements divins
+- lisibilité globale des écrans clés
+
+Ce chantier doit être transversal :
+- Intro
+- Dashboard
+- Temples
+- Aventure
+- Boss
+- Bestiaire
+- Carte du monde
+- Profil / badges si pertinent
+
+Fichiers concernés :
+- SoundManager.kt
+- AnimatedBackgroundHelper.kt
+- VideoBackgroundHelper.kt
+- DialogRPGManager.kt
+- principaux écrans du jeu
+
+Critère de fin :
+la qualité perçue du jeu monte d’un cran sur tout le parcours.
+
+────────────────────────────────────────────────────────────────────
+Q11 — INTÉGRATION AVEC DASHBOARD, AVENTURE, BADGES ET PROFIL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire remonter le lore et les états narratifs dans les autres blocs.
+
+Le Dashboard doit pouvoir :
+- mentionner l’état narratif global
+- annoncer un chapitre
+- faire sentir une menace ou un espoir
+
+L’Aventure doit pouvoir :
+- lire les chapitres
+- lire le lore local des zones
+- invoquer les bons textes
+
+Les Badges / Profil / Titres peuvent plus tard :
+- refléter certaines phases du monde
+- afficher des gloires liées à des arcs narratifs
+
+Fichiers concernés :
+- DashboardAssembler.kt
+- AdventureActivity.kt
+- BadgeManager.kt
+- HeroProfileActivity.kt
+- LoreManager.kt
+- NarrativeStateManager.kt
+
+Critère de fin :
+le bloc Q n’est pas isolé ; il irrigue le reste du jeu.
+
+────────────────────────────────────────────────────────────────────
+Q12 — PRÉPARATION DES EXTENSIONS FUTURES
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+préparer sans surcharger :
+- cinématiques avancées
+- arcs narratifs par dieu
+- journal de campagne
+- chroniques du héros
+- événements saisonniers mythologiques
+- bestiaire avancé
+- atlas des constellations complet
+- cartes régionales détaillées
+- musées des reliques
+- mode histoire étendu
+
+À NE PAS TOUT CODER TOUT DE SUITE :
+- toutes les cinématiques futures
+- tout le bestiaire complet
+- toutes les branches narratives
+- toutes les cartes détaillées
+- toutes les scènes de chapitre
+
+Critère de fin :
+l’architecture est prête pour grandir sans réécriture lourde.
+
+════════════════════════════════════════════════════════════════════
+11 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- 09_LORE_BIBLE_REVIZEUS.md
+- AppDatabase.kt
+- UserProfile.kt
+- GodLoreManager.kt
+- AdventureActivity.kt
+- AdventureZoneActivity.kt
+- DashboardActivity.kt
+- DashboardAssembler.kt
+- AdventureUnlockManager.kt
+- SoundManager.kt
+
+Priorité 2 :
+- LoreManager.kt si déjà commencé
+- NarrativeStateManager.kt si déjà commencé
+- IntroCinematicActivity.kt
+- WorldMapActivity.kt
+- BossManager.kt
+- BadgeManager.kt
+- HeroProfileActivity.kt
+- AnimatedBackgroundHelper.kt
+- VideoBackgroundHelper.kt
+
+Priorité 3 :
+- BestiaryActivity.kt
+- CreatureManager.kt
+- manifests de ressources
+- documents de cohérence projet
+- prompts JSON d’assets
+
+════════════════════════════════════════════════════════════════════
+12 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. verrouiller la Lore Bible officielle
+2. créer LoreManager et NarrativeStateManager
+3. créer / finaliser IntroCinematicActivity
+4. créer WorldMapActivity
+5. créer BestiaryActivity et CreatureManager
+6. persister les états narratifs du monde
+7. brancher les réactions divines contextuelles
+8. verrouiller la terminologie officielle
+9. recenser les ressources narratives manquantes
+10. polir l’audiovisuel transversal
+11. intégrer lore / narration au Dashboard et à l’Aventure
+12. préparer les extensions futures
+
+Pourquoi cet ordre :
+- on fixe d’abord la vérité narrative,
+- puis on la rend exploitable,
+- puis on la montre,
+- puis on l’incarne,
+- puis on la diffuse dans tout le jeu.
+
+════════════════════════════════════════════════════════════════════
+13 — CRITÈRES DE FIN DU BLOC Q
+════════════════════════════════════════════════════════════════════
+
+Le bloc Q est considéré comme FAIT si :
+- le lore officiel est formalisé et centralisé,
+- le jeu dispose d’un LoreManager / NarrativeStateManager exploitables,
+- l’intro cinématique contextualise clairement la mission du héros,
+- la carte du monde existe et reflète les zones réelles,
+- le bestiaire existe ou sa structure est prête proprement,
+- les états narratifs du monde sont persistés,
+- les dieux parlent en cohérence avec l’état du monde,
+- la terminologie officielle est verrouillée,
+- les ressources narratives manquantes sont correctement trackées,
+- la qualité audiovisuelle globale du jeu gagne en cohérence et en force,
+- RéviZeus est perçu comme un monde mythologique habité, pas seulement comme un système gamifié.
+
+════════════════════════════════════════════════════════════════════
+14 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- écrire du lore sans le rendre exploitable côté code
+- disperser des textes narratifs incohérents dans plusieurs écrans
+- faire une carte du monde décorative sans lien gameplay
+- rendre l’intro longue et pénible
+- créer un bestiaire séparé des boss / zones / aventure
+- oublier la persistance des états narratifs
+- ne pas fixer la terminologie officielle
+- lancer trop d’assets sans manifeste clair
+- polir visuellement sans cohérence d’ensemble
+- transformer Q en bloc purement “cosmétique”
+
+════════════════════════════════════════════════════════════════════
+15 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC Q : “Lore Bible + carte du monde + intro cinématique + tension mythologique + bestiaire + polissage transversal”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings / aventure,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- toutes les couches textuelles importantes doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- toute nouvelle ressource manquante doit être documentée avec nom, utilité, connexions écran/code et prompt JSON conforme à la DA.
+
+Objectif :
+Créer la couche finale de cohérence mythologique et narrative qui :
+1. formalise la Lore Bible officielle,
+2. crée LoreManager et NarrativeStateManager,
+3. crée ou finalise IntroCinematicActivity,
+4. crée WorldMapActivity,
+5. crée BestiaryActivity et CreatureManager,
+6. persiste les états narratifs du monde,
+7. rend les dieux sensibles à l’état narratif,
+8. verrouille la terminologie officielle,
+9. recense les ressources narratives manquantes,
+10. effectue un polissage audiovisuel transversal sur les écrans clés,
+11. relie tout cela au Dashboard, à l’Aventure, aux Boss, aux Badges et au Profil.
+
+Le lore doit clarifier :
+- l’Olympe du Savoir,
+- le Chaos de l’Oubli,
+- l’affaiblissement des dieux,
+- le rôle du héros,
+- la reconstruction des temples,
+- la fonction des zones,
+- la place des créatures,
+- la prophétie de Prométhée,
+- l’objectif ultime du jeu.
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- 09_LORE_BIBLE_REVIZEUS.md
+- AppDatabase.kt
+- UserProfile.kt
+- GodLoreManager.kt
+- AdventureActivity.kt
+- AdventureZoneActivity.kt
+- DashboardActivity.kt
+- DashboardAssembler.kt
+- AdventureUnlockManager.kt
+- SoundManager.kt
+- IntroCinematicActivity.kt si présent
+- WorldMapActivity.kt si présent
+- BadgeManager.kt
+- HeroProfileActivity.kt si présent
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles ressources manquantes, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+16 — RÉSUMÉ ULTRA COURT DU BLOC Q
+════════════════════════════════════════════════════════════════════
+
+Ce bloc donne à RéviZeus son âme finale.
+Le monde reçoit une histoire officielle.
+Le héros comprend pourquoi il lutte.
+Les zones, les créatures, les dieux et les temples deviennent les fragments d’une même épopée.
+L’intro, la carte, le bestiaire et la tension mythologique unifient tout.
+Et le jeu cesse définitivement d’être une simple app premium pour devenir un univers cohérent.

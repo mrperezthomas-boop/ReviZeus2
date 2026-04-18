@@ -1,0 +1,783 @@
+RÉVIZEUS — BLOC N
+DASHBOARD VIVANT + WIDGETS D’INSIGHT + AGORA DIVINE + MONDE RÉACTIF
+Version : GOD TIER — bloc prêt à coder avec une IA
+Date : 2026-03-24
+
+════════════════════════════════════════════════════════════════════
+0 — RÔLE DE CE BLOC
+════════════════════════════════════════════════════════════════════
+
+Ce bloc a pour but de transformer le Dashboard de RéviZeus
+en véritable hub vivant, noble, lisible et réactif,
+capable de refléter la progression réelle du héros,
+les recommandations de l’IA,
+la santé pédagogique des savoirs,
+l’état du monde,
+les déblocages,
+les messages des dieux,
+et les tensions mythologiques en cours.
+
+Le Dashboard ne doit plus être seulement un écran d’accès à des fonctionnalités.
+Il doit devenir :
+- la place centrale du héros,
+- le thermomètre vivant de sa progression,
+- la porte d’entrée naturelle vers l’action suivante,
+- le carrefour entre apprentissage, récompense, temples, monde, dieux et aventure.
+
+Ce bloc doit donner une forme visible aux blocs précédents :
+- récompenses et économie,
+- temples et progression,
+- cognition et révisions,
+- recommandations IA,
+- fatigue / humeur / ambiance,
+- extensions divines,
+- déblocages de zones,
+- et plus tard quêtes, aventure et monde réactif.
+
+Il ne s’agit pas de surcharger l’écran avec trop d’informations.
+Il s’agit de construire un Dashboard vivant, hiérarchisé, premium et actionnable.
+
+════════════════════════════════════════════════════════════════════
+1 — PLACE DU BLOC N DANS LE PLAN GLOBAL
+════════════════════════════════════════════════════════════════════
+
+Le BLOC N arrive après :
+- A : stabilisation technique et socle transverse
+- B : dialogues RPG universels
+- C : audio / TTS / ducking / loadings / fonds premium
+- D : Oracle premium pipeline résumé → validation → temple → quiz
+- E : quiz nouvelle génération / corrections / résultats
+- F : récompenses unifiées / fragments / économie / gains
+- G : forge / inventaire / effets objets / craft / tri / filtres
+- H : progression des temples / reconstruction / déblocages monde
+- I : savoirs vivants / sous-dossiers / long press / artefacts / export
+- J : extensions divines créatives
+- K : profils d’accompagnement du héros + IA adaptative V1
+- L : analytics pédagogiques avancées + moteur cognitif + révision intelligente + Déméter
+- M : recommandations IA + prochaine meilleure action + suggestions stratégiques
+
+Il prépare ensuite :
+- O : rangs, badges, progression méta, titres et lecture long terme
+- P : aventure structurée, zones, quêtes, boss éducatifs
+- Q : lore, carte du monde, intro, tension mythologique et polissage transversal
+
+Ce bloc est la première grande mise en scène visible du système total de RéviZeus.
+
+════════════════════════════════════════════════════════════════════
+2 — OBJECTIF PRODUIT EXACT
+════════════════════════════════════════════════════════════════════
+
+Faire du Dashboard un hub vivant qui répond au héros,
+oriente l’action,
+reflète la progression,
+et donne envie de revenir.
+
+Objectifs principaux :
+- hiérarchiser clairement les informations utiles,
+- afficher la prochaine meilleure action,
+- afficher quelques insights pédagogiques utiles,
+- refléter l’état du monde et des temples,
+- mettre en scène les dieux comme présence active,
+- rendre visibles certains déblocages et états importants,
+- garder une navigation fluide,
+- éviter tout effet “tableau de bord froid”.
+
+Objectifs secondaires :
+- augmenter la lisibilité stratégique du jeu,
+- réduire la friction entre “je suis sur le Dashboard” et “je sais quoi faire”,
+- créer une sensation de monde vivant,
+- préparer naturellement l’entrée dans l’aventure,
+- rendre la progression émotionnelle et visible.
+
+════════════════════════════════════════════════════════════════════
+3 — PHILOSOPHIE D’ARCHITECTURE OBLIGATOIRE
+════════════════════════════════════════════════════════════════════
+
+Règle absolue :
+le Dashboard ne doit pas recalculer lui-même la logique métier profonde.
+
+INTERDIT :
+- calculer les recommandations directement dans DashboardActivity
+- recalculer les priorités cognitives dans l’UI
+- reconstruire localement l’état du monde avec des hacks
+- multiplier les adapters non centralisés sans modèle de données clair
+- brancher des conditions produit massives dans le XML sans source métier
+
+OBLIGATOIRE :
+- DashboardActivity orchestre l’affichage,
+- les managers fournissent les modèles de données,
+- les widgets sont nourris par des view models / modèles UI simples,
+- les calculs viennent des blocs précédents,
+- la mise en scène est centralisée proprement.
+
+Architecture cible recommandée :
+- DashboardUiState
+- DashboardSectionModel
+- DashboardWidgetModel
+- DashboardWorldState
+- DashboardRecommendationModel
+- DashboardInsightModel
+- DashboardAgoraMessageModel
+- DashboardHeroStatusModel
+- DashboardTempleSnapshotModel
+- DashboardActivity
+- DashboardUiMapper / DashboardAssembler / DashboardWorldPresenter
+- WeatherDivineManager
+- AgoraMessageManager
+- éventuellement DashboardRefreshCoordinator
+
+Le bloc doit respecter les IDs critiques déjà connus de DashboardActivity.
+Il ne doit pas casser les boutons centraux existants :
+- btnNewCourse
+- btnLibrary
+- btnDailyTraining
+- layoutCurrenciesHud
+- btnDebugML
+et plus généralement la navigation déjà sacrée.
+
+════════════════════════════════════════════════════════════════════
+4 — CE QUE LE DASHBOARD DOIT COMMENCER À RACONTER
+════════════════════════════════════════════════════════════════════
+
+Le Dashboard doit être capable de raconter visuellement et fonctionnellement :
+- où en est le héros,
+- quel est son prochain mouvement utile,
+- quels temples sont forts ou fragiles,
+- quels savoirs appellent une révision,
+- quelle ambiance divine règne,
+- quels systèmes sont débloqués,
+- quel grand objectif se rapproche,
+- si le monde s’éclaircit ou s’assombrit,
+- si un dieu souhaite intervenir,
+- si le héros est dans un moment de calme, de défi, de reconstruction ou de tension.
+
+Le Dashboard ne doit pas tout dire en même temps.
+Il doit choisir et hiérarchiser.
+
+════════════════════════════════════════════════════════════════════
+5 — SECTIONS MAÎTRES DU DASHBOARD À PRÉVOIR
+════════════════════════════════════════════════════════════════════
+
+5.1 HERO STATUS PANEL
+Contient :
+- avatar héros
+- nom du héros
+- niveau / XP / rang plus tard
+- humeur actuelle
+- éventuellement titre équipé plus tard
+- raccourci vers profil / mood / titre / héros
+
+5.2 RECOMMENDATION PRIME CARD
+Contient :
+- recommandation principale du bloc M
+- dieu porteur
+- raison courte
+- CTA clair
+
+5.3 INSIGHTS PANEL
+Contient :
+- 1 à 3 insights pédagogiques utiles
+- ton sobre et noble
+- possibilité d’ouvrir une vue plus détaillée plus tard
+
+5.4 TEMPLE WORLD SNAPSHOT
+Contient :
+- état synthétique des temples
+- matière fragile ou en essor
+- palier proche
+- déblocage monde proche
+
+5.5 AGORA DIVINE
+Contient :
+- messages contextuels
+- annonces dieux
+- événements du monde
+- conseils immersifs
+- messages de déblocage ou de tension
+
+5.6 DAILY DIVINE RECALL / DÉMÉTER
+Contient :
+- rappel du jour
+- savoir ou notion à sauver
+- CTA rapide
+
+5.7 QUICK ACTIONS STRATÉGIQUES
+Contient :
+- entrer à l’Oracle
+- reprendre un temple clé
+- entraînement quotidien
+- forge utile
+- bibliothèque / savoir précis
+- zone monde si déjà débloquée
+
+5.8 WORLD / WEATHER / AMBIANCE
+Contient :
+- météo divine
+- lumière / orage / brume / rayonnement
+- état global du monde
+- variation visuelle ou audio
+
+5.9 RECENT REWARDS / BADGES / MOMENTS CLÉS
+Contient :
+- derniers gains ou succès
+- dernière montée de palier
+- badge récent
+- objet récent
+- fragment notable
+
+5.10 EVENT STRIP / FUTUR AVENTURE
+Contient :
+- événement spécial
+- zone bientôt disponible
+- boss approché
+- quête à venir
+- tension narrative légère
+
+════════════════════════════════════════════════════════════════════
+6 — ÉTATS DU MONDE ET RÉACTIVITÉ À CENTRALISER
+════════════════════════════════════════════════════════════════════
+
+Le Dashboard doit commencer à refléter un monde réactif.
+
+Exemples d’états globaux :
+- AUBE SACRÉE : progression sereine, monde lumineux
+- ORAGE DE ZEUS : phase de défi, tension, temple fort en maths
+- BRUME DE L’OUBLI : plusieurs savoirs fragiles
+- PRINTEMPS DE DÉMÉTER : révisions bien tenues
+- BRAISES D’HÉPHAÏSTOS : forge et fabrication favorisées
+- VENTS D’HERMÈS : flux de traduction / circulation du savoir
+- CHANT D’APOLLON : phase de mémorisation artistique
+- ROSE D’APHRODITE : phase de visualisation et d’inspiration
+- MARÉE DE POSÉIDON : compréhension systémique et matières vivantes
+- FUREUR D’ARÈS : défi, challenge, montée en intensité
+
+Ces états peuvent influencer :
+- messages agora
+- ambiance visuelle
+- particules
+- teinte légère du Dashboard
+- message de recommandation
+- éventuels choix mis en avant
+
+Version V1 raisonnable :
+- ne pas créer un système météo AAA complet tout de suite,
+- commencer avec un WorldState calculé proprement,
+- brancher quelques variantes visuelles et textuelles sûres.
+
+════════════════════════════════════════════════════════════════════
+7 — SOUS-CHANTIERS DU BLOC N
+════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+N1 — DASHBOARDUISTATE ET MODÈLES DE SECTION
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer une structure UI unique pour alimenter le Dashboard.
+
+À faire :
+- DashboardUiState
+- DashboardSectionModel
+- DashboardWidgetModel
+- DashboardHeroStatusModel
+- DashboardRecommendationModel
+- DashboardInsightModel
+- DashboardAgoraMessageModel
+- DashboardTempleSnapshotModel
+- DashboardWorldStateModel
+
+Objectif structurel :
+le Dashboard ne doit pas assembler des bouts de données au hasard.
+Il doit recevoir un état déjà propre.
+
+Fichiers concernés :
+- DashboardUiState.kt
+- DashboardSectionModel.kt
+- DashboardWidgetModel.kt
+- modèles UI dédiés
+
+Critère de fin :
+un modèle central peut représenter le Dashboard vivant complet.
+
+────────────────────────────────────────────────────────────────────
+N2 — DASHBOARDASSEMBLER / UIMAPPER CENTRAL
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+construire l’état UI à partir des managers métier.
+
+Responsabilités :
+- récupérer les recommandations du bloc M,
+- récupérer les insights du bloc L,
+- récupérer l’état des temples du bloc H,
+- récupérer l’économie du bloc F,
+- récupérer l’humeur et le héros,
+- récupérer les déblocages monde,
+- choisir ce qui doit être visible ou non,
+- hiérarchiser les cartes.
+
+Méthodes recommandées :
+- buildDashboardUiState(userId)
+- buildHeroStatus(...)
+- buildRecommendationCard(...)
+- buildInsightCards(...)
+- buildAgoraFeed(...)
+- buildTempleSnapshot(...)
+- buildWorldState(...)
+
+Fichiers concernés :
+- DashboardAssembler.kt ou DashboardUiMapper.kt
+
+Critère de fin :
+DashboardActivity n’est plus saturée de logique d’assemblage métier.
+
+────────────────────────────────────────────────────────────────────
+N3 — WEATHERDIVINEMANAGER / MONDE RÉACTIF V1
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer une couche de météo divine / état du monde simple mais significative.
+
+Entrées possibles :
+- nombre de savoirs fragiles,
+- temples en progression,
+- derniers succès,
+- fatigue globale,
+- déblocages récents,
+- défi actif,
+- rappel Déméter urgent,
+- forge particulièrement active,
+- phase audio / mood.
+
+Sorties possibles :
+- worldStateType
+- ambianceLabel
+- légère variation visuelle
+- message d’introduction
+- intensité visuelle
+- dieu dominant du moment
+
+Fichiers concernés :
+- WeatherDivineManager.kt
+- DashboardWorldStateModel.kt
+- DashboardAssembler.kt
+
+Critère de fin :
+le Dashboard peut refléter un état global du monde cohérent.
+
+────────────────────────────────────────────────────────────────────
+N4 — AGORAMESSAGEMANAGER / FIL D’ACTUALITÉ DIVIN
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+créer une couche de messages vivants et contextuels.
+
+L’agora peut contenir :
+- annonces de déblocage
+- conseils des dieux
+- événements narratifs légers
+- signaux de monde
+- invitations à revenir sur un temple
+- rappels doux
+- félicitations ciblées
+- messages de tension montante
+
+Le système doit choisir peu de messages, pas un flot confus.
+
+Types de messages :
+- WORLD_EVENT
+- PEDAGOGIC_WARNING
+- DIVINE_ADVICE
+- UNLOCK_NEAR
+- SUCCESS_CELEBRATION
+- QUIET_REASSURANCE
+- CHALLENGE_CALL
+
+Fichiers concernés :
+- AgoraMessageManager.kt
+- DashboardAgoraMessageModel.kt
+- DashboardAssembler.kt
+- GodLoreManager.kt si verbalisation divine mutualisée
+
+Critère de fin :
+le Dashboard peut afficher un fil vivant, utile et cohérent.
+
+────────────────────────────────────────────────────────────────────
+N5 — RECOMMENDATION PRIME CARD SUR DASHBOARD
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire du Dashboard le lieu naturel d’entrée dans la prochaine meilleure action.
+
+À faire :
+- intégrer la recommandation principale du bloc M
+- afficher le dieu porteur
+- afficher une raison courte
+- CTA immédiat
+- rendre la carte noble, lisible et visible sans écraser le reste
+- gérer vide / fallback
+
+Fichiers concernés :
+- DashboardActivity.kt
+- dashboard layout ou sous-layout dédié
+- adapter / custom view / binding associés
+- modèles issus du bloc M
+
+Critère de fin :
+la prochaine meilleure action est visible immédiatement sur le Dashboard.
+
+────────────────────────────────────────────────────────────────────
+N6 — INSIGHTS PÉDAGOGIQUES EN WIDGETS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire remonter des signaux pédagogiques utiles sans transformer le Dashboard en panneau médical.
+
+Exemples de widgets :
+- “Deux savoirs fanent en SVT.”
+- “Tu récupères mieux quand Athéna reformule.”
+- “Ta logique progresse, mais reste instable.”
+- “Une révision douce vaudrait mieux qu’un défi maintenant.”
+- “Le temple de Français se renforce.”
+
+Règles :
+- 1 à 3 insights max
+- ton noble, jamais brutal
+- formulation courte
+- possibilité d’approfondir plus tard
+
+Fichiers concernés :
+- DashboardInsightModel.kt
+- DashboardAssembler.kt
+- DashboardActivity.kt
+- éventuel widget layout dédié
+
+Critère de fin :
+le Dashboard donne des lectures utiles et non envahissantes.
+
+────────────────────────────────────────────────────────────────────
+N7 — TEMPLE SNAPSHOT SYNTHÉTIQUE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire sentir l’état des temples sans obliger à entrer dans chaque temple.
+
+À montrer potentiellement :
+- temple dominant
+- temple fragile
+- prochain palier proche
+- matière prioritaire
+- aura pédagogique d’une matière
+- monde lié (zone bientôt débloquée)
+
+Version V1 :
+- 2 ou 3 informations maximum
+- miniature / icône divine / barre légère / badge état
+- CTA vers le temple concerné
+
+Fichiers concernés :
+- DashboardTempleSnapshotModel.kt
+- TempleProgressManager.kt
+- DashboardAssembler.kt
+- DashboardActivity.kt
+
+Critère de fin :
+le joueur comprend en un coup d’œil l’état stratégique de ses temples.
+
+────────────────────────────────────────────────────────────────────
+N8 — DAILY DIVINE RECALL / CARTE DÉMÉTER
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+donner un emplacement clair au rappel intelligent du bloc L.
+
+À faire :
+- intégrer la carte de rappel du jour
+- afficher savoir / notion / matière
+- CTA direct
+- ton Déméter cohérent
+- ne pas dupliquer si la recommandation principale est déjà un rappel proche
+- fallback gracieux si aucun rappel urgent
+
+Fichiers concernés :
+- DashboardActivity.kt
+- DemeterRecallManager.kt
+- DashboardAssembler.kt
+- widget layout dédié
+
+Critère de fin :
+la mécanique de révision intelligente est visible et accessible depuis le Dashboard.
+
+────────────────────────────────────────────────────────────────────
+N9 — QUICK ACTIONS STRATÉGIQUES ET NAVIGATION PREMIUM
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+mettre en avant quelques raccourcis réellement utiles.
+
+Actions potentielles :
+- Nouvel Oracle
+- Temple prioritaire
+- Entraînement du jour
+- Forge utile
+- Bibliothèque / dernier savoir
+- Zone aventure si débloquée
+- Jukebox / réglages si contexte particulier plus tard
+
+Important :
+ne pas noyer l’écran sous trop de boutons.
+La hiérarchie actuelle du Dashboard doit rester lisible.
+
+Fichiers concernés :
+- DashboardActivity.kt
+- layout_dashboard.xml ou sous-layouts
+- navigation helpers existants
+
+Critère de fin :
+le Dashboard facilite l’action sans devenir un menu confus.
+
+────────────────────────────────────────────────────────────────────
+N10 — HERO STATUS PANEL ET IDENTITÉ DU HÉROS
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+donner un vrai sentiment de présence du héros sur le Dashboard.
+
+À afficher potentiellement :
+- avatar sélectionné
+- nom
+- niveau
+- humeur
+- plus tard rang / titre
+- indicateur visuel du moment
+- accès au changement d’humeur si voulu dans l’architecture existante
+
+Important :
+rester élégant.
+Ce panneau ne doit pas dominer l’écran.
+
+Fichiers concernés :
+- DashboardActivity.kt
+- UserProfile / data hero
+- layout dédié ou section existante
+- futurs liens vers titres / rangs bloc O
+
+Critère de fin :
+le héros existe comme présence centrale sur le Dashboard.
+
+────────────────────────────────────────────────────────────────────
+N11 — INTÉGRATION AUDIO / VISUELLE / MONDE VIVANT
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+faire ressentir le monde vivant sans casser les systèmes audio et vidéo existants.
+
+À prévoir :
+- légère variation de la BGM ou de sa couche selon worldState si raisonnable
+- variation visuelle légère
+- particules / météo divine sobres
+- compatibilité avec AnimatedBackgroundHelper
+- compatibilité avec OlympianParticlesView
+- compatibilité avec mood system
+- compatibilité avec C : audio global et fonds premium
+
+Version V1 raisonnable :
+- ne pas surcharger de vidéos supplémentaires
+- privilégier fond déjà présent + overlays / messages / petites couches visuelles
+- toute variation doit rester performante
+
+Fichiers concernés :
+- DashboardActivity.kt
+- SoundManager.kt
+- AnimatedBackgroundHelper.kt
+- OlympianParticlesView.kt
+- WeatherDivineManager.kt
+
+Critère de fin :
+le Dashboard paraît vivant sans sacrifier la performance ni la lisibilité.
+
+────────────────────────────────────────────────────────────────────
+N12 — PRÉPARATION DES BLOCS O, P ET Q SANS LES CODER TOUT DE SUITE
+────────────────────────────────────────────────────────────────────
+
+Objectif :
+laisser le Dashboard prêt à accueillir :
+- rangs et titres
+- badges récents
+- zones d’aventure
+- quêtes actives
+- boss proches
+- états narratifs
+- monde réactif avancé
+- carte du monde
+- grande montée en tension mythologique
+
+À NE PAS SURCHARGER TOUT DE SUITE :
+- trop de rubriques simultanées
+- quêtes complètes déjà visibles partout
+- 15 widgets différents
+- scroll vertical sans fin
+- logique d’aventure complète non stabilisée
+
+Critère de fin :
+le Dashboard est prêt pour O, P et Q sans devoir être refait entièrement.
+
+════════════════════════════════════════════════════════════════════
+8 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+════════════════════════════════════════════════════════════════════
+
+Priorité 1 :
+- DashboardActivity.kt
+- layout_dashboard.xml
+- sous-layouts / bindings du dashboard
+- DashboardAssembler.kt / DashboardUiMapper.kt si déjà commencé
+- RecommendationEngine.kt
+- CognitiveEngineManager.kt
+- ReviewPriorityManager.kt
+- DemeterRecallManager.kt
+- TempleProgressManager.kt
+- UserProfile.kt
+- SoundManager.kt
+- GodLoreManager.kt
+
+Priorité 2 :
+- AnimatedBackgroundHelper.kt
+- OlympianParticlesView.kt
+- WeatherDivineManager.kt
+- AgoraMessageManager.kt
+- éventuels adapters / custom views du dashboard
+- AdventureUnlockManager.kt si déjà présent
+
+Priorité 3 :
+- futurs managers de badges / rangs
+- futurs managers de quêtes / aventure
+- futurs écrans de détail d’insight ou de monde
+
+════════════════════════════════════════════════════════════════════
+9 — ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+
+Ordre conseillé :
+1. créer les modèles UI de Dashboard
+2. créer DashboardAssembler / UiMapper
+3. créer WeatherDivineManager
+4. créer AgoraMessageManager
+5. intégrer la recommendation prime card
+6. intégrer les insights pédagogiques
+7. intégrer le temple snapshot
+8. intégrer la carte Déméter
+9. intégrer les quick actions
+10. intégrer le hero status panel
+11. brancher les variations audio / visuelles légères
+12. tester la lisibilité, la hiérarchie et la performance
+
+Pourquoi cet ordre :
+- on verrouille d’abord la structure,
+- puis la couche d’assemblage,
+- puis les sources dynamiques,
+- puis les cartes centrales,
+- puis les raffinements de mise en scène.
+
+════════════════════════════════════════════════════════════════════
+10 — CRITÈRES DE FIN DU BLOC N
+════════════════════════════════════════════════════════════════════
+
+Le bloc N est considéré comme FAIT si :
+- le Dashboard affiche un état vivant cohérent,
+- la prochaine meilleure action est visible,
+- quelques insights pédagogiques utiles sont remontés,
+- l’état du monde et des temples se ressent,
+- Déméter peut appeler à une révision intelligente,
+- l’agora peut afficher des messages contextuels,
+- le héros a une présence plus réelle sur le Dashboard,
+- la navigation reste claire,
+- les systèmes précédents sont rendus visibles sans surcharger l’interface,
+- la structure est prête pour badges, rangs, quêtes et aventure.
+
+════════════════════════════════════════════════════════════════════
+11 — ERREURS À ÉVITER
+════════════════════════════════════════════════════════════════════
+
+- transformer le Dashboard en mur d’informations
+- recalculer la logique métier dans DashboardActivity
+- afficher trop d’insights en même temps
+- répéter les mêmes conseils partout
+- rendre la recommendation prime card trop dominante
+- ajouter trop de widgets avant la stabilité
+- surcharger en effets visuels coûteux
+- oublier les IDs critiques et la navigation existante
+- casser l’équilibre entre lisibilité et spectacle
+- oublier les fallbacks quand certaines données ne sont pas prêtes
+
+════════════════════════════════════════════════════════════════════
+12 — PROMPT PRÊT À DONNER À UNE AUTRE IA
+════════════════════════════════════════════════════════════════════
+
+Tu travailles sur RéviZeus, application Android Kotlin XML + ViewBinding, portrait plein écran, sans Jetpack Compose, avec conservation stricte de l’architecture existante.
+
+Je veux que tu implémentes le BLOC N : “Dashboard vivant + widgets d’insight + agora divine + monde réactif”.
+
+Règles absolues :
+- ne jamais renommer arbitrairement les variables, IDs, managers, flows ou mécaniques existantes,
+- ne jamais casser le boot flow ni le flow Oracle / quiz / temples / settings,
+- produire les fichiers modifiés en entier,
+- conserver les commentaires existants utiles,
+- insérer uniquement les correctifs et ajouts nécessaires,
+- respecter les IDs critiques du Dashboard déjà existants,
+- toutes les couches textuelles importantes doivent rester compatibles avec le style RPG lettre par lettre avec son si le système existe déjà,
+- le Dashboard doit rester lisible, premium, hiérarchisé et actionnable.
+
+Objectif :
+Transformer le Dashboard en hub vivant qui :
+1. affiche l’état du héros,
+2. affiche la recommandation principale du bloc M,
+3. affiche quelques insights pédagogiques utiles du bloc L,
+4. affiche une synthèse stratégique des temples et du monde,
+5. affiche une agora divine contextuelle,
+6. affiche un rappel Déméter si pertinent,
+7. propose des actions rapides utiles,
+8. reflète une météo / ambiance divine légère,
+9. prépare l’arrivée des rangs, badges, quêtes, aventure et monde vivant étendu.
+
+À créer ou structurer :
+- DashboardUiState
+- modèles de sections / widgets
+- DashboardAssembler ou DashboardUiMapper
+- WeatherDivineManager
+- AgoraMessageManager
+- intégration de recommendation prime card
+- intégration d’insights
+- intégration de temple snapshot
+- intégration d’une carte Déméter
+- intégration d’actions rapides stratégiques
+- hero status panel
+- variations audio / visuelles légères compatibles avec le système existant
+
+Le Dashboard ne doit pas recalculer la logique métier profonde.
+Il doit recevoir des modèles UI déjà prêts depuis les managers et assembleurs.
+
+Commence par auditer les fichiers suivants si je te les fournis :
+- DashboardActivity.kt
+- layout_dashboard.xml
+- sous-layouts associés
+- RecommendationEngine.kt
+- CognitiveEngineManager.kt
+- ReviewPriorityManager.kt
+- DemeterRecallManager.kt
+- TempleProgressManager.kt
+- SoundManager.kt
+- UserProfile.kt
+- GodLoreManager.kt
+- AnimatedBackgroundHelper.kt
+- OlympianParticlesView.kt
+
+Puis propose un plan d’intégration précis, les impacts par fichier, les éventuelles ressources manquantes, et ensuite génère les fichiers complets.
+
+════════════════════════════════════════════════════════════════════
+13 — RÉSUMÉ ULTRA COURT DU BLOC N
+════════════════════════════════════════════════════════════════════
+
+Ce bloc donne à RéviZeus un vrai cœur visible.
+Le Dashboard devient un hub vivant, qui montre quoi faire, pourquoi, dans quel état est le monde,
+quels temples appellent, quels savoirs reviennent, et quelle présence divine accompagne le héros.
+Il rend les blocs précédents visibles, utiles et émotionnellement puissants.

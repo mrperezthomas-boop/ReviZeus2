@@ -1,0 +1,659 @@
+RÉVIZEUS — BLOC B
+DIALOGUES RPG UNIVERSELS ET FEEDBACKS IMMERSIFS
+Version : exécution IA détaillée
+Date : 2026-03-24
+Source : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt + document maître fusionné
+
+====================================================================
+0 — RÔLE DE CE BLOC
+====================================================================
+
+Ce bloc sert à industrialiser toute la couche textuelle importante de RéviZeus.
+Il ne s’agit pas seulement d’améliorer l’esthétique des popups.
+Il s’agit de transformer l’application pour que tout message important soit perçu comme une interaction RPG premium, cohérente avec l’univers, les dieux, la pédagogie et l’identité visuelle du jeu.
+
+Sans ce bloc :
+- l’application garde un mélange incohérent entre interface Android classique et habillage mythologique ;
+- les futures features riches (Oracle premium, actions divines, fatigue divine, quêtes, aventure, récompenses, profils pédagogiques) recréent des boîtes plates ou des AlertDialog disparates ;
+- la qualité perçue du projet chute même si la logique métier devient puissante ;
+- les futurs prompts donnés à une IA risquent de produire à nouveau des popups système bruts.
+
+Ce bloc est donc le chantier de standardisation UX narrative indispensable.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+Créer une couche centrale de dialogues RPG universels capable de gérer, de façon homogène et réutilisable :
+- le texte lettre par lettre ;
+- le son de blip cohérent avec RéviZeus ;
+- l’avatar du dieu ou du système concerné dans le layout ;
+- le fond cohérent de type bg_rpg_dialog ou variante premium ;
+- les rôles de parole par dieu ;
+- les messages système traduits de manière diégétique ;
+- les confirmations importantes ;
+- les aides contextuelles ;
+- les révélations, récompenses, avertissements et conseils ;
+- l’accélération au tap ou l’affichage instantané du texte ;
+- l’arrêt propre du typewriter et des sons dans le lifecycle.
+-LoadingDivineDialog remis partout où l’IA travaille,
+
+À la fin du bloc B, RéviZeus doit pouvoir afficher tout texte important via un système unique, réutilisable, cohérent, premium et pilotable.
+
+====================================================================
+1.1 — CORRECTION STRUCTURELLE CRITIQUE
+====================================================================
+
+Le Bloc B standardise le RENDU RPG premium.
+Il ne force PAS une architecture unique sur tous les écrans.
+
+Deux portes d’entrée techniques sont officiellement autorisées :
+
+1. MODE ACTIVITY DIRECTE
+À utiliser si l’écran possède déjà :
+- un bloc de dialogue premium ;
+- un dieu / chibi déjà intégré ;
+- un TextView de parole cohérent avec GodSpeechAnimator ;
+- un lifecycle propre déjà en place ou facilement fiabilisable.
+
+2. MODE POPUP CENTRALISÉ
+À utiliser si le besoin relève de :
+- confirmation ;
+- récompense ;
+- erreur diégétique ;
+- aide contextuelle ;
+- choix critique ;
+- feedback système réutilisable.
+
+Dans ce cas :
+- utiliser DialogRPGManager ;
+- utiliser DialogRPGFragment ;
+- centraliser le ton, le dieu, le style et les boutons.
+
+RÈGLE ABSOLUE :
+Le rendu RPG est obligatoire.
+La porte d’entrée technique est contextuelle.
+
+EXCEPTION STRUCTURELLE IMPORTANTE :
+LoadingDivineDialog reste un composant séparé.
+Il ne doit pas être remplacé par DialogRPGFragment pour les temps d’attente IA perceptibles.
+
+CONSÉQUENCE POUR LE BLOC B :
+Un écran déjà premium en mode Activity directe ne doit pas être refactorisé de force vers un popup universel si cela casse ou alourdit inutilement l’existant.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+B9 — ÉCRANS RPG DÉJÀ PREMIUM À PRÉSERVER
+
+Objectif :
+empêcher qu’un écran déjà satisfaisant visuellement et narrativement soit refactorisé de force par le système de dialogues universels.
+
+Règle absolue :
+si un écran possède déjà :
+- un rendu premium cohérent ;
+- un layout custom fort ;
+- une identité visuelle propre ;
+- une intégration RPG jugée satisfaisante ;
+alors il ne doit pas être remplacé par un popup générique centralisé, sauf demande explicite.
+
+Mode officiel à utiliser :
+MODE ACTIVITY DIRECTE PRIORITAIRE
+
+Conséquence :
+sur ces écrans, le Bloc B peut seulement :
+- rendre le texte plus vivant ;
+- injecter du typewriter ;
+- injecter le son lettre par lettre ;
+- injecter une variation IA ou multi-variantes ;
+- améliorer les callbacks lifecycle ;
+- améliorer les fallbacks ;
+mais sans casser :
+- le layout ;
+- les proportions ;
+- les boutons ;
+- les animations ;
+- la structure premium déjà validée.
+
+Écrans à considérer comme “protégés” si validés par l’utilisateur :
+- DashboardActivity popup Zeus retour
+- popups Prométhée du Dashboard
+- tout autre écran explicitement déclaré “déjà dans le bon délire RPG”
+
+Instruction stricte à toute IA future :
+ne jamais remplacer un écran protégé par DialogRPGFragment ou un popup universel par simple standardisation.
+Toujours privilégier :
+- conservation du design local ;
+- amélioration interne ciblée ;
+- modification minimale ;
+- respect total du rendu validé par l’utilisateur.
+
+Critère de dérogation :
+un écran protégé ne peut être refondu que si l’utilisateur demande explicitement une refonte visuelle ou structurelle de cet écran précis.
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager
+- CraftingSystem / ForgeManager
+- KnowledgeFragmentManager
+- QuizRewardManager / QuizTimerManager
+- FirebaseAuthManager / AccountRecoveryManager
+- AccountRegistry / OnboardingSession
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- AnimatedBackgroundHelper
+- OlympianParticlesView
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Intro vidéo possible avant MoodActivity selon le flux réel en place
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran ;
+- toute popup importante doit devenir RPG lettre par lettre avec son ;
+- toute limite technique visible doit être diégétique ;
+- toute ressource générée à partir d’un savoir doit être exportable ;
+- tout écran doit conserver un rendu premium cohérent avec la DA RéviZeus ;
+- ne jamais renommer arbitrairement les variables, IDs, managers ou flows existants ;
+- générer les fichiers complets modifiés ;
+- commenter le code intelligemment ;
+- conserver les commentaires déjà présents ;
+- ne jamais recréer des AlertDialog plats pour du texte important.
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC B
+====================================================================
+
+Ce bloc doit absorber :
+- création d’un template universel de dialogue RPG ;
+- centralisation d’une fabrique / manager de dialogues ;
+- utilisation ou extension de GodSpeechAnimator ;
+- rendu lettre par lettre ;
+- blip sonore propre et arrêtable ;
+- avatar divin ou système ;
+- fond cohérent de dialogue ;
+- prise en charge des catégories visuelles ;
+- prise en charge des rôles de parole par dieu ;
+- accélération au tap et affichage instantané ;
+- possibilité de variantes de ton ;
+- conversion des popups critiques existants ;
+- remplacement progressif des AlertDialog/Toast bruts pour les messages importants ;
+- traduction immersive des erreurs techniques, quotas, indisponibilités et refus ;
+- support futur des profils d’apprentissage, de l’humeur et du rang méta.
+
+Ce bloc ne doit PAS :
+- refondre tout le pipeline Oracle ;
+- refaire tout le système audio global du bloc C ;
+- refaire les loadings divins universels complets du bloc C ;
+- lancer les gros systèmes aventure ou progression ;
+- casser les flows existants sous prétexte d’uniformiser l’UX ;
+- imposer une architecture Compose ou des composants non compatibles avec l’existant.
+
+====================================================================
+4 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+B1 — TEMPLATE UNIVERSEL DE DIALOGUE RPG
+--------------------------------------------------------------------
+
+Objectif
+Créer la brique standard qui sera réutilisée partout dans RéviZeus pour afficher des messages importants.
+
+À créer ou fiabiliser
+- DialogRPGFragment.kt ou équivalent central robuste ;
+- layout XML dédié au dialogue RPG ;
+- binding associé ;
+- intégration du typewriter ;
+- intégration du son de blip ;
+- gestion de l’avatar ;
+- gestion du titre éventuel ;
+- gestion des boutons premium ;
+- gestion tap pour accélérer / révéler instantanément ;
+- fermeture sûre sans fuite de fenêtre ;
+- arrêt propre si l’activité ou le fragment est mis en pause.
+
+Contenu attendu du template
+- zone avatar du dieu ou du système ;
+- zone nom / rôle de parole ;
+- zone texte principale ;
+- fond type bg_rpg_dialog ou variante cohérente ;
+- boutons confirm / cancel / secondary option si nécessaire ;
+- option simple mono-bouton pour messages d’info ;
+- option double choix pour confirmation ;
+- option liste courte d’actions pour cas guidés.
+
+Variantes structurelles à prévoir
+- message court informatif ;
+- confirmation importante ;
+- révélation / récompense ;
+- fatigue divine / indisponibilité ;
+- aide contextuelle ;
+- explication pédagogique ;
+- choix de plusieurs issues simples.
+
+Livrables
+- un composant de dialogue universel réellement réutilisable ;
+- un layout premium exploitable ;
+- une API simple pour invoquer le dialogue depuis n’importe quel écran.
+
+--------------------------------------------------------------------
+B2 — MANAGER / FABRIQUE DE DIALOGUES
+--------------------------------------------------------------------
+
+Objectif
+Empêcher les écrans de recréer chacun leur propre logique de popup et centraliser les paramètres narratifs / visuels.
+
+À créer ou fiabiliser
+- DialogRPGManager.kt ou équivalent ;
+- data class de configuration du dialogue ;
+- méthodes helpers : showInfo, showWarning, showSuccess, showDivineFatigue, showConfirmation, showReward, showTutorial, showErrorSoft, showAdvice ;
+- mapping type de message → style graphique / avatar / ton / son / animation.
+
+Responsabilités attendues du manager
+- choisir l’habillage en fonction du contexte ;
+- injecter l’avatar correct ;
+- choisir la vitesse/typewriter par catégorie ;
+- transmettre le texte au GodSpeechAnimator ou équivalent ;
+- gérer les callbacks de validation/refus ;
+- homogénéiser les comportements ;
+- éviter que les Activities portent trop de logique de dialogue.
+
+Livrables
+- un point d’entrée unique pour créer des dialogues ;
+- un contrat clair pour les futurs blocs ;
+- une simplification forte du code des Activities.
+
+--------------------------------------------------------------------
+B3 — INTÉGRATION / EXTENSION DE GODSPEECHANIMATOR
+--------------------------------------------------------------------
+
+Objectif
+Faire de GodSpeechAnimator le standard technique de l’écriture divine dans le jeu, au lieu de le laisser comme outil local à certains écrans.
+
+À vérifier et corriger
+- compatibilité avec le nouveau template ;
+- support arrêt/reprise propre ;
+- support affichage complet instantané ;
+- support vitesse configurable ;
+- support différents sons de blip ou intensités ;
+- arrêt propre en onPause / onDestroy ;
+- protection contre doubles lancements simultanés ;
+- nettoyage des callbacks et listeners.
+
+Améliorations à intégrer si cohérentes
+- callback onTextComplete ;
+- callback onPartialProgress si utile pour UI ;
+- indicateur d’état “isTyping” ;
+- méthode revealAll() ;
+- compatibilité simple avec dialogues longs / multi-parties.
+
+Livrables
+- GodSpeechAnimator fiabilisé comme cœur du typewriter ;
+- réutilisation transverse propre ;
+- moins de duplications artisanales.
+
+--------------------------------------------------------------------
+B4 — CATÉGORIES VISUELLES ET TONALES
+--------------------------------------------------------------------
+
+Objectif
+Définir des classes de dialogues cohérentes afin que le joueur ressente immédiatement la nature du message sans casser l’unité visuelle.
+
+Catégories minimales à implémenter
+- INFO
+- WARNING
+- SUCCESS
+- ERROR_SOFT
+- CONSEIL
+- FATIGUE_DIVINE
+- RÉCOMPENSE
+- RÉVÉLATION
+- TUTORIEL
+- CONFIRMATION
+
+Pour chaque catégorie, prévoir
+- style de fond ;
+- intensité sonore ;
+- vitesse d’écriture ;
+- présence ou non de vibration ;
+- hiérarchie des boutons ;
+- présence ou non d’un avatar ;
+- tonalité textuelle attendue.
+
+Exemples
+- SUCCESS : plus lumineux, plus vif, plus gratifiant ;
+- FATIGUE_DIVINE : ton immersif, calme, jamais brutal ;
+- WARNING : lisible, sérieux, sans ton agressif ;
+- CONSEIL : doux, guidant, incarné ;
+- RÉVÉLATION : plus théâtral, plus solennel.
+
+Livrables
+- catégorisation claire ;
+- base solide pour uniformiser toutes les futures interactions textuelles.
+
+--------------------------------------------------------------------
+B5 — RÔLES DE PAROLE PAR DIEU
+--------------------------------------------------------------------
+
+Objectif
+Rendre immédiatement reconnaissable qui parle et pourquoi, sans que tous les dieux semblent écrire avec la même voix.
+
+Référentiel à intégrer
+- Zeus : autorité, logique, jugement, puissance, défi ;
+- Athéna : pédagogie, clarté, méthode, structure, précision ;
+- Poséidon : fluidité, systèmes vivants, cycles, vision d’ensemble ;
+- Arès : intensité, combat, dépassement, énergie ;
+- Déméter : soin, patience, mémoire longue, douceur ferme ;
+- Héphaïstos : concret, mécanique, transformation, fabrication ;
+- Apollon : beauté, rythme, poésie, lumière, harmonie ;
+- Hermès : vitesse, circulation, adaptation linguistique, souplesse ;
+- Aphrodite : visualisation, esthétique, inspiration, élégance ;
+- Prométhée : tutoriel, sens, soutien système, aide intelligente ;
+- Système / Oracle neutre : lorsque nécessaire, garder une voix cohérente mais non froide.
+
+À prévoir dans le système
+- mapping dieu → nom affiché ;
+- mapping dieu → avatar ;
+- mapping dieu → tonalité ;
+- mapping dieu → micro-variantes de vitesse / ponctuation / style ;
+- base permettant plus tard l’adaptation selon âge, humeur, profil cognitif, rang méta.
+
+Livrables
+- table ou système clair de rôles de parole ;
+- cohérence narrative transversale.
+
+--------------------------------------------------------------------
+B6 — CONVERSION DES POPUPS CRITIQUES EXISTANTS
+--------------------------------------------------------------------
+
+Objectif
+Commencer tout de suite le remplacement concret des popups les plus importants pour que la couche RPG soit réellement utilisée.
+
+Cibles prioritaires à convertir
+- confirmations de suppression ;
+- messages d’export ;
+- quotas atteints / fonctions temporairement indisponibles ;
+- création, déplacement, renommage, modification d’éléments importants ;
+- conseils Prométhée ou Oracle ;
+- messages de déblocage / badge / promotion ;
+- dashboard back-press avec Zeus et choix multiples ;
+- popups de mise à jour ou maintenance ;
+- messages de temple vide / action impossible ;
+- messages critiques encore en Toast quand ils devraient être immersifs.
+
+Règles de conversion
+- les Toast purement micro-feedback peuvent subsister temporairement si non narratifs, mais tout texte important doit sortir de ce mode ;
+- les AlertDialog standard doivent disparaître progressivement des zones critiques ;
+- ne pas casser le comportement métier sous prétexte de re-skin ;
+- la conversion doit être priorisée sur les écrans les plus visibles.
+
+Écrans souvent concernés
+- DashboardActivity
+- OracleActivity
+- ResultActivity
+- GodMatiereActivity
+- TrainingSelectActivity
+- TrainingQuizActivity
+- QuizResultActivity
+- SettingsActivity
+- écrans onboarding / auth si messages importants présents
+
+Livrables
+- conversion réelle d’un noyau dur de popups ;
+- démonstration que la couche universelle fonctionne hors cas de test isolé.
+
+--------------------------------------------------------------------
+B7 — MESSAGES TECHNIQUES DIÉGÉTIQUES
+--------------------------------------------------------------------
+
+Objectif
+Éliminer les formulations techniques brutes visibles par le joueur et les transformer en événements cohérents avec le monde de RéviZeus.
+
+À convertir en priorité
+- quota exceeded ;
+- API unavailable ;
+- network error brut ;
+- generation failed ;
+- import impossible ;
+- ressource temporairement indisponible ;
+- échec d’export ;
+- erreur de création d’artefact ;
+- fatigue divine liée aux quotas image / musique / traduction.
+
+Principes
+- jamais mentir sur le problème ;
+- ne jamais afficher le jargon technique brut à l’utilisateur final ;
+- toujours donner un sens en univers ;
+- si utile, proposer une suite claire : patienter, réessayer, changer de dieu, revenir plus tard.
+
+Exemples de traductions immersives
+- Aphrodite est fatiguée, elle ne peut plus peindre ce savoir pour le moment ;
+- Les vents d’Hermès sont troublés, la traduction doit attendre ;
+- Apollon accorde encore sa lyre, reviens bientôt ;
+- Le rituel a été interrompu, essayons à nouveau ;
+- Les Oracles n’ont pas saisi ce parchemin avec assez de netteté.
+
+Livrables
+- système ou helpers de textes diégétiques ;
+- au moins les cas critiques déjà convertis.
+
+--------------------------------------------------------------------
+B8 — VARIANTES PREMIUM ET ACCESSIBILITÉ D’USAGE
+--------------------------------------------------------------------
+
+Objectif
+Préparer une couche de dialogues agréable à utiliser sur la durée, pas seulement belle sur un screenshot.
+
+À prévoir
+- tap pour accélérer ;
+- tap pour révéler tout ;
+- boutons clairement lisibles ;
+- durée d’écriture non pénible ;
+- fermeture sûre ;
+- possibilité future de TTS sur dialogues longs ;
+- vibration discrète optionnelle ;
+- contraste et lisibilité corrects ;
+- tailles de texte supportables ;
+- gestion des très longs textes via pagination si besoin ultérieur.
+
+Ce sous-chantier n’impose pas de tout faire immédiatement, mais la structure ne doit pas bloquer ces usages.
+
+Livrables
+- UX de dialogue agréable ;
+- base viable pour l’accessibilité future.
+
+====================================================================
+5 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA POUR CE BLOC
+====================================================================
+
+Niveau 1 — Quasi obligatoires
+- GodSpeechAnimator.kt
+- BaseActivity.kt
+- BaseGameActivity.kt
+- SoundManager.kt
+- Dialog ou helpers de popup déjà existants s’il y en a
+- SettingsActivity.kt si déjà riche en popups
+
+Niveau 2 — Écrans prioritaires pour première conversion
+- DashboardActivity.kt
+- OracleActivity.kt
+- ResultActivity.kt
+- GodMatiereActivity.kt
+- TrainingSelectActivity.kt
+- TrainingQuizActivity.kt
+- QuizResultActivity.kt
+
+Niveau 3 — XML et ressources utiles
+- layouts actuels de popups ou boîtes custom déjà présentes
+- bg_rpg_dialog ou ressources équivalentes
+- avatars divins utilisés dans les dialogues
+- styles / dimensions / drawables liés aux panneaux texte
+
+Niveau 4 — Si présents dans le projet
+- DialogFragment custom existants
+- AlertDialog wrappers existants
+- Toast helpers existants
+- ReviZeusPrefs si certaines préférences de vitesse / son de dialogue doivent être conservées
+
+====================================================================
+6 — ORDRE D’EXÉCUTION INTERNE RECOMMANDÉ
+====================================================================
+
+Ordre conseillé à donner à l’IA
+1. Audit global des fichiers fournis et recensement des popups importants existants
+2. Création du template universel + layout
+3. Création du manager / fabrique de dialogues
+4. Intégration / fiabilisation de GodSpeechAnimator
+5. Mise en place des catégories visuelles et tonales
+6. Mise en place des rôles de parole par dieu
+7. Conversion des popups critiques prioritaires
+8. Conversion des messages techniques bruts en diégétique
+9. Récapitulatif des popups encore à convertir dans les blocs suivants
+
+====================================================================
+7 — CE QUE L’IA DOIT FOURNIR À LA FIN DU BLOC B
+====================================================================
+
+Obligatoire
+- audit précis des popups existants avant code ;
+- liste des dialogues encore plats ;
+- fichiers complets modifiés ;
+- nouveaux fichiers créés en entier ;
+- explication claire des catégories et du manager ;
+- stratégie de conversion progressive ;
+- procédures de test manuel ;
+- liste des ressources éventuellement manquantes ;
+- mise à jour IA_DOCS / docs de cohérence si nécessaire.
+
+Très souhaitable
+- tableau simple des types de dialogues désormais gérés ;
+- tableau des dieux et de leur rôle de parole ;
+- backlog des écrans encore à convertir après ce bloc.
+
+====================================================================
+8 — CRITÈRES DE FIN RÉELS
+====================================================================
+
+Le bloc B est terminé seulement si :
+- RéviZeus possède une vraie couche centrale de dialogues RPG ;
+- le typewriter et le blip sont réellement opérationnels ;
+- l’arrêt lifecycle est sûr ;
+- les principaux popups critiques ne passent plus par des boîtes Android plates ;
+- les messages techniques les plus visibles sont devenus diégétiques ;
+- l’identité de parole des dieux est codifiée ;
+- les futurs blocs peuvent invoquer les dialogues RPG sans repartir de zéro.
+
+====================================================================
+9 — PROMPT PRÊT À DONNER À UNE IA POUR LE BLOC B
+====================================================================
+
+Voici le BLOC B de RéviZeus : Dialogues RPG universels et feedbacks immersifs.
+Respecte strictement l’architecture existante. Ne supprime rien. Ne renomme pas arbitrairement les variables, IDs, managers ou flows existants. Génère les fichiers complets modifiés. Conserve le plein écran portrait. Utilise XML + ViewBinding. Pas de Compose. Commente le code intelligemment. Fais d’abord un audit précis des fichiers fournis.
+
+Objectif du bloc :
+- créer une couche centrale de dialogues RPG universels ;
+- gérer le texte lettre par lettre ;
+- gérer le blip sonore ;
+- afficher l’avatar du dieu concerné dans le layout ;
+- utiliser un fond cohérent de type bg_rpg_dialog ou équivalent ;
+- centraliser les dialogues système / pédagogiques / divins ;
+- remplacer progressivement les AlertDialog Android plats ;
+- remplacer les messages techniques bruts par des formulations diégétiques ;
+- permettre l’accélération au tap / affichage complet immédiat ;
+- arrêter proprement le typewriter et le son selon le lifecycle ;
+- préparer l’adaptation future selon dieu, âge, humeur, profil cognitif et rang méta.
+
+Sous-chantiers obligatoires :
+B1 Template universel de dialogue RPG
+B2 Manager / fabrique de dialogues
+B3 Intégration / extension de GodSpeechAnimator
+B4 Catégories visuelles et tonales
+B5 Rôles de parole par dieu
+B6 Conversion des popups critiques existants
+B7 Messages techniques diégétiques
+B8 Variantes premium et accessibilité d’usage
+
+Rôles de parole minimum à respecter :
+- Zeus : autorité, logique, défi
+- Athéna : pédagogie, clarté, structure
+- Poséidon : fluidité, cycles, systèmes vivants
+- Arès : intensité, combat, dépassement
+- Déméter : soin, mémoire longue, rappel doux
+- Héphaïstos : mécanisme, forge, concret
+- Apollon : beauté, rythme, poésie, art
+- Hermès : vitesse, langue, circulation
+- Aphrodite : visualisation, beauté, inspiration
+- Prométhée : tuto, soutien, aide système, surcouche UX
+
+Moteurs à ne jamais casser :
+XpCalculator, CurrencyManager, GeminiManager, GodManager / PantheonConfig, SoundManager, AnalyticsManager / UserAnalyticsEngine, BadgeManager, CraftingSystem / ForgeManager, KnowledgeFragmentManager, QuizRewardManager / QuizTimerManager, FirebaseAuthManager / AccountRecoveryManager, AccountRegistry / OnboardingSession, BaseActivity / BaseGameActivity, GodSpeechAnimator, AnimatedBackgroundHelper, OlympianParticlesView.
+
+Flows sacrés à préserver :
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+À la fin, je veux :
+1. audit détaillé des popups et messages encore plats
+2. pack de développement complet
+3. fichiers complets modifiés
+4. nouveaux fichiers complets créés
+5. stratégie de test manuel
+6. liste des dettes restantes à traiter dans les blocs suivants
+7. mises à jour IA_DOCS à ajouter
+
+====================================================================
+10 — MISE À JOUR DES FICHIERS DE COHÉRENCE À AJOUTER APRÈS CE BLOC
+====================================================================
+
+01_SYSTEM_PROMPT_ULTIME.txt
+- rappeler que tout nouveau texte important doit respecter le standard RPG premium ;
+- rappeler qu’aucun message technique brut ne doit être exposé à l’utilisateur final.
+
+02_BUILD_AND_TECH_STACK.md
+- documenter les composants techniques créés : DialogRPGFragment, DialogRPGManager, extensions éventuelles de GodSpeechAnimator ;
+- documenter les dépendances audio/animation si elles changent légèrement.
+
+03_DATA_AND_MANAGERS.md
+- documenter les responsabilités du manager de dialogues ;
+- documenter explicitement la coexistence des deux modes : Activity directe et Popup centralisé ;
+- documenter le référentiel des rôles de parole par dieu ;
+- documenter le mapping catégorie → style.
+
+04_UI_AND_NAVIGATION_MAP.md
+- lister les écrans conformes RPG, partiellement conformes et non conformes ;
+- lister les écrans qui utilisent encore des boîtes non converties ;
+- documenter les flows de confirmation critiques maintenant centralisés.
+
+05_RESOURCE_MANIFEST.json
+- ne rien ajouter sauf si une ressource manque réellement ;
+- si une ressource manque, documenter : nom exact, utilité, écrans concernés, connexions et prompt JSON conforme à la DA.
+
+====================================================================
+FIN DU BLOC B
+====================================================================

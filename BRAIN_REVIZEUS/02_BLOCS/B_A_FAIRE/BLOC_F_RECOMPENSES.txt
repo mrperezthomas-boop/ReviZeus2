@@ -1,0 +1,607 @@
+RÉVIZEUS — BLOC F — RÉCOMPENSES UNIFIÉES + FRAGMENTS + ÉCONOMIE + AFFICHAGES DE GAINS
+VERSION : EXECUTION BLOCK
+DATE : 2026-03-24
+SOURCE : REVIZEUS_DECOUPAGE_PAR_BLOCS_POUR_CODAGE_IA.txt + document maître fusionné
+OBJECTIF : unifier toutes les récompenses de RéviZeus dans une logique fiable, immersive, extensible et visible, afin que chaque réussite pédagogique produise des gains cohérents, compréhensibles, justes, RPG et directement branchables sur les temples, l’inventaire, la forge, les badges, les rangs, les quêtes et l’aventure.
+
+====================================================================
+0 — POSITION DU BLOC F DANS LE CHANTIER GLOBAL
+====================================================================
+
+Ce bloc arrive après :
+- BLOC A — stabilisation technique et socle transverse ;
+- BLOC B — dialogues RPG universels et feedbacks immersifs ;
+- BLOC C — audio global, TTS, ducking, loadings divins, pattern vidéo → image fixe ;
+- BLOC D — Oracle premium + pipeline résumé → validation → temple → quiz ;
+- BLOC E — quiz nouvelle génération + corrections + feedback résultat.
+
+Raison :
+- un système de récompenses ne doit jamais être construit sur des quiz instables ou sur des résultats pédagogiquement faibles ;
+- les gains visibles à l’écran doivent être portés par une couche UI déjà capable d’afficher du texte RPG, du son, des animations et des séquences premium ;
+- les fragments, l’XP, l’ambroisie, les éclats, les items, les badges et la progression temple doivent sortir d’un seul tronc commun si on veut éviter les hacks dispersés dans les Activities ;
+- le bloc F prépare directement les blocs G, H, I, K, L, M et O.
+
+Le bloc F est donc la charnière entre la boucle pédagogique validée et la boucle RPG durable.
+Sans lui, RéviZeus donne des récompenses “qui marchent peut-être”, mais pas une économie fiable, lisible et extensible.
+
+====================================================================
+1 — OBJECTIF FINAL
+====================================================================
+
+À la fin du bloc F, RéviZeus doit pouvoir :
+- calculer toutes les récompenses via une logique unique, lisible et testable ;
+- distinguer proprement les différentes natures de gains : XP, ambroisie, éclats de savoir, fragments par matière, items, badges, temple XP, contenus débloqués ;
+- afficher des récompenses détaillées et séquencées sans bricolages spécifiques par écran ;
+- accorder les bons fragments selon le contexte réel : Oracle, entraînement de matière, entraînement ultime, défi spécial, quête, boss futur ;
+- centraliser l’application des gains au lieu de la disperser dans QuizResultActivity, TrainingQuizActivity, ResultActivity et futurs écrans aventure ;
+- rendre chaque récompense compréhensible pour l’utilisateur : ce qu’il a gagné, pourquoi, dans quelle matière, avec quel impact ;
+- produire une mise en scène premium : étoiles, monnaies, fragments, items, badges, level up, progression temple, déblocage ;
+- préparer une base propre pour la forge, l’inventaire, les temples, les quêtes, les rangs et l’aventure.
+
+Le ressenti visé est :
+- juste dans le calcul ;
+- clair dans l’explication ;
+- gratifiant dans l’affichage ;
+- noble dans la mise en scène ;
+- cohérent avec le dieu, la matière, la difficulté et le mode de jeu.
+
+====================================================================
+2 — INVARIANTS ABSOLUS À RAPPELER À L’IA
+====================================================================
+
+Architecture verrouillée
+- Android Kotlin
+- XML classique + ViewBinding obligatoire
+- Jetpack Compose interdit
+- Min SDK 24
+- Target/Compile SDK 36
+- Kotlin toolchain 17 version 2.3.10
+- AGP 9.0.1
+- Gradle Wrapper 9.1.0
+- Room via KSP
+- DAO suspend
+- Gemini com.google.ai.client.generativeai:generativeai:0.9.0
+- ML Kit Text Recognition 19.0.1
+- CameraX 1.5.3
+- lifecycle-runtime-ktx 2.8.7
+
+Moteurs à ne jamais casser
+- XpCalculator
+- CurrencyManager
+- GeminiManager
+- GodManager / PantheonConfig
+- SoundManager
+- AnalyticsManager / UserAnalyticsEngine
+- BadgeManager / BadgeEvalContext
+- CraftingSystem / ForgeManager
+- KnowledgeFragmentManager
+- QuizRewardManager
+- QuizTimerManager
+- BaseActivity / BaseGameActivity
+- GodSpeechAnimator
+- OlympianParticlesView
+
+Flows sacrés
+- SplashActivity → LoginActivity → AuthActivity → GenderActivity → AvatarActivity → MoodActivity → DashboardActivity
+- Dashboard → OracleActivity → ResultActivity → GodMatiereActivity
+- Dashboard → TrainingSelectActivity → TrainingQuizActivity → QuizResultActivity
+
+Règles UX globales
+- toujours portrait plein écran ;
+- toute popup importante doit devenir RPG lettre par lettre avec son ;
+- toute action longue IA doit avoir un loading divin ;
+- toute limite technique doit être diégétique ;
+- toute ressource générée à partir d’un savoir doit être exportable ;
+- les récompenses ne doivent jamais apparaître comme un simple Toast technique ou une mise à jour invisible ;
+- ne jamais renommer arbitrairement les variables, IDs, managers ou flows existants ;
+- générer les fichiers complets modifiés ;
+- commenter le code intelligemment ;
+- conserver les commentaires déjà présents.
+
+====================================================================
+3 — PÉRIMÈTRE EXACT DU BLOC F
+====================================================================
+
+Ce bloc doit absorber :
+- création d’un modèle unifié de récompenses ;
+- centralisation du calcul des gains ;
+- centralisation de l’application des gains ;
+- fiabilisation du système de fragments par matière ;
+- distinction claire entre gains Oracle, gains entraînement matière et gains entraînement ultime ;
+- affichage détaillé multi-fragments ;
+- séquençage visuel des gains dans les écrans de résultat ;
+- intégration éventuelle de badges et items dans les bundles ;
+- intégration du temple XP dans les bundles ;
+- historique et métadonnées de source ;
+- préparation du lien avec les écrans futurs d’aventure, quêtes et boss ;
+- réduction drastique des logiques de récompenses éparpillées.
+
+Ce bloc ne doit PAS encore :
+- implémenter toute la reconstruction visuelle complète des temples ;
+- refondre totalement l’inventaire et la forge ;
+- implémenter les quêtes journalières/hebdomadaires ;
+- implémenter le mode aventure complet ;
+- imposer une migration cloud complexe.
+
+====================================================================
+4 — SOUS-CHANTIERS DÉTAILLÉS
+====================================================================
+
+--------------------------------------------------------------------
+F1 — REWARDBUNDLE : MODÈLE UNIQUE DE RÉCOMPENSES
+--------------------------------------------------------------------
+
+Objectif
+Créer un modèle central capable de représenter tous les gains de RéviZeus, présents et futurs, sans multiplier les structures parallèles.
+
+À faire
+- créer RewardBundle.kt ou data class équivalente centralisée ;
+- inclure au minimum :
+  - eclatsSavoir,
+  - ambroisie,
+  - xp,
+  - fragmentsBySubject,
+  - items,
+  - badges,
+  - templeXp,
+  - unlockedContent,
+  - source,
+  - metadata ;
+- prévoir une API claire pour fusionner plusieurs RewardBundle ;
+- prévoir des helpers pour vérifier si le bundle est vide, partiel ou riche ;
+- permettre d’ajouter progressivement des champs sans casser la structure ;
+- documenter les conventions de source : ORACLE_QUIZ, TRAINING_SUBJECT, TRAINING_ULTIMATE, BOSS, QUEST, DIVINE_ACTION, DEBUG si besoin interne.
+
+Résultat attendu
+Tous les écrans de gain doivent pouvoir s’appuyer sur un seul objet de vérité.
+
+--------------------------------------------------------------------
+F2 — REWARDMANAGER : CALCUL ET APPLICATION CENTRALISÉS
+--------------------------------------------------------------------
+
+Objectif
+Sortir la logique de calcul et d’application des gains des Activities pour la concentrer dans un manager testable.
+
+À faire
+- créer RewardManager.kt ou enrichir fortement QuizRewardManager si son rôle doit être élargi proprement ;
+- séparer clairement :
+  - calcul du bundle,
+  - application du bundle,
+  - préparation de l’affichage du bundle ;
+- éviter que QuizResultActivity applique directement des monnaies ou des fragments ligne par ligne ;
+- encapsuler l’écriture dans UserProfile, KnowledgeFragmentManager, inventaire, badges et future progression temple ;
+- gérer l’application de manière atomique autant que possible ;
+- prévoir un rollback défensif ou au moins une stratégie claire si une partie d’écriture échoue.
+
+Résultat attendu
+Une récompense est calculée une fois, appliquée une fois, affichée une fois, sans divergence entre les écrans.
+
+--------------------------------------------------------------------
+F3 — MATRICE DES SOURCES DE RÉCOMPENSES
+--------------------------------------------------------------------
+
+Objectif
+Définir clairement ce que donne chaque type d’activité pour éviter les incohérences de design et les bugs d’économie.
+
+À faire
+- formaliser une matrice de récompenses par source ;
+- distinguer au minimum :
+  - quiz généré par l’Oracle à partir d’un savoir ;
+  - entraînement d’une matière ;
+  - entraînement ultime multi-matières ;
+  - quiz libre futur ;
+  - boss futurs ;
+  - quêtes futures ;
+- rappeler la règle déjà définie :
+  - les quiz générés par l’Oracle lors d’un ajout de cours gagnent les fragments de la matière du savoir ;
+  - les entraînements pour une matière gagnent les fragments de cette matière ;
+  - seuls les entraînements ultimes gagnent potentiellement plusieurs matières, puisqu’ils regroupent plusieurs domaines ;
+- paramétrer la difficulté et la performance comme multiplicateurs, pas comme règles cachées incompréhensibles ;
+- documenter les plafonds et minima pour éviter les récompenses absurdes.
+
+Résultat attendu
+Chaque activité a une logique de récompense claire, défendable et stable.
+
+--------------------------------------------------------------------
+F4 — FRAGMENTS PAR MATIÈRE : VÉRITÉ MÉTIER ET AFFICHAGE MULTI-GAINS
+--------------------------------------------------------------------
+
+Objectif
+Fiabiliser complètement le système de fragments et son affichage détaillé, matière par matière.
+
+À faire
+- centraliser la logique d’ajout et de consommation des fragments par matière ;
+- fiabiliser la lecture/écriture de la structure existante si stockage JSON dans UserProfile ;
+- interdire les quantités négatives et corriger les cas de corruption simple ;
+- prévoir un helper robuste pour obtenir les libellés et icônes par matière via PantheonConfig / GodManager ;
+- afficher plusieurs gains dans le résultat plutôt qu’une seule icône “Panthéon” artificielle ;
+- permettre un rendu type :
+  - +36 Fragments
+  - Maths +12
+  - Français +9
+  - SVT +9
+  - Histoire +6
+- préparer la compatibilité future avec fragments rares, légendaires ou joker, sans les activer forcément maintenant.
+
+Résultat attendu
+Les fragments deviennent lisibles, justes, traçables et non plus approximatifs visuellement.
+
+--------------------------------------------------------------------
+F5 — QUIZREWARDMANAGER : REFONTE CIBLÉE SANS CASSER LE FLOW EXISTANT
+--------------------------------------------------------------------
+
+Objectif
+Conserver l’existant utile mais le faire converger vers le système unifié.
+
+À faire
+- auditer QuizRewardManager actuel ;
+- conserver ses formules utiles si elles sont déjà cohérentes ;
+- déplacer progressivement son résultat vers RewardBundle ;
+- séparer ce qui relève du calcul pur et ce qui relève de l’UI ;
+- intégrer proprement le type de quiz, la performance, la difficulté et les éventuels bonus de streak/rapidité ;
+- exposer des fonctions claires pour :
+  - calculerRewardBundleOracleQuiz(...)
+  - calculerRewardBundleTrainingSubject(...)
+  - calculerRewardBundleTrainingUltimate(...)
+  - calculerRewardBundleFromSession(...) si une méthode plus générique est préférable ;
+- commenter précisément la logique de fragments multi-matières pour éviter les régressions futures.
+
+Résultat attendu
+Le moteur de récompense du quiz devient une brique propre, pas un empilement de cas spéciaux.
+
+--------------------------------------------------------------------
+F6 — APPLICATION DES GAINS DANS USERPROFILE, MONNAIES ET FUTURS SYSTÈMES
+--------------------------------------------------------------------
+
+Objectif
+Faire en sorte que l’application réelle des gains soit fiable, cohérente et prête pour l’extension vers d’autres systèmes.
+
+À faire
+- appliquer l’XP via le système existant sans casser XpCalculator ;
+- appliquer ambroisie et éclats via CurrencyManager si c’est déjà lui qui centralise ;
+- appliquer fragments via KnowledgeFragmentManager ou helpers dédiés ;
+- prévoir l’application de templeXp même si la table TempleProgress complète arrive au bloc G ;
+- prévoir le branchement d’items et badges sans encore tout implémenter ;
+- garantir que les écritures sont faites une seule fois ;
+- éviter les doubles récompenses lors des retours d’écran, rotations ou relances d’Activity ;
+- prévoir un flag de session ou une stratégie d’idempotence sur les résultats sensibles.
+
+Résultat attendu
+Un joueur ne doit ni perdre ni doubler ses gains à cause d’un cycle de vie Android ou d’un tap parasite.
+
+--------------------------------------------------------------------
+F7 — AFFICHAGE SÉQUENTIEL DES RÉCOMPENSES
+--------------------------------------------------------------------
+
+Objectif
+Transformer les écrans de résultat en véritables cérémonies de gain, lisibles et satisfaisantes.
+
+À faire
+- définir un ordre de révélation cohérent, par exemple :
+  1. verdict / étoiles,
+  2. XP,
+  3. ambroisie / éclats,
+  4. fragments par matière,
+  5. items,
+  6. badges,
+  7. temple progression,
+  8. déblocages ;
+- animer chaque étape sans allonger excessivement l’écran ;
+- jouer un SFX cohérent par type de récompense ;
+- permettre un mode accéléré si l’utilisateur retape ou a déjà vu l’animation plusieurs fois ;
+- intégrer les particules ou surbrillances là où elles servent la lecture ;
+- éviter les panneaux trop lourds ou trop denses ;
+- garder la hiérarchie visuelle claire entre récompense principale et secondaires.
+
+Résultat attendu
+Le gain doit être perçu, compris et apprécié sans devenir un tunnel fatigant.
+
+--------------------------------------------------------------------
+F8 — REWARDDISPLAYFRAGMENT OU COMPOSANT UI RÉUTILISABLE
+--------------------------------------------------------------------
+
+Objectif
+Éviter de reconstruire à la main un affichage de récompenses différent dans chaque écran.
+
+À faire
+- créer un composant réutilisable pour afficher un RewardBundle ;
+- prévoir plusieurs modes d’affichage :
+  - compact,
+  - normal,
+  - premium séquentiel ;
+- permettre l’affichage des fragments multiples avec icônes et noms ;
+- permettre l’affichage différé des items et badges ;
+- préparer un mode futur pour affichage dans boss, quêtes et aventure ;
+- garder le composant pilotable depuis XML + ViewBinding ou via un custom view robuste.
+
+Résultat attendu
+L’affichage des gains devient standardisé et maintenable.
+
+--------------------------------------------------------------------
+F9 — FEEDBACKS MICRO ET MACRO DES GAINS
+--------------------------------------------------------------------
+
+Objectif
+Construire une grammaire de feedback cohérente autour de l’économie du jeu.
+
+À faire
+- distinguer micro-gains et gains majeurs ;
+- définir les retours pour :
+  - petite quantité de fragments,
+  - gros gain de fragments,
+  - level up,
+  - badge débloqué,
+  - item obtenu,
+  - temple progression significative,
+  - récompense exceptionnelle ;
+- utiliser dialogues RPG pour les gains majeurs ou narratifs ;
+- utiliser HUD / cartouches / animations simples pour les gains mineurs ;
+- éviter l’abus de Toast ;
+- préserver la lisibilité sur petit écran portrait.
+
+Résultat attendu
+RéviZeus distingue correctement une validation légère, une belle récompense et un événement marquant.
+
+--------------------------------------------------------------------
+F10 — MÉTADONNÉES ET HISTORIQUE DE SOURCE
+--------------------------------------------------------------------
+
+Objectif
+Tracer pourquoi et comment une récompense a été donnée, sans transformer cela en usine à gaz.
+
+À faire
+- stocker au moins la source et quelques métadonnées dans le RewardBundle ;
+- si un historique léger existe déjà ou peut être ajouté sans dette majeure, journaliser :
+  - timestamp,
+  - source,
+  - score/performance,
+  - matière dominante,
+  - fragments gagnés,
+  - XP gagnée,
+  - badges/items éventuels ;
+- préparer une future exploitation pour analytics, quêtes, rangs et aventure ;
+- éviter les doublons de persistance si le journal n’est pas encore prioritaire.
+
+Résultat attendu
+Les récompenses ont une traçabilité utile pour le futur, sans complexifier inutilement le présent.
+
+--------------------------------------------------------------------
+F11 — BALANCE ÉCONOMIQUE DE BASE
+--------------------------------------------------------------------
+
+Objectif
+Éviter une progression trop rapide, trop pauvre ou incohérente avec l’ambition RPG lente et addictive du projet.
+
+À faire
+- définir des fourchettes claires de gains par contexte ;
+- garder une montée modérée à lente, cohérente avec la progression souhaitée ;
+- intégrer les bonus éventuels : difficulté, streak, rapidité, perfect, défi ;
+- limiter les multiplicateurs explosifs ;
+- préparer de futures modulations via rangs, objets ou événements sans casser l’équilibre de base ;
+- documenter explicitement les hypothèses de balance dans le code ou dans un helper dédié.
+
+Résultat attendu
+L’économie paraît gratifiante mais non cassée.
+
+--------------------------------------------------------------------
+F12 — PRÉPARATION DES DÉPENDANCES FUTURES
+--------------------------------------------------------------------
+
+Objectif
+Faire du bloc F une vraie fondation pour les blocs suivants.
+
+À faire
+- préparer le branchement vers TempleProgress (bloc G) ;
+- préparer le branchement vers Inventaire / Forge / objets (bloc H) ;
+- préparer le branchement vers Savoirs vivants / artefacts / export (bloc I) ;
+- préparer le branchement vers Badges / rangs / quêtes journalières (bloc M) ;
+- préparer le branchement vers Quêtes / aventure / boss (bloc O) ;
+- éviter les structures trop fermées qui empêcheraient l’extension.
+
+Résultat attendu
+Le bloc F n’est pas une impasse technique, mais une base de vérité économique.
+
+====================================================================
+5 — FICHIERS À FOURNIR EN PRIORITÉ À L’IA
+====================================================================
+
+Pour traiter le bloc F proprement, il faut idéalement fournir dans cet ordre :
+
+Noyau récompenses et économie
+1. QuizRewardManager.kt
+2. KnowledgeFragmentManager.kt
+3. CurrencyManager.kt
+4. XpCalculator.kt
+5. UserProfile.kt
+6. AppDatabase.kt si des écritures ou helpers Room sont concernés
+7. DAO ou helpers de persistance liés aux récompenses si déjà présents
+
+Noyau écrans résultats
+8. QuizResultActivity.kt
+9. TrainingQuizActivity.kt
+10. ResultActivity.kt si elle applique déjà des gains après Oracle
+11. GodMatiereActivity.kt si certains gains ou feedbacks y sont visibles
+
+Socle transverse utile
+12. BaseActivity.kt
+13. BaseGameActivity.kt
+14. SoundManager.kt
+15. BadgeManager.kt si des récompenses peuvent déjà déclencher des badges
+16. PantheonConfig.kt / GodManager.kt pour noms, couleurs et icônes matière
+
+UI
+17. XML du résultat quiz
+18. XML ou cartes de récompenses déjà existantes
+19. drawables/icônes des monnaies et fragments
+20. animations/SFX déjà utilisés sur gains ou level up
+
+Si tu veux réduire au strict minimum pour démarrer
+- QuizRewardManager.kt
+- KnowledgeFragmentManager.kt
+- CurrencyManager.kt
+- UserProfile.kt
+- QuizResultActivity.kt
+- TrainingQuizActivity.kt
+- XML du résultat quiz
+
+====================================================================
+6 — ORDRE D’EXÉCUTION RECOMMANDÉ À L’INTÉRIEUR DU BLOC F
+====================================================================
+
+Ordre conseillé
+1. F1 — RewardBundle
+2. F2 — RewardManager central
+3. F3 — matrice des sources de récompenses
+4. F4 — fragments par matière et affichage multi-gains
+5. F5 — refonte ciblée de QuizRewardManager
+6. F6 — application fiable des gains
+7. F7 — affichage séquentiel des récompenses
+8. F8 — composant UI réutilisable
+9. F9 — micro et macro feedbacks
+10. F10 — métadonnées et historique léger
+11. F11 — balance économique
+12. F12 — dépendances futures
+
+Pourquoi cet ordre
+- on crée d’abord la structure de vérité ;
+- on fiabilise ensuite les fragments et les sources ;
+- on sécurise l’application des gains ;
+- on met ensuite en scène les récompenses ;
+- on termine par la balance et les extensions.
+
+====================================================================
+7 — DÉPENDANCES VERS LES AUTRES BLOCS
+====================================================================
+
+Dépend de
+- BLOC A pour la stabilité transverse ;
+- BLOC B pour les dialogues RPG des grosses récompenses ;
+- BLOC C pour les SFX, animations audio, loading et transitions ;
+- BLOC D pour la cohérence du savoir validé ;
+- BLOC E pour la vérité pédagogique du quiz.
+
+Prépare directement
+- BLOC G — TempleProgress + reconstruction des temples + déblocages ;
+- BLOC H — Inventaire + Forge + objets + effets + économies avancées ;
+- BLOC I — Savoirs vivants + artefacts + export ;
+- BLOC K — Dashboard vivant et HUD ;
+- BLOC L — analytics et moteur cognitif ;
+- BLOC M — badges, rangs, quêtes journalières/hebdo ;
+- BLOC O — aventure, boss, chaos et récompenses de monde.
+
+====================================================================
+8 — CRITÈRES DE FIN DU BLOC F
+====================================================================
+
+Le bloc F est considéré comme terminé quand :
+- toutes les récompenses importantes passent par une structure unifiée ;
+- les fragments par matière sont appliqués et affichés correctement ;
+- les différences entre Oracle, entraînement matière et entraînement ultime sont respectées ;
+- les doubles gains involontaires sont évités ;
+- les écrans de résultat affichent les gains de manière lisible et premium ;
+- les Activities ne portent plus la logique métier principale des récompenses ;
+- les monnaies, fragments et XP restent cohérents après navigation, pause/reprise ou relance d’écran ;
+- la base est prête pour brancher TempleProgress, inventaire, forge, badges, rangs et aventure ;
+- aucune régression majeure de lifecycle, navigation ou persistance n’est introduite.
+
+====================================================================
+9 — ERREURS À ÉVITER ABSOLUMENT
+====================================================================
+
+À ne pas faire
+- recalculer des gains différemment selon les écrans ;
+- laisser une Activity appliquer directement une partie des fragments et un manager appliquer le reste ;
+- afficher un seul fragment générique alors que plusieurs matières ont été gagnées ;
+- doubler les récompenses sur retour d’écran ou relance Activity ;
+- donner des fragments multi-matières là où ce n’est pas prévu ;
+- cacher la logique de balance dans des constantes dispersées partout ;
+- produire une UI de récompense surchargée et illisible ;
+- transformer chaque petit gain en popup lourde ;
+- casser CurrencyManager, XpCalculator ou KnowledgeFragmentManager au lieu de les étendre proprement ;
+- créer un RewardBundle impossible à faire évoluer ensuite.
+
+====================================================================
+10 — TESTS MANUELS MINIMUM À FAIRE
+====================================================================
+
+Scénarios minimum
+1. Quiz Oracle réussi en Mathématiques
+- vérifier XP, ambroisie/éclats, fragments Zeus/Maths, affichage détaillé, absence de doublon.
+
+2. Entraînement simple d’une seule matière
+- vérifier que seuls les fragments de la matière concernée sont gagnés.
+
+3. Entraînement ultime multi-matières
+- vérifier les fragments multiples et leur affichage détaillé.
+
+4. Session avec score faible
+- vérifier les minima, absence de récompenses absurdes et clarté du feedback.
+
+5. Session excellente / perfect
+- vérifier bonus, animations, éventuel badge ou montée visible.
+
+6. Quitter / reprendre l’écran de résultat
+- vérifier qu’aucun gain n’est réappliqué.
+
+7. Retour arrière puis réouverture de l’activité
+- vérifier l’idempotence.
+
+8. Lecture de fragments déjà existants dans le profil
+- vérifier que l’ajout ne corrompt pas la structure stockée.
+
+9. Gain d’un item futur simulé
+- vérifier que la structure RewardBundle peut déjà le porter proprement.
+
+10. Test de performance UI
+- vérifier que l’écran de gain reste fluide sur appareil réel.
+
+====================================================================
+11 — PROMPT PRÊT À COPIER-COLLER À UNE AUTRE IA
+====================================================================
+
+Tu travailles sur RéviZeus.
+Je veux que tu traites uniquement le BLOC F : “Récompenses unifiées + fragments + économie + affichages de gains”.
+
+Règles absolues :
+- conserver 100 % de l’architecture actuelle ;
+- ne jamais renommer arbitrairement mes variables, IDs, flows, managers ou mécaniques existantes ;
+- générer les fichiers complets modifiés, jamais des snippets partiels ;
+- commenter intelligemment le code ;
+- rester en XML classique + ViewBinding ;
+- rester compatible minSdk 24 / target 36 / Kotlin 2.3.10 / AGP 9.0.1 ;
+- ne pas utiliser Jetpack Compose ;
+- toute popup importante doit tendre vers le style RPG lettre par lettre avec son ;
+- toute action longue IA doit utiliser le loading divin déjà prévu ;
+- toute limite technique visible doit être rendue diégétique ;
+- conserver XpCalculator, CurrencyManager, KnowledgeFragmentManager, QuizRewardManager, GodManager/PantheonConfig et l’architecture actuelle ;
+- toujours rester plein écran portrait.
+
+Objectif du bloc :
+- créer une structure RewardBundle unifiée ;
+- centraliser le calcul et l’application des récompenses ;
+- fiabiliser les fragments par matière ;
+- respecter la logique déjà définie : quiz Oracle = fragments de la matière du savoir, entraînement matière = fragments de cette matière, entraînement ultime = multi-matières ;
+- améliorer l’affichage détaillé des gains dans les écrans de résultat ;
+- préparer proprement la connexion avec TempleProgress, inventaire, forge, badges, rangs, quêtes et aventure.
+
+Je veux un travail par étapes :
+1. audit rapide des fichiers fournis ;
+2. proposition d’architecture minimale sûre ;
+3. implémentation des fichiers nécessaires ;
+4. adaptation des écrans de résultat ;
+5. explication d’intégration exacte ;
+6. rappel des tests manuels à faire.
+
+Fichiers prioritaires à demander si je ne les ai pas encore fournis :
+- QuizRewardManager.kt
+- KnowledgeFragmentManager.kt
+- CurrencyManager.kt
+- XpCalculator.kt
+- UserProfile.kt
+- QuizResultActivity.kt
+- TrainingQuizActivity.kt
+- ResultActivity.kt si elle applique déjà des gains
+- XML du résultat quiz
+- PantheonConfig.kt / GodManager.kt si nécessaire pour afficher proprement les matières
+
+Tu dois produire un résultat God Tier, robuste, extensible et sans casser RéviZeus.

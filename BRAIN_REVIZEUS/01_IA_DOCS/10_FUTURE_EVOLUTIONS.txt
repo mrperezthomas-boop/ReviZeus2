@@ -1,0 +1,294 @@
+10_FUTURE_EVOLUTIONS.md
+RÉVIZEUS — MASTER BACKLOG STRUCTURÉ ULTRA DÉTAILLÉ
+Version : 2026-03-23
+
+But : regrouper, dédupliquer, prioriser et ordonner toutes les idées citées afin de servir de base de production sans fragiliser l’architecture actuelle du jeu.
+
+════════════════════════════════════════════════════════════════════
+0. RÈGLES D’INTÉGRATION ABSOLUES
+════════════════════════════════════════════════════════════════════
+
+Ce document n’est pas une liste d’idées “en vrac”.
+C’est une base d’exécution pensée pour éviter de casser RéviZeus pendant l’intégration.
+
+Règles de sécurité à respecter pour tous les futurs chantiers :
+- Ne jamais casser le boot flow existant.
+- Ne jamais casser le flow Oracle → résumé → sauvegarde → quiz.
+- Ne jamais casser le flow Dashboard → Temples / Entraînement / Forge / Inventaire / Bibliothèque.
+- Ne jamais coupler une grosse nouveauté à plusieurs systèmes critiques en une seule fois.
+- Chaque nouveau système doit pouvoir être activé progressivement.
+- Chaque grosse feature doit avoir une version MVP d’abord simple, puis une version premium ensuite.
+- Toujours privilégier : stabilité > lisibilité > profondeur > spectacle.
+- L’ajout d’immersion visuelle ne doit jamais arriver avant la stabilité métier.
+- Les nouveautés doivent être branchées par couches autour du cœur existant, jamais en refonte brutale.
+
+Socle actuel à conserver intact autant que possible :
+- Room / profil utilisateur principal
+- économie XP / Éclats / Ambroisie / Fragments
+- Oracle / analyse / résumé / savoirs
+- quiz / résultats / badges
+- Forge / inventaire
+- mapping dieux / matières / identité mythologique
+- UI XML + ViewBinding + portrait plein écran
+
+════════════════════════════════════════════════════════════════════
+1. OBJECTIF GLOBAL DU PROJET
+════════════════════════════════════════════════════════════════════
+
+RéviZeus ne doit pas rester une simple app de quiz gamifiée.
+Le cap visé est :
+- une application éducative RPG mythologique,
+- une campagne de reconstruction du savoir,
+- un système à quêtes, boss, temples, artefacts, lore et progression visible.
+
+Promesse émotionnelle finale :
+Le joueur n’apprend pas seulement pour réussir un quiz.
+Il apprend pour relever l’Olympe.
+
+════════════════════════════════════════════════════════════════════
+2. ÉTAT ACTUEL DU SYSTÈME ÉCONOMIQUE
+════════════════════════════════════════════════════════════════════
+
+État déjà identifié :
+- Fragments stockés dans UserProfile.knowledgeFragments au format JSON {"Matière": Quantité}.
+- Logique addFragments() déjà présente dans le modèle UserProfile.
+- eclatSavoir et ambroisie déjà présents mais gérés séparément.
+- La Forge existe structurellement mais le moteur économique complet n’est pas encore totalement branché.
+
+Problèmes métiers déjà repérés :
+- Les fragments ne sont pas encore crédités correctement à la fin des quiz dans tous les cas visés.
+- ForgeActivity ne lit pas encore partout les valeurs du stock pour autoriser / bloquer le craft avec fiabilité.
+- Le craft, l’inventaire et les effets d’objets ne sont pas encore reliés à une boucle RPG profonde.
+
+Conséquence : avant toute couche AAA, il faut fiabiliser le circuit :
+Quiz → récompense → fragments → forge → inventaire → effet / progression.
+
+════════════════════════════════════════════════════════════════════
+3. SYNTHÈSE DES AXES DE DÉVELOPPEMENT
+════════════════════════════════════════════════════════════════════
+
+A. Stabilisation & qualité de vie
+B. Forge & économie vivante
+C. Inventaire & équipement
+D. Oracle, savoirs & Lyre d’Apollon
+E. Dashboard vivant & HUD narratif
+F. Intro cinématique & lore mondial
+G. Déblocages globaux & logique de progression
+H. Mode Aventure
+I. Reconstruction des temples
+J. Carte de l’Olympe & zones
+K. Quêtes mythologiques & boss éducatifs
+L. Systèmes RPG profonds
+M. Compagnon chimérique
+N. Atlas des constellations
+O. Modes secondaires & endgame
+P. Immersion premium, social et monétisation future
+
+════════════════════════════════════════════════════════════════════
+4. AXE A — STABILISATION & QUALITÉ DE VIE
+════════════════════════════════════════════════════════════════════
+Priorité : immédiate | Risque : faible
+
+A1. Correctifs système à finaliser proprement
+- suppression compte Firebase réelle
+- reset aventure propre quand ce système existera
+- flux Oracle propre
+- Forge orientée craftable-first
+- cohérence des backgrounds (ex: personnage sur le Dashboard entier, passant sous le lvl et barre XP)
+- JukeBox propre
+- correction durable des écrans sensibles (overlays, fonds massifs)
+
+A2. Qualité de vie immédiate
+- toast après quiz : “🔷 +17 Fragments de Mathématiques”
+- badge “Premier Craft”
+- notification Dashboard “Forge prête !”
+- aperçu détaillé d’une recette avant craft
+- animation de gain de fragments sous les étoiles
+- confirmation divine animée quand un savoir est rangé
+- archive “savoirs récents” après validation
+- filtre et tri (Forge et Inventaire)
+- date d’obtention et verrouillage d'objets
+
+A3. HUD / pédagogie des ressources
+- long press sur chips pour popup explicatif Prométhée
+- popup Prométhée contextualisé selon niveau
+- indicateur visuel +N animé sur les chips
+- système milestone HUD (félicitations aux paliers 100/500/1000)
+
+════════════════════════════════════════════════════════════════════
+5. AXE B — FORGE & ÉCONOMIE VIVANTE
+════════════════════════════════════════════════════════════════════
+Priorité : immédiate puis court terme | Risque : faible à moyen
+
+B1. Forge de base à rendre pleinement fiable
+- UI de craft stable et bouton fiable
+- consommation réelle des fragments au craft
+- affichage des stocks du joueur
+- afficher les recettes craftables en premier
+- afficher les items craftés dans l'inventaire avec image
+
+B2. Premier set officiel d’artefacts
+- Bouclier de Logique (Maths/Zeus) : annule une erreur
+- Sandales d’Hermès (Langues/Hermès) : bonus de temps
+- Plume de Stratégie (Français/Athéna) : indice mnémonique
+- Diadème de Charisme (Art/Aphrodite) : augmente gains Ambroisie
+
+B3. Évolutions cohérentes à moyen terme
+- démantèlement / amélioration d'objets
+- set bonus
+- fragments arc-en-ciel joker
+- Marché d’Hermès (échange avec taxe)
+- objets équipables actifs et parchemins consommables
+
+B4. Forge premium plus tard
+- mini-jeu de forge / animation Lottie
+- recettes Gemini selon points faibles
+- Creuset d’Héphaïstos (fusion) / vente aux enchères
+- taxe de Charon (ressusciter quiz)
+
+════════════════════════════════════════════════════════════════════
+6. AXE C — INVENTAIRE & ÉQUIPEMENT
+════════════════════════════════════════════════════════════════════
+Priorité : court terme | Risque : moyen
+
+C1. Structure cible : Fragments, Artefacts, Équipements, Objets, Reliques
+C2. Fonctionnalités : tri, filtre, clic → fiche détaillée, rareté, favoris, synergie.
+C3. Évolutions : passifs réels en quiz, dégradation (si matière négligée), synergies de dieux.
+
+════════════════════════════════════════════════════════════════════
+7. AXE D — ORACLE, SAVOIRS & LYRE D’APOLLON
+════════════════════════════════════════════════════════════════════
+Priorité : court terme | Risque : faible à moyen
+
+D1. Oracle / flow : validation du résumé, choix manuel, titre auto-suggéré, historique.
+D2. Lyre d’Apollon : bouton “Copier l’hymne”, styles (ode, sonnet, haïku), animation.
+D3. Extensions IA futures :
+- dialogues Prométhée générés par IA
+- voix IA pour lecture de résumés
+- quiz IA sur erreurs passées
+- défis IA personnalisés
+- Oracle des rêves / prophéties du matin
+
+════════════════════════════════════════════════════════════════════
+8. AXE E — DASHBOARD VIVANT & HUD NARRATIF
+════════════════════════════════════════════════════════════════════
+Priorité : court terme puis moyen terme | Risque : moyen
+
+E1. Dynamisme : météo divine (orage si cours fanés), statues évolutives, messages Agora, flambeau streak.
+E2. Notifications : Forge prête, Hermès attend, rappel narratif.
+E3. Zones secondaires : Tartare, Bibliothèque interdite affichées une fois débloquées.
+
+════════════════════════════════════════════════════════════════════
+9. AXE F — INTRO CINÉMATIQUE & LORE MONDIAL
+════════════════════════════════════════════════════════════════════
+Priorité : haute | Risque : faible à moyen
+
+F1. Intro première connexion : chute de l'Olympe, temples détruits, appel de Zeus.
+F2. Méchant principal : force d'oubli/ignorance (Le Néant, L'Éclipse...).
+F3. Intégration : IntroCinematicActivity (MP4 ou slides), introSeen.
+
+════════════════════════════════════════════════════════════════════
+10. AXE G — DÉBLOCAGES GLOBAUX & LOGIQUE DE PROGRESSION
+════════════════════════════════════════════════════════════════════
+Priorité : haute | Risque : faible à moyen
+
+G1. Aventure : débloquée quand au moins un savoir est enregistré dans chaque temple.
+G2. Tartare : débloqué quand tous les temples sont au moins niveau 3.
+G3. Autres : Bibliothèque (lvl 5), Palais des Titans (lvl 8).
+
+════════════════════════════════════════════════════════════════════
+11. AXE H — MODE AVENTURE
+════════════════════════════════════════════════════════════════════
+Priorité : maximale | Risque : moyen
+
+H1. Rôle : transformer l'app en campagne mythologique.
+H2. Écrans : AdventureActivity, AdventureZoneActivity, QuestActivity, ResultActivity.
+H3. Quêtes MVP : réussir X quiz, sauver un savoir, battre mini-boss (Pas de faux open-world).
+
+════════════════════════════════════════════════════════════════════
+12. AXE I — RECONSTRUCTION DES TEMPLES
+════════════════════════════════════════════════════════════════════
+Priorité : maximale | Risque : moyen (Cœur symbolique du jeu)
+
+I1. Concept : l'apprentissage restaure le temple (niveau 0 à 10).
+I2. Paliers visuels : 0-2 (ruine), 3-5 (reconstruction), 6-8 (sanctuaire), 9-10 (glorieux).
+I3. Dialogues : Le dieu change de ton selon l'état du temple.
+I4. Récompenses : débloque boss, musiques, objets forgeables, reliques.
+
+════════════════════════════════════════════════════════════════════
+13. AXE J — CARTE DE L’OLYMPE & ZONES
+════════════════════════════════════════════════════════════════════
+Priorité : moyenne | Risque : moyen
+
+J1. Version 1 : fond statique, zones cliquables, progression visible.
+J2. Version 2 : animations, transitions, ambiance premium.
+J3. Zones : Olympe, 9 Temples, Tartare, Bibliothèque, Labyrinthe.
+
+════════════════════════════════════════════════════════════════════
+14. AXE K — QUÊTES MYTHOLOGIQUES & BOSS ÉDUCATIFS
+════════════════════════════════════════════════════════════════════
+Priorité : haute | Risque : moyen
+
+K1. Catalogue : 9 arcs x 6 quêtes = 54 quêtes. (Ordre de prod : Zeus, Athéna, Héphaïstos d'abord).
+K2. Boss éducatifs : Cyclope du Raisonnement, Sphinx des Mots, Kraken Cellulaire, etc.
+K3. Types : perfection, survie, boss miroir (basé sur faiblesses du joueur).
+
+════════════════════════════════════════════════════════════════════
+15. AXE L — SYSTÈMES RPG PROFONDS
+════════════════════════════════════════════════════════════════════
+Priorité : moyenne | Risque : moyen à fort
+
+L1. Niveau Aventure (XP aventure distincte).
+L2. Arbre de talents : mémoire, logique, vitesse.
+L3. Classes du héros : Oracle, Stratège, Forgeron.
+L4. Reliques / équipements passifs.
+
+════════════════════════════════════════════════════════════════════
+16. AXE M & N — COMPAGNON & ATLAS
+════════════════════════════════════════════════════════════════════
+Priorité : moyenne
+
+M. Compagnon : Œuf → éclosion selon matière dominante, indice par jour, aide aux quiz.
+N. Atlas : chaque cours = une étoile, brillance selon maîtrise, constellation par matière.
+
+════════════════════════════════════════════════════════════════════
+17. AXE O — MODES SECONDAIRES & ENDGAME
+════════════════════════════════════════════════════════════════════
+Priorité : moyenne à basse
+
+- Labyrinthe du Minotaure, Conseil de l'Olympe, Mode Examen.
+- Règle : choisir 1 ou 2 modes max après MVP.
+
+════════════════════════════════════════════════════════════════════
+18. AXE P — IMMERSION PREMIUM, SOCIAL & MONÉTISATION
+════════════════════════════════════════════════════════════════════
+Priorité : basse à très basse (à repousser)
+
+- Skins Oracle, météo, hymnes de victoire, Lottie level-up, mode Enfers.
+- Social : classements, guildes, QR code, certificats parentaux.
+- Monétisation AAA (jamais de pay-to-win scolaire) : battle pass narratif, cosmétiques.
+
+════════════════════════════════════════════════════════════════════
+19. ORDRE D’EXÉCUTION RECOMMANDÉ
+════════════════════════════════════════════════════════════════════
+1. Stabiliser le jeu actuel.
+2. Fiabiliser l’économie Forge / inventaire / fragments.
+3. Noblir le flux Oracle / savoirs / Lyre.
+4. Ajouter l’intro narrative.
+5. Débloquer le mode Aventure quand tous les temples ont reçu au moins un savoir.
+6. Ajouter la reconstruction des temples niveau 0 → 10.
+7. Prototyper Zeus complet.
+8. Étendre aux autres dieux.
+9. Ouvrir Tartare quand tous les temples sont niveau 3.
+10. Ajouter profondeur RPG, zones secondaires, immersion premium, endgame.
+
+════════════════════════════════════════════════════════════════════
+20. OUVERTURES RENDUES POSSIBLES (UPDATE IA & TENSION)
+════════════════════════════════════════════════════════════════════
+Grâce à l'intégration du UserAnalyticsEngine et des chronomètres (Tension System), les portes suivantes sont désormais ouvertes pour le développement futur :
+
+🔮 Évolutions IA et Game Design :
+- Adaptation IA basée sur la vitesse : Les générateurs de quiz pourront calibrer la complexité d'une question selon le temps de réponse moyen de l'utilisateur.
+- Mode Hardcore (Chrono réduit) : Possibilité de créer un mode "Enfers/Tartare" où les paliers de temps sont divisés par deux.
+- Bonus de streak temporel : Récompenses accrues si le joueur enchaîne les bonnes réponses en moins de X secondes.
+- Analyse cognitive (Rapide vs Lent) : Catégoriser le profil d'apprentissage de l'utilisateur pour générer des conseils divins ciblés (ex: "Tu es rapide mais impulsif" vs "Tu es méthodique mais prends trop de temps").
