@@ -1,10 +1,7 @@
 package com.revizeus.app
 
 // [2026-04-19 05:36][BLOC_B2][RESPONSE_ORCHESTRATOR] Orchestrateur B2 léger, sans doublonner DivineDialogueOrchestrator.
-object git status
-git add .
-git commit -m "Premiere phase Bloc B2"
-git pushDivineResponseOrchestrator {
+object DivineResponseOrchestrator {
 
     // [2026-04-19 05:36][BLOC_B2][RESPONSE_ORCHESTRATOR] Construction du plan de réponse UI/prompt à partir du contexte B2.
     fun buildResponsePlan(context: DivineRequestContext): DivineResponsePlan {
