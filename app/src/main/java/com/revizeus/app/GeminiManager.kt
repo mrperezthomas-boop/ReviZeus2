@@ -253,26 +253,26 @@ object GeminiManager {
 
         val (safeContext, plan) = resolved
 
-        val enrichedPrompt = when (safeContext.actionType) {
+        val contextualAddon = when (safeContext.actionType) {
             DivineActionType.QUIZ_CORRECTION ->
                 DivinePromptBuilder.buildCorrectionPrompt(plan, safeContext)
-
             DivineActionType.QUIZ_GENERATION ->
                 DivinePromptBuilder.buildQuizPrompt(plan, safeContext)
-
             DivineActionType.SUMMARY_GENERATION,
             DivineActionType.SUMMARY_REFORMULATION,
             DivineActionType.MNEMONIC ->
                 DivinePromptBuilder.buildSummaryPrompt(plan, safeContext)
-
             DivineActionType.SYSTEM_HELP,
             DivineActionType.ERROR_EXPLANATION,
             DivineActionType.LOADING_MESSAGE ->
                 DivinePromptBuilder.buildSystemHelpPrompt(plan, safeContext)
-
-            else ->
-                injectDivinePlanHints(prompt, plan)
+            else -> ""
         }
+
+        val enrichedPrompt = injectDivinePlanHints(
+            basePrompt = if (contextualAddon.isBlank()) prompt else "$prompt\n\n$contextualAddon",
+            plan = plan
+        )
 
         return@withContext generateDialog(
             prompt = enrichedPrompt,
