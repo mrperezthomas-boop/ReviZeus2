@@ -1,0 +1,18 @@
+package com.revizeus.app
+
+// [2026-04-19 05:20][BLOC_B2][ACTION_TYPE] Enum stable des actions divines pilotées par contrat.
+enum class DivineActionType {
+    SUMMARY_GENERATION,
+    SUMMARY_REFORMULATION,
+    QUIZ_GENERATION,
+    QUIZ_CORRECTION,
+    MNEMONIC,
+    DIVINE_VERDICT,
+    ENCOURAGEMENT,
+    ERROR_EXPLANATION,
+    SYSTEM_HELP,
+    LOADING_MESSAGE,
+    TEMPLE_GUIDANCE,
+    TRANSLATION,
+    DIVINE_SUGGESTION
+}

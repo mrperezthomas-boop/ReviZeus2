@@ -95,5 +95,26 @@ object PantheonConfig {
     fun findByDivinite(divinite: String): GodInfo? =
         GODS.find { it.divinite.equals(divinite, ignoreCase = true) }
 
+
+    // [2026-04-19 05:36][BLOC_B2][PANTHEON_CONFIG] Resolver sûr matière -> DivinePersonaType sans créer de mapping parallèle.
+    fun getPersonaTypeForSubject(subject: String): DivinePersonaType {
+        val divinite = findByMatiere(subject)?.divinite ?: return DivinePersonaType.ORACLE_NEUTRE
+
+        return when (divinite.trim().lowercase()) {
+            "zeus" -> DivinePersonaType.ZEUS
+            "athéna", "athena" -> DivinePersonaType.ATHENA
+            "poséidon", "poseidon" -> DivinePersonaType.POSEIDON
+            "arès", "ares" -> DivinePersonaType.ARES
+            "aphrodite" -> DivinePersonaType.APHRODITE
+            "hermès", "hermes" -> DivinePersonaType.HERMES
+            "déméter", "demeter" -> DivinePersonaType.DEMETER
+            "héphaïstos", "hephaistos", "hephaestus" -> DivinePersonaType.HEPHAISTOS
+            "apollon", "apollo" -> DivinePersonaType.APOLLON
+            "prométhée", "promethee", "prometheus" -> DivinePersonaType.PROMETHEE
+            else -> DivinePersonaType.ORACLE_NEUTRE
+        }
+    }
+
+
     fun getSpinnerLabels(): Array<String> = GODS.map { it.spinnerLabel }.toTypedArray()
 }

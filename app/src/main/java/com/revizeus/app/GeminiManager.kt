@@ -229,6 +229,60 @@ object GeminiManager {
 
 
     /**
+     * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif :
+     * construit un plan officiel puis enrichit le prompt sans modifier la logique réseau existante.
+     */
+    suspend fun generateDialog(
+        prompt: String,
+        matiere: String,
+        divineRequestContext: DivineRequestContext,
+        adaptiveContextNote: String? = null
+    ): GodResponse? = withContext(Dispatchers.IO) {
+        val resolved = resolveDivineContextAndPlan(
+            matiere = matiere,
+            divineRequestContext = divineRequestContext
+        )
+
+        if (resolved == null) {
+            return@withContext generateDialog(
+                prompt = prompt,
+                matiere = matiere,
+                adaptiveContextNote = adaptiveContextNote
+            )
+        }
+
+        val (safeContext, plan) = resolved
+
+        val enrichedPrompt = when (safeContext.actionType) {
+            DivineActionType.QUIZ_CORRECTION ->
+                DivinePromptBuilder.buildCorrectionPrompt(plan, safeContext)
+
+            DivineActionType.QUIZ_GENERATION ->
+                DivinePromptBuilder.buildQuizPrompt(plan, safeContext)
+
+            DivineActionType.SUMMARY_GENERATION,
+            DivineActionType.SUMMARY_REFORMULATION,
+            DivineActionType.MNEMONIC ->
+                DivinePromptBuilder.buildSummaryPrompt(plan, safeContext)
+
+            DivineActionType.SYSTEM_HELP,
+            DivineActionType.ERROR_EXPLANATION,
+            DivineActionType.LOADING_MESSAGE ->
+                DivinePromptBuilder.buildSystemHelpPrompt(plan, safeContext)
+
+            else ->
+                injectDivinePlanHints(prompt, plan)
+        }
+
+        return@withContext generateDialog(
+            prompt = enrichedPrompt,
+            matiere = matiere,
+            adaptiveContextNote = adaptiveContextNote
+        )
+    }
+
+
+    /**
      * LYRE D'APOLLON — VERSION CHANSON STRUCTURÉE POUR L'ÉCRAN MUSIC.
      *
      * IMPORTANT :
@@ -267,6 +321,177 @@ object GeminiManager {
             )
         } catch (e: Exception) {
             Log.e(TAG, "Erreur Chanson Olympe : ${e.message}", e)
+            null
+        }
+    }
+
+
+    // [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Résolution safe du contexte B2 sans casser les anciens appels.
+    private fun resolveDivineContextAndPlan(
+        matiere: String,
+        divineRequestContext: DivineRequestContext?
+    ): Pair<DivineRequestContext, DivineResponsePlan>? {
+        if (divineRequestContext == null) return null
+
+        val safeContext = if (divineRequestContext.subject.isNullOrBlank()) {
+            divineRequestContext.copy(subject = matiere)
+        } else {
+            divineRequestContext
+        }
+
+        return safeContext to DivineResponseOrchestrator.buildResponsePlan(safeContext)
+    }
+
+    // [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Injection minimale des hints B2 dans un prompt existant.
+    private fun injectDivinePlanHints(
+        basePrompt: String,
+        plan: DivineResponsePlan?
+    ): String {
+        if (plan == null || plan.promptHints.isBlank()) return basePrompt
+
+        return """
+            $basePrompt
+
+            PLAN DIVIN B2 :
+            ${plan.promptHints}
+
+            INDICATIONS UI B2 :
+            ${plan.uiHints}
+        """.trimIndent()
+    }
+
+    /**
+     * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif pour résumé/quiz depuis texte.
+     */
+    suspend fun genererContenuOracle(
+        texte: String,
+        age: Int,
+        classe: String,
+        matiere: String,
+        divinite: String,
+        ethos: String,
+        mood: String,
+        adaptiveContextNote: String? = null,
+        divineRequestContext: DivineRequestContext
+    ): String? = withContext(Dispatchers.IO) {
+        try {
+            val model = buildModel(
+                systemInstructionText = buildOracleSystemInstruction()
+            )
+
+            val basePrompt = buildStructuredPromptFromText(
+                texte = texte,
+                age = age,
+                classe = classe,
+                matiere = matiere,
+                divinite = divinite,
+                ethos = ethos,
+                mood = mood,
+                adaptiveContextNote = adaptiveContextNote
+            )
+
+            val plan = resolveDivineContextAndPlan(
+                matiere = matiere,
+                divineRequestContext = divineRequestContext
+            )?.second
+
+            val prompt = injectDivinePlanHints(
+                basePrompt = basePrompt,
+                plan = plan
+            )
+
+            val responseText = executeWithRetry {
+                model.generateContent(prompt).text
+            }
+
+            return@withContext normalizeAiResponse(responseText)
+        } catch (e: Exception) {
+            Log.e(TAG, "Erreur Entraînement Olympe B2 : ${e.message}", e)
+            null
+        }
+    }
+
+    /**
+     * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif image unique.
+     */
+    suspend fun genererContenuDepuisImage(
+        imageBitmap: Bitmap,
+        age: Int,
+        classe: String,
+        matiere: String,
+        divinite: String,
+        ethos: String,
+        mood: String,
+        adaptiveContextNote: String? = null,
+        divineRequestContext: DivineRequestContext
+    ): String? = genererContenuDepuisImages(
+        imageBitmaps = listOf(imageBitmap),
+        age = age,
+        classe = classe,
+        matiere = matiere,
+        divinite = divinite,
+        ethos = ethos,
+        mood = mood,
+        adaptiveContextNote = adaptiveContextNote,
+        divineRequestContext = divineRequestContext
+    )
+
+    /**
+     * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif multi-pages.
+     */
+    suspend fun genererContenuDepuisImages(
+        imageBitmaps: List<Bitmap>,
+        age: Int,
+        classe: String,
+        matiere: String,
+        divinite: String,
+        ethos: String,
+        mood: String,
+        adaptiveContextNote: String? = null,
+        divineRequestContext: DivineRequestContext
+    ): String? = withContext(Dispatchers.IO) {
+        try {
+            if (imageBitmaps.isEmpty()) {
+                return@withContext null
+            }
+
+            val model = buildModel(
+                systemInstructionText = buildOracleSystemInstruction()
+            )
+
+            val basePrompt = buildStructuredPromptFromImages(
+                age = age,
+                classe = classe,
+                matiere = matiere,
+                divinite = divinite,
+                ethos = ethos,
+                mood = mood,
+                adaptiveContextNote = adaptiveContextNote
+            )
+
+            val plan = resolveDivineContextAndPlan(
+                matiere = matiere,
+                divineRequestContext = divineRequestContext
+            )?.second
+
+            val promptText = injectDivinePlanHints(
+                basePrompt = basePrompt,
+                plan = plan
+            )
+
+            val responseText = executeWithRetry {
+                val input = content {
+                    imageBitmaps.forEach { bitmap ->
+                        image(bitmap)
+                    }
+                    text(promptText)
+                }
+                model.generateContent(input).text
+            }
+
+            return@withContext normalizeAiResponse(responseText)
+        } catch (e: Exception) {
+            Log.e(TAG, "Erreur Vision Olympe multi-pages B2 : ${e.message}", e)
             null
         }
     }
