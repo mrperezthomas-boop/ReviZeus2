@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.revizeus.app.databinding.ActivityOraclePromptBinding
 import kotlinx.coroutines.delay
@@ -50,7 +49,11 @@ class OraclePromptActivity : BaseActivity() {
             val promptText = binding.etOraclePrompt.text?.toString()?.trim().orEmpty()
 
             if (promptText.isBlank()) {
-                Toast.makeText(this, "Écris d'abord ta demande à l'Oracle.", Toast.LENGTH_SHORT).show()
+                DialogRPGManager.showInfo(
+                    activity = this,
+                    godId = DialogRPGManager.selectGodForContext(DialogContext.EXPLANATION),
+                    message = "Écris d'abord ta demande à l'Oracle."
+                )
                 return@setOnClickListener
             }
 
@@ -69,11 +72,11 @@ class OraclePromptActivity : BaseActivity() {
                     finish()
                 } catch (e: Exception) {
                     Log.e("REVIZEUS_ORACLE_PROMPT", "Erreur ouverture ResultActivity : ${e.message}", e)
-                    Toast.makeText(
-                        this@OraclePromptActivity,
-                        "Impossible d'invoquer le résultat divin.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    DialogRPGManager.showInfo(
+                        activity = this@OraclePromptActivity,
+                        godId = DialogRPGManager.selectGodForContext(DialogContext.AUTHORITY),
+                        message = "Impossible d'invoquer le résultat divin."
+                    )
                     hideLoading()
                     binding.btnInvokePrompt.isEnabled = true
                     binding.btnBackPrompt.isEnabled = true

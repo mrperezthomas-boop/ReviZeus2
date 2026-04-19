@@ -1,0 +1,24 @@
+{
+  "_tracking": {
+    "tag": "REVIZEUS_TRACKING",
+    "timestamp": "2026-04-20 00:10 Europe/Paris",
+    "objet": "Règles de risque runtime",
+    "contexte": "Ajout V2 fusionnée",
+    "auteur_logique": "ChatGPT",
+    "statut": "MERGED_V2"
+  },
+  "zones": {
+    "very_high": [
+      "MapTempleActivity",
+      "TempleAdventureDao",
+      "PlayerAdaptiveSnapshot",
+      "GodPersonalityEngine"
+    ],
+    "high": [
+      "WorldMapActivity",
+      "DialogRPGManager",
+      "QuizRewardManager",
+      "CurrencyManager"
+    ]
+  }
+}

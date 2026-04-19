@@ -45,7 +45,9 @@ import java.util.Locale
  * CORRECTION v10 — GÉNÉRATION QUIZ À LA DEMANDE :
  *
  * Principe : chaque lancement de quiz en mode Entraînement appelle
- * GeminiManager.genererContenuOracle() avec le texte extrait du cours
+ * les builders dédiés (NormalTrainingBuilder / UltimateQuizBuilder) ou,
+ * pour l'agrégation ultime multi-parchemins, GeminiManager.genererContenuOracle
+ * avec noyau B2 (DivineRequestContext + plan), sur le texte extrait du cours
  * (CourseEntry.extractedText stocké dans Room).
  *
  * Pourquoi c'est mieux que stocker des questions :
@@ -512,6 +514,39 @@ class TrainingSelectActivity : BaseActivity() {
     }
 
     /**
+     * Noyau B2 — Contexte pour l'appel Oracle agrégé de l'Épreuve Ultime (hors ULTIME_GLOBAL builder).
+     * Planification via [DivineResponseOrchestrator] ; injection dans [GeminiManager] sans changer l'UI.
+     */
+    private fun buildTrainingUltimateOracleDivineContext(
+        matiere: String,
+        mode: String,
+        userAge: Int,
+        userClassLevel: String,
+        currentMood: String,
+        courseCount: Int
+    ): DivineRequestContext {
+        return DivineRequestContext(
+            subject = matiere,
+            actionType = DivineActionType.QUIZ_GENERATION,
+            screenSource = "training_TrainingSelectActivity_ultime_oracle",
+            userAge = userAge,
+            userClassLevel = userClassLevel,
+            currentMood = currentMood,
+            successState = null,
+            difficulty = null,
+            rawInput = null,
+            validatedSummary = null,
+            questionText = null,
+            userAnswer = null,
+            correctAnswer = null,
+            metadata = mapOf(
+                "training_mode" to mode,
+                "course_count" to courseCount.toString()
+            )
+        )
+    }
+
+    /**
      * CORRECTION v10 + BLOC 2C — Lance un entraînement normal sur un savoir unique.
      *
      * ÉVOLUTION BLOC 2C :
@@ -710,6 +745,14 @@ class TrainingSelectActivity : BaseActivity() {
                 })
                 }
 
+                val ultimateDivineContext = buildTrainingUltimateOracleDivineContext(
+                    matiere = matiere,
+                    mode = mode,
+                    userAge = age,
+                    userClassLevel = classe,
+                    currentMood = mood,
+                    courseCount = cours.size
+                )
                 val raw = withContext(Dispatchers.IO) {
                     GeminiManager.genererContenuOracle(
                         texte = texteAggrege,
@@ -718,7 +761,8 @@ class TrainingSelectActivity : BaseActivity() {
                         matiere = matiere,
                         divinite = divinite,
                         ethos = "Omniscience",
-                        mood = mood
+                        mood = mood,
+                        divineRequestContext = ultimateDivineContext
                     )
                 }
 

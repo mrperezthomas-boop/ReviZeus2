@@ -27,10 +27,11 @@ import com.revizeus.app.models.UserProfile
  *   - humeur plus fine
  *
  * REFACTO PROPRE — LYRE / DIALOGUES / FALLBACKS :
- * - GodLoreManager devient la façade métier unique des contenus divins.
+ * - GodLoreManager reste la façade métier unique des contenus divins.
  * - Les Activities n'ont plus à connaître les prompts détaillés.
  * - Les fallbacks immersifs sont centralisés ici.
- * - La Lyre d'Apollon passe désormais proprement par GeminiManager.generateDialog().
+ * - Tous les appels dialogue passent par GeminiManager.generateDialog(..., divineRequestContext)
+ *   pour déléguer persona / plan / hints au noyau B2 (DivineResponseOrchestrator, sans dupliquer Pantheon).
  * - Les erreurs techniques peuvent être transformées en réponses diégétiques cohérentes.
  * ═══════════════════════════════════════════════════════════════
  */
@@ -112,6 +113,47 @@ object GodLoreManager {
     }
 
     /**
+     * B2 — [DivineRequestContext] unique pour les scènes façade : plan + hints résolus dans [GeminiManager],
+     * sans remplacer les prompts métier construits localement ci-dessous.
+     */
+    private fun godLoreDivineRequestContext(
+        scene: String,
+        subject: String,
+        actionType: DivineActionType,
+        profile: UserProfile? = null,
+        successState: Boolean? = null,
+        difficulty: Int? = null,
+        rawInput: String? = null,
+        validatedSummary: String? = null,
+        questionText: String? = null,
+        userAnswer: String? = null,
+        correctAnswer: String? = null,
+        extraMetadata: Map<String, String> = emptyMap()
+    ): DivineRequestContext {
+        val meta = mutableMapOf(
+            "facade" to "GodLoreManager",
+            "scene" to scene
+        )
+        meta.putAll(extraMetadata)
+        return DivineRequestContext(
+            subject = subject,
+            actionType = actionType,
+            screenSource = "godlore_$scene",
+            userAge = profile?.age,
+            userClassLevel = profile?.classLevel,
+            currentMood = profile?.mood,
+            successState = successState,
+            difficulty = difficulty ?: profile?.level,
+            rawInput = rawInput,
+            validatedSummary = validatedSummary,
+            questionText = questionText,
+            userAnswer = userAnswer,
+            correctAnswer = correctAnswer,
+            metadata = meta
+        )
+    }
+
+    /**
      * CHANTIER 1 - FONDATION IA
      * Retourne un petit supplément de lore selon le nombre de cours
      * déjà enregistrés dans la matière concernée.
@@ -137,8 +179,9 @@ object GodLoreManager {
      * CHANTIER 1 - FONDATION IA
      * Dialogue d'accueil dans l'Arène d'Entraînement pour une matière précise.
      *
-     * Cette méthode devient suspend pour déléguer la formulation finale
-     * à GeminiManager.generateDialog(), tout en conservant la même signature métier.
+     * Cette méthode reste suspend : la formulation finale passe par
+     * GeminiManager.generateDialog(..., divineRequestContext) (noyau B2),
+     * tout en conservant la même signature métier.
      */
     suspend fun buildTrainingDialogue(
         matiere: String,
@@ -158,9 +201,17 @@ object GodLoreManager {
             nbCoursMatiere = nbCoursMatiere
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "training_welcome",
+            subject = matiere,
+            actionType = DivineActionType.TEMPLE_GUIDANCE,
+            profile = null,
+            rawInput = "$lore (cours=$nbCoursMatiere)"
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiere
+            matiere = matiere,
+            divineRequestContext = divineCtx
         )
 
         return response?.text ?: "$tonaliteSource $lore"
@@ -205,9 +256,16 @@ object GodLoreManager {
             tonaliteSource = tonaliteSource
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "ultime_welcome",
+            subject = matiereEffective,
+            actionType = DivineActionType.TEMPLE_GUIDANCE,
+            rawInput = "totalCours=$totalCours"
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiereEffective
+            matiere = matiereEffective,
+            divineRequestContext = divineCtx
         )
 
         return response?.text ?: tonaliteSource
@@ -249,9 +307,23 @@ object GodLoreManager {
             profile = null
         )
 
+        val successState = when {
+            percentage >= 75 -> true
+            percentage < 50 -> false
+            else -> null
+        }
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "quiz_result",
+            subject = matiere,
+            actionType = DivineActionType.DIVINE_VERDICT,
+            profile = null,
+            successState = successState,
+            rawInput = "score=$percentage% · ultime=$isUltime · $lore"
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiere
+            matiere = matiere,
+            divineRequestContext = divineCtx
         )
 
         return response?.text ?: "$tonaliteSource $lore"
@@ -298,10 +370,24 @@ object GodLoreManager {
             adaptiveContextNote = adaptiveContextNote
         )
 
+        val successState = when {
+            percentage >= 75 -> true
+            percentage < 50 -> false
+            else -> null
+        }
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "quiz_result_profile",
+            subject = matiere,
+            actionType = DivineActionType.DIVINE_VERDICT,
+            profile = profile,
+            successState = successState,
+            rawInput = "score=$percentage% · ultime=$isUltime · $lore"
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
             matiere = matiere,
-            adaptiveContextNote = adaptiveContextNote
+            divineRequestContext = divineCtx,
+            adaptiveContextNote = adaptiveContextNote.ifBlank { null }
         )
 
         return response ?: buildFallbackGodResponse(
@@ -339,9 +425,18 @@ object GodLoreManager {
             nomDieu = nomDieu
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "garden_spaced",
+            subject = matiere,
+            actionType = DivineActionType.TEMPLE_GUIDANCE,
+            profile = profile,
+            successState = false,
+            extraMetadata = mapOf("fading_lesson" to fadingLessonTitle.take(120))
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiere
+            matiere = matiere,
+            divineRequestContext = divineCtx
         )
 
         return response ?: buildFallbackGodResponse(
@@ -388,10 +483,21 @@ object GodLoreManager {
             adaptiveContextNote = adaptiveContextNote
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "quiz_correction",
+            subject = matiere,
+            actionType = DivineActionType.QUIZ_CORRECTION,
+            profile = profile,
+            successState = isCorrect,
+            questionText = question.text,
+            userAnswer = userAnswerSafe,
+            correctAnswer = bonneReponse.trim()
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
             matiere = matiere,
-            adaptiveContextNote = adaptiveContextNote
+            divineRequestContext = divineCtx,
+            adaptiveContextNote = adaptiveContextNote.ifBlank { null }
         )
 
         return response ?: buildFallbackGodResponse(
@@ -425,7 +531,7 @@ object GodLoreManager {
      * - suggestedAction → conseil de mémorisation vocale (réciter à voix haute)
      *
      * REFACTO PROPRE :
-     * - la Lyre passe désormais exclusivement par GeminiManager.generateDialog()
+     * - la Lyre passe par GeminiManager.generateDialog(..., divineRequestContext) (B2)
      * - les fallbacks restent centralisés ici et non dans l'Activity
      * - la matière renvoyée reste cohérente avec le cours, pas un libellé arbitraire
      *
@@ -460,10 +566,18 @@ object GodLoreManager {
             matiere = matiere
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "hymn_lyre",
+            subject = matiere,
+            actionType = DivineActionType.MNEMONIC,
+            profile = profile,
+            rawInput = courseSnippet.take(900)
+        )
         val response = try {
             GeminiManager.generateDialog(
                 prompt = prompt,
-                matiere = matiere
+                matiere = matiere,
+                divineRequestContext = divineCtx
             )
         } catch (_: Exception) {
             null
@@ -568,9 +682,18 @@ object GodLoreManager {
             nomDieu = nomDieu
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "ares_challenge",
+            subject = matiere,
+            actionType = DivineActionType.ENCOURAGEMENT,
+            profile = profile,
+            successState = true,
+            extraMetadata = mapOf("win_streak" to profile.winStreak.toString())
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiere
+            matiere = matiere,
+            divineRequestContext = divineCtx
         )
 
         // Fallback guerrier si l'IA ne répond pas : Arès ne se tait jamais.
@@ -689,9 +812,18 @@ object GodLoreManager {
             nomDieu = nomDieu
         )
 
+        val divineCtx = godLoreDivineRequestContext(
+            scene = "forge_success",
+            subject = matiere,
+            actionType = DivineActionType.ENCOURAGEMENT,
+            profile = profile,
+            successState = true,
+            extraMetadata = mapOf("recipe" to recipeName.take(120))
+        )
         val response = GeminiManager.generateDialog(
             prompt = prompt,
-            matiere = matiere
+            matiere = matiere,
+            divineRequestContext = divineCtx
         )
 
         // Fallback artisan garanti — Héphaïstos ne reste jamais silencieux

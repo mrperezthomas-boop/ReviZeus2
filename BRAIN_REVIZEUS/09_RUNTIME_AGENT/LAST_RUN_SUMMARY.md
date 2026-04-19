@@ -1,12 +1,12 @@
-# LAST RUN SUMMARY
+# Last run summary
 
-- Timestamp : 2026-04-19 22:00
-- Dominant bloc : H_AVENTURE
-- Dominant owner : adventure_design_system
-- Session type : mixed
-- Confidence : MEDIUM
+- Horodatage : 2026-04-18 05:02
+- Source : manual
+- Branche : main
+- Fichiers surveillés : 12
+- Blocs détectés : UNKNOWN
+- Statut règles : OK
 
-418 fichier(s) classé(s) en session mixte, bloc dominant = H_AVENTURE, owner dominant = adventure_design_system, confiance = MEDIUM.
+## Résumé
 
-## Key behaviors
-- 155 fichier(s) restent non cartographié(s) et demandent une règle explicite si critiques.
+- 12 fichier(s) surveillé(s) modifié(s), bloc dominant = UNKNOWN, owner dominant = unknown, confiance = LOW.

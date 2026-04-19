@@ -51,7 +51,7 @@ import java.util.UUID
  * ✅ canal audio secondaire pour le scan
  * ✅ vrai overlay Oracle au-dessus de tout l'écran
  * ✅ correction du bug de musique perdue au retour Dashboard
- * ✅ logique Gemini intacte
+ * ✅ invocation Oracle principale branchée sur le noyau B2 (DivineRequestContext + plan)
  * ✅ panneau RPG intact
  *
  * AJOUTS v10 :
@@ -70,8 +70,8 @@ import java.util.UUID
  * ✅ Support du flux FREE_TEXT_INPUT
  * ✅ Le texte libre n'exige plus d'image
  * ✅ Le pipeline Gemini est choisi dynamiquement :
- *    - images -> genererContenuDepuisImages()
- *    - texte libre -> genererContenuOracle()
+ *    - images -> genererContenuDepuisImages(..., divineRequestContext)
+ *    - texte libre -> genererContenuOracle(..., divineRequestContext)
  * ═══════════════════════════════════════════════════════════════
  */
 class ResultActivity : BaseActivity() {
@@ -217,6 +217,12 @@ class ResultActivity : BaseActivity() {
             invokeAnalysisJob?.cancel()
             invokeAnalysisJob = lifecycleScope.launch {
                 try {
+                    val oracleDivineContext = buildOracleMainInvokeDivineContext(
+                        isFreeTextFlow = freeTextInput.isNotBlank(),
+                        userAge = age,
+                        userClassLevel = classe,
+                        currentMood = mood
+                    )
                     val raw = if (freeTextInput.isNotBlank()) {
                         GeminiManager.genererContenuOracle(
                             texte = freeTextInput,
@@ -225,7 +231,8 @@ class ResultActivity : BaseActivity() {
                             matiere = "Général",
                             divinite = "Zeus",
                             ethos = "Souveraineté",
-                            mood = mood
+                            mood = mood,
+                            divineRequestContext = oracleDivineContext
                         )
                     } else {
                         GeminiManager.genererContenuDepuisImages(
@@ -235,7 +242,8 @@ class ResultActivity : BaseActivity() {
                             matiere = "Général",
                             divinite = "Zeus",
                             ethos = "Souveraineté",
-                            mood = mood
+                            mood = mood,
+                            divineRequestContext = oracleDivineContext
                         )
                     }
 
@@ -344,6 +352,40 @@ class ResultActivity : BaseActivity() {
         return Pair(visual, tts)
     }
 
+    /**
+     * Noyau B2 — Contexte d'entrée pour l'invocation Oracle principale (FREE_TEXT_INPUT ou parchemins).
+     * La planification (persona, speechMode, hints) passe par [DivineResponseOrchestrator] ;
+     * l'injection prompt est assurée par [GeminiManager] sans changer le rendu écran.
+     */
+    private fun buildOracleMainInvokeDivineContext(
+        isFreeTextFlow: Boolean,
+        userAge: Int,
+        userClassLevel: String,
+        currentMood: String
+    ): DivineRequestContext {
+        val meta = mutableMapOf(
+            "oracle_flow" to if (isFreeTextFlow) "FREE_TEXT_INPUT" else "IMAGE_PAGES"
+        )
+        if (!isFreeTextFlow && imageBitmaps.isNotEmpty()) {
+            meta["page_count"] = imageBitmaps.size.toString()
+        }
+        return DivineRequestContext(
+            subject = null,
+            actionType = DivineActionType.SUMMARY_GENERATION,
+            screenSource = "oracle_ResultActivity_main_invoke",
+            userAge = userAge,
+            userClassLevel = userClassLevel,
+            currentMood = currentMood,
+            successState = null,
+            difficulty = null,
+            rawInput = if (isFreeTextFlow) freeTextInput else null,
+            validatedSummary = null,
+            questionText = null,
+            userAnswer = null,
+            correctAnswer = null,
+            metadata = meta
+        )
+    }
 
     private fun updateResultSummaryCard(matiere: String) {
         val god = GodManager.fromMatiere(matiere)

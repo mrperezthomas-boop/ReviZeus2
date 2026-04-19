@@ -898,8 +898,53 @@ class QuizResultActivity : BaseActivity() {
      * - Logique Arès (streak 3×95%)
      * - Animations typewriter
      * - Icônes et ressources
+     *
+     * B2 — Le dialogue GodTrigger passe par GeminiManager.generateDialog
+     * avec [DivineRequestContext] (verdict orchestré), sans changer GodTriggerEngine.
      * ═══════════════════════════════════════════════════════════════
      */
+    private fun buildGodTriggerVerdictDivineRequestContext(
+        matiere: String,
+        percentage: Int,
+        profile: UserProfile,
+        godTrigger: GodTriggerEngine.GodTrigger,
+        aresTriggered: Boolean
+    ): DivineRequestContext {
+        val ctxNote = godTrigger.contextNote.trim()
+        val raw = buildString {
+            append("score=${percentage}%")
+            if (ctxNote.isNotEmpty()) {
+                append(" · ")
+                append(ctxNote.take(380))
+            }
+        }
+        return DivineRequestContext(
+            subject = matiere,
+            actionType = DivineActionType.DIVINE_VERDICT,
+            screenSource = "quizresult_bloc4b_godtrigger",
+            userAge = profile.age,
+            userClassLevel = profile.classLevel,
+            currentMood = profile.mood,
+            successState = when {
+                percentage >= 75 -> true
+                percentage < 50 -> false
+                else -> null
+            },
+            difficulty = profile.level,
+            rawInput = raw,
+            validatedSummary = null,
+            questionText = null,
+            userAnswer = null,
+            correctAnswer = null,
+            metadata = mapOf(
+                "trigger_god" to godTrigger.godName,
+                "trigger_reason" to godTrigger.reason.take(160),
+                "trigger_priority" to godTrigger.priority.toString(),
+                "ares_streak_event" to aresTriggered.toString()
+            )
+        )
+    }
+
     private fun afficherVerdictDivin(
         score: Int,
         total: Int,
@@ -992,7 +1037,7 @@ class QuizResultActivity : BaseActivity() {
             }
 
             // ═══════════════════════════════════════════════════════════
-            // BLOC 4B — DIALOGUE 100% GÉNÉRÉ PAR GEMINI
+            // BLOC 4B — DIALOGUE GEMINI + NOYAU B2 (verdict GodTrigger)
             // ═══════════════════════════════════════════════════════════
 
             // Construire le prompt pour Gemini
@@ -1003,12 +1048,21 @@ class QuizResultActivity : BaseActivity() {
                 scorePercent = percentage
             )
 
-            // Générer le dialogue via Gemini
+            val verdictDivineCtx = buildGodTriggerVerdictDivineRequestContext(
+                matiere = matiere,
+                percentage = percentage,
+                profile = profile,
+                godTrigger = godTrigger,
+                aresTriggered = aresTriggered
+            )
+
+            // Générer le dialogue via Gemini (plan B2 injecté par GeminiManager)
             val godResponse = withContext(Dispatchers.IO) {
                 try {
                     GeminiManager.generateDialog(
                         prompt = geminiPrompt,
                         matiere = matiere,
+                        divineRequestContext = verdictDivineCtx,
                         adaptiveContextNote = null
                     )
                 } catch (e: Exception) {

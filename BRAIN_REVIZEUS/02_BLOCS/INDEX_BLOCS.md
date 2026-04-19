@@ -10,7 +10,6 @@ Index officiel des blocs de développement RéviZeus. Section du haut = état ci
 | Bloc | Intitulé | Statut | Fichier source |
 |------|----------|--------|----------------|
 | **A** | Stabilisation technique et socle transverse | ✅ Terminé | `A_TERMINE/REVIZEUS_BLOC_A_STABILISATION_TECHNIQUE_ET_SOCLE_TRANSVERSE.txt` |
-| **B2** | BLOC B2 — Personas Divines & Orchestration IA Multi-Dieux | 🔄 À faire — priorité architecture produit / dette préventive | `B_A_FAIRE/BLOC B2 — Personas Divines & Orchestration IA Multi-Dieux.txt` |
 | **B** | Dialogues RPG immersifs | 🔄 En cours | `B_A_FAIRE/BLOC_B_DIALOGUES_RPG.txt` |
 | **C** | Audio global / TTS / Ducking | 📋 À faire | `B_A_FAIRE/BLOC_C_AUDIO_GLOBAL.txt` |
 | **D** | Oracle Premium | 📋 À faire | `B_A_FAIRE/BLOC_D_ORACLE_PREMIUM.txt` |

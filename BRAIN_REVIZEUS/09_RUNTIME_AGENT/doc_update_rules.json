@@ -1,0 +1,26 @@
+{
+  "_tracking": {
+    "tag": "REVIZEUS_TRACKING",
+    "timestamp": "2026-04-20 00:10 Europe/Paris",
+    "objet": "Règles de proposition de mise à jour brain",
+    "contexte": "Ajout V2 fusionnée",
+    "auteur_logique": "ChatGPT",
+    "statut": "MERGED_V2"
+  },
+  "rules": [
+    {
+      "if_system": "Aventure / World / Temple",
+      "propose_docs": [
+        "03_SYSTEMES/DOC_UPDATE_RULES.md",
+        "04_JOURNAUX/CHANGE_LOG_OPERATIONNEL.md"
+      ]
+    },
+    {
+      "if_system": "IA adaptative joueur",
+      "propose_docs": [
+        "03_SYSTEMES/DOC_UPDATE_RULES.md",
+        "04_JOURNAUX/BRAIN_UPDATE_PROPOSALS.md"
+      ]
+    }
+  ]
+}

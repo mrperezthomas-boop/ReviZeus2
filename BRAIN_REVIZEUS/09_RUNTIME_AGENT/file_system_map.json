@@ -1,0 +1,36 @@
+{
+  "_tracking": {
+    "tag": "REVIZEUS_TRACKING",
+    "timestamp": "2026-04-20 00:10 Europe/Paris",
+    "objet": "Mapping fichier -> système",
+    "contexte": "Ajout V2 fusionnée",
+    "auteur_logique": "ChatGPT",
+    "statut": "MERGED_V2"
+  },
+  "mappings": [
+    {
+      "file": "WorldMapActivity",
+      "system": "Aventure / World / Temple"
+    },
+    {
+      "file": "MapTempleActivity",
+      "system": "Aventure / World / Temple"
+    },
+    {
+      "file": "TempleAdventureProgressManager",
+      "system": "Aventure / World / Temple"
+    },
+    {
+      "file": "AdaptiveDialogueEngine",
+      "system": "IA adaptative joueur"
+    },
+    {
+      "file": "GodPersonalityEngine",
+      "system": "Dieux / personnalités / relations"
+    },
+    {
+      "file": "QuizRewardManager",
+      "system": "Inventaire / Forge / Rewards"
+    }
+  ]
+}
