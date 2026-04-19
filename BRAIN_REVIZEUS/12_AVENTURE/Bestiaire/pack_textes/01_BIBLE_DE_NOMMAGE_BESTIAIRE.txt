@@ -1,0 +1,43 @@
+BIBLE DE NOMMAGE — BESTIAIRE RÉVIZEUS
+====================================
+
+Objectif
+--------
+Créer des noms forts, distincts, réutilisables en interface, en encyclopédie et en dialogue RPG.
+
+Formules recommandées
+---------------------
+- [Concept scolaire] + [créature mythique]
+- [État mental] + [animal / monstre]
+- [Pouvoir du dieu] + [forme vivante]
+- [Erreur / mémoire / savoir] + [suffixe épique]
+- [Mot simple mémorable] + [touche divine]
+
+Exemples de familles de vocabulaire
+-----------------------------------
+- Zeus : foudre, orage, tonnerre, éclair, verdict, ciel, impulsion, charge
+- Athéna : sagesse, plume, parchemin, énigme, grammaire, logique, hibou, sentence
+- Poséidon : marée, perle, écume, courant, abysses, corail, mémoire fluide
+- Arès : choc, rage, assaut, bannière, faille, impact, duel, tambour de guerre
+- Déméter : graine, racine, lierre, récolte, jardin, pousse, mémoire vivante
+- Héphaïstos : braise, forge, enclume, métal, rivet, étincelle, vapeur, mécanisme
+- Hermès : vitesse, plume, messager, ruse, virage, élan, relais, trajet
+- Aphrodite : charme, cœur, pétale, éclat, douceur piquante, illusion tendre
+- Apollon : rayon, lyre, halo, accord, note, soleil, résonance, clarté
+- Prométhée : flamme, idée, étincelle, éveil, invention, ascension, transgression
+
+Règles de qualité
+-----------------
+- Le nom doit être mémorisable à l'oral.
+- Il doit pouvoir tenir dans une interface mobile.
+- Il doit sonner comme une vraie entrée de bestiaire.
+- Il doit suggérer visuellement la créature.
+- Il doit, si possible, évoquer soit le dieu, soit un défaut/qualité lié à l'apprentissage.
+
+Astuce de fabrication
+---------------------
+Créer pour chaque monstre :
+- 1 nom principal très fort
+- 1 surnom plus léger ou drôle
+- 1 description de 1 phrase pour la liste du bestiaire
+- 1 description longue pour la fiche détaillée

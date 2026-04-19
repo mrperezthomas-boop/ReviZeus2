@@ -1,0 +1,11 @@
+{
+  "GodMatiereActivity": {"bloc": "BLOC_B", "zone": "RPG_DIALOG", "systeme": "Dialogues immersifs hub matière"},
+  "DialogRPGManager": {"bloc": "BLOC_B", "zone": "RPG_DIALOG", "systeme": "Orchestration dialogues RPG"},
+  "GodSpeechAnimator": {"bloc": "BLOC_B", "zone": "RPG_DIALOG", "systeme": "Typewriter et animation de parole divine"},
+  "TempleNodeEncounterActivity": {"bloc": "AVENTURE", "zone": "COMBAT", "systeme": "Combat QCM-RPG aventure"},
+  "MapTempleActivity": {"bloc": "AVENTURE", "zone": "MAP", "systeme": "Carte temple aventure"},
+  "WorldMapActivity": {"bloc": "AVENTURE", "zone": "WORLD_MAP", "systeme": "Carte monde aventure"},
+  "PantheonConfig": {"bloc": "CORE", "zone": "PANTHEON", "systeme": "Mapping dieux et matières"},
+  "GeminiManager": {"bloc": "CORE", "zone": "AI", "systeme": "Intelligence générative et séparation contenu/habillage"},
+  "DashboardActivity": {"bloc": "CORE_LOOP", "zone": "DASHBOARD", "systeme": "Boucle centrale et navigation"}
+}

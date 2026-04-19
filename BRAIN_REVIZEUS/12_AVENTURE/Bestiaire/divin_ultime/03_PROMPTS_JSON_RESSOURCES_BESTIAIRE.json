@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "project": "ReviZeus",
+    "pack": "Bestiaire Divin Ultime",
+    "orientation": "portrait plein ecran",
+    "style_global": "livre sacré grec premium, fantasy lumineuse, mobile RPG haut de gamme, lisible, chaleureux, décor divin"
+  },
+  "resources": [
+    {
+      "resource_name": "bg_bestiaire_sacred_book",
+      "resource_type": "background",
+      "goal": "Créer le fond principal du Bestiaire Divin, donnant l’impression d’ouvrir un livre sacré grec premium.",
+      "connections": [
+        "BestiaryActivity",
+        "BestiaryFragment",
+        "écran liste",
+        "écran fiche",
+        "écran progression"
+      ],
+      "prompt": "Ancient sacred open book background, Greek mythology premium mobile RPG, warm parchment and divine gold, subtle magical symbols, soft sacred light, elegant and readable, luxurious fantasy codex feeling, portrait orientation, not cluttered, premium UI background"
+    },
+    {
+      "resource_name": "bg_bestiaire_page",
+      "resource_type": "ui_panel",
+      "goal": "Créer la page interne où sont affichées les informations détaillées du monstre.",
+      "connections": [
+        "fiche monstre",
+        "lore",
+        "stats",
+        "drops",
+        "historique"
+      ],
+      "prompt": "Sacred codex page panel, premium parchment page with refined Greek gold borders, soft glow, elegant fantasy book interior, readable and clean, portrait mobile RPG UI"
+    },
+    {
+      "resource_name": "frame_monster_sacred",
+      "resource_type": "frame",
+      "goal": "Créer le cadre premium du portrait du monstre.",
+      "connections": [
+        "image monstre",
+        "overlay inconnu",
+        "animation reveal"
+      ],
+      "prompt": "Ornate Greek divine portrait frame, premium golden carved details, subtle sacred glow, elegant and readable mobile RPG UI frame, designed for monster portrait"
+    },
+    {
+      "resource_name": "overlay_monster_unknown_shadow",
+      "resource_type": "overlay",
+      "goal": "Masquer un monstre jamais battu avec une silhouette noire premium et mystérieuse.",
+      "connections": [
+        "liste bestiaire",
+        "fiche inconnue",
+        "grille collection"
+      ],
+      "prompt": "Premium mysterious creature shadow overlay, black silhouette with subtle mist and hidden divine particles, elegant unknown monster placeholder for mobile RPG codex, readable shape"
+    },
+    {
+      "resource_name": "fx_monster_reveal_gold",
+      "resource_type": "fx",
+      "goal": "Effet de révélation lorsqu’un monstre est vaincu pour la première fois ou qu’un nouvel élément est dévoilé.",
+      "connections": [
+        "fin de combat",
+        "bestiaire",
+        "reveal fiche"
+      ],
+      "prompt": "Golden divine reveal effect, sacred burst of light, elegant sparkles and soft magical energy, premium mobile RPG reveal animation style"
+    },
+    {
+      "resource_name": "divider_bestiary_greek",
+      "resource_type": "ui_divider",
+      "goal": "Séparer les sections d’une fiche dans le style du livre sacré.",
+      "connections": [
+        "identité",
+        "lore",
+        "drops",
+        "historique"
+      ],
+      "prompt": "Elegant Greek mythology divider, sacred gold ornament separator, premium codex UI decoration, clean and readable"
+    },
+    {
+      "resource_name": "icon_bestiary_locked",
+      "resource_type": "icon",
+      "goal": "Icône pour indiquer une donnée verrouillée ou inconnue.",
+      "connections": [
+        "infos ???",
+        "drops ???",
+        "taux ???"
+      ],
+      "prompt": "Premium mystery lock icon, Greek divine style, elegant hidden knowledge symbol, mobile RPG UI, readable at small size"
+    },
+    {
+      "resource_name": "seal_bestiary_completed",
+      "resource_type": "seal",
+      "goal": "Sceau de validation d’une fiche complétée à 100%.",
+      "connections": [
+        "fiche complétée",
+        "récompense de collection",
+        "progression globale"
+      ],
+      "prompt": "Sacred completion seal, divine Greek emblem, premium golden wax seal style with subtle glow, mobile RPG codex reward"
+    },
+    {
+      "resource_name": "bg_drop_unknown_slot",
+      "resource_type": "slot",
+      "goal": "Créer un slot premium pour les objets de drop encore inconnus.",
+      "connections": [
+        "liste de drops",
+        "fiche monstre",
+        "inventaire bestiaire"
+      ],
+      "prompt": "Premium unknown item slot, sacred codex UI, mysterious placeholder with question marks and divine frame, Greek fantasy mobile RPG"
+    },
+    {
+      "resource_name": "bg_bestiary_entry_card",
+      "resource_type": "card",
+      "goal": "Créer la carte d’entrée d’un monstre dans la liste ou la grille du bestiaire.",
+      "connections": [
+        "RecyclerView bestiaire",
+        "état connu/inconnu/complété"
+      ],
+      "prompt": "Premium bestiary entry card, sacred codex style, warm parchment and gold, elegant Greek mythology RPG UI, readable and collectible feeling"
+    },
+    {
+      "resource_name": "bg_bestiary_title_plaque",
+      "resource_type": "title_plaque",
+      "goal": "Créer la plaque de titre d’une fiche ou d’une section.",
+      "connections": [
+        "titre monstre",
+        "titre catégorie",
+        "filtres"
+      ],
+      "prompt": "Sacred title plaque, Greek mythology premium RPG UI, engraved divine gold nameplate on warm parchment, elegant and readable"
+    },
+    {
+      "resource_name": "ornament_corner_olympus",
+      "resource_type": "ornament",
+      "goal": "Créer les ornements d’angle du bestiaire.",
+      "connections": [
+        "pages",
+        "cadres",
+        "plaques",
+        "fonds"
+      ],
+      "prompt": "Greek Olympus corner ornament, premium sacred decorative UI asset, elegant golden flourish, mobile RPG codex style"
+    },
+    {
+      "resource_name": "icon_god_bestiary_template",
+      "resource_type": "icon_template",
+      "goal": "Créer un template d’icône de dieu pour marquer l’appartenance des monstres.",
+      "connections": [
+        "fiche",
+        "liste",
+        "filtres",
+        "tri par dieu"
+      ],
+      "prompt": "Premium divine god badge template, Greek mythology mobile RPG icon, sacred emblem style, readable at small size, collectible codex UI"
+    }
+  ],
+  "audio_prompts": [
+    {
+      "resource_name": "sfx_book_open",
+      "resource_type": "audio_sfx",
+      "goal": "Son d’ouverture du livre sacré.",
+      "connections": [
+        "entrée bestiaire",
+        "ouverture animation"
+      ],
+      "prompt": "Short magical book opening sound, parchment movement, soft divine breath, premium fantasy codex reveal, warm and satisfying"
+    },
+    {
+      "resource_name": "sfx_page_turn",
+      "resource_type": "audio_sfx",
+      "goal": "Son de changement de page.",
+      "connections": [
+        "swipe",
+        "navigation fiche",
+        "onglets style page"
+      ],
+      "prompt": "Gentle premium page turn sound, parchment texture, soft elegant fantasy codex feeling"
+    },
+    {
+      "resource_name": "sfx_mystery_locked",
+      "resource_type": "audio_sfx",
+      "goal": "Son de contenu verrouillé ou encore inconnu.",
+      "connections": [
+        "donnée verrouillée",
+        "drop inconnu",
+        "champ ???"
+      ],
+      "prompt": "Soft mysterious locked knowledge sound, subtle magical shimmer, premium fantasy UI feedback"
+    },
+    {
+      "resource_name": "sfx_reveal_divine",
+      "resource_type": "audio_sfx",
+      "goal": "Son de révélation d’un monstre ou d’une information importante.",
+      "connections": [
+        "première victoire",
+        "déverrouillage fiche",
+        "révélation monstre"
+      ],
+      "prompt": "Divine reveal sound, ascending magical chime, sacred golden light feeling, premium fantasy mobile RPG"
+    },
+    {
+      "resource_name": "sfx_item_reveal",
+      "resource_type": "audio_sfx",
+      "goal": "Son de découverte d’un drop pour la première fois.",
+      "connections": [
+        "fin de combat",
+        "bestiaire",
+        "popup drop"
+      ],
+      "prompt": "Short satisfying item reveal sound, magical sparkle, premium collectible discovery feedback"
+    },
+    {
+      "resource_name": "sfx_seal_completed",
+      "resource_type": "audio_sfx",
+      "goal": "Son de validation d’une fiche complétée.",
+      "connections": [
+        "fiche 100%",
+        "récompense de collection"
+      ],
+      "prompt": "Prestigious completion seal sound, sacred confirmation, premium codex achievement feedback"
+    }
+  ]
+}

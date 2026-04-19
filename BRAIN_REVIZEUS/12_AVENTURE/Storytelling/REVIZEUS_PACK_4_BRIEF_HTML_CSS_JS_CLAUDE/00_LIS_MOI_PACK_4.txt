@@ -1,0 +1,32 @@
+REVIZEUS — PACK 4
+BRIEF HTML / CSS / JS ULTRA PRÉCIS POUR CLAUDE
+
+But du pack :
+Ce pack sert à piloter Claude pour qu’il génère un site RéviZeus réellement premium, cohérent avec la DA du projet, lisible, responsive, immersif et réutilisable.
+
+Contenu du pack :
+- 01_BRIEF_MAITRE_TECHNIQUE_CLAUDE.txt
+- 02_ARCHITECTURE_GLOBALE_DU_SITE.txt
+- 03_STRUCTURE_PAGE_PAR_PAGE.txt
+- 04_UI_UX_SYSTEME_ET_DIRECTION_VISUELLE.txt
+- 05_REGLES_HTML_CSS_JS_A_RESPECTER.txt
+- 06_ANIMATIONS_MICRO_INTERACTIONS_ET_EFFETS.txt
+- 07_RESPONSIVE_ACCESSIBILITE_PERFORMANCES.txt
+- 08_GUIDE_IMAGES_ASSETS_ET_INTEGRATION_VISUELLE.txt
+- 09_COPYWRITING_CTA_TITRES_ET_HOOKS.txt
+- 10_PROMPTS_CLAUDE_PAR_PHASE_DE_TRAVAIL.txt
+- 11_ANTI_DERIVE_ANTI_SITE_GENERIQUE.txt
+- 12_CHECKLIST_FINALE_AVANT_VALIDATION.txt
+- 13_PLAN_DE_DOSSIERS_ET_NOMMAGE_PROPRE.txt
+- 14_EXEMPLE_DEMANDES_A_ENVOYER_A_CLAUDE.txt
+
+Mode d’utilisation recommandé :
+1. Commencer par transmettre 01 + 11 à Claude.
+2. Ensuite transmettre 02 + 03 + 04.
+3. Puis transmettre 05 + 06 + 07.
+4. Ensuite transmettre 08 + 09.
+5. Enfin utiliser 10 et 14 pour faire générer le site phase par phase.
+6. Terminer avec 12 pour l’audit final.
+
+Objectif :
+Obtenir un site HTML/CSS/JS premium RéviZeus qui ne ressemble ni à un site scolaire fade, ni à un SaaS IA générique, ni à une landing page enfantine.

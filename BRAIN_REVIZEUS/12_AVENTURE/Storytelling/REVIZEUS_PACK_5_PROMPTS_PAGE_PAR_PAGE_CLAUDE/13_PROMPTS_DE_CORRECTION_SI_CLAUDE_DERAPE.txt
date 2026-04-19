@@ -1,0 +1,19 @@
+PROMPTS DE CORRECTION SI CLAUDE DÉRIVE
+
+CAS 1 — Le rendu devient trop générique
+Reprends toute la page en renforçant fortement l'identité RéviZeus. Le rendu actuel est trop générique, trop startup standard. Je veux davantage de mythologie grecque moderne, davantage de profondeur premium, davantage de singularité visuelle, tout en gardant une excellente lisibilité.
+
+CAS 2 — Le rendu devient trop chargé
+Allège visuellement la page sans perdre son identité. Je veux plus d'air, plus de hiérarchie, plus de respiration, moins de surcharge. Le site doit rester spectaculaire mais lisible.
+
+CAS 3 — Le rendu devient trop enfantin
+Réhausse le niveau de sophistication du design et du ton. RéviZeus doit rester accessible, mais ne doit jamais paraître puéril. Je veux un rendu plus noble, plus premium, plus crédible.
+
+CAS 4 — Le texte manque d'impact
+Réécris tout le contenu de la page avec une plume plus forte, plus mémorable, plus premium, tout en restant claire, accessible et structurée.
+
+CAS 5 — Le mobile est mauvais
+Refais toute la logique responsive de la page pour qu'elle soit excellente sur smartphone. Je veux une vraie expérience mobile premium, pas une simple réduction du desktop.
+
+CAS 6 — Le code est brouillon
+Réorganise tout le code proprement. Je veux une structure HTML claire, un CSS lisible, un JS simple et bien cadré, avec commentaires utiles.

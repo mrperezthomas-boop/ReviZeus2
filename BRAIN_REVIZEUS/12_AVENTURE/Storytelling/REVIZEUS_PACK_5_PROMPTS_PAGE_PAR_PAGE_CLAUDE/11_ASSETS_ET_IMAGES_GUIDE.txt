@@ -1,0 +1,34 @@
+GUIDE ASSETS ET IMAGES — PACK 5
+
+Convention de nommage conseillée :
+- hero-main-revizeus.webp
+- hero-portal-olympus.webp
+- section-universe-chaos.webp
+- section-pantheon-gods.webp
+- god-zeus-card.webp
+- god-athena-card.webp
+- god-hermes-card.webp
+- page-adventure-worldmap.webp
+- page-features-oracle.webp
+- page-features-quiz.webp
+- page-students-benefits.webp
+- page-parents-trust.webp
+- page-investors-vision.webp
+- faq-support-visual.webp
+- demo-mobile-mockup.webp
+- bg-marble-night.webp
+- bg-celestial-gold.webp
+- divider-greek-gold.webp
+
+Ratios utiles :
+- hero panoramique : 16:9 ou très large
+- carte de dieu : 4:5 ou 3:4
+- mockup produit : 9:16 ou 4:5
+- background de section : très large horizontal
+- bloc vision / investisseur : 16:9 noble et respirant
+
+Conseils :
+- préférer peu d'images mais fortes
+- garder une cohérence colorimétrique
+- éviter les images trop chargées
+- chaque image doit soutenir une idée précise

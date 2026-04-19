@@ -1,0 +1,77 @@
+
+ORDRE MAÎTRE POUR CLAUDE — INTÉGRER LE STORYTELLING DANS LE SITE
+
+Tu crées un site HTML premium pour RéviZeus.
+
+Je vais te fournir un ensemble de storytelling très longs :
+- histoire de la création de l’application
+- lore du monde
+- dieux du savoir
+- temples
+- mode aventure
+- Chaos
+- bestiaire
+- ressources
+- vision
+
+Ta mission :
+transformer ces textes en site web ultra professionnel, lisible, immersif et accessible.
+
+RÈGLES ABSOLUES
+- Ne pas coller de gros pavés bruts partout.
+- Transformer les longs textes en sections éditoriales premium.
+- Alterner blocs courts, citations, cartes, visuels, encadrés et grandes sections narratives.
+- Garder un ton noble, inspirant et accessible.
+- Ajouter une très légère pointe d’humour quand cela sert l’identité.
+- Conserver une lisibilité parfaite.
+- Le site doit évoquer une grande marque jeu + éducation + IA.
+
+OBJECTIF
+Quand on visite le site, on doit comprendre immédiatement :
+- RéviZeus a un univers fort
+- RéviZeus a une vraie vision
+- RéviZeus est plus qu’une app scolaire
+- RéviZeus est premium, ambitieux, immersif et utile
+
+DIRECTION GRAPHIQUE
+- mythologie grecque moderne
+- fantasy lumineuse
+- bleu nuit, or, blanc, accents électriques
+- marbre stylisé
+- halos et particules subtils
+- cartes premium
+- profondeur et hiérarchie visuelle forte
+
+STRUCTURE
+Crée les pages suivantes :
+- Accueil
+- Histoire
+- Univers
+- Dieux
+- Temples
+- Aventure
+- Chaos
+- Vision / Contact
+
+Dans chaque page :
+- un hero de page
+- des sections bien titrées
+- des textes reformulés de façon éditoriale
+- des citations fortes
+- des encadrés synthétiques
+- des emplacements d’images nommés clairement
+
+IMPORTANT
+Le rendu ne doit jamais ressembler à :
+- un wiki brut
+- un blog scolaire
+- une page startup IA générique
+- un site enfantin
+
+Le résultat doit être :
+- premium
+- clair
+- spectaculaire
+- crédible
+- vendeur
+- mémorable

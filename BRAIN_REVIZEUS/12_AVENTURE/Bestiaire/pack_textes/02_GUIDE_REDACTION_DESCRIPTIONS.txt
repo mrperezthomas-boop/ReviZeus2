@@ -1,0 +1,35 @@
+GUIDE DE RÉDACTION — DESCRIPTION COMPLÈTE DES MONSTRES
+=====================================================
+
+Format conseillé
+----------------
+Description courte :
+Une phrase claire, mythologique, immédiatement compréhensible.
+
+Description longue :
+- Apparence générale
+- Énergie dégagée
+- Manière d'attaquer ou d'agir
+- Lien avec le dieu ou la matière
+- Clin d'œil scolaire ou lié à la mémoire
+- Pointe d'humour possible
+
+Exemple de ton
+--------------
+"Petit mais insupportablement rapide, ce rejeton d'Hermès traverse les pensées comme un devoir oublié cinq minutes avant le contrôle."
+
+Points à renseigner pour chaque monstre
+---------------------------------------
+- Fonction en combat
+- Lecture visuelle immédiate
+- Signature sonore ou d'ambiance éventuelle
+- Type d'humour possible
+- Dangerosité perçue
+- Rapport avec l'effort, l'erreur, la réussite, la mémoire ou la matière scolaire
+
+À éviter
+--------
+- Le pur random sans lien avec RéviZeus
+- Les noms génériques sans identité
+- Les descriptions trop longues sans information utile
+- Les blagues qui cassent totalement le ton sacré / RPG

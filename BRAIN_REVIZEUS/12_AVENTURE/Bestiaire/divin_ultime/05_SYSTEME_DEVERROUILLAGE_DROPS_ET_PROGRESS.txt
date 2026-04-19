@@ -1,0 +1,34 @@
+SYSTÈME DE DÉVERROUILLAGE, DROPS ET PROGRESSION
+
+1. Détection monstre connu / inconnu
+Un monstre reste inconnu tant que le héros/héroïne ne l’a pas battu au moins une fois.
+
+2. Dévoilement progressif
+- Jamais battu : tout masqué
+- Battu une fois : fiche de base révélée
+- Drops encore jamais obtenus : restent en ???
+- Taux de drop : affichés seulement après obtention réelle de l’objet sur ce monstre
+
+3. Vision par héros/héroïne
+La progression encyclopédique devrait idéalement être stockée par héros/héroïne pour respecter la logique RéviZeus de progression personnelle.
+
+4. Conditions de complétion fiche
+Une fiche peut être considérée 100 % lorsque :
+- monstre vaincu au moins une fois
+- toutes les infos principales visibles
+- tous les drops du monstre ont été obtenus au moins une fois
+- les taux associés sont donc connus
+
+5. Indicateurs globaux
+Prévoir :
+- Monstres découverts X / total
+- Boss vaincus X / total
+- Drops connus X / total
+- Fiches complètes X / total
+
+6. UX de récompense
+À chaque nouvelle découverte importante :
+- son dédié
+- petit reveal
+- mise à jour visible du codex
+- sensation de progression premium

@@ -1,0 +1,118 @@
+TU VAS CRÉER LE SITE WEB HTML PREMIUM DE RÉVIZEUS.
+
+OBJECTIF
+Je veux un site web ultra professionnel, immersif, clair, premium et mémorable pour RéviZeus.
+Le site doit présenter RéviZeus comme :
+- une expérience de révision mythologique intelligente,
+- une application éducative premium,
+- un univers narratif fort,
+- un projet ambitieux à la croisée du jeu vidéo, de l’éducation et de l’IA.
+
+LIGNE DIRECTRICE
+RéviZeus = la révision scolaire transformée en aventure mythologique intelligente.
+
+LE SITE DOIT FAIRE RESSENTIR
+- la puissance d’une grande marque
+- la beauté d’un univers cohérent
+- la clarté d’un produit compréhensible
+- l’envie de tester
+- la confiance
+- une accessibilité réelle
+- une légère pointe d’humour sans casser le prestige
+
+LE SITE NE DOIT PAS RESSEMBLER À
+- un site scolaire triste
+- un SaaS générique sans âme
+- un site enfantin
+- un site fantasy brouillon
+- une présentation confuse
+- un pitch vide
+
+STYLE VISUEL
+Je veux un mélange de :
+- mythologie grecque moderne
+- fantasy lumineuse
+- site de jeu vidéo premium
+- landing page startup haut de gamme
+- technologie élégante et discrète
+- design accessible, lisible, responsive
+
+PALETTE SUGGÉRÉE
+- bleu nuit profond
+- noir cosmique
+- or divin
+- blanc lumineux
+- bleu électrique
+- touches ponctuelles turquoise, magenta ou ambre selon les sections
+
+MATIÈRES ET DIEUX
+- Zeus = mathématiques
+- Athéna = français
+- Hermès = langues
+- Arès = histoire
+- Aphrodite = art / création
+- Poséidon = sciences du vivant / nature
+- Déméter = mémoire / culture / croissance
+- Héphaïstos = forge / méthode / fabrication
+- Prométhée = feu du savoir / étincelle intellectuelle
+- Apollon = harmonie / voix / expression / musicalité
+- Chaos = force de l’oubli, de la confusion, de la dispersion
+
+TON DU SITE
+- inspirant
+- premium
+- accessible
+- clair
+- ambitieux
+- parfois légèrement drôle
+- jamais lourd
+- jamais trop commercial
+- jamais trop pompeux
+
+STRUCTURE DEMANDÉE
+Crée un site avec :
+- une page d’accueil spectaculaire
+- une page “Notre histoire”
+- une page “Univers RéviZeus”
+- une page “Panthéon du savoir”
+- une page “Mode aventure”
+- une page “Temples et évolutions”
+- une page “Chaos et bestiaire”
+- une page “Technologie et IA”
+- une page “Pour élèves et parents”
+- une page “Contact / Démo / Tester”
+
+CONTRAINTE IMPORTANTE
+Chaque page doit :
+- être lisible
+- avoir une vraie hiérarchie
+- valoriser le texte sans blocs lourds
+- prévoir des visuels forts
+- proposer des CTA pertinents
+- garder une cohérence de marque totale
+
+HUMOUR ATTENDU
+Humour fin, rare, maîtrisé, par petites touches.
+Exemples d’esprit :
+- “Même Zeus aurait préféré réviser comme ça.”
+- “Le savoir méritait mieux qu’un PDF triste.”
+- “Les dieux ont enfin trouvé une utilité concrète.”
+- “Le chaos adore les élèves qui remettent tout à demain.”
+
+MÉTHODE DE TRAVAIL
+1. Commence par proposer l’arborescence détaillée du site.
+2. Puis propose la structure interne de chaque page.
+3. Ensuite rédige ou insère le contenu de chaque page.
+4. Ensuite génère le HTML/CSS/JS.
+5. Le rendu doit être responsive, premium et propre.
+6. Prévois des emplacements d’assets clairement nommés.
+
+IMPORTANT
+Le site doit convaincre à la fois :
+- un élève
+- un parent
+- un partenaire
+- un investisseur curieux
+- un visiteur qui découvre RéviZeus pour la première fois
+
+Je fournis ci-dessous des contenus page par page. Tu dois les respecter, les mettre en valeur, les organiser proprement et produire un résultat premium.

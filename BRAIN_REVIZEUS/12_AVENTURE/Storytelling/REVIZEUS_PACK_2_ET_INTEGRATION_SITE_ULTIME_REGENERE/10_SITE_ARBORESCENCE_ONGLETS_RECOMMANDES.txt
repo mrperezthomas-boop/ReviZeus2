@@ -1,0 +1,89 @@
+
+INTÉGRATION DANS LE SITE — ARBORESCENCE IDÉALE
+
+Objectif :
+mettre en valeur le storytelling RéviZeus sans noyer le visiteur.
+
+STRUCTURE RECOMMANDÉE DU SITE
+
+1. Accueil
+- Hero spectaculaire
+- Pitch court
+- Boutons : Découvrir l’univers / Explorer les dieux / Voir la vision / Demander une démo
+- Bandeau de phrases fortes
+
+2. Notre histoire
+- Histoire de la création de l’application
+- Vision fondatrice
+- Pourquoi RéviZeus existe
+- Frise narrative ou blocs immersifs
+
+3. Le monde de RéviZeus
+- Lore global
+- Le savoir comme force vivante
+- Le rôle des temples
+- Le rôle du Chaos
+- La place de l’élève
+
+4. Les dieux du savoir
+- Page index panthéon
+- Une carte ou galerie par dieu
+- Sous-pages dédiées à chaque dieu
+- Ton premium + visuels forts
+
+5. Les temples
+- Vision globale des temples
+- Évolution des temples
+- Avant / après
+- Mise en valeur matière par matière
+
+6. Le mode aventure
+- Explication du principe
+- Map monde
+- Progression
+- Zones du chaos
+- Comment apprendre transforme le monde
+
+7. Le bestiaire du chaos
+- Présentation du Chaos
+- Catégories de monstres
+- Vision symbolique des blocages
+- Galerie de créatures
+
+8. Ressources et progression
+- Éclats de savoir
+- Ambroisie
+- Fragments divins
+- Badges
+- Étoiles de maîtrise
+
+9. Pourquoi ça change la révision
+- Valeur pédagogique
+- Motivation
+- Progression visible
+- IA + immersion + rigueur
+
+10. Vision / Investisseurs / Partenaires
+- Ambition de marque
+- Scalabilité de l’univers
+- Force de différenciation
+- Contact
+
+ONGLETS MENU RECOMMANDÉS
+- Accueil
+- Histoire
+- Univers
+- Dieux
+- Temples
+- Aventure
+- Chaos
+- Vision
+
+Version menu plus commerciale
+- Accueil
+- Concept
+- Univers
+- Expérience
+- Panthéon
+- Aventure
+- Contact

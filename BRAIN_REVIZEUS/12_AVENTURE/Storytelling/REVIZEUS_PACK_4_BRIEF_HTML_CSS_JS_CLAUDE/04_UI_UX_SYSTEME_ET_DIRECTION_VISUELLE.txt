@@ -1,0 +1,84 @@
+UI / UX SYSTEME ET DIRECTION VISUELLE
+
+HIÉRARCHIE VISUELLE
+Le site doit avoir :
+- gros titres puissants
+- sous-titres lisibles
+- paragraphes aérés
+- cartes bien séparées
+- sections respirantes
+- très bonne profondeur visuelle
+
+COMPOSANTS PRINCIPAUX À PRÉVOIR
+- header sticky transparent puis légèrement opaque au scroll
+- hero section immersive
+- section title block
+- divine card
+- feature card
+- storytelling block
+- deity card
+- mockup frame
+- CTA banner
+- premium footer
+- modal légère pour détails si besoin
+- gallery grid
+- stat cards
+- timeline / progression blocks
+
+STYLE DES CARTES
+Cartes premium, jamais plates.
+Recommandations :
+- fond translucide ou sombre
+- contour gold subtil
+- léger blur si cohérent
+- ombre élégante
+- coins arrondis premium
+- micro glow au hover
+- contenu bien hiérarchisé
+
+BOUTONS
+Deux niveaux minimum :
+1. bouton principal :
+- fond lumineux ou gold / bleu premium
+- contraste fort
+- label très clair
+- hover premium
+2. bouton secondaire :
+- contour lumineux
+- sobre
+- classe
+
+TYPOGRAPHIE
+- titres nobles et mémorables
+- texte lisible et moderne
+- forte différence entre H1, H2, H3, body
+- ne pas utiliser des polices fantaisie illisibles
+
+ILLUSTRATIONS ET VISUELS
+Les visuels doivent :
+- servir l’explication
+- renforcer l’univers
+- ne pas noyer le texte
+- être disposés avec logique
+- fonctionner aussi en mobile
+
+MOUVEMENT VISUEL
+Le site doit sembler vivant mais pas surchargé.
+On cherche :
+- élégance
+- souffle
+- prestige
+- lisibilité
+- profondeur
+Pas :
+- vacarme visuel
+- pluie d’effets cheap
+- animation permanente agressive
+
+INTENTION UX
+Le visiteur doit sentir :
+- curiosité dès le hero
+- compréhension rapide du produit
+- envie de découvrir les sections
+- confiance dans le sérieux
+- impression de marque forte

@@ -1,0 +1,56 @@
+GUIDE IMAGES, ASSETS ET INTÉGRATION VISUELLE
+
+PRINCIPE
+Les images doivent renforcer le texte et non l’écraser.
+
+CATÉGORIES D’ASSETS À PRÉVOIR
+1. Hero images
+2. Visuels dieux
+3. Backgrounds de section
+4. Mockups d’application
+5. Visuels aventure / chaos / temples
+6. Objets / ressources / reliques
+7. Décors décoratifs
+8. Logos / icônes / séparateurs
+
+EMPLACEMENTS IMPORTANTS
+- hero principal accueil
+- hero univers
+- panthéon des dieux
+- mockup principal application
+- visuels temples / mode aventure
+- bloc IA / résumé / quiz
+- bloc vision de marque
+
+FORMAT DE RANGEMENT CONSEILLÉ
+assets/
+  img/
+    hero/
+    gods/
+    mockups/
+    lore/
+    backgrounds/
+    icons/
+    ui/
+  css/
+  js/
+
+LOGIQUE D’INTÉGRATION
+Chaque image doit avoir :
+- un rôle clair
+- une taille logique
+- une adaptation desktop/mobile
+- un fallback si besoin
+- un cadrage propre
+
+CONSEIL IMPORTANT
+Prévoir des blocs HTML qui acceptent facilement un remplacement d’image :
+- background-image sur section
+- image tags dans wrappers premium
+- cards avec thumbnail
+- galerie modulaire
+
+RÈGLE VISUELLE
+Une section importante = 1 image forte
+Une page premium = quelques images très bien placées
+Mieux vaut moins d’images mais plus fortes.

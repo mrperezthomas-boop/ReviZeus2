@@ -1,0 +1,36 @@
+PROMPT DE GÉNÉRATION — 01_HOME_LANDING — Page d'accueil / landing page principale
+
+En te basant sur le brief maître RéviZeus, génère la page Page d'accueil / landing page principale en HTML/CSS/JS complet.
+
+Ce que la page doit transmettre :
+- une sensation premium
+- une identité visuelle forte
+- une parfaite lisibilité
+- une cohérence avec l'univers RéviZeus
+- une structure claire et mémorable
+- une accessibilité réelle
+- une touche d'humour subtile
+
+Sections attendues :
+- Hero spectaculaire
+- Concept RéviZeus
+- Pourquoi c'est différent
+- Aperçu des dieux
+- Aperçu des fonctionnalités
+- CTA final fort
+
+Consignes :
+- code complet, pas de pseudo-code
+- pas de framework imposé
+- responsive
+- header et footer cohérents avec le reste du site
+- prévoir des emplacements d'images nommés clairement
+- sections commentées proprement
+- CTA visibles
+- classes lisibles
+- animations CSS/JS légères si pertinent
+- écriture premium, claire, inspirante
+- ne pas faire un rendu générique
+- éviter les longs pavés compacts : privilégier des blocs élégants, respirants et visuellement hiérarchisés
+
+Je veux le code complet de cette page, prêt à intégrer dans un site RéviZeus.

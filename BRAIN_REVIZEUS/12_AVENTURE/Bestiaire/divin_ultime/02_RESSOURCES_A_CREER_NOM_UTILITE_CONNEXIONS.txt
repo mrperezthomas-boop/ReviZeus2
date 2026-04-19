@@ -1,0 +1,149 @@
+RESSOURCES À CRÉER — NOM / UTILITÉ / CONNEXIONS
+
+1. bg_bestiaire_sacred_book
+Utilité :
+Background principal du Bestiaire Divin. Doit donner l’impression d’ouvrir un livre sacré.
+Connexions :
+- BestiaryActivity / BestiaryFragment racine
+- fond global des vues liste, grille et fiche
+- cohérence avec bg_rpg_dialog
+
+2. bg_bestiaire_page
+Utilité :
+Panneau/page interne contenant les informations d’une fiche monstre.
+Connexions :
+- conteneur principal de détail
+- zone texte descriptive
+- blocs stats et lore
+
+3. frame_monster_sacred
+Utilité :
+Cadre premium du portrait du monstre.
+Connexions :
+- image monstre révélée
+- overlay de silhouette inconnue
+- animation de révélation
+
+4. overlay_monster_unknown_shadow
+Utilité :
+Masque noir ou silhouette mystère pour monstre non vaincu.
+Connexions :
+- fiche monstre inconnue
+- liste / grille bestiaire
+- écran découverte partielle
+
+5. fx_monster_reveal_gold
+Utilité :
+Effet lumineux de révélation après première victoire.
+Connexions :
+- sortie de combat
+- déverrouillage de fiche
+- révélation d’objet drop
+
+6. divider_bestiary_greek
+Utilité :
+Séparateurs décoratifs entre sections du livre.
+Connexions :
+- sections identité / lore / drops / historique
+
+7. icon_bestiary_locked
+Utilité :
+Icône discrète contenu verrouillé.
+Connexions :
+- champs inconnus
+- drops non obtenus
+- taux cachés
+
+8. seal_bestiary_completed
+Utilité :
+Sceau premium affiché quand la fiche est complétée.
+Connexions :
+- fiche 100 %
+- progression collection
+- récompense visuelle
+
+9. tab_bestiary_filters
+Utilité :
+Éléments d’onglets / filtres du bestiaire.
+Connexions :
+- tri par dieu, type, découverte, rareté
+
+10. bg_drop_unknown_slot
+Utilité :
+Slot d’objet inconnu affiché en ???.
+Connexions :
+- liste de drops
+- détail monstre
+- comparaison drops obtenus / inconnus
+
+11. sfx_book_open
+Utilité :
+Son d’ouverture du livre sacré.
+Connexions :
+- entrée dans le bestiaire
+- ouverture animation
+
+12. sfx_page_turn
+Utilité :
+Son de changement de page.
+Connexions :
+- navigation entre fiches
+- swipe pages
+- changement d’onglet si stylisé comme page
+
+13. sfx_mystery_locked
+Utilité :
+Son léger de contenu verrouillé / caché.
+Connexions :
+- clic sur élément non révélé
+- tentative lecture info inconnue
+
+14. sfx_reveal_divine
+Utilité :
+Son de révélation de monstre ou de donnée.
+Connexions :
+- première victoire
+- révélation silhouette -> apparence
+- dévoilement complet d’une fiche
+
+15. sfx_item_reveal
+Utilité :
+Son satisfaisant de découverte de drop.
+Connexions :
+- fin de combat
+- bestiaire
+- popup de récompense
+
+16. sfx_seal_completed
+Utilité :
+Validation d’une fiche complète.
+Connexions :
+- lorsque tous les champs utiles + drops connus sont révélés
+
+17. bg_bestiary_entry_card
+Utilité :
+Carte de liste ou grille pour une entrée du bestiaire.
+Connexions :
+- RecyclerView bestiaire
+- état inconnu / connu / complété
+
+18. ornament_corner_olympus
+Utilité :
+Ornements d’angle du livre sacré.
+Connexions :
+- pages, cadres, entêtes
+
+19. icon_god_bestiary_[god]
+Utilité :
+Icône d’appartenance du monstre à un dieu / temple.
+Connexions :
+- filtre
+- fiche
+- carte liste
+
+20. bg_bestiary_title_plaque
+Utilité :
+Plaque décorative pour titre de page ou nom du monstre.
+Connexions :
+- haut de fiche
+- en-tête catégorie

@@ -1,0 +1,74 @@
+STRUCTURE FICHE MONSTRE — VERSION ULTIME
+
+Champ 01 — Identité
+- Nom
+- Titre
+- Dieu associé
+- Temple associé
+- Type
+- Rareté
+- Niveau recommandé
+
+Champ 02 — Apparence
+- Sprite combat
+- Icône map / bestiaire
+- Silhouette dominante
+- Couleurs dominantes
+- Aura
+- Trait marquant
+
+Champ 03 — Lien RéviZeus
+- Erreur scolaire incarnée
+- Difficulté associée
+- Matière liée
+- Habitude d’élève concernée
+- Conseil implicite de progression
+
+Champ 04 — Description courte
+Une phrase claire, amusante, liée à l’apprentissage.
+
+Champ 05 — Description longue
+Un petit paragraphe drôle, cohérent, utile pour un élève, avec éventuellement une remarque d’un dieu.
+
+Champ 06 — Gameplay
+- rôle
+- attaque principale
+- vitesse
+- portée
+- dangerosité
+- difficulté
+
+Champ 07 — Faiblesses
+- faiblesse principale
+- résistance
+- erreur typique du joueur face à ce monstre
+
+Champ 08 — Récompenses
+- XP
+- Fragments
+- Ambroisie
+- Drops
+- Taux visibles uniquement si déjà obtenus
+
+Champ 09 — Historique joueur
+- rencontres
+- victoires
+- défaites
+- première victoire
+- dernière rencontre
+- taux de réussite
+
+Champ 10 — État encyclopédique
+- inconnu
+- rencontré
+- vaincu
+- partiellement complété
+- complété 100 %
+
+Note éditoriale :
+Ne pas ajouter des détails gratuits ou absurdes.
+Tout détail doit servir :
+- l’univers RéviZeus
+- la progression joueur
+- l’identité gameplay
+- l’apprentissage

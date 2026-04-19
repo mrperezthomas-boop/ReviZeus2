@@ -1,0 +1,216 @@
+ORDRE MAÎTRE — BESTIAIRE DIVIN RÉVIZEUS (VERSION ULTIME)
+
+I. INTENTION GLOBALE
+Le Bestiaire Divin doit être conçu comme un grand livre sacré du savoir et des créatures de RéviZeus.
+Le joueur ne consulte pas une base de données. Il ouvre un codex vivant, prestigieux, mystérieux et amusant.
+L’encyclopédie doit récompenser :
+- la découverte
+- la victoire
+- la persévérance
+- la chasse aux drops
+- la progression intellectuelle
+
+II. DIRECTION ARTISTIQUE OBLIGATOIRE
+Le joueur doit avoir l’impression de lire un livre sacré.
+Toutes les ressources pour décorer le livre doivent être créées spécifiquement, y compris :
+- background général
+- pages
+- cadres
+- séparateurs
+- icônes décoratives
+- sceaux
+- overlays inconnus
+- effets de révélation
+- effets lumineux
+- sons d’ouverture, de page, de révélation et de verrouillage
+
+Rendu recherché :
+- mythologique
+- sacré
+- premium
+- lisible en portrait plein écran
+- chaleureux
+- lumineux
+- jamais cheap ni scolaire brut
+
+III. RÈGLE DE COHÉRENCE RÉVIZEUS
+Les détails des monstres ne doivent pas être farfelus.
+Ils doivent être liés au concept central de RéviZeus :
+- révision de cours
+- erreurs d’inattention
+- oublis
+- confusion
+- logique
+- mémoire
+- matières scolaires
+- progression et maîtrise
+
+Les autres détails inutiles n’ont pas à être mentionnés.
+Les descriptions doivent rester utiles, lisibles et cohérentes avec le gameplay éducatif.
+
+IV. TON DESCRIPTIF OBLIGATOIRE
+Les descriptions doivent être :
+- un peu drôles
+- adaptées à des élèves
+- avec humour léger, enfantin ou malicieux
+- avec petites blagues entre dieux quand c’est pertinent
+- jamais vulgaires
+- jamais trop sombres
+- jamais hors thème
+
+Exemples de ton autorisé :
+- “Ce monstre adore les réponses trop rapides. Athéna dit qu’il s’en nourrit presque.”
+- “Il flotte comme une mauvaise idée de dernière minute avant un contrôle.”
+- “Zeus affirme qu’il suffit de réfléchir. Le monstre n’est pas du même avis.”
+
+V. PRINCIPE DE DÉVERROUILLAGE
+1. Monstre jamais battu :
+- silhouette noire
+- nom masqué ou ??? 
+- apparence cachée
+- description masquée
+- données masquées
+- drops masqués
+- taux de drop masqués
+
+2. Monstre battu au moins une fois :
+- apparence révélée
+- nom révélé
+- fiche de base révélée
+- description visible
+- temple, type, rôle, lien scolaire visibles
+
+3. Drops :
+- un objet laissé par ce monstre reste affiché en ??? tant que le joueur ne l’a jamais obtenu sur ce monstre
+- son pourcentage de drop reste aussi masqué
+- dès que cet objet a été drop au moins une fois par ce même monstre :
+  - nom objet révélé
+  - icône révélée
+  - taux révélé
+
+VI. STRUCTURE STANDARD D’UNE FICHE MONSTRE
+A. Identité
+- nom complet
+- titre ou surnom
+- dieu/temple associé
+- type : basique / élite / mini-boss / boss / boss ultime
+- rareté
+- niveau recommandé
+
+B. Apparence
+- illustration principale
+- version icône
+- version combat
+- silhouette
+- couleurs dominantes
+- effet/aura
+- particularité visuelle marquante
+
+C. Détails utiles liés à RéviZeus
+- erreur scolaire incarnée
+- difficulté d’apprentissage associée
+- matière ou logique concernée
+- style de question qui le représente
+- comportement face au joueur studieux ou inattentif
+
+D. Lore
+- description courte
+- description longue
+- lien avec le dieu
+- rôle dans le temple
+- blague ou remarque divine éventuelle
+
+E. Gameplay
+- rôle combat
+- style d’attaque
+- vitesse
+- portée
+- dangerosité
+- complexité
+- émotion provoquée chez le joueur
+
+F. Faiblesses et résistances
+- faiblesse principale
+- résistance
+- fenêtre d’ouverture
+- erreur typique du joueur contre lui
+
+G. Récompenses
+- XP
+- fragments
+- ambroisie éventuelle
+- objets dropables
+- taux de drop révélés seulement si déjà obtenus
+
+H. Historique joueur
+- nombre de rencontres
+- victoires
+- défaites
+- première victoire
+- dernière rencontre
+- meilleur résultat contre ce monstre
+- pourcentage de réussite
+
+I. État encyclopédique
+- inconnu
+- rencontré
+- vaincu
+- drops partiellement connus
+- fiche complétée à 100 %
+
+VII. COMPORTEMENT VISUEL DANS LE BESTIAIRE
+État inconnu :
+- carte sombre
+- silhouette noire
+- texte ??? 
+- son mystère léger
+
+État vaincu :
+- révélation visuelle
+- lumière dorée ou liée au dieu
+- bruit de codex magique
+- fiche lisible et gratifiante
+
+État complété :
+- sceau premium
+- halo léger
+- validation divine
+- sensation de collection accomplie
+
+VIII. ORGANISATION DE L’ENCYCLOPÉDIE
+Filtres recommandés :
+- par dieu
+- par temple
+- par type
+- par rareté
+- par état de découverte
+- par drops connus/inconnus
+- par progression personnelle
+
+Vues recommandées :
+- vue liste
+- vue grille collection
+- vue fiche détaillée
+- vue progression globale
+
+IX. INTÉGRATION RÉVIZEUS
+Nom recommandé :
+- Bestiaire Divin
+ou
+- Codex des Créatures
+
+Point d’entrée recommandé :
+- Dashboard
+- Bibliothèque / Codex
+- Temple
+- Salle spéciale du panthéon
+
+X. LIEN AVEC LE COMBAT
+Le combat doit renforcer la logique du bestiaire :
+- le monstre parle par la question au-dessus de lui
+- le dieu répond par les choix en dessous de lui
+- chaque victoire enrichit le bestiaire
+- chaque drop débloqué enrichit la fiche
+
+XI. RÈGLE D’OR
+Le bestiaire doit faire ressentir au joueur qu’il apprend, collectionne et triomphe à travers un livre sacré vivant.

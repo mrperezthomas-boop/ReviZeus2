@@ -1,0 +1,112 @@
+STRUCTURE PAGE PAR PAGE — SITE RÉVIZEUS
+
+1. ACCUEIL
+Sections recommandées :
+- Hero cinématique avec image forte
+- Titre fort
+- Sous-texte clair
+- CTA primaire + secondaire
+- Bandeau de crédibilité / arguments clés
+- Bloc “Réviser n’a jamais été censé être triste”
+- Aperçu du concept
+- Mise en avant des dieux
+- Mise en avant du mode aventure
+- Bloc sur l’IA
+- Aperçu des écrans
+- Témoignage narratif ou phrase forte
+- CTA final
+
+2. PAGE CONCEPT
+Objectif :
+faire comprendre immédiatement le produit.
+
+Sections :
+- Qu’est-ce que RéviZeus ?
+- Pourquoi le projet existe ?
+- Ce que RéviZeus change
+- Les piliers du concept :
+  * mythologie
+  * pédagogie
+  * progression
+  * IA
+  * immersion
+- Comparatif implicite avec révision classique
+- CTA découverte univers
+
+3. PAGE UNIVERS
+Sections :
+- grand hero narratif
+- texte sur le monde de RéviZeus
+- naissance du monde
+- place des temples
+- lumière / savoir / chaos
+- rôle de l’élève-héros
+- carte ou visuel de monde conseillé
+- phrase signature
+- CTA vers aventure
+
+4. PAGE DIEUX
+Sections :
+- introduction panthéon
+- grille ou cartes des dieux
+- une carte premium par dieu
+- ouverture de modal ou page détail
+- rôle scolaire / personnalité / valeur narrative
+- CTA vers l’aventure ou l’application
+
+5. PAGE AVENTURE
+Sections :
+- mode aventure expliqué
+- reconquête du monde
+- temples qui évoluent
+- monstres du chaos
+- progression par paliers
+- récompenses
+- histoire du Chaos
+- mockups ou visuels d’ambiance
+- CTA final
+
+6. PAGE INTELLIGENCE / IA
+Sections :
+- résumés intelligents
+- accompagnement divin
+- quiz
+- adaptation
+- aide à la compréhension
+- ton rassurant : l’IA aide, ne remplace pas
+- bloc pédagogique clair
+- CTA
+
+7. PAGE GALERIE
+Sections :
+- mockups
+- concepts d’écrans
+- visuels dieux
+- visuels temples
+- annotations légères
+- organisation propre par catégorie
+
+8. PAGE VISION
+Sections :
+- pourquoi RéviZeus est plus qu’une app
+- ambition marque / univers / licence
+- avenir du projet
+- potentiel éducatif / visuel / émotionnel
+- CTA contact
+
+9. PAGE CONTACT
+Sections :
+- formulaire clair
+- texte d’accroche premium
+- contact pro
+- CTA secondaire
+- mini bloc rappelant la promesse RéviZeus
+
+RÈGLE GLOBALE
+Chaque page doit :
+- avoir un hero clair
+- un objectif lisible
+- 1 à 3 visuels majeurs
+- un CTA principal
+- un rythme visuel respirant
+- un mélange équilibré entre texte fort et imagerie

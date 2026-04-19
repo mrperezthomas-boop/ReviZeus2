@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-04-18 04:43",
+  "source": "manual",
+  "activity": {
+    "branch": "main",
+    "commits": [
+      {
+        "hash": "809847b81d87f03ff15a60bf11c5c568c5372b43",
+        "date": "2026-04-18 03:56:11 +0200",
+        "subject": "feat: ajout BRAIN_REVIZEUS + agent auto-update"
+      },
+      {
+        "hash": "4703cdd09e79b505c1e7d02702f086d7b62cd9ad",
+        "date": "2026-04-17 16:23:14 +0200",
+        "subject": "docs: arbre de connaissance projet V1"
+      }
+    ],
+    "changed_files": [
+      "BRAIN_REVIZEUS/00_QUICK_START/README.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/02_BUILD_AND_TECH_STACK.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/03_DATA_AND_MANAGERS.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/04_UI_AND_NAVIGATION_MAP.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/07_GAME_SYSTEMS.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/08_AI_PROMPTS_LIBRARY.md",
+      "BRAIN_REVIZEUS/01_IA_DOCS/09_LORE_BIBLE_REVIZEUS.md",
+      "BRAIN_REVIZEUS/02_BLOCS/INDEX_BLOCS.md",
+      "BRAIN_REVIZEUS/04_LORE/BIBLE_MYTHOLOGIQUE.md",
+      "BRAIN_REVIZEUS/04_LORE/DIEUX_PERSONNALITES.md",
+      "BRAIN_REVIZEUS/06_CURSOR_SKILLS/CURSOR_SKILLS.md",
+      "build.gradle.kts"
+    ],
+    "last_commit": {
+      "hash": "809847b81d87f03ff15a60bf11c5c568c5372b43",
+      "date": "2026-04-18 03:56:11 +0200",
+      "subject": "feat: ajout BRAIN_REVIZEUS + agent auto-update"
+    }
+  },
+  "mapping": {
+    "mapped_files": [
+      {
+        "file": "BRAIN_REVIZEUS/00_QUICK_START/README.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/02_BUILD_AND_TECH_STACK.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/03_DATA_AND_MANAGERS.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/04_UI_AND_NAVIGATION_MAP.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/07_GAME_SYSTEMS.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/08_AI_PROMPTS_LIBRARY.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/01_IA_DOCS/09_LORE_BIBLE_REVIZEUS.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/02_BLOCS/INDEX_BLOCS.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/04_LORE/BIBLE_MYTHOLOGIQUE.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/04_LORE/DIEUX_PERSONNALITES.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "BRAIN_REVIZEUS/06_CURSOR_SKILLS/CURSOR_SKILLS.md",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      },
+      {
+        "file": "build.gradle.kts",
+        "bloc": "UNKNOWN",
+        "zone": "UNKNOWN",
+        "systeme": "Non cartographié"
+      }
+    ],
+    "detected_blocs": [
+      "UNKNOWN"
+    ],
+    "detected_systemes": [
+      "Non cartographié"
+    ]
+  },
+  "analysis": {
+    "diff_stat": "BRAIN_REVIZEUS/00_QUICK_START/README.md            |   196 +\n .../01_IA_DOCS/01_SYSTEM_PROMPT_ULTIME.txt         |   715 +\n .../01_IA_DOCS/02_BUILD_AND_TECH_STACK.md          |   262 +\n BRAIN_REVIZEUS/01_IA_DOCS/03_DATA_AND_MANAGERS.md  |   611 +\n .../01_IA_DOCS/04_UI_AND_NAVIGATION_MAP.md         |   327 +\n .../01_IA_DOCS/05_RESOURCE_MANIFEST.json           |  3278 +++\n BRAIN_REVIZEUS/01_IA_DOCS/07_GAME_SYSTEMS.md       |   788 +\n BRAIN_REVIZEUS/01_IA_DOCS/08_AI_PROMPTS_LIBRARY.md |   440 +\n .../01_IA_DOCS/09_LORE_BIBLE_REVIZEUS.md           |   448 +\n BRAIN_REVIZEUS/01_IA_DOCS/10_FUTURE_EVOLUTIONS.txt |   294 +\n ...STABILISATION_TECHNIQUE_ET_SOCLE_TRANSVERSE.txt |   453 +\n .../02_BLOCS/B_A_FAIRE/BLOC_B_DIALOGUES_RPG.txt    |   659 +\n .../02_BLOCS/B_A_FAIRE/BLOC_C_AUDIO_GLOBAL.txt     |   591 +\n .../02_BLOCS/B_A_FAIRE/BLOC_D_ORACLE_PREMIUM.txt   |   641 +\n .../02_BLOCS/B_A_FAIRE/BLOC_E_QUIZ_GENERATION.txt  |   611 +\n .../02_BLOCS/B_A_FAIRE/BLOC_F_RECOMPENSES.txt      |   607 +\n .../02_BLOCS/B_A_FAIRE/BLOC_G_FORGE_INVENTAIRE.txt |   731 +\n .../02_BLOCS/B_A_FAIRE/BLOC_H_TEMPLE_PROGRESS.txt  |   639 +\n .../02_BLOCS/B_A_FAIRE/BLOC_I_SAVOIRS_VIVANTS.txt  |   750 +\n .../B_A_FAIRE/BLOC_J_EXTENSIONS_DIVINES.txt        |   804 +\n .../02_BLOCS/B_A_FAIRE/BLOC_K_PROFILS_IA.txt       |   771 +\n .../02_BLOCS/B_A_FAIRE/BLOC_L_ANALYTICS.txt        |   859 +\n .../02_BLOCS/B_A_FAIRE/BLOC_M_RECOMMANDATIONS.txt  |   806 +\n .../02_BLOCS/B_A_FAIRE/BLOC_N_DASHBOARD.txt        |   783 +\n .../02_BLOCS/B_A_FAIRE/BLOC_O_RANGS_BADGES.txt     |   963 +\n .../02_BLOCS/B_A_FAIRE/BLOC_P_FINAL_ULTIME.txt     |  2312 +++\n .../02_BLOCS/B_A_FAIRE/BLOC_Q_LORE_CARTE.txt       |   908 +\n BRAIN_REVIZEUS/02_BLOCS/INDEX_BLOCS.md             |    86 +\n .../REVIZEUS_ETAT_CUMULATIF_DES_BLOCS_TERMINES.txt |   369 +\n .../revizeus_bestiaire_divin_ultime_pack.zip       |   Bin 0 -> 12655 bytes\n .../revizeus_bestiaire_pack_textes_ultime.zip      |   Bin 0 -> 39856 bytes\n .../Creatures/aphrodite_61_creatures.json          |   374 +\n .../Creatures/apollon_61_creatures.json            |   374 +\n .../03_AVENTURE/Creatures/ares_61_creatures.json   |   374 +\n .../03_AVENTURE/Creatures/athena_61_creatures.json |   374 +\n .../Creatures/demeter_61_creatures.json            |   374 +\n .../Creatures/hephaistos_61_creatures.json         |   374 +\n .../03_AVENTURE/Creatures/hermes_61_creatures.json |   374 +\n BRAIN_REVIZEUS/03_AVENTURE/Creatures/manifest.json |    12 +\n .../Creatures/poseidon_61_creatures.json           |   374 +\n .../Creatures/promethee_61_creatures.json          |   374 +\n .../03_AVENTURE/Creatures/zeus_61_creatures.json   |   374 +\n .../03_AVENTURE/REVIZEUS_ARCHITECTE_SUPREME.pdf    |   346 +\n .../REVIZEUS_ARCHITECTURE_AVENTURE_COMPLETE.pdf    |  1778 ++\n .../03_AVENTURE/REVIZEUS_PACKS_DIVINS_AVENTURE.pdf |  1053 +\n .../REVIZEUS_PACK_1_STORYTELLING_ULTIME.zip        |   Bin 0 -> 21247 bytes\n ..._PACK_2_ET_INTEGRATION_SITE_ULTIME_REGENERE.zip |   Bin 0 -> 23527 bytes\n .../REVIZEUS_PACK_3_SITE_ULTRA_OPERATIONNEL.zip    |   Bin 0 -> 25538 bytes\n .../REVIZEUS_PACK_4_BRIEF_HTML_CSS_JS_CLAUDE.zip   |   Bin 0 -> 14761 bytes\n ...EVIZEUS_PACK_5_PROMPTS_PAGE_PAR_PAGE_CLAUDE.zip |   Bin 0 -> 45051 bytes\n ...reees_discussion_backgrounds_aventure_REGEN.txt |   503 +\n ..._plan_maitre_mode_aventure_10_temples_chaos.pdf |   Bin 0 -> 160580 bytes\n BRAIN_REVIZEUS/04_LORE/BADGES_SUCCES.txt           |   283 +\n BRAIN_REVIZEUS/04_LORE/BIBLE_MYTHOLOGIQUE.md       |   448 +\n .../04_LORE/CINEMATIQUE_INTRO_PROMPTS.txt          |   215 +\n BRAIN_REVIZEUS/04_LORE/DIEUX_PERSONNALITES.md      |   208 +\n .../05_DIRECTION_ARTISTIQUE/DA_AUDIOVISUELLE.txt   |    34 +\n BRAIN_REVIZEUS/06_CURSOR_SKILLS/CURSOR_SKILLS.md   |   131 +\n BRAIN_REVIZEUS/06_CURSOR_SKILLS/rules/revizeus.mdc |    42 +\n ...toute les futurs mise a jours bloc par bloc.txt | 20805 +++++++++++++++++++\n BRAIN_REVIZEUS/07_ARCHIVES/Recapitulation v10.txt  |   543 +\n BRAIN_REVIZEUS/07_ARCHIVES/Recapitulation v9.txt   |  2137 ++\n brain_agent.py                                     |   436 +\n build.gradle.kts                                   |     4 +-\n gradle/wrapper/gradle-wrapper.properties           |     2 +-\n 65 files changed, 54419 insertions(+), 3 deletions(-)",
+    "key_behaviors": [
+      "Modifications détectées mais impact métier non déterminé automatiquement."
+    ],
+    "summary": "12 fichier(s) surveillé(s) modifié(s), 1 bloc(s) détecté(s)."
+  },
+  "rules": {
+    "status": "OK",
+    "checked_files": [
+      "build.gradle.kts"
+    ],
+    "warnings": []
+  }
+}

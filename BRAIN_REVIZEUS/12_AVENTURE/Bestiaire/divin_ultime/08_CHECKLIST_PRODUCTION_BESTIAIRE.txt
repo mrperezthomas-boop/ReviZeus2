@@ -1,0 +1,48 @@
+CHECKLIST PRODUCTION — BESTIAIRE DIVIN
+
+1. Ressources UI
+[ ] background principal créé
+[ ] page interne créée
+[ ] cadre portrait créé
+[ ] overlay inconnu créé
+[ ] séparateurs créés
+[ ] plaque de titre créée
+[ ] carte entrée créée
+[ ] sceau complétion créé
+[ ] slots drops inconnus créés
+[ ] icônes dieux bestiaire créées
+
+2. Ressources audio
+[ ] ouverture livre
+[ ] changement page
+[ ] contenu verrouillé
+[ ] révélation monstre
+[ ] révélation drop
+[ ] validation fiche complète
+
+3. Données
+[ ] modèle monstre statique
+[ ] modèle encyclopédie joueur/héros
+[ ] suivi victoires/défaites
+[ ] suivi drops obtenus
+[ ] statut fiche 100 %
+
+4. UI/UX
+[ ] écran liste
+[ ] écran fiche
+[ ] filtres
+[ ] progression globale
+[ ] reveal animé
+
+5. Combat
+[ ] question au-dessus du monstre
+[ ] réponses sous le dieu
+[ ] bg_rpg_dialog cohérent
+[ ] monstre droite face gauche
+[ ] dieu gauche
+
+6. Éditorial
+[ ] descriptions cohérentes RéviZeus
+[ ] humour scolaire
+[ ] petites blagues entre dieux
+[ ] aucun détail farfelu inutile

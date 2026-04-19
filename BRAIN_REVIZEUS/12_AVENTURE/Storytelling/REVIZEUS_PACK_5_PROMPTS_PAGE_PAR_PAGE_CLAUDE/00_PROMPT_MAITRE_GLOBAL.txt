@@ -1,0 +1,92 @@
+PROMPT MAÎTRE GLOBAL — SITE RÉVIZEUS
+
+Tu vas générer le site web HTML/CSS/JS de RéviZeus.
+
+Rappel produit :
+RéviZeus est une application / licence premium qui transforme la révision scolaire en aventure mythologique intelligente.
+Le projet fusionne :
+- apprentissage
+- RPG
+- mythologie grecque
+- progression
+- intelligence artificielle
+- humour subtil
+- design premium
+- accessibilité
+
+Positionnement :
+Le site doit ressembler à la rencontre entre :
+- une landing page startup haut de gamme
+- un univers de jeu vidéo premium
+- une marque éducative ambitieuse
+- une expérience visuelle mémorable mais lisible
+
+Interdictions :
+- ne pas faire un site générique de SaaS
+- ne pas faire un site scolaire triste
+- ne pas faire un site enfantin
+- ne pas faire un design vide ou cheap
+- ne pas faire une page surchargée
+- ne pas produire des sections plates sans identité
+
+Direction artistique :
+- fond bleu nuit / noir cosmique
+- or divin
+- bleu électrique
+- blanc lumineux
+- accents turquoise / magenta / ambre selon sections
+- halos subtils
+- particules discrètes
+- profondeur
+- marbre stylisé
+- mythologie grecque moderne
+- fantasy lumineuse
+- sensation de grandeur accessible
+
+Tonalité éditoriale :
+- claire
+- premium
+- inspirante
+- accessible
+- légèrement héroïque
+- avec humour léger et intelligent
+
+Objectif :
+Le visiteur doit immédiatement comprendre que RéviZeus est :
+- beau
+- sérieux
+- innovant
+- utile
+- immersif
+- ambitieux
+
+Contraintes techniques pour le site :
+- HTML/CSS/JS complet
+- responsive mobile / tablette / desktop
+- code propre
+- sections bien nommées
+- classes organisées
+- commentaires utiles dans le code
+- navigation claire
+- CTA visibles
+- bon contraste
+- bonnes performances
+- animations légères et propres
+- prévoir emplacements d’images nommés clairement
+- ne pas dépendre d’une librairie complexe si non nécessaire
+
+Structure globale recommandée :
+- Header
+- Hero
+- Concept
+- Univers
+- Dieux / matières
+- Fonctionnalités
+- Mode aventure
+- Bénéfices élèves
+- Bénéfices parents
+- Vision / investisseurs
+- FAQ / contact
+- Footer
+
+À partir de maintenant, quand je te demanderai une page, tu me rendras le fichier entier concerné, sans placeholders parasites inutiles, et avec une cohérence totale avec ce brief maître.

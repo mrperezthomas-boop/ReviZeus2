@@ -1,0 +1,72 @@
+
+INTÉGRATION DANS LE SITE — PAGES ET BLOCS RECOMMANDÉS
+
+PAGE ACCUEIL
+Bloc 1 : Hero
+Bloc 2 : phrase manifeste
+Bloc 3 : “Réviser, mais autrement”
+Bloc 4 : aperçu panthéon
+Bloc 5 : aperçu mode aventure
+Bloc 6 : aperçu IA / pédagogie
+Bloc 7 : CTA
+
+PAGE NOTRE HISTOIRE
+Bloc 1 : titre fort
+Bloc 2 : grande narration de création
+Bloc 3 : le problème du marché
+Bloc 4 : la réponse RéviZeus
+Bloc 5 : vision long terme
+
+PAGE UNIVERS
+Bloc 1 : intro du monde
+Bloc 2 : le savoir comme force vivante
+Bloc 3 : les temples
+Bloc 4 : le Chaos
+Bloc 5 : rôle de l’élève
+Bloc 6 : citation forte
+
+PAGE DIEUX
+Bloc 1 : panthéon global
+Bloc 2 : grille des dieux
+Bloc 3 : chaque dieu en focus
+Bloc 4 : phrase de personnalité / matière / fonction
+
+PAGE TEMPLES
+Bloc 1 : ce qu’est un temple
+Bloc 2 : galerie des temples
+Bloc 3 : logique d’évolution
+Bloc 4 : avant / après
+Bloc 5 : callout “chaque progrès reconstruit”
+
+PAGE AVENTURE
+Bloc 1 : carte du monde
+Bloc 2 : progression par paliers
+Bloc 3 : zones, ponts, sanctuaires
+Bloc 4 : interaction joueur / monde
+Bloc 5 : CTA immersion
+
+PAGE CHAOS
+Bloc 1 : présentation du Chaos
+Bloc 2 : bestiaire
+Bloc 3 : blocages symboliques
+Bloc 4 : pourquoi la clarté le combat
+Bloc 5 : galerie sombre premium
+
+PAGE VISION
+Bloc 1 : RéviZeus comme marque
+Bloc 2 : valeur éducative
+Bloc 3 : valeur émotionnelle et esthétique
+Bloc 4 : potentiel de licence / extension
+Bloc 5 : contact
+
+CONSEIL UX
+Ne jamais afficher des blocs trop compacts.
+Faire respirer.
+Varier :
+- sections sombres
+- sections lumineuses
+- citations
+- cartes
+- frises
+- visuels panoramiques
+- modules “focus”

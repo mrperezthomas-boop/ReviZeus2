@@ -1,0 +1,49 @@
+RÉVIZEUS — ORDRE MAÎTRE BESTIAIRE DIVIN ULTIME
+==================================================
+
+But du pack
+-----------
+Ce pack sert à nommer, décrire et documenter l'ensemble du bestiaire RéviZeus à partir des ressources déjà créées.
+
+Constat sur les fichiers reçus
+------------------------------
+- 10 panthéons détectés.
+- 62 créatures par dieu dans le pack complet.
+- Total réel détecté : 620 créatures.
+- Les archives fournies contiennent surtout des fichiers JSON de référence (noms de ressources, prompts, rôles partiels), pas les images binaires elles-mêmes.
+
+Structure recommandée pour chaque fiche monstre
+-----------------------------------------------
+1. Identifiant technique
+2. Nom final FR
+3. Surnom / variante courte
+4. Dieu / temple d'origine
+5. Type (sbire, brute, soutien, mini-boss, boss, boss ultime, spécial, etc.)
+6. Rôle de gameplay
+7. Description courte encyclopédique
+8. Description longue immersive
+9. Signature visuelle
+10. Comportement en combat
+11. Lien pédagogique implicite avec RéviZeus
+12. Ton humoristique / gimmick possible
+13. Taille apparente / poids symbolique / dangerosité
+14. Récompense, rareté, ou place dans le bestiaire
+15. Notes d'intégration futures
+
+Règles d'écriture
+-----------------
+- L'univers doit rester mythologique + scolaire + lisible pour des élèves.
+- L'humour peut être enfantin, taquin, divin, mais jamais incohérent avec RéviZeus.
+- Les détails doivent rester reliés à la révision, la mémoire, l'effort, les erreurs, la concentration, les matières scolaires ou les pouvoirs des dieux.
+- Éviter les descriptions totalement gratuites sans lien avec l'apprentissage.
+- Garder des noms mémorables, prononçables et distincts.
+
+Ce que contient ce ZIP
+----------------------
+- Un ordre maître
+- Une bible de nommage
+- Un guide de rédaction des descriptions
+- Un tableau global des 620 créatures
+- Un fichier de fiches pré-remplies à compléter
+- Un format de saisie réutilisable
+- Un backlog de détails utiles à compléter plus tard

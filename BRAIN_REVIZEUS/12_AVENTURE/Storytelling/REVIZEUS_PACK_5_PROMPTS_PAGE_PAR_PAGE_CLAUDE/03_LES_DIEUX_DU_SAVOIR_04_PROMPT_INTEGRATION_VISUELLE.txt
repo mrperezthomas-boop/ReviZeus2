@@ -1,0 +1,19 @@
+PROMPT D’INTÉGRATION VISUELLE — 03_LES_DIEUX_DU_SAVOIR — Page panthéon
+
+Je vais ajouter des images à la page Page panthéon.
+Réintègre la page en tenant compte d'assets image premium RéviZeus.
+
+Consignes :
+- créer des blocs image élégants
+- prévoir des noms de fichiers clairs
+- adapter les ratios d'images selon les sections
+- faire en sorte que les images enrichissent vraiment le storytelling
+- ne pas casser la lisibilité
+- sur mobile, repositionner intelligemment les visuels
+- prévoir éventuellement des overlays doux, cadres premium, halos légers ou profondeur
+- garder un poids visuel équilibré
+
+Format attendu :
+- HTML/CSS/JS complet mis à jour
+- commentaires utiles pour savoir où placer chaque image
+- noms de fichiers d'assets très explicites

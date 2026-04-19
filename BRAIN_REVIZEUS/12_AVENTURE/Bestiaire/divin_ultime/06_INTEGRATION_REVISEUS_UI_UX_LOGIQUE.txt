@@ -1,0 +1,40 @@
+INTÉGRATION RÉVIZEUS — UI / UX / LOGIQUE
+
+A. Positionnement combat
+- Monstre à droite, tourné vers la gauche
+- Dieu à gauche
+- Question affichée au-dessus du monstre, dans un bg_rpg_dialog
+- Réponses affichées sous le dieu, dans un bg_rpg_dialog
+
+B. Sens narratif
+Le monstre “parle” en posant la question.
+Le dieu “répond” par les choix proposés au joueur.
+Le quiz devient une joute de savoir.
+
+C. Écran Bestiaire
+Architecture recommandée :
+- BestiaryActivity ou fragment dédié
+- haut : titre + filtres
+- centre : liste/grille de monstres
+- clic entrée -> fiche détaillée
+- fond global : bg_bestiaire_sacred_book
+- panneaux internes : bg_bestiaire_page
+- portrait : frame_monster_sacred
+
+D. États visuels
+- inconnu : silhouette noire
+- connu : image révélée
+- complété : sceau premium
+
+E. Raccord au projet
+Connexions probables :
+- DashboardActivity : accès Bestiaire
+- Temple / mode aventure : mise à jour bestiaire après combat
+- Room : stockage état connu, victoires, défaites, drops révélés
+- DialogRPG / GodSpeechAnimator : éventuels textes narratifs de découverte
+- SoundManager : lecture sons du bestiaire
+
+F. Recommandation technique
+Prévoir deux niveaux de données :
+1. statique : définition du monstre
+2. dynamique : progression du joueur sur ce monstre

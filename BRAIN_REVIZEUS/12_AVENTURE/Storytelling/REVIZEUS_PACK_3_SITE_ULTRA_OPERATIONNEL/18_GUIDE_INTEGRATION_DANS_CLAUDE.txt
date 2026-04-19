@@ -1,0 +1,46 @@
+GUIDE D’INTÉGRATION DANS CLAUDE
+
+ÉTAPE 1
+Envoie à Claude :
+- 01_ORDRE_MAITRE_CLAUDE_SITE_COMPLET.txt
+- 15_GUIDE_VISUEL_ET_DIRECTION_ARTISTIQUE_SITE.txt
+- 02_ARBORESCENCE_ET_NAVIGATION_SITE.txt
+
+Demande :
+“Propose-moi l’architecture complète du site en respectant strictement ces documents.”
+
+ÉTAPE 2
+Envoie ensuite les contenus page par page :
+- 03 à 12
+
+Demande :
+“Intègre ces contenus dans la structure du site. Organise-les proprement, sans les rendre fades ni trop compacts.”
+
+ÉTAPE 3
+Envoie :
+- 16_PROMPTS_IMAGES_SITE_PAR_PAGE.txt
+- 17_PLAN_ASSETS_SITE_ET_NOMMAGE.txt
+
+Demande :
+“Prévois les emplacements exacts de ces visuels dans le HTML et nomme clairement les assets.”
+
+ÉTAPE 4
+Envoie :
+- 13_BLOCS_COURTS_REUTILISABLES_SITE.txt
+- 14_SEO_META_TITRES_DESCRIPTIONS.txt
+- 19_VERSION_ULTRA_COURTE_PAR_SECTION.txt
+- 20_FAQ_SITE_REVIZEUS.txt
+
+Demande :
+“Ajoute les CTA, les micro-textes, la FAQ, les métadonnées et les variantes courtes.”
+
+ÉTAPE 5
+Demande ensuite :
+“Génère maintenant le HTML/CSS/JS complet, responsive, premium, lisible, avec sections clairement séparées et commentaires internes propres.”
+
+CONSEIL
+Si Claude devient trop verbeux ou trop générique, rappelle-lui :
+- que RéviZeus n’est pas un site SaaS froid
+- qu’il faut garder l’âme mythologique
+- qu’il faut rester accessible
+- qu’il faut maintenir une hiérarchie visuelle forte

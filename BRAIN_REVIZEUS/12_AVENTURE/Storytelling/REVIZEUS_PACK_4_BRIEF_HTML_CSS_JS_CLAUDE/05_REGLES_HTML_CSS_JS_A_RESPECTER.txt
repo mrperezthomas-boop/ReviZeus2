@@ -1,0 +1,63 @@
+RÈGLES HTML / CSS / JS À RESPECTER
+
+HTML
+- structure sémantique claire
+- header, nav, main, section, article, footer
+- titres hiérarchisés correctement
+- sections identifiables
+- ancres propres
+- code lisible et bien organisé
+
+CSS
+- architecture claire
+- variables CSS pour couleurs / spacing / radius / shadows
+- classes réutilisables
+- design system cohérent
+- responsive natif
+- pas de bricolage incohérent par section
+
+JS
+- léger
+- utile
+- non invasif
+- animations au scroll raisonnables
+- navigation mobile propre
+- éventuels sliders ou tabs fluides
+- pas d’effets lourds inutiles
+
+RECOMMANDATION TECHNIQUE
+Claude doit produire :
+- soit 1 fichier HTML + 1 CSS + 1 JS
+- soit une petite structure multi-pages + assets propres
+- le tout facile à éditer manuellement
+
+CLASSES CONSEILLÉES
+- site-header
+- nav-links
+- hero-section
+- hero-content
+- section-shell
+- section-title
+- deity-grid
+- deity-card
+- feature-grid
+- feature-card
+- gallery-grid
+- cta-banner
+- site-footer
+
+À ÉVITER
+- inline styles partout
+- sections sans cohérence
+- CSS trop verbeux et désordonné
+- JS dépendant de bibliothèques inutiles
+- naming incohérent
+- 14 couleurs différentes sans logique
+
+OPTION SI CLAUDE GÉNÈRE DU PUR HTML/CSS/JS
+Lui demander :
+- code complet
+- fichiers entiers
+- commentaires utiles
+- structure réutilisable
+- sections faciles à déplacer

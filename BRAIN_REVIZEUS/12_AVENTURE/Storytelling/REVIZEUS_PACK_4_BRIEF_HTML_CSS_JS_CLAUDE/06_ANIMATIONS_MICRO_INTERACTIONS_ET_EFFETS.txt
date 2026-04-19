@@ -1,0 +1,40 @@
+ANIMATIONS, MICRO-INTERACTIONS ET EFFETS
+
+OBJECTIF
+Donner au site une sensation premium et vivante, sans tomber dans le gadget.
+
+EFFETS RECOMMANDÉS
+- apparition douce au scroll
+- légère montée des cartes au hover
+- glow discret sur boutons et CTA
+- soulignement élégant sur liens de navigation
+- parallaxe légère sur hero ou grands fonds
+- particules très subtiles sur certains arrière-plans
+- variation légère d’opacité / blur sur header au scroll
+
+EFFETS SPÉCIAUX À DOSE TRÈS MODÉRÉE
+- halo animé autour d’une image hero
+- scintillement très discret sur éléments divins
+- très légère rotation ou flottement de certains ornements
+- transitions fluides sur changement d’onglet / accordion / modal
+
+ANIMATIONS À ÉVITER
+- zoom agressif
+- effets de feu d’artifice
+- particules partout
+- clignotements gênants
+- carrousels trop rapides
+- mouvements excessifs
+- faux “effets gaming” cheap
+
+MICRO-INTERACTIONS RECOMMANDÉES
+- hover premium sur cartes des dieux
+- CTA avec légère lueur au survol
+- navigation active soulignée
+- icône menu mobile animée proprement
+- gallery item qui s’élève légèrement
+- modal qui apparaît en fondu et translation douce
+
+CADENCE
+Le site doit avoir du mouvement, mais toujours respirer.
+Mieux vaut trois bons effets élégants que quinze effets sans intention.

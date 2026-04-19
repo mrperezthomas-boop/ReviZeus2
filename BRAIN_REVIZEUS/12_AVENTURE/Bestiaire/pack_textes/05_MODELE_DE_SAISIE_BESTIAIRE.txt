@@ -1,0 +1,41 @@
+MODELE DE SAISIE REUTILISABLE
+============================
+
+Format TXT
+----------
+ID TECHNIQUE : ZEUS_01
+NOM FINAL FR :
+SURNOM :
+DESCRIPTION COURTE :
+DESCRIPTION LONGUE :
+TAILLE APPARENTE :
+POIDS SYMBOLIQUE :
+TEMPERAMENT :
+ROLE :
+LIEN PEDAGOGIQUE :
+HUMOUR POSSIBLE :
+NOTES :
+
+Format JSON
+-----------
+{
+  "id_technique": "ZEUS_01",
+  "god": "Zeus",
+  "resource_name_icon": "creature_zeus_1_icon",
+  "resource_name_combat": "creature_zeus_1_combat",
+  "nom_final_fr": "",
+  "surnom": "",
+  "description_courte": "",
+  "description_longue": "",
+  "details": {
+    "taille_apparente": "",
+    "poids_symbolique": "",
+    "temperament": "",
+    "signature_visuelle": "",
+    "signature_sonore": "",
+    "lien_pedagogique": "",
+    "humour_possible": "",
+    "rarete": "",
+    "notes_integration": ""
+  }
+}

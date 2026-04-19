@@ -1,0 +1,66 @@
+PLAN D’ASSETS ET NOMMAGE CONSEILLÉ
+
+DOSSIER ASSETS
+/assets/img/
+/assets/icons/
+/assets/bg/
+
+NOMS RECOMMANDÉS
+
+HERO
+- hero_revizeus_main.webp
+- hero_revizeus_portal.webp
+- mockup_revizeus_app.webp
+
+UNIVERS
+- world_revizeus_overview.webp
+- world_revizeus_map.webp
+- world_revizeus_reconstruction.webp
+
+PANTHEON
+- pantheon_revizeus_main.webp
+- god_zeus_site.webp
+- god_athena_site.webp
+- god_hermes_site.webp
+- god_ares_site.webp
+- god_aphrodite_site.webp
+- god_poseidon_site.webp
+- god_demeter_site.webp
+- god_hephaistos_site.webp
+- god_promethee_site.webp
+- god_apollon_site.webp
+- god_chaos_site.webp
+
+MODE AVENTURE
+- adventure_map_main.webp
+- adventure_progression_world.webp
+- adventure_temples_overview.webp
+
+TEMPLES
+- temple_zeus_evolution.webp
+- temple_athena_evolution.webp
+- temple_hermes_evolution.webp
+- temple_ares_evolution.webp
+- temple_aphrodite_evolution.webp
+- temple_poseidon_evolution.webp
+- temple_demeter_evolution.webp
+- temple_hephaistos_evolution.webp
+- temple_promethee_evolution.webp
+- temple_apollon_evolution.webp
+
+CHAOS ET BESTIAIRE
+- chaos_core.webp
+- bestiary_overview.webp
+- creature_forgetfulness.webp
+- creature_procrastination.webp
+- creature_confusion.webp
+- creature_overload.webp
+
+TECHNOLOGIE
+- ai_revizeus_visual.webp
+
+POUR TOUS
+- learners_accessibility.webp
+
+CONTACT
+- portal_demo_contact.webp

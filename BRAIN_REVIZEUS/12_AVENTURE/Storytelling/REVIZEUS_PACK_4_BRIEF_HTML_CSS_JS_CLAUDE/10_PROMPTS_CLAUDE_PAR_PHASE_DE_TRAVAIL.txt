@@ -1,0 +1,33 @@
+PROMPTS À DONNER À CLAUDE PAR PHASE
+
+PHASE 1 — CADRAGE
+Lis et mémorise la charte RéviZeus ci-dessous. Ensuite propose-moi l’architecture idéale d’un site HTML premium pour présenter RéviZeus, sans tomber dans un site scolaire fade ni dans une landing page startup générique.
+
+PHASE 2 — ARBORESCENCE
+Propose-moi l’arborescence détaillée du site RéviZeus : pages, sections, navigation, rôle de chaque page, CTA et logique de lecture.
+
+PHASE 3 — STRUCTURE VISUELLE
+Propose-moi la structure UX/UI complète du site RéviZeus : header, hero, sections, grilles, cartes, footer, responsive, hiérarchie visuelle, et logique des images.
+
+PHASE 4 — COPYWRITING
+Rédige-moi le contenu premium page par page du site RéviZeus, avec titres, sous-titres, paragraphes, accroches, CTA, et ton cohérent avec l’univers mythologique éducatif premium.
+
+PHASE 5 — GÉNÉRATION HTML/CSS/JS
+Génère-moi le code complet du site RéviZeus en HTML/CSS/JS, avec structure propre, responsive, animations légères, composants réutilisables, commentaires utiles et emplacements d’assets clairement nommés.
+
+PHASE 6 — OPTIMISATION
+Passe en revue le code généré et améliore :
+- lisibilité
+- responsive
+- cohérence visuelle
+- accessibilité
+- structure CSS
+- élégance des animations
+- crédibilité premium du rendu
+
+PHASE 7 — ANTI-GÉNÉRIQUE
+Audit le site et supprime tout ce qui ressemble à :
+- une landing page bootstrap basique
+- un SaaS IA froid
+- un site scolaire sans âme
+Remplace ces éléments par des solutions plus premium et plus cohérentes avec RéviZeus.

@@ -1,0 +1,1418 @@
+---
+document_id: IA_DOC_09_CARTOGRAPHIE
+type: mapping
+stability: stable
+truth_level: certain
+owner: brain_core
+criticality: P1
+version: 1.0
+last_updated: 2026-04-18
+sources:
+  - Brain_ReviZeus/03_SYSTEMES/CARTOGRAPHIE_MASTER.md
+  - Brain_ReviZeus/03_SYSTEMES/DOMAINES_OWNERS.md
+  - Brain_ReviZeus/09_RUNTIME_AGENT/revizeus_mapper_rules.json
+  - Brain_ReviZeus/03_SYSTEMES/PROJECT_TRUTH_MAP.md
+---
+
+# 09 — CARTOGRAPHIE MASTER RÉVIZEUS
+
+## Usage IA
+Référence officielle pour mapper un fichier réel à son **bloc produit, zone technique, système métier, criticité, owner logique**. À consulter avant tout prompt Cursor pour borner le périmètre d'intervention.
+
+---
+
+## SECTION A — Cartographie Master
+
+# CARTOGRAPHIE MASTER — RÉVIZEUS
+
+Dernière mise à jour : 2026-04-18
+Statut : Référence opérationnelle pour les agents, Cursor et la QA.
+
+## But
+Cette cartographie sert à relier rapidement **un fichier réel** à :
+- son bloc produit,
+- sa zone technique,
+- son système métier,
+- son niveau de criticité,
+- son owner logique.
+
+Elle existe pour éviter 3 dérives :
+- modifications sur le mauvais périmètre,
+- prompts Cursor trop larges,
+- mise à jour BRAIN imprécise ou vide.
+
+## Hiérarchie de vérité
+1. Code réel du repo
+2. Ressources réelles du repo
+3. `AGENTS.md`
+4. `Cursor/IA_DOCS/00_REVIZEUS_CONTEXT.md`
+5. `Cursor/IA_DOCS/03_CODE_MAP.md`
+6. Cette cartographie runtime
+
+## Blocs produits retenus
+- `BOOT` : lancement, title, menu, gate update
+- `AUTH` : compte, héros, onboarding identitaire
+- `CORE_LOOP` : mood, dashboard, settings, hub central
+- `BLOC_A` : socle transverse et stabilité technique
+- `BLOC_B` : dialogues RPG immersifs
+- `BLOC_B2` : personas divines et orchestration
+- `C_AUDIO` : audio, TTS, loading diégétique
+- `D_ORACLE` : capture, prompt, génération résumé
+- `E_QUIZ` : moteur quiz, entraînement, ultime, timer
+- `F_ECONOMIE` : XP, monnaies, fragments, rewards
+- `G_FORGE` : forge, inventaire, crafting
+- `H_AVENTURE` : carte monde, temple, nœuds, progression
+- `I_SAVOIRS` : bibliothèque, temple matière, savoirs stockés
+- `J_CREATIVE` : musique, création, extensions divines
+- `K_ADAPTATIVE` : IA adaptative par joueur/héros
+- `L_ANALYTICS` : analytics, faiblesse, instrumentation
+- `M_RECO` : recommandations et synthèses parent
+- `N_DASHBOARD` : widgets vivants du hub
+- `O_META` : badges, overlays, méta-progression
+- `Q_LORE` : tutoriels, lore, monde
+- `DATA_ROOM` : couche Room et persistance
+- `CORE_PANTHEON` : dieux/matières/couleurs/identité
+
+## Niveaux de criticité
+- `P0` : cœur vital, toucher avec grande prudence
+- `P1` : système majeur du produit
+- `P2` : système secondaire important
+- `P3` : composant périphérique ou fallback
+- `P9` : inconnu / à cartographier
+
+## Règles d’usage
+- Toute nouvelle classe métier importante doit être ajoutée au mapping explicite.
+- Toute Activity critique doit être cartographiée explicitement, jamais laissée au fallback.
+- Toute classe inconnue détectée par les agents doit déclencher une action de maintenance de cartographie.
+- Le mapper ne remplace pas l’audit humain : il prépare, il ne décide pas seul.
+
+---
+
+## SECTION B — Domaines et owners logiques
+
+# DOMAINES ET OWNERS LOGIQUES — RÉVIZEUS
+
+## core_boot
+Responsabilité : boot, gate update, vidéo d’intro, écran titre, menu principal.
+
+## auth_accounts
+Responsabilité : compte, héros, onboarding, récupération, Firebase Auth.
+
+## core_loop
+Responsabilité : mood, dashboard, profile, settings, navigation centrale.
+
+## foundation
+Responsabilité : socles transverses, stabilité technique, helpers visuels de base.
+
+## audio_media
+Responsabilité : SoundManager, TTS, loading diégétique, médias transverses.
+
+## oracle_pipeline
+Responsabilité : capture, prompt, génération de résumé, résultat Oracle.
+
+## quiz_engine
+Responsabilité : quiz oracle/training/ultime, timer, planification, modèles.
+
+## economy_rewards
+Responsabilité : XP, éclats, ambroisie, fragments, animations de récompense.
+
+## forge_inventory
+Responsabilité : forge, crafting, inventaire, objets.
+
+## meta_progression
+Responsabilité : badges, overlays, succès, méta-progression.
+
+## knowledge_library
+Responsabilité : savoirs, temples matière, entités de cours/résumés.
+
+## rpg_dialogs
+Responsabilité : dialogues immersifs, typewriter, microcopies et erreurs diégétiques.
+
+## divine_personas
+Responsabilité : personnalité des dieux, lore, orchestration divine.
+
+## core_pantheon
+Responsabilité : mapping dieux/matières/couleurs et vérité d’identité panthéon.
+
+## adaptive_ai
+Responsabilité : contexte adaptatif, snapshots joueur, dialogue adaptatif.
+
+## analytics
+Responsabilité : instrumentation, debug, faiblesses, insights.
+
+## recommendations
+Responsabilité : reco d’apprentissage, synthèses externes.
+
+## adventure_mode
+Responsabilité : monde aventure, temples, nœuds, progression, Room aventure.
+
+## dashboard_live
+Responsabilité : composants vivants du dashboard.
+
+## lore_world
+Responsabilité : tutoriels, guide, lore, monde.
+
+## data_layer
+Responsabilité : base Room, DAO, entités, persistance structurante.
+
+---
+
+## SECTION C — Project Truth Map (état réel observé du repo)
+
+# PROJECT_TRUTH_MAP.md — CARTE DE VÉRITÉ RÉVIZEUS
+
+Ce document résume l’état **réel observé** du projet à partir du repo et des ressources fournies.
+
+## 1. Noyau technique confirmé
+- Package : `com.revizeus.app`
+- Build : Kotlin + XML + ViewBinding
+- Pas de Compose
+- `compileSdk = 36`
+- `minSdk = 24`
+- `targetSdk = 36`
+- JVM 17
+- KSP activé
+
+## 2. Dépendances confirmées
+- Firebase Auth
+- Firebase Firestore
+- Firebase Functions
+- Gemini `com.google.ai.client.generativeai:generativeai:0.9.0`
+- CameraX 1.5.3
+- ML Kit Text Recognition 19.0.1
+- Room runtime + ktx + compiler
+- Media3 ExoPlayer + UI
+- Coil + Coil GIF
+- Lottie
+
+## 3. Activités et classes importantes confirmées
+### Boot / compte / onboarding
+- `SplashActivity`
+- `LoginActivity`
+- `AuthActivity`
+- `GenderActivity`
+- `AvatarActivity`
+- `IntroVideoActivity`
+- `MoodActivity`
+- `AccountSelectActivity`
+- `HeroSelectActivity`
+
+### Noyau app
+- `DashboardActivity`
+- `SettingsActivity`
+- `RevizeusInfoActivity`
+- `HeroProfileActivity`
+- `BadgeBookActivity`
+- `InventoryActivity`
+- `ForgeActivity`
+- `DebugAnalyticsActivity`
+
+### Oracle / quiz / savoirs
+- `OracleActivity`
+- `OraclePromptActivity`
+- `ResultActivity`
+- `QuizActivity`
+- `QuizResultActivity`
+- `SavoirActivity`
+- `TrainingSelectActivity`
+- `TrainingQuizActivity`
+- `GodMatiereActivity`
+
+### Systèmes transversaux importants
+- `GeminiManager`
+- `GodLoreManager`
+- `GodManager`
+- `GodSpeechAnimator`
+- `DialogRPGManager`
+- `DialogRPGFragment`
+- `LoadingDivineDialog`
+- `AnimatedBackgroundHelper`
+- `OlympianParticlesView`
+- `SoundManager`
+- `SettingsManager`
+- `CurrencyManager`
+- `AnalyticsManager`
+- `CraftingSystem`
+- `SpeakerTtsHelper`
+- `PantheonConfig`
+- `KnowledgeFragmentManager`
+
+### Aventure confirmée (socle déjà présent)
+- `BaseAdventureActivity`
+- `AdventureManager`
+- `AdventureState`
+- `WorldMapActivity`
+- `MapTempleActivity`
+- `WorldMapState`
+- `WorldMapTempleSlot`
+- `WorldMapThemeResolver`
+- `TempleAdventureProgressManager`
+- `TempleMapConfig`
+- `TempleMapManager`
+- `TempleMapNode`
+- `TempleMapEdge`
+- `TempleNodeResolver`
+- `TempleNodeType`
+- Room aventure : `TempleAdventureDao`, `TempleAdventureMapEntity`, `TempleAdventureNodeProgressEntity`
+
+## 4. Layouts réellement présents
+- `activity_dashboard.xml`
+- `activity_oracle.xml`
+- `activity_result.xml`
+- `activity_quiz.xml`
+- `activity_quiz_result.xml`
+- `activity_savoir.xml`
+- `activity_training.xml`
+- `activity_settings.xml`
+- `activity_world_map.xml`
+- `activity_map_temple.xml`
+- `dialog_loading_divine.xml`
+- `dialog_rpg_universal.xml`
+- etc.
+
+## 5. Orientation confirmée dans le manifest
+- Presque tout le projet : `portrait`
+- `WorldMapActivity` : `sensorLandscape`
+- `MapTempleActivity` : `sensorLandscape`
+
+## 6. Ressources confirmées par captures
+### Drawables
+- Avatars divins et héros/héroïnes
+- Fonds dashboard / olympus / oracle / résultat / quiz / settings / sélection matière
+- Badges nombreux
+- Icônes fragments, monnaie, bibliothèque, menu caméra, mood, aventure, forge, settings, TTS, etc.
+- Overlays lightning / particles
+- Éléments RPG (`bg_rpg_dialog`, `bg_temple_button`, `bg_divine_card`, etc.)
+
+### Raw
+- BGMs dashboard / résultats / sélections / forge / oracle / humeur / training
+- SFX dialogue / thunder / timer / orb / save / badge / fragments / loading / avatar confirm / transition
+- Plusieurs MP4 animés de fond
+- Vidéos info RéviZeus
+
+## 7. Règles de vérité pour coder
+Si le code réel et les docs se contredisent : **suivre le code réel**.
+Si une ressource apparaît dans une capture et dans le code, elle est considérée comme fiable.
+Si une ressource est mentionnée seulement dans un doc ancien, elle n’est pas fiable tant qu’elle n’est pas confirmée.
+
+## 8. Position actuelle retenue
+- Le projet possède déjà un socle large et une identité forte.
+- Le mode aventure n’est pas vide, mais seulement entamé.
+- Les futurs gros blocs doivent être ajoutés sans casser ce qui existe déjà.
+
+
+---
+
+## SECTION D — Règles de mapping agent (JSON)
+
+Source : `Brain_ReviZeus/09_RUNTIME_AGENT/revizeus_mapper_rules.json`
+
+Ordre de matching : 1. explicit_stem → 2. path_contains → 3. prefix_stem → 4. suffix_stem → 5. keyword_stem → 6. fallback UNKNOWN.
+
+```json
+{
+  "version": "2026-04-18 05:00",
+  "match_order": [
+    "explicit_stem",
+    "path_contains",
+    "prefix_stem",
+    "suffix_stem",
+    "keyword_stem"
+  ],
+  "explicit_stem_map": {
+    "SplashActivity": {
+      "bloc": "BOOT",
+      "zone": "SPLASH",
+      "systeme": "Boot initial et routage de lancement",
+      "priority": "P0",
+      "owner": "core_boot"
+    },
+    "GameUpdateActivity": {
+      "bloc": "BOOT",
+      "zone": "UPDATE_GATE",
+      "systeme": "Contrôle mise à jour avant accès au jeu",
+      "priority": "P0",
+      "owner": "core_boot"
+    },
+    "GameUpdateManager": {
+      "bloc": "BOOT",
+      "zone": "UPDATE_GATE",
+      "systeme": "Logique de versioning et gate release",
+      "priority": "P0",
+      "owner": "core_boot"
+    },
+    "VideoPlayerActivity": {
+      "bloc": "BOOT",
+      "zone": "VIDEO_INTRO",
+      "systeme": "Lecture vidéo de transition / intro",
+      "priority": "P1",
+      "owner": "core_boot"
+    },
+    "TitleScreenActivity": {
+      "bloc": "BOOT",
+      "zone": "TITLE_SCREEN",
+      "systeme": "Écran titre et entrée dans le menu principal",
+      "priority": "P0",
+      "owner": "core_boot"
+    },
+    "MainMenuActivity": {
+      "bloc": "BOOT",
+      "zone": "MAIN_MENU",
+      "systeme": "Menu principal et embranchements d’entrée",
+      "priority": "P0",
+      "owner": "core_boot"
+    },
+    "LoginActivity": {
+      "bloc": "AUTH",
+      "zone": "LOGIN",
+      "systeme": "Connexion email et redirection héros",
+      "priority": "P0",
+      "owner": "auth_accounts"
+    },
+    "AuthActivity": {
+      "bloc": "AUTH",
+      "zone": "SIGNUP",
+      "systeme": "Inscription et création de compte",
+      "priority": "P0",
+      "owner": "auth_accounts"
+    },
+    "AccountSelectActivity": {
+      "bloc": "AUTH",
+      "zone": "ACCOUNT_PICKER",
+      "systeme": "Sélection d’email / compte local",
+      "priority": "P1",
+      "owner": "auth_accounts"
+    },
+    "HeroSelectActivity": {
+      "bloc": "AUTH",
+      "zone": "HERO_PICKER",
+      "systeme": "Sélection de héros par compte",
+      "priority": "P0",
+      "owner": "auth_accounts"
+    },
+    "GenderActivity": {
+      "bloc": "AUTH",
+      "zone": "ONBOARDING",
+      "systeme": "Choix sexe du héros",
+      "priority": "P1",
+      "owner": "auth_accounts"
+    },
+    "AvatarActivity": {
+      "bloc": "AUTH",
+      "zone": "ONBOARDING",
+      "systeme": "Choix avatar du héros",
+      "priority": "P1",
+      "owner": "auth_accounts"
+    },
+    "AvatarAdapter": {
+      "bloc": "AUTH",
+      "zone": "ONBOARDING_UI",
+      "systeme": "Rendu liste avatars",
+      "priority": "P2",
+      "owner": "auth_accounts"
+    },
+    "AvatarItem": {
+      "bloc": "AUTH",
+      "zone": "ONBOARDING_MODEL",
+      "systeme": "Modèle avatar onboarding",
+      "priority": "P3",
+      "owner": "auth_accounts"
+    },
+    "IntroVideoActivity": {
+      "bloc": "AUTH",
+      "zone": "ONBOARDING_TRANSITION",
+      "systeme": "Transition vidéo avant mood/dashboard",
+      "priority": "P2",
+      "owner": "auth_accounts"
+    },
+    "AccountRegistry": {
+      "bloc": "AUTH",
+      "zone": "ACCOUNT_STATE",
+      "systeme": "Registre local des comptes et héros",
+      "priority": "P0",
+      "owner": "auth_accounts"
+    },
+    "AccountRecoveryManager": {
+      "bloc": "AUTH",
+      "zone": "ACCOUNT_RECOVERY",
+      "systeme": "Récupération et restauration de comptes",
+      "priority": "P1",
+      "owner": "auth_accounts"
+    },
+    "FirebaseAuthManager": {
+      "bloc": "AUTH",
+      "zone": "FIREBASE_AUTH",
+      "systeme": "Pont Firebase Auth",
+      "priority": "P0",
+      "owner": "auth_accounts"
+    },
+    "OnboardingSession": {
+      "bloc": "AUTH",
+      "zone": "SESSION",
+      "systeme": "Session onboarding et état transitoire",
+      "priority": "P1",
+      "owner": "auth_accounts"
+    },
+    "MoodActivity": {
+      "bloc": "CORE_LOOP",
+      "zone": "MOOD",
+      "systeme": "Sélection d’humeur avant hub principal",
+      "priority": "P1",
+      "owner": "core_loop"
+    },
+    "DashboardActivity": {
+      "bloc": "CORE_LOOP",
+      "zone": "DASHBOARD",
+      "systeme": "Hub principal du joueur",
+      "priority": "P0",
+      "owner": "core_loop"
+    },
+    "HeroProfileActivity": {
+      "bloc": "CORE_LOOP",
+      "zone": "PROFILE",
+      "systeme": "Profil héros et progression visible",
+      "priority": "P1",
+      "owner": "core_loop"
+    },
+    "SettingsActivity": {
+      "bloc": "CORE_LOOP",
+      "zone": "SETTINGS",
+      "systeme": "Paramètres et sorties de session",
+      "priority": "P1",
+      "owner": "core_loop"
+    },
+    "SettingsManager": {
+      "bloc": "CORE_LOOP",
+      "zone": "SETTINGS_DATA",
+      "systeme": "Persistance des réglages utilisateur",
+      "priority": "P2",
+      "owner": "core_loop"
+    },
+    "RevizeusInfoActivity": {
+      "bloc": "CORE_LOOP",
+      "zone": "INFO",
+      "systeme": "Informations produit / version",
+      "priority": "P3",
+      "owner": "core_loop"
+    },
+    "BaseActivity": {
+      "bloc": "BLOC_A",
+      "zone": "BASE_ACTIVITY",
+      "systeme": "Socle transverse standard des écrans",
+      "priority": "P0",
+      "owner": "foundation"
+    },
+    "BaseGameActivity": {
+      "bloc": "BLOC_A",
+      "zone": "BASE_GAME_ACTIVITY",
+      "systeme": "Socle transverse des écrans de jeu",
+      "priority": "P0",
+      "owner": "foundation"
+    },
+    "AnimatedBackgroundHelper": {
+      "bloc": "BLOC_A",
+      "zone": "BACKGROUND",
+      "systeme": "Animation respirante des fonds",
+      "priority": "P2",
+      "owner": "foundation"
+    },
+    "OlympianParticlesView": {
+      "bloc": "BLOC_A",
+      "zone": "VFX",
+      "systeme": "Particules divines transverses",
+      "priority": "P2",
+      "owner": "foundation"
+    },
+    "SoundManager": {
+      "bloc": "C_AUDIO",
+      "zone": "AUDIO_CORE",
+      "systeme": "Gestion centralisée BGM/SFX",
+      "priority": "P0",
+      "owner": "audio_media"
+    },
+    "SpeakerTtsHelper": {
+      "bloc": "C_AUDIO",
+      "zone": "TTS",
+      "systeme": "Synthèse vocale et ducking BGM",
+      "priority": "P1",
+      "owner": "audio_media"
+    },
+    "LoadingDivineDialog": {
+      "bloc": "C_AUDIO",
+      "zone": "LOADING_IA",
+      "systeme": "Overlay d’attente IA diégétique",
+      "priority": "P1",
+      "owner": "audio_media"
+    },
+    "LyriaManager": {
+      "bloc": "J_CREATIVE",
+      "zone": "MUSIC_GEN",
+      "systeme": "Génération musicale / intégration Lyria",
+      "priority": "P2",
+      "owner": "creative_extensions"
+    },
+    "OracleActivity": {
+      "bloc": "D_ORACLE",
+      "zone": "ORACLE_CAPTURE",
+      "systeme": "Capture / saisie des contenus source",
+      "priority": "P0",
+      "owner": "oracle_pipeline"
+    },
+    "OraclePromptActivity": {
+      "bloc": "D_ORACLE",
+      "zone": "ORACLE_PROMPT",
+      "systeme": "Paramétrage de génération avant appel IA",
+      "priority": "P1",
+      "owner": "oracle_pipeline"
+    },
+    "ResultActivity": {
+      "bloc": "D_ORACLE",
+      "zone": "ORACLE_RESULT",
+      "systeme": "Affichage du résumé IA généré",
+      "priority": "P0",
+      "owner": "oracle_pipeline"
+    },
+    "AssetTextReader": {
+      "bloc": "D_ORACLE",
+      "zone": "TEXT_IO",
+      "systeme": "Lecture de textes embarqués",
+      "priority": "P3",
+      "owner": "oracle_pipeline"
+    },
+    "GeminiManager": {
+      "bloc": "D_ORACLE",
+      "zone": "AI_GATEWAY",
+      "systeme": "Passerelle Gemini résumés/quiz/lore",
+      "priority": "P0",
+      "owner": "oracle_pipeline"
+    },
+    "QuizActivity": {
+      "bloc": "E_QUIZ",
+      "zone": "QUIZ_ORACLE",
+      "systeme": "Quiz principal depuis Oracle",
+      "priority": "P0",
+      "owner": "quiz_engine"
+    },
+    "TrainingSelectActivity": {
+      "bloc": "E_QUIZ",
+      "zone": "TRAINING_SELECT",
+      "systeme": "Sélection entraînement / ultime",
+      "priority": "P0",
+      "owner": "quiz_engine"
+    },
+    "TrainingQuizActivity": {
+      "bloc": "E_QUIZ",
+      "zone": "TRAINING_QUIZ",
+      "systeme": "Quiz d’entraînement",
+      "priority": "P0",
+      "owner": "quiz_engine"
+    },
+    "QuizResultActivity": {
+      "bloc": "E_QUIZ",
+      "zone": "QUIZ_RESULT",
+      "systeme": "Résultats et récompenses post-quiz",
+      "priority": "P0",
+      "owner": "quiz_engine"
+    },
+    "QuizQuestionPlanner": {
+      "bloc": "E_QUIZ",
+      "zone": "QUESTION_PLANNER",
+      "systeme": "Planification et distribution des questions",
+      "priority": "P1",
+      "owner": "quiz_engine"
+    },
+    "QuizRewardManager": {
+      "bloc": "F_ECONOMIE",
+      "zone": "REWARDS",
+      "systeme": "Calcul des récompenses quiz",
+      "priority": "P0",
+      "owner": "economy_rewards"
+    },
+    "QuizTimerManager": {
+      "bloc": "E_QUIZ",
+      "zone": "TIMER",
+      "systeme": "Timer par question selon âge",
+      "priority": "P1",
+      "owner": "quiz_engine"
+    },
+    "QuizQuestion": {
+      "bloc": "E_QUIZ",
+      "zone": "MODEL",
+      "systeme": "Modèle de question quiz",
+      "priority": "P2",
+      "owner": "quiz_engine"
+    },
+    "QuestionType": {
+      "bloc": "E_QUIZ",
+      "zone": "MODEL",
+      "systeme": "Typologie des questions",
+      "priority": "P2",
+      "owner": "quiz_engine"
+    },
+    "GeminiQuestionTypeHelper": {
+      "bloc": "E_QUIZ",
+      "zone": "PROMPTING",
+      "systeme": "Aide de typage des questions Gemini",
+      "priority": "P2",
+      "owner": "quiz_engine"
+    },
+    "NormalTrainingBuilder": {
+      "bloc": "E_QUIZ",
+      "zone": "BUILDER_NORMAL",
+      "systeme": "Construction quiz normal",
+      "priority": "P1",
+      "owner": "quiz_engine"
+    },
+    "UltimateQuizBuilder": {
+      "bloc": "E_QUIZ",
+      "zone": "BUILDER_ULTIMATE",
+      "systeme": "Construction quiz ultime",
+      "priority": "P1",
+      "owner": "quiz_engine"
+    },
+    "CurrencyManager": {
+      "bloc": "F_ECONOMIE",
+      "zone": "CURRENCY",
+      "systeme": "Éclats de savoir et Ambroisie",
+      "priority": "P0",
+      "owner": "economy_rewards"
+    },
+    "XpCalculator": {
+      "bloc": "F_ECONOMIE",
+      "zone": "XP",
+      "systeme": "Calcul XP et niveaux",
+      "priority": "P0",
+      "owner": "economy_rewards"
+    },
+    "KnowledgeFragmentManager": {
+      "bloc": "F_ECONOMIE",
+      "zone": "FRAGMENTS",
+      "systeme": "Fragments de savoir par matière",
+      "priority": "P0",
+      "owner": "economy_rewards"
+    },
+    "ForgeActivity": {
+      "bloc": "G_FORGE",
+      "zone": "FORGE_UI",
+      "systeme": "Forge et crafting d’artefacts",
+      "priority": "P0",
+      "owner": "forge_inventory"
+    },
+    "CraftingSystem": {
+      "bloc": "G_FORGE",
+      "zone": "CRAFTING",
+      "systeme": "Recettes et transformations de forge",
+      "priority": "P1",
+      "owner": "forge_inventory"
+    },
+    "InventoryActivity": {
+      "bloc": "G_FORGE",
+      "zone": "INVENTORY_UI",
+      "systeme": "Inventaire joueur",
+      "priority": "P0",
+      "owner": "forge_inventory"
+    },
+    "InventoryItem": {
+      "bloc": "G_FORGE",
+      "zone": "INVENTORY_MODEL",
+      "systeme": "Modèle inventaire",
+      "priority": "P2",
+      "owner": "forge_inventory"
+    },
+    "HudRewardAnimator": {
+      "bloc": "F_ECONOMIE",
+      "zone": "HUD_REWARD",
+      "systeme": "Animation visuelle des gains",
+      "priority": "P2",
+      "owner": "economy_rewards"
+    },
+    "BadgeBookActivity": {
+      "bloc": "O_META",
+      "zone": "BADGES_UI",
+      "systeme": "Livre de badges",
+      "priority": "P1",
+      "owner": "meta_progression"
+    },
+    "BadgeManager": {
+      "bloc": "O_META",
+      "zone": "BADGES_CORE",
+      "systeme": "Déblocage et évaluation des badges",
+      "priority": "P0",
+      "owner": "meta_progression"
+    },
+    "BadgeDefinition": {
+      "bloc": "O_META",
+      "zone": "BADGES_DATA",
+      "systeme": "Définition des badges",
+      "priority": "P2",
+      "owner": "meta_progression"
+    },
+    "AchievementPopupManager": {
+      "bloc": "O_META",
+      "zone": "BADGES_OVERLAY",
+      "systeme": "Popup de succès",
+      "priority": "P2",
+      "owner": "meta_progression"
+    },
+    "BadgeUnlockOverlayManager": {
+      "bloc": "O_META",
+      "zone": "BADGES_OVERLAY",
+      "systeme": "Overlay de déblocage badge",
+      "priority": "P2",
+      "owner": "meta_progression"
+    },
+    "SavoirActivity": {
+      "bloc": "I_SAVOIRS",
+      "zone": "LIBRARY",
+      "systeme": "Bibliothèque des savoirs",
+      "priority": "P0",
+      "owner": "knowledge_library"
+    },
+    "GodMatiereActivity": {
+      "bloc": "I_SAVOIRS",
+      "zone": "SUBJECT_HUB",
+      "systeme": "Temple matière / savoirs par dieu",
+      "priority": "P0",
+      "owner": "knowledge_library"
+    },
+    "CourseEntry": {
+      "bloc": "I_SAVOIRS",
+      "zone": "COURSE_MODEL",
+      "systeme": "Entité savoir / résumé stocké",
+      "priority": "P0",
+      "owner": "knowledge_library"
+    },
+    "DialogRPGManager": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG",
+      "systeme": "Orchestration des dialogues RPG",
+      "priority": "P0",
+      "owner": "rpg_dialogs"
+    },
+    "DialogRPGFragment": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG",
+      "systeme": "Fragment universel de dialogue RPG",
+      "priority": "P0",
+      "owner": "rpg_dialogs"
+    },
+    "DialogRPGConfig": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG_CONFIG",
+      "systeme": "Configuration des dialogues RPG",
+      "priority": "P1",
+      "owner": "rpg_dialogs"
+    },
+    "DialogContext": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG_MODEL",
+      "systeme": "Contexte des dialogues",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    "DialogCategory": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG_MODEL",
+      "systeme": "Catégories de dialogues",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    "TechnicalErrorType": {
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG_MODEL",
+      "systeme": "Taxonomie erreurs techniques immersives",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    "GodSpeechAnimator": {
+      "bloc": "BLOC_B",
+      "zone": "TYPEWRITER",
+      "systeme": "Typewriter divin et blips",
+      "priority": "P0",
+      "owner": "rpg_dialogs"
+    },
+    "GodSpeechAnimator_Integration": {
+      "bloc": "BLOC_B",
+      "zone": "TYPEWRITER",
+      "systeme": "Aide d’intégration typewriter",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    "DivineMicroCopyLibrary": {
+      "bloc": "BLOC_B",
+      "zone": "MICROCOPY",
+      "systeme": "Bibliothèque de microcopies divines",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    "DivineDialogueOrchestrator": {
+      "bloc": "BLOC_B2",
+      "zone": "ORCHESTRATION",
+      "systeme": "Orchestration des réponses divines",
+      "priority": "P1",
+      "owner": "divine_personas"
+    },
+    "GodLoreManager": {
+      "bloc": "BLOC_B2",
+      "zone": "LORE",
+      "systeme": "Lore, hymnes et explications divines",
+      "priority": "P1",
+      "owner": "divine_personas"
+    },
+    "GodManager": {
+      "bloc": "BLOC_B2",
+      "zone": "GODS_CORE",
+      "systeme": "Gestion centrale des dieux",
+      "priority": "P1",
+      "owner": "divine_personas"
+    },
+    "GodPersonalityEngine": {
+      "bloc": "BLOC_B2",
+      "zone": "PERSONA",
+      "systeme": "Personnalité et ton de chaque dieu",
+      "priority": "P1",
+      "owner": "divine_personas"
+    },
+    "GodTriggerEngine": {
+      "bloc": "BLOC_B2",
+      "zone": "TRIGGERS",
+      "systeme": "Déclencheurs contextuels divins",
+      "priority": "P2",
+      "owner": "divine_personas"
+    },
+    "PantheonConfig": {
+      "bloc": "CORE_PANTHEON",
+      "zone": "PANTHEON",
+      "systeme": "Mapping dieux, matières, couleurs et identités",
+      "priority": "P0",
+      "owner": "core_pantheon"
+    },
+    "AdaptiveContextFormatter": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "FORMATTER",
+      "systeme": "Formatage de contexte adaptatif",
+      "priority": "P2",
+      "owner": "adaptive_ai"
+    },
+    "AdaptiveDialogueEngine": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "DIALOGUE_AI",
+      "systeme": "Moteur de dialogue adaptatif",
+      "priority": "P1",
+      "owner": "adaptive_ai"
+    },
+    "AdaptiveLearningContext": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "LEARNING_CONTEXT",
+      "systeme": "Modèle de contexte adaptatif",
+      "priority": "P2",
+      "owner": "adaptive_ai"
+    },
+    "AdaptiveLearningContextResolver": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "LEARNING_CONTEXT",
+      "systeme": "Résolution du contexte adaptatif",
+      "priority": "P1",
+      "owner": "adaptive_ai"
+    },
+    "PlayerAdaptiveSnapshot": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "PLAYER_STATE",
+      "systeme": "Snapshot adaptatif joueur",
+      "priority": "P2",
+      "owner": "adaptive_ai"
+    },
+    "PlayerContextResolver": {
+      "bloc": "K_ADAPTATIVE",
+      "zone": "PLAYER_STATE",
+      "systeme": "Résolution du contexte joueur",
+      "priority": "P2",
+      "owner": "adaptive_ai"
+    },
+    "AnalyticsManager": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ANALYTICS_CORE",
+      "systeme": "Tracking applicatif et quiz",
+      "priority": "P1",
+      "owner": "analytics"
+    },
+    "DebugAnalyticsActivity": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ANALYTICS_DEBUG",
+      "systeme": "Inspection analytics / debug",
+      "priority": "P2",
+      "owner": "analytics"
+    },
+    "UserAnalyticsEngine": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ANALYTICS_ENGINE",
+      "systeme": "Analyse des patterns d’apprentissage",
+      "priority": "P1",
+      "owner": "analytics"
+    },
+    "UserWeaknessAnalyzer": {
+      "bloc": "L_ANALYTICS",
+      "zone": "WEAKNESS",
+      "systeme": "Détection de faiblesses pédagogiques",
+      "priority": "P1",
+      "owner": "analytics"
+    },
+    "UserAnalytics": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Entité analytics utilisateur",
+      "priority": "P2",
+      "owner": "analytics"
+    },
+    "UserAnalyticsDao": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO analytics utilisateur",
+      "priority": "P2",
+      "owner": "analytics"
+    },
+    "UserSkillProfile": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Profil de compétences utilisateur",
+      "priority": "P2",
+      "owner": "analytics"
+    },
+    "UserSkillProfileDao": {
+      "bloc": "L_ANALYTICS",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO profil de compétences",
+      "priority": "P2",
+      "owner": "analytics"
+    },
+    "UserInsight": {
+      "bloc": "L_ANALYTICS",
+      "zone": "MODEL",
+      "systeme": "Insight utilisateur consolidé",
+      "priority": "P3",
+      "owner": "analytics"
+    },
+    "InsightCache": {
+      "bloc": "L_ANALYTICS",
+      "zone": "CACHE",
+      "systeme": "Cache d’insights utilisateurs",
+      "priority": "P3",
+      "owner": "analytics"
+    },
+    "LearningRecommendation": {
+      "bloc": "M_RECO",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Recommandations d’apprentissage",
+      "priority": "P2",
+      "owner": "recommendations"
+    },
+    "LearningRecommendationDao": {
+      "bloc": "M_RECO",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO recommandations d’apprentissage",
+      "priority": "P2",
+      "owner": "recommendations"
+    },
+    "ParentSummaryManager": {
+      "bloc": "M_RECO",
+      "zone": "PARENT_SUMMARY",
+      "systeme": "Synthèse parent / supervision",
+      "priority": "P3",
+      "owner": "recommendations"
+    },
+    "BaseAdventureActivity": {
+      "bloc": "H_AVENTURE",
+      "zone": "BASE_ADVENTURE",
+      "systeme": "Socle paysage du mode aventure",
+      "priority": "P0",
+      "owner": "adventure_mode"
+    },
+    "WorldMapActivity": {
+      "bloc": "H_AVENTURE",
+      "zone": "WORLD_MAP",
+      "systeme": "Carte du monde aventure",
+      "priority": "P0",
+      "owner": "adventure_mode"
+    },
+    "WorldMapState": {
+      "bloc": "H_AVENTURE",
+      "zone": "WORLD_MAP_MODEL",
+      "systeme": "État global carte du monde",
+      "priority": "P1",
+      "owner": "adventure_mode"
+    },
+    "WorldMapTempleSlot": {
+      "bloc": "H_AVENTURE",
+      "zone": "WORLD_MAP_MODEL",
+      "systeme": "Slots de temples sur la carte monde",
+      "priority": "P1",
+      "owner": "adventure_mode"
+    },
+    "WorldMapThemeResolver": {
+      "bloc": "H_AVENTURE",
+      "zone": "WORLD_MAP_THEME",
+      "systeme": "Résolution thème visuel carte monde",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "MapTempleActivity": {
+      "bloc": "H_AVENTURE",
+      "zone": "TEMPLE_MAP",
+      "systeme": "Carte d’un temple aventure",
+      "priority": "P0",
+      "owner": "adventure_mode"
+    },
+    "TempleNodeEncounterActivity": {
+      "bloc": "H_AVENTURE",
+      "zone": "ENCOUNTER",
+      "systeme": "Combat / rencontre de nœud aventure",
+      "priority": "P0",
+      "owner": "adventure_mode"
+    },
+    "TempleAdventureProgressManager": {
+      "bloc": "H_AVENTURE",
+      "zone": "PROGRESSION",
+      "systeme": "Progression aventure temple / nœuds",
+      "priority": "P0",
+      "owner": "adventure_mode"
+    },
+    "AdventureManager": {
+      "bloc": "H_AVENTURE",
+      "zone": "ADVENTURE_CORE",
+      "systeme": "Noyau de logique aventure",
+      "priority": "P1",
+      "owner": "adventure_mode"
+    },
+    "AdventureState": {
+      "bloc": "H_AVENTURE",
+      "zone": "ADVENTURE_MODEL",
+      "systeme": "État aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleMapManager": {
+      "bloc": "H_AVENTURE",
+      "zone": "MAP_CORE",
+      "systeme": "Catalogue et accès aux maps temple",
+      "priority": "P1",
+      "owner": "adventure_mode"
+    },
+    "TempleMapConfig": {
+      "bloc": "H_AVENTURE",
+      "zone": "MAP_CONFIG",
+      "systeme": "Configuration d’une map temple",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleMapNode": {
+      "bloc": "H_AVENTURE",
+      "zone": "MAP_MODEL",
+      "systeme": "Nœud de map temple",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleMapEdge": {
+      "bloc": "H_AVENTURE",
+      "zone": "MAP_MODEL",
+      "systeme": "Arête de map temple",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleMapThemeResolver": {
+      "bloc": "H_AVENTURE",
+      "zone": "MAP_THEME",
+      "systeme": "Thèmes visuels des temples aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleNodeResolver": {
+      "bloc": "H_AVENTURE",
+      "zone": "NODE_RESOLVER",
+      "systeme": "Résolution logique d’un nœud aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleNodeType": {
+      "bloc": "H_AVENTURE",
+      "zone": "NODE_MODEL",
+      "systeme": "Types de nœuds aventure",
+      "priority": "P3",
+      "owner": "adventure_mode"
+    },
+    "TempleAdventureDao": {
+      "bloc": "H_AVENTURE",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO aventure",
+      "priority": "P1",
+      "owner": "adventure_mode"
+    },
+    "TempleAdventureMapEntity": {
+      "bloc": "H_AVENTURE",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Entité map aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "TempleAdventureNodeProgressEntity": {
+      "bloc": "H_AVENTURE",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Entité progression nœud aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    "AppDatabase": {
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_DB",
+      "systeme": "Base Room principale",
+      "priority": "P0",
+      "owner": "data_layer"
+    },
+    "UserProfile": {
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Profil utilisateur / héros",
+      "priority": "P0",
+      "owner": "data_layer"
+    },
+    "MemoryScore": {
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_ENTITY",
+      "systeme": "Scores de mémoire",
+      "priority": "P2",
+      "owner": "data_layer"
+    },
+    "IAristoteDao": {
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO moteur IAristote",
+      "priority": "P3",
+      "owner": "data_layer"
+    },
+    "IAristoteEngine": {
+      "bloc": "DATA_ROOM",
+      "zone": "ENGINE",
+      "systeme": "Moteur IAristote",
+      "priority": "P3",
+      "owner": "data_layer"
+    },
+    "TutorialManager": {
+      "bloc": "Q_LORE",
+      "zone": "TUTORIAL",
+      "systeme": "Tutoriels et premiers passages guidés",
+      "priority": "P2",
+      "owner": "lore_world"
+    },
+    "OlympianMusicCatalog": {
+      "bloc": "J_CREATIVE",
+      "zone": "MUSIC_CATALOG",
+      "systeme": "Catalogue musical olympien",
+      "priority": "P3",
+      "owner": "creative_extensions"
+    },
+    "MusicTrackItem": {
+      "bloc": "J_CREATIVE",
+      "zone": "MUSIC_MODEL",
+      "systeme": "Modèle de piste musicale",
+      "priority": "P3",
+      "owner": "creative_extensions"
+    },
+    "JukeboxAdapter": {
+      "bloc": "J_CREATIVE",
+      "zone": "MUSIC_UI",
+      "systeme": "Rendu jukebox / liste de morceaux",
+      "priority": "P3",
+      "owner": "creative_extensions"
+    },
+    "DashboardInsightsWidget": {
+      "bloc": "N_DASHBOARD",
+      "zone": "INSIGHTS_WIDGET",
+      "systeme": "Widget insights dashboard",
+      "priority": "P2",
+      "owner": "dashboard_live"
+    }
+  },
+  "path_contains_rules": [
+    {
+      "contains": "/app/models/",
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_LAYER",
+      "systeme": "Couche Room / modèles persistants",
+      "priority": "P1",
+      "owner": "data_layer"
+    },
+    {
+      "contains": "/app/core/",
+      "bloc": "CORE_DOMAIN",
+      "zone": "CORE_ENGINE",
+      "systeme": "Moteurs métier du domaine",
+      "priority": "P1",
+      "owner": "core_domain"
+    },
+    {
+      "contains": "/app/ui/anim/",
+      "bloc": "UI_ANIM",
+      "zone": "ANIMATION",
+      "systeme": "Animations UI spécialisées",
+      "priority": "P2",
+      "owner": "ui_anim"
+    },
+    {
+      "contains": "/layout/",
+      "bloc": "UI_LAYOUT",
+      "zone": "XML_LAYOUT",
+      "systeme": "Layouts XML d’écran ou dialog",
+      "priority": "P1",
+      "owner": "ui_layout"
+    }
+  ],
+  "prefix_stem_rules": [
+    {
+      "prefix": "activity_",
+      "bloc": "UI_LAYOUT",
+      "zone": "ACTIVITY_LAYOUT",
+      "systeme": "Layout d’activité XML",
+      "priority": "P1",
+      "owner": "ui_layout"
+    },
+    {
+      "prefix": "dialog_",
+      "bloc": "UI_LAYOUT",
+      "zone": "DIALOG_LAYOUT",
+      "systeme": "Layout de dialogue XML",
+      "priority": "P2",
+      "owner": "ui_layout"
+    },
+    {
+      "prefix": "item_",
+      "bloc": "UI_LAYOUT",
+      "zone": "ITEM_LAYOUT",
+      "systeme": "Layout d’item/adaptateur",
+      "priority": "P2",
+      "owner": "ui_layout"
+    }
+  ],
+  "suffix_stem_rules": [
+    {
+      "suffix": "Activity",
+      "bloc": "UI_ACTIVITY",
+      "zone": "ACTIVITY",
+      "systeme": "Activity non cartographiée explicitement",
+      "priority": "P3",
+      "owner": "fallback"
+    },
+    {
+      "suffix": "Manager",
+      "bloc": "CORE_MANAGER",
+      "zone": "MANAGER",
+      "systeme": "Manager non cartographié explicitement",
+      "priority": "P3",
+      "owner": "fallback"
+    },
+    {
+      "suffix": "Dao",
+      "bloc": "DATA_ROOM",
+      "zone": "ROOM_DAO",
+      "systeme": "DAO Room non cartographié explicitement",
+      "priority": "P2",
+      "owner": "data_layer"
+    },
+    {
+      "suffix": "Adapter",
+      "bloc": "UI_COMPONENT",
+      "zone": "ADAPTER",
+      "systeme": "Composant d’adaptation UI",
+      "priority": "P3",
+      "owner": "ui_components"
+    }
+  ],
+  "keyword_stem_rules": [
+    {
+      "keyword": "dialog",
+      "bloc": "BLOC_B",
+      "zone": "RPG_DIALOG",
+      "systeme": "Dialogue ou popup immersif",
+      "priority": "P2",
+      "owner": "rpg_dialogs"
+    },
+    {
+      "keyword": "adventure",
+      "bloc": "H_AVENTURE",
+      "zone": "ADVENTURE",
+      "systeme": "Mode aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    {
+      "keyword": "quiz",
+      "bloc": "E_QUIZ",
+      "zone": "QUIZ",
+      "systeme": "Système quiz",
+      "priority": "P2",
+      "owner": "quiz_engine"
+    },
+    {
+      "keyword": "oracle",
+      "bloc": "D_ORACLE",
+      "zone": "ORACLE",
+      "systeme": "Pipeline Oracle",
+      "priority": "P2",
+      "owner": "oracle_pipeline"
+    },
+    {
+      "keyword": "badge",
+      "bloc": "O_META",
+      "zone": "BADGES",
+      "systeme": "Badges et méta progression",
+      "priority": "P2",
+      "owner": "meta_progression"
+    },
+    {
+      "keyword": "forge",
+      "bloc": "G_FORGE",
+      "zone": "FORGE",
+      "systeme": "Forge",
+      "priority": "P2",
+      "owner": "forge_inventory"
+    },
+    {
+      "keyword": "inventory",
+      "bloc": "G_FORGE",
+      "zone": "INVENTORY",
+      "systeme": "Inventaire",
+      "priority": "P2",
+      "owner": "forge_inventory"
+    },
+    {
+      "keyword": "worldmap",
+      "bloc": "H_AVENTURE",
+      "zone": "WORLD_MAP",
+      "systeme": "Carte monde aventure",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    {
+      "keyword": "temple",
+      "bloc": "H_AVENTURE",
+      "zone": "TEMPLE",
+      "systeme": "Temple / aventure / progression",
+      "priority": "P2",
+      "owner": "adventure_mode"
+    },
+    {
+      "keyword": "adaptive",
+      "bloc": "K_ADAPTATIVE",
+      "zone": "ADAPTIVE_AI",
+      "systeme": "IA adaptative",
+      "priority": "P2",
+      "owner": "adaptive_ai"
+    }
+  ],
+  "unknown_fallback": {
+    "bloc": "UNKNOWN",
+    "zone": "UNKNOWN",
+    "systeme": "Non cartographié",
+    "priority": "P9",
+    "owner": "unknown"
+  }
+}
+```

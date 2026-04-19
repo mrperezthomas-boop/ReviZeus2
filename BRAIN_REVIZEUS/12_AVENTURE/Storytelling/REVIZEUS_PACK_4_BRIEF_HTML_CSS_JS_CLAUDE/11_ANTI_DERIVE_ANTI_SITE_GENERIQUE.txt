@@ -1,0 +1,30 @@
+ANTI-DÉRIVE — CE QUE CLAUDE NE DOIT PAS FAIRE
+
+INTERDICTIONS
+- Ne pas générer un site SaaS générique avec gros gradient et cartes vides.
+- Ne pas produire un site type “app IA moderne” sans âme.
+- Ne pas faire un site scolaire plat.
+- Ne pas utiliser des formulations vides du type “réinventer l’apprentissage grâce à la technologie” sans incarnation.
+- Ne pas faire un design enfantin.
+- Ne pas mettre trop de couleurs sans logique.
+- Ne pas surcharger en effets fantasy kitsch.
+- Ne pas produire une navigation confuse.
+- Ne pas compacter le texte en gros pavés étouffants.
+- Ne pas faire une page qui oublie les dieux, les temples, le chaos et l’aventure.
+
+OBLIGATIONS
+- Garder une logique premium.
+- Garder la DA mythologie grecque moderne.
+- Garder une très bonne lisibilité.
+- Donner une vraie sensation de marque.
+- Faire sentir que RéviZeus est un projet différenciant.
+- Créer une identité forte pour les sections.
+- Utiliser l’univers pour clarifier, pas pour brouiller.
+- Intégrer une pointe d’humour fine et légère.
+
+TEST SIMPLE
+Si le site ressemble à :
+- une startup IA
+- une app scolaire lambda
+- une fan page fantasy confuse
+alors il faut corriger.

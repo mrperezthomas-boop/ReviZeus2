@@ -1,0 +1,23 @@
+PROMPT DE FINITION PREMIUM — 07_POUR_LES_PARENTS — Page bénéfices parents
+
+Nous sommes sur la dernière passe de finition de la page Page bénéfices parents.
+
+Je veux que tu pousses la page vers un rendu quasi final :
+- plus belle
+- plus premium
+- plus fluide
+- plus cohérente
+- plus marquante
+- plus prête à montrer à un public réel
+
+Travail attendu :
+- peaufiner les textes
+- peaufiner les micro-interactions
+- peaufiner les effets de hover
+- peaufiner les transitions
+- améliorer encore les cartes et fonds
+- rendre le footer et le header plus élégants si nécessaire
+- supprimer toute lourdeur ou maladresse
+- vérifier que le rendu reste propre et professionnel sur mobile
+
+Je veux le code complet finalisé.

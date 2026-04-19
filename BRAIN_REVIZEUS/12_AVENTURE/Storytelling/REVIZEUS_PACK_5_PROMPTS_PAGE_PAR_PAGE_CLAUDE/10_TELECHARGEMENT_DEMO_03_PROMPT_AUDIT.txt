@@ -1,0 +1,25 @@
+PROMPT D’AUDIT — 10_TELECHARGEMENT_DEMO — Page démo / téléchargement / essai
+
+Audite la page Page démo / téléchargement / essai que tu as produite comme si tu étais :
+- un directeur artistique premium
+- un UX designer
+- un intégrateur front propre
+- un expert en branding
+
+Liste d'abord les défauts éventuels de la page dans les catégories suivantes :
+1. identité visuelle
+2. cohérence RéviZeus
+3. lisibilité
+4. structure
+5. responsive
+6. impact marketing
+7. crédibilité premium
+8. accessibilité
+9. qualité du code
+
+Ensuite, corrige directement tous les défauts détectés dans une nouvelle version complète du code.
+
+Je veux :
+- diagnostic précis
+- puis code complet corrigé
+- sans perte de cohérence globale

@@ -1,0 +1,107 @@
+ARBORESCENCE ET NAVIGATION CONSEILLÉES
+
+NAVIGATION PRINCIPALE
+1. Accueil
+2. Notre histoire
+3. Univers RéviZeus
+4. Panthéon
+5. Mode aventure
+6. Temples
+7. Chaos
+8. Technologie
+9. Pour tous
+10. Démo / Contact
+
+ORDRE DE LECTURE IDÉAL
+- Le visiteur arrive sur l’accueil
+- Il comprend le concept en moins de 10 secondes
+- Il découvre ensuite :
+  a) pourquoi le projet existe
+  b) quel est son univers
+  c) comment il fonctionne
+  d) pourquoi il est différent
+  e) ce qu’il peut devenir
+
+FOOTER
+- Logo RéviZeus
+- phrase de marque
+- navigation rapide
+- contact
+- bouton démo / test
+- mentions si nécessaire
+
+STRUCTURE RECOMMANDÉE DE L’ACCUEIL
+- Hero ultra fort
+- RéviZeus en une phrase
+- Pourquoi RéviZeus change la révision
+- Le monde et les dieux
+- La progression et le mode aventure
+- La technologie / IA
+- Les bénéfices élèves / parents
+- CTA final
+
+PAGE NOTRE HISTOIRE
+- Problème initial
+- Frustration fondatrice
+- Vision
+- Naissance du concept
+- Pourquoi la mythologie
+- Pourquoi l’IA
+- Pourquoi maintenant
+- Conclusion inspirante
+
+PAGE UNIVERS RÉVIZEUS
+- Origine du monde
+- Rupture de l’équilibre
+- Chaos et oubli
+- Rôle des dieux
+- Rôle de l’élève
+- Reconstruction par l’apprentissage
+
+PAGE PANTHÉON
+- Introduction au panthéon
+- Carte d’identité de chaque dieu
+- Ce que chaque dieu représente dans l’apprentissage
+- mini CTA : découvrir l’univers / voir le mode aventure
+
+PAGE MODE AVENTURE
+- Vision générale
+- pourquoi ce mode est puissant
+- progression du monde
+- temples et territoires
+- chaos central
+- reconstruction
+- potentiel émotionnel
+
+PAGE TEMPLES
+- rôle des temples
+- montée du niveau 1 au niveau 20
+- restauration du monde
+- personnalités des temples
+- richesse visuelle et ludique
+
+PAGE CHAOS
+- nature du chaos
+- symbolique
+- bestiaire
+- menace
+- rôle narratif et pédagogique
+
+PAGE TECHNOLOGIE
+- IA comme accompagnement
+- résumés, reformulation, adaptation
+- pédagogie incarnée
+- technologie au service de la compréhension
+
+PAGE POUR TOUS
+- bénéfices élèves
+- bénéfices parents
+- bénéfices enseignants / partenaires
+- accessibilité
+- motivation
+
+PAGE DÉMO / CONTACT
+- test de l’application
+- demande de démo
+- contact pro
+- CTA principal

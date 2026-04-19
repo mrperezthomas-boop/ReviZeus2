@@ -1,0 +1,114 @@
+ARCHITECTURE GLOBALE RECOMMANDÉE DU SITE RÉVIZEUS
+
+STRUCTURE GÉNÉRALE
+Le site peut être généré de deux manières :
+A. version landing page one-page premium
+B. version site multi-pages premium
+
+Recommandation pour un rendu pro :
+commencer par une landing page très forte, puis prévoir des pages internes dédiées.
+
+ARBORESCENCE CONSEILLÉE
+
+1. Accueil
+Rôle :
+- effet wow immédiat
+- présenter le concept
+- résumer l’univers
+- créer de l’envie
+- donner une lecture rapide aux visiteurs
+
+2. Le concept
+Rôle :
+- expliquer clairement ce qu’est RéviZeus
+- présenter la promesse
+- rendre le projet compréhensible en moins de 2 minutes
+
+3. L’univers
+Rôle :
+- raconter le monde de RéviZeus
+- expliquer le lore, les temples, la lumière, le chaos, les dieux, la progression
+
+4. Les dieux du savoir
+Rôle :
+- montrer chaque dieu / matière
+- donner de la personnalité au projet
+- illustrer l’incarnation des disciplines
+
+5. L’aventure
+Rôle :
+- expliquer la progression, le mode aventure, les temples, le chaos, les monstres, la reconquête
+
+6. L’intelligence de RéviZeus
+Rôle :
+- mettre en avant les résumés, l’accompagnement, l’IA, les interactions, la personnalisation
+
+7. Les bénéfices
+Rôle :
+- expliquer la valeur pour élèves, parents, enseignants, partenaires
+
+8. Galerie / écrans / mockups
+Rôle :
+- rendre le produit concret
+- montrer l’application, les interfaces, les ambiances
+
+9. Vision
+Rôle :
+- exprimer l’ambition long terme
+- montrer la dimension marque / licence / expérience éducative forte
+
+10. Contact / CTA final
+Rôle :
+- pousser à l’action
+- prise de contact / découverte / téléchargement / demande de démo
+
+ONE-PAGE : DÉCOUPE IDÉALE
+- Hero
+- RéviZeus en une phrase
+- Pourquoi c’est différent
+- Les dieux / matières
+- L’aventure / progression
+- L’IA et les outils
+- Les bénéfices
+- Les mockups
+- Le storytelling
+- CTA final
+- Footer
+
+MULTI-PAGES : ROUTES CONSEILLÉES
+- index.html
+- concept.html
+- univers.html
+- dieux.html
+- aventure.html
+- intelligence.html
+- galerie.html
+- vision.html
+- contact.html
+
+LOGIQUE DE NAVIGATION
+Le menu doit être simple, premium, jamais chargé.
+Navigation recommandée :
+- Accueil
+- Concept
+- Univers
+- Dieux
+- Aventure
+- IA
+- Galerie
+- Vision
+- Contact
+
+Le header doit permettre :
+- accès rapide
+- CTA principal
+- logo RéviZeus
+- navigation claire
+- comportement sticky discret
+
+Le footer doit :
+- reprendre la promesse du projet
+- contenir liens de navigation
+- contact
+- réseaux ou contact pro si disponible
+- mention de marque élégante

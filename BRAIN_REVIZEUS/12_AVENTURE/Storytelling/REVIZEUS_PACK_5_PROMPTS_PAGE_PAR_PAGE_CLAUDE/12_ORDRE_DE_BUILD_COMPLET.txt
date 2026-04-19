@@ -1,0 +1,46 @@
+ORDRE DE BUILD COMPLET AVEC CLAUDE
+
+ÉTAPE 1
+Envoyer le prompt maître global.
+
+ÉTAPE 2
+Demander la page 01 Home / Landing.
+
+ÉTAPE 3
+Demander l'amélioration puis l'audit de cette page.
+
+ÉTAPE 4
+Ajouter les images avec le prompt d'intégration visuelle.
+
+ÉTAPE 5
+Finaliser la page.
+
+ÉTAPE 6
+Répéter ce cycle pour les autres pages dans cet ordre :
+- 02 Univers
+- 03 Dieux du savoir
+- 05 Fonctionnalités
+- 04 Mode aventure
+- 06 Pour les élèves
+- 07 Pour les parents
+- 08 Partenaires / investisseurs
+- 10 Téléchargement / démo
+- 09 FAQ / Contact
+
+ÉTAPE 7
+Demander à Claude une harmonisation complète entre toutes les pages :
+- header identique
+- footer identique
+- mêmes variables de design
+- même système de boutons
+- même système de cartes
+- même responsive
+- même ton éditorial
+
+ÉTAPE 8
+Demander une passe finale d'optimisation :
+- poids
+- lisibilité
+- micro-animations
+- responsive
+- cohérence globale

@@ -1,0 +1,26 @@
+PROMPT D’AMÉLIORATION — 06_POUR_LES_ELEVES — Page bénéfices élèves
+
+Améliore la page Page bénéfices élèves que tu viens de générer.
+
+Objectifs :
+- rendre le design plus premium
+- renforcer la direction artistique mythologique moderne
+- améliorer la hiérarchie visuelle
+- rendre chaque section plus marquante
+- renforcer la lisibilité mobile
+- ajouter des micro-détails élégants
+- fluidifier les transitions
+- éviter tout effet cheap ou trop générique
+
+Vérifie particulièrement :
+- le hero ou bloc d'ouverture
+- les espacements
+- la cohérence des boutons
+- les contrastes
+- les cartes
+- les fonds de section
+- les animations
+- les titres
+- les CTA
+
+Je veux une version améliorée du code complet, pas juste des suggestions.

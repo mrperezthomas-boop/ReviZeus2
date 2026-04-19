@@ -1,0 +1,808 @@
+BESTIAIRE — APOLLON
+==================================================
+
+ID : APOLLON_01
+RESOURCE ICON : creature_apollon_basic_1_icon
+RESOURCE COMBAT : creature_apollon_basic_1_combat
+BASE NAME EXISTANT : Spark Hound
+TYPE : basic
+RÔLE : fast attacker
+SILHOUETTE : low triangular animal
+GAMEPLAY HINT : quick dash attacks
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_02
+RESOURCE ICON : creature_apollon_basic_2_icon
+RESOURCE COMBAT : creature_apollon_basic_2_combat
+BASE NAME EXISTANT : Cloud Jelly
+TYPE : basic
+RÔLE : annoying floater
+SILHOUETTE : round floating with tentacles
+GAMEPLAY HINT : slow constant damage
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_03
+RESOURCE ICON : creature_apollon_basic_3_icon
+RESOURCE COMBAT : creature_apollon_basic_3_combat
+BASE NAME EXISTANT : Bolt Imp
+TYPE : basic
+RÔLE : trickster
+SILHOUETTE : small spiky goblin
+GAMEPLAY HINT : surprise attacks
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_04
+RESOURCE ICON : creature_apollon_basic_4_icon
+RESOURCE COMBAT : creature_apollon_basic_4_combat
+BASE NAME EXISTANT : Volt Ram
+TYPE : basic
+RÔLE : charger
+SILHOUETTE : ram head big horns
+GAMEPLAY HINT : frontal charge
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_05
+RESOURCE ICON : creature_apollon_basic_5_icon
+RESOURCE COMBAT : creature_apollon_basic_5_combat
+BASE NAME EXISTANT : Static Archer
+TYPE : elite
+RÔLE : ranged
+SILHOUETTE : thin vertical humanoid
+GAMEPLAY HINT : distance attacks
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_06
+RESOURCE ICON : creature_apollon_basic_6_icon
+RESOURCE COMBAT : creature_apollon_basic_6_combat
+BASE NAME EXISTANT : Thunder Sentinel
+TYPE : elite
+RÔLE : tank
+SILHOUETTE : massive square
+GAMEPLAY HINT : absorbs damage
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_07
+RESOURCE ICON : creature_apollon_basic_7_icon
+RESOURCE COMBAT : creature_apollon_basic_7_combat
+BASE NAME EXISTANT : Sky Serpent
+TYPE : elite
+RÔLE : air control
+SILHOUETTE : long S shape
+GAMEPLAY HINT : area attack
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_08
+RESOURCE ICON : creature_apollon_basic_8_icon
+RESOURCE COMBAT : creature_apollon_basic_8_combat
+BASE NAME EXISTANT : Storm Bringer
+TYPE : elite
+RÔLE : area mage
+SILHOUETTE : humanoid aura
+GAMEPLAY HINT : zone damage
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_09
+RESOURCE ICON : creature_apollon_basic_9_icon
+RESOURCE COMBAT : creature_apollon_basic_9_combat
+BASE NAME EXISTANT : Sky Tyrant
+TYPE : boss
+RÔLE : dominant aerial
+SILHOUETTE : large wings V
+GAMEPLAY HINT : pressure
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_10
+RESOURCE ICON : creature_apollon_basic_10_icon
+RESOURCE COMBAT : creature_apollon_basic_10_combat
+BASE NAME EXISTANT : Divine Avatar
+TYPE : boss ultimate
+RÔLE : final form
+SILHOUETTE : exploding humanoid
+GAMEPLAY HINT : complex patterns
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_11
+RESOURCE ICON : creature_apollon_basic_11_icon
+RESOURCE COMBAT : creature_apollon_basic_11_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_12
+RESOURCE ICON : creature_apollon_basic_12_icon
+RESOURCE COMBAT : creature_apollon_basic_12_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_13
+RESOURCE ICON : creature_apollon_basic_13_icon
+RESOURCE COMBAT : creature_apollon_basic_13_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_14
+RESOURCE ICON : creature_apollon_basic_14_icon
+RESOURCE COMBAT : creature_apollon_basic_14_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_15
+RESOURCE ICON : creature_apollon_basic_15_icon
+RESOURCE COMBAT : creature_apollon_basic_15_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_16
+RESOURCE ICON : creature_apollon_basic_16_icon
+RESOURCE COMBAT : creature_apollon_basic_16_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_17
+RESOURCE ICON : creature_apollon_basic_17_icon
+RESOURCE COMBAT : creature_apollon_basic_17_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_18
+RESOURCE ICON : creature_apollon_basic_18_icon
+RESOURCE COMBAT : creature_apollon_basic_18_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_19
+RESOURCE ICON : creature_apollon_basic_19_icon
+RESOURCE COMBAT : creature_apollon_basic_19_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_20
+RESOURCE ICON : creature_apollon_basic_20_icon
+RESOURCE COMBAT : creature_apollon_basic_20_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_21
+RESOURCE ICON : creature_apollon_basic_21_icon
+RESOURCE COMBAT : creature_apollon_basic_21_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_22
+RESOURCE ICON : creature_apollon_basic_22_icon
+RESOURCE COMBAT : creature_apollon_basic_22_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_23
+RESOURCE ICON : creature_apollon_basic_23_icon
+RESOURCE COMBAT : creature_apollon_basic_23_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_24
+RESOURCE ICON : creature_apollon_basic_24_icon
+RESOURCE COMBAT : creature_apollon_basic_24_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_25
+RESOURCE ICON : creature_apollon_basic_25_icon
+RESOURCE COMBAT : creature_apollon_basic_25_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_26
+RESOURCE ICON : creature_apollon_basic_26_icon
+RESOURCE COMBAT : creature_apollon_basic_26_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_27
+RESOURCE ICON : creature_apollon_basic_27_icon
+RESOURCE COMBAT : creature_apollon_basic_27_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_28
+RESOURCE ICON : creature_apollon_basic_28_icon
+RESOURCE COMBAT : creature_apollon_basic_28_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_29
+RESOURCE ICON : creature_apollon_basic_29_icon
+RESOURCE COMBAT : creature_apollon_basic_29_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_30
+RESOURCE ICON : creature_apollon_basic_30_icon
+RESOURCE COMBAT : creature_apollon_basic_30_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_31
+RESOURCE ICON : creature_apollon_miniboss_1_icon
+RESOURCE COMBAT : creature_apollon_miniboss_1_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_32
+RESOURCE ICON : creature_apollon_miniboss_2_icon
+RESOURCE COMBAT : creature_apollon_miniboss_2_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_33
+RESOURCE ICON : creature_apollon_miniboss_3_icon
+RESOURCE COMBAT : creature_apollon_miniboss_3_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_34
+RESOURCE ICON : creature_apollon_miniboss_4_icon
+RESOURCE COMBAT : creature_apollon_miniboss_4_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_35
+RESOURCE ICON : creature_apollon_miniboss_5_icon
+RESOURCE COMBAT : creature_apollon_miniboss_5_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_36
+RESOURCE ICON : creature_apollon_miniboss_6_icon
+RESOURCE COMBAT : creature_apollon_miniboss_6_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_37
+RESOURCE ICON : creature_apollon_miniboss_7_icon
+RESOURCE COMBAT : creature_apollon_miniboss_7_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_38
+RESOURCE ICON : creature_apollon_miniboss_8_icon
+RESOURCE COMBAT : creature_apollon_miniboss_8_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_39
+RESOURCE ICON : creature_apollon_miniboss_9_icon
+RESOURCE COMBAT : creature_apollon_miniboss_9_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_40
+RESOURCE ICON : creature_apollon_miniboss_10_icon
+RESOURCE COMBAT : creature_apollon_miniboss_10_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_41
+RESOURCE ICON : creature_apollon_miniboss_11_icon
+RESOURCE COMBAT : creature_apollon_miniboss_11_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_42
+RESOURCE ICON : creature_apollon_miniboss_12_icon
+RESOURCE COMBAT : creature_apollon_miniboss_12_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_43
+RESOURCE ICON : creature_apollon_miniboss_13_icon
+RESOURCE COMBAT : creature_apollon_miniboss_13_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_44
+RESOURCE ICON : creature_apollon_miniboss_14_icon
+RESOURCE COMBAT : creature_apollon_miniboss_14_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_45
+RESOURCE ICON : creature_apollon_miniboss_15_icon
+RESOURCE COMBAT : creature_apollon_miniboss_15_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_46
+RESOURCE ICON : creature_apollon_miniboss_16_icon
+RESOURCE COMBAT : creature_apollon_miniboss_16_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_47
+RESOURCE ICON : creature_apollon_miniboss_17_icon
+RESOURCE COMBAT : creature_apollon_miniboss_17_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_48
+RESOURCE ICON : creature_apollon_miniboss_18_icon
+RESOURCE COMBAT : creature_apollon_miniboss_18_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_49
+RESOURCE ICON : creature_apollon_miniboss_19_icon
+RESOURCE COMBAT : creature_apollon_miniboss_19_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_50
+RESOURCE ICON : creature_apollon_miniboss_20_icon
+RESOURCE COMBAT : creature_apollon_miniboss_20_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_51
+RESOURCE ICON : creature_apollon_boss_1_icon
+RESOURCE COMBAT : creature_apollon_boss_1_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_52
+RESOURCE ICON : creature_apollon_boss_2_icon
+RESOURCE COMBAT : creature_apollon_boss_2_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_53
+RESOURCE ICON : creature_apollon_boss_3_icon
+RESOURCE COMBAT : creature_apollon_boss_3_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_54
+RESOURCE ICON : creature_apollon_boss_4_icon
+RESOURCE COMBAT : creature_apollon_boss_4_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_55
+RESOURCE ICON : creature_apollon_boss_5_icon
+RESOURCE COMBAT : creature_apollon_boss_5_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_56
+RESOURCE ICON : creature_apollon_boss_6_icon
+RESOURCE COMBAT : creature_apollon_boss_6_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_57
+RESOURCE ICON : creature_apollon_boss_7_icon
+RESOURCE COMBAT : creature_apollon_boss_7_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_58
+RESOURCE ICON : creature_apollon_boss_8_icon
+RESOURCE COMBAT : creature_apollon_boss_8_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_59
+RESOURCE ICON : creature_apollon_boss_9_icon
+RESOURCE COMBAT : creature_apollon_boss_9_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_60
+RESOURCE ICON : creature_apollon_boss_10_icon
+RESOURCE COMBAT : creature_apollon_boss_10_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_61
+RESOURCE ICON : creature_apollon_ultimate_easy_icon
+RESOURCE COMBAT : creature_apollon_ultimate_easy_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---
+
+ID : APOLLON_62
+RESOURCE ICON : creature_apollon_ultimate_hard_icon
+RESOURCE COMBAT : creature_apollon_ultimate_hard_combat
+BASE NAME EXISTANT : [à définir]
+TYPE : [à définir]
+RÔLE : [à définir]
+SILHOUETTE : [à définir]
+GAMEPLAY HINT : [à définir]
+NOM FINAL FR : 
+DESCRIPTION COURTE : 
+DESCRIPTION LONGUE : 
+---

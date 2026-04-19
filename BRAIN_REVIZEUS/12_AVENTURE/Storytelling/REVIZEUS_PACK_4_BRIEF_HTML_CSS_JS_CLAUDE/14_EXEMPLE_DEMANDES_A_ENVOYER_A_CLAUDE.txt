@@ -1,0 +1,26 @@
+EXEMPLES DE DEMANDES À ENVOYER À CLAUDE
+
+DEMANDE 1
+Je veux que tu me proposes la meilleure structure possible pour un site RéviZeus premium, cohérent avec une DA mythologie grecque moderne, jeu vidéo éducatif, storytelling fort, accessibilité claire, et image de marque ambitieuse.
+
+DEMANDE 2
+À partir de cette charte, écris-moi tout le contenu de la page d’accueil RéviZeus avec un hero, plusieurs sections, CTA, hooks, ton premium, humour subtil, clarté maximale et vraie cohérence de marque.
+
+DEMANDE 3
+Génère-moi maintenant le code HTML/CSS/JS complet de la page d’accueil RéviZeus, avec sections structurées, commentaires utiles, classes propres, responsive, navigation sticky, cartes premium et emplacements d’images clairement nommés.
+
+DEMANDE 4
+Maintenant améliore ce code pour qu’il ressemble moins à une landing page startup générique et davantage à une vraie marque premium mêlant mythologie, pédagogie, aventure et élégance.
+
+DEMANDE 5
+Crée-moi la page “Les dieux du savoir” avec une grille premium, un bloc narratif d’introduction, des cartes pour chaque dieu, et un style cohérent avec l’accueil.
+
+DEMANDE 6
+Crée-moi la page “L’univers” avec un storytelling fort, une mise en page immersive, une grande image hero, des blocs de lore, une section sur le Chaos, et un CTA final.
+
+DEMANDE 7
+Fais un audit complet du site RéviZeus généré jusqu’ici et corrige :
+- tout ce qui paraît générique
+- tout ce qui manque de cohérence visuelle
+- tout ce qui manque de souffle narratif
+- tout ce qui n’est pas assez premium

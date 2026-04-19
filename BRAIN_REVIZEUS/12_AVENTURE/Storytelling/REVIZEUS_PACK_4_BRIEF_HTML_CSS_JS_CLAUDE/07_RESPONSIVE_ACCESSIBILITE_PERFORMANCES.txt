@@ -1,0 +1,40 @@
+RESPONSIVE, ACCESSIBILITÉ, PERFORMANCES
+
+RESPONSIVE
+Le site doit être excellent sur :
+- desktop large
+- laptop
+- tablette
+- mobile portrait
+
+PRIORITÉS MOBILE
+- texte lisible
+- hero réorganisé intelligemment
+- boutons cliquables
+- navigation mobile simple
+- cartes empilées proprement
+- images non écrasées
+- espaces suffisants
+
+ACCESSIBILITÉ
+- contrastes élevés
+- tailles de police raisonnables
+- états hover / focus visibles
+- images décoratives bien gérées
+- structure logique pour lecture assistée
+- textes jamais illisibles sur fonds chargés
+
+PERFORMANCES
+- images optimisées
+- effets limités
+- JS léger
+- pas de vidéo de fond lourde imposée
+- lazy loading si galerie
+- sections visibles rapidement
+
+RECOMMANDATION CLAUDE
+Toujours lui demander :
+- responsive propre sans casser la DA
+- accessibilité minimale sérieuse
+- structure performante
+- poids visuel premium mais techniquement raisonnable

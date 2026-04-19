@@ -1,0 +1,51 @@
+PLAN DE DOSSIERS ET NOMMAGE PROPRE
+
+VERSION SIMPLE
+/site-revizeus
+  index.html
+  concept.html
+  univers.html
+  dieux.html
+  aventure.html
+  intelligence.html
+  galerie.html
+  vision.html
+  contact.html
+  /assets
+    /css
+      style.css
+      responsive.css
+    /js
+      main.js
+    /img
+      /hero
+      /gods
+      /backgrounds
+      /mockups
+      /lore
+      /icons
+      /ui
+
+NOMMAGE CONSEILLÉ
+- hero-home-olympus.webp
+- hero-universe-world.webp
+- gods-pantheon-wide.webp
+- god-zeus-maths.webp
+- god-athena-francais.webp
+- god-hermes-langues.webp
+- god-ares-histoire.webp
+- god-aphrodite-art.webp
+- god-poseidon-svt.webp
+- god-promethee-savoir.webp
+- adventure-temples-evolution.webp
+- chaos-central-lore.webp
+- mockup-dashboard-home.webp
+- mockup-oracle-summary.webp
+- mockup-quiz-divine.webp
+
+RÈGLE
+Tout doit être nommé de façon :
+- claire
+- réutilisable
+- logique
+- compréhensible par humain

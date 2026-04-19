@@ -1,0 +1,88 @@
+ORDRE MAÎTRE — SITE HTML RÉVIZEUS
+
+Tu vas générer un site HTML/CSS/JS premium pour RéviZeus.
+
+IDENTITÉ DU PROJET
+RéviZeus est un univers de révision scolaire transformé en aventure mythologique intelligente.
+Le site doit présenter RéviZeus comme :
+- une marque forte
+- une expérience visuelle premium
+- un projet éducatif sérieux
+- un univers de jeu mémorable
+- un produit ambitieux et accessible
+
+OBJECTIF DU SITE
+Le site doit :
+- impressionner visuellement
+- expliquer clairement le concept
+- donner envie d’explorer
+- rassurer sur le sérieux pédagogique
+- mettre en valeur l’univers
+- valoriser les dieux / matières / progression / aventure / IA
+- pouvoir servir autant à des élèves, des parents, des partenaires ou des investisseurs
+
+STYLE ATTENDU
+Le rendu doit ressembler à la fusion entre :
+- une landing page de jeu vidéo AAA
+- une marque éducative premium
+- une expérience fantasy mythologique moderne
+- une présentation startup haut de gamme
+
+Le site ne doit JAMAIS ressembler à :
+- un site scolaire triste
+- un SaaS générique
+- une démo bootstrap sans identité
+- un site enfantin
+- une page “IA magique” froide et sans âme
+
+DIRECTION ARTISTIQUE
+Couleurs principales :
+- fond bleu nuit / noir cosmique
+- or lumineux
+- blanc lisible
+- bleu électrique
+Accents autorisés :
+- turquoise
+- ambre
+- magenta divin
+- violet profond selon les sections
+
+Ambiance visuelle :
+- temples du savoir
+- marbre stylisé
+- lumière divine
+- énergie magique élégante
+- particules subtiles
+- profondeur
+- halos
+- motifs grecs très discrets
+- univers noble, lumineux, immersif
+
+TON DU SITE
+Le ton doit être :
+- inspirant
+- clair
+- premium
+- accessible
+- ambitieux
+- légèrement épique
+- parfois drôle avec subtilité
+
+Exemples d’esprit :
+- “Le savoir mérite mieux qu’un PDF triste.”
+- “Même Zeus préférerait réviser ici.”
+- “Quand Athéna corrige, mieux vaut avoir relu.”
+- “L’Olympe avait besoin d’un vrai projet éducatif.”
+
+IMPORTANT
+Le site doit rester très lisible.
+Le wow visuel ne doit jamais détruire la clarté.
+Le texte doit rester respirant.
+Les CTA doivent être clairs.
+Le responsive mobile doit être excellent.
+
+MISSION
+Construire un site HTML/CSS/JS complet, propre, structuré, premium, responsive, cohérent avec la DA RéviZeus, et prêt à accueillir des images, illustrations, mockups et storytelling.
+
+LIGNE DIRECTRICE À GARDER PARTOUT
+RéviZeus = la révision scolaire transformée en aventure mythologique intelligente.

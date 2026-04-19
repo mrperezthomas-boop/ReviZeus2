@@ -1,0 +1,13 @@
+WORKFLOW ULTRA OPÉRATIONNEL — UNE PAGE TYPE
+
+1. Donne à Claude le prompt maître global.
+2. Donne ensuite le prompt de génération de la page choisie.
+3. Une fois le code reçu, donne le prompt d’amélioration.
+4. Puis le prompt d’audit.
+5. Puis le prompt d’intégration visuelle.
+6. Puis le prompt de finition premium.
+7. Enfin demande :
+   "Harmonise cette page avec les autres pages RéviZeus déjà créées, sans casser sa personnalité propre."
+
+Règle :
+Toujours conserver les meilleures parties déjà générées. Ne pas repartir de zéro sans raison.

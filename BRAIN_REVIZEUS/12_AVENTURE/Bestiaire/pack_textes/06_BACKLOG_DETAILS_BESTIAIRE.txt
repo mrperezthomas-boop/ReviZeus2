@@ -1,0 +1,24 @@
+BACKLOG DE DETAILS A COMPLETER PLUS TARD
+======================================
+
+Champs optionnels mais très utiles pour une encyclopédie sacrée premium
+-----------------------------------------------------------------------
+- Date de découverte du monstre
+- Citation divine associée
+- Faiblesses scolaires symboliques
+- Forces pédagogiques symboliques
+- Variation d'humeur du monstre
+- Classe de dangerosité visuelle
+- Animation d'entrée
+- Bruit / cri / ambiance sonore
+- Effet de particules associé
+- Temple / biome d'apparition
+- Interaction drôle avec un dieu ou un héros
+- Ligne de bestiaire ultra courte pour liste mobile
+- Ligne de lore longue pour page détaillée
+- Récompense potentielle si vaincu
+- Place dans une future encyclopédie sacrée illustrée
+
+Important
+---------
+Le pack actuel te prépare une base ultra solide, mais les vraies descriptions finales gagneront encore en qualité si, dans un second temps, on exploite directement les images rendues une par une pour raffiner l'apparence exacte.
