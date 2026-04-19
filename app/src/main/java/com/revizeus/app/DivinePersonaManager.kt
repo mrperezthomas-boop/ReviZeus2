@@ -50,40 +50,28 @@ object DivinePersonaManager {
         val actionBias = when (actionType) {
             DivineActionType.SUMMARY_GENERATION ->
                 "Priorise une reformulation fidèle, structurée et directement révisable."
-
             DivineActionType.SUMMARY_REFORMULATION ->
                 "Reformule plus clairement sans dériver du sens validé."
-
             DivineActionType.QUIZ_GENERATION ->
                 "Produit des questions pédagogiques, nettes et adaptées au niveau."
-
             DivineActionType.QUIZ_CORRECTION ->
                 "Explique l'erreur ou la réussite avec une logique brève et exploitable."
-
             DivineActionType.MNEMONIC ->
                 "Condense l'idée en formule mémorisable, concise et scolaire."
-
             DivineActionType.DIVINE_VERDICT ->
                 "Donne un verdict juste, incarné, sans écraser l'élève."
-
             DivineActionType.ENCOURAGEMENT ->
                 "Encourage avec cohérence de ton, sans flatterie vide."
-
             DivineActionType.ERROR_EXPLANATION ->
                 "Explique l'erreur technique ou pédagogique de façon calme et claire."
-
             DivineActionType.SYSTEM_HELP ->
                 "Reste très utile, concret, lisible en contexte système."
-
             DivineActionType.LOADING_MESSAGE ->
                 "Reste extrêmement court, respirant, compatible avec attente UI."
-
             DivineActionType.TEMPLE_GUIDANCE ->
                 "Parle comme un guide de progression lié au temple et à l'avancée."
-
             DivineActionType.TRANSLATION ->
                 "Traduis fidèlement sans perdre la clarté pédagogique."
-
             DivineActionType.DIVINE_SUGGESTION ->
                 "Propose une prochaine action pertinente, simple à exécuter."
         }
@@ -160,61 +148,51 @@ object DivinePersonaManager {
                 DivineActionType.QUIZ_CORRECTION,
                 DivineActionType.SYSTEM_HELP
             )
-
             DivinePersonaType.ATHENA -> setOf(
                 DivineActionType.SUMMARY_REFORMULATION,
                 DivineActionType.QUIZ_CORRECTION,
                 DivineActionType.SYSTEM_HELP
             )
-
             DivinePersonaType.POSEIDON -> setOf(
                 DivineActionType.SUMMARY_GENERATION,
                 DivineActionType.ENCOURAGEMENT,
                 DivineActionType.DIVINE_SUGGESTION
             )
-
             DivinePersonaType.ARES -> setOf(
                 DivineActionType.DIVINE_VERDICT,
                 DivineActionType.ENCOURAGEMENT,
                 DivineActionType.TEMPLE_GUIDANCE
             )
-
             DivinePersonaType.APHRODITE -> setOf(
                 DivineActionType.MNEMONIC,
                 DivineActionType.ENCOURAGEMENT,
                 DivineActionType.SUMMARY_REFORMULATION
             )
-
             DivinePersonaType.HERMES -> setOf(
                 DivineActionType.TRANSLATION,
                 DivineActionType.LOADING_MESSAGE,
                 DivineActionType.SYSTEM_HELP
             )
-
             DivinePersonaType.DEMETER -> setOf(
                 DivineActionType.ENCOURAGEMENT,
                 DivineActionType.TEMPLE_GUIDANCE,
                 DivineActionType.SUMMARY_REFORMULATION
             )
-
             DivinePersonaType.HEPHAISTOS -> setOf(
                 DivineActionType.ERROR_EXPLANATION,
                 DivineActionType.QUIZ_CORRECTION,
                 DivineActionType.SYSTEM_HELP
             )
-
             DivinePersonaType.APOLLON -> setOf(
                 DivineActionType.MNEMONIC,
                 DivineActionType.SUMMARY_GENERATION,
                 DivineActionType.DIVINE_SUGGESTION
             )
-
             DivinePersonaType.PROMETHEE -> setOf(
                 DivineActionType.ENCOURAGEMENT,
                 DivineActionType.DIVINE_SUGGESTION,
                 DivineActionType.SYSTEM_HELP
             )
-
             DivinePersonaType.ORACLE_NEUTRE -> setOf(
                 DivineActionType.SYSTEM_HELP,
                 DivineActionType.SUMMARY_REFORMULATION,

@@ -1,7 +1,10 @@
 package com.revizeus.app
 
 // [2026-04-19 05:36][BLOC_B2][RESPONSE_ORCHESTRATOR] Orchestrateur B2 léger, sans doublonner DivineDialogueOrchestrator.
-object DivineResponseOrchestrator {
+object git status
+git add .
+git commit -m "Premiere phase Bloc B2"
+git pushDivineResponseOrchestrator {
 
     // [2026-04-19 05:36][BLOC_B2][RESPONSE_ORCHESTRATOR] Construction du plan de réponse UI/prompt à partir du contexte B2.
     fun buildResponsePlan(context: DivineRequestContext): DivineResponsePlan {
@@ -56,7 +59,6 @@ object DivineResponseOrchestrator {
 
         return when (context.actionType) {
             DivineActionType.LOADING_MESSAGE -> DivineSpeechMode.LOADING_WHISPER
-
             DivineActionType.QUIZ_CORRECTION,
             DivineActionType.DIVINE_VERDICT -> {
                 if (source.contains("result") || source.contains("review")) {
@@ -65,10 +67,8 @@ object DivineResponseOrchestrator {
                     DivineSpeechMode.RPG_POPUP
                 }
             }
-
             DivineActionType.ERROR_EXPLANATION,
             DivineActionType.SYSTEM_HELP -> DivineSpeechMode.SHORT_SYSTEM_FEEDBACK
-
             DivineActionType.SUMMARY_GENERATION,
             DivineActionType.SUMMARY_REFORMULATION,
             DivineActionType.QUIZ_GENERATION,
@@ -94,40 +94,28 @@ object DivineResponseOrchestrator {
         return when (actionType) {
             DivineActionType.SUMMARY_GENERATION ->
                 "Rédige un résumé fidèle, clair et structuré dans le style ${config.teachingStyle}."
-
             DivineActionType.SUMMARY_REFORMULATION ->
                 "Reformule plus proprement sans perdre le fond et sans dérive narrative."
-
             DivineActionType.QUIZ_GENERATION ->
                 "Construis des questions adaptées au niveau, lisibles et pédagogiquement utiles."
-
             DivineActionType.QUIZ_CORRECTION ->
                 "Explique la logique juste, puis corrige l'erreur avec le style ${config.correctionStyle}."
-
             DivineActionType.MNEMONIC ->
                 "Produit une formulation courte, mémorisable et immédiatement réutilisable."
-
             DivineActionType.DIVINE_VERDICT ->
                 "Donne un jugement juste, incarné, cohérent avec le ton ${config.coreTone}."
-
             DivineActionType.ENCOURAGEMENT ->
                 "Encourage sans flatterie vide, avec le style ${config.encouragementStyle}."
-
             DivineActionType.ERROR_EXPLANATION ->
                 "Explique le problème avec calme, précision et action de reprise."
-
             DivineActionType.SYSTEM_HELP ->
                 "Reste concret, très utile et immédiatement exploitable par l'utilisateur."
-
             DivineActionType.LOADING_MESSAGE ->
                 "Fais extrêmement court, respirant, élégant, sans bruit inutile."
-
             DivineActionType.TEMPLE_GUIDANCE ->
                 "Relie la réponse à la progression, au temple, à l'effort ou à la consolidation."
-
             DivineActionType.TRANSLATION ->
                 "Traduis avec fidélité, clarté et conservation du sens scolaire."
-
             DivineActionType.DIVINE_SUGGESTION ->
                 "Termine par une prochaine action claire, faisable et cohérente."
         }
