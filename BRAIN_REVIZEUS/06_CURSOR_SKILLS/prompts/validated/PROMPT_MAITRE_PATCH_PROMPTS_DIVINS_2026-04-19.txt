@@ -1,0 +1,71 @@
+[Horodatage logique : 2026-04-19 | Type : prompt maître de patch]
+Mission RéviZeus : NORMALISER LES PROMPTS DIVINS SANS CASSER LE BRAIN
+
+Contexte :
+Le panthéon canonique RéviZeus est déjà défini.
+Le Brain contient cependant des formulations anciennes ou ambiguës qui peuvent pousser une IA à remapper un dieu vers une mauvaise matière.
+La mission consiste à PATCHER les prompts et documents de génération les plus sensibles, sans refonte massive, sans casser l'architecture documentaire, et en conservant tout ce qui est déjà valide.
+
+Vérité canonique à respecter absolument :
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art / Musique
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Hermès = Langues / Anglais
+- Prométhée = Vie & Projets
+
+Principe directeur :
+- Matière = fixe
+- Personnalité = moteur de dialogue
+- DA = cadrage narratif / visuel
+- Aucun prompt ne doit déduire la matière depuis la personnalité
+
+Fichiers à lire avant toute écriture :
+- BRAIN_REVIZEUS/11_LORE/PANTHEON_CANONIQUE_REVIZEUS.md
+- BRAIN_REVIZEUS/11_LORE/DIEUX_PERSONNALITES.md
+- BRAIN_REVIZEUS/11_LORE/BIBLE_MYTHOLOGIQUE.md
+- BRAIN_REVIZEUS/11_LORE/MATRICE_DIALOGUES_DIVINS_CANONIQUES_2026-04-19.md
+- BRAIN_REVIZEUS/03_SYSTEMES/NORME_GENERATION_DIALOGUES_DIVINS_2026-04-19.md
+- BRAIN_REVIZEUS/03_SYSTEMES/REGISTRE_VERITE_DOCUMENTAIRE_PANTHEON_2026-04-19.md
+- BRAIN_REVIZEUS/02_BLOCS/B_A_FAIRE/BLOC_B_DIALOGUES_RPG.txt
+- BRAIN_REVIZEUS/06_CURSOR_SKILLS/prompts/README.md
+- tout prompt existant déjà dans BRAIN_REVIZEUS/06_CURSOR_SKILLS/prompts/
+
+Périmètre strict :
+- Modifier uniquement les prompts / docs de génération explicitement concernés par les dialogues divins ou les mappings de dieux.
+- Ne pas toucher aux blocs sans lien avec les dieux.
+- Ne pas renommer les fichiers historiques sauf nécessité absolue.
+- Préférer des insertions de garde-fous et des corrections ciblées.
+
+Interdictions absolues :
+- Ne pas changer la matière officielle d'un dieu.
+- Ne pas transformer un storytelling en remapping matière.
+- Ne pas faire de refactor global du Brain.
+- Ne pas supprimer de contenu historique utile sans l'archiver proprement.
+- Ne pas écrire de pseudo-code ; livrer des fichiers intégrables.
+
+Ce qu'il faut faire exactement :
+1. Identifier les prompts/documents les plus dangereux pour les dérives de panthéon.
+2. Corriger les formulations ambiguës.
+3. Ajouter des garde-fous explicites de type :
+   "La matière canonique du dieu est fixe et la personnalité n'influence que la manière de parler."
+4. Si nécessaire, ajouter une courte section "Règle panthéon canonique" dans les prompts sensibles.
+5. Conserver le ton premium, RPG, immersif et pédagogique.
+6. Fournir les fichiers complets modifiés uniquement.
+
+Livrable attendu :
+- Audit bref
+- Liste stricte des fichiers modifiés
+- Fichiers complets finaux
+- Mini-checklist de validation
+
+Checklist de validation obligatoire :
+- Aucun dieu remappé
+- Aucune matière modifiée
+- Les dialogues restent bien différenciés par personnalité
+- Les prompts restent injectables dans Cursor
+- Aucun fichier hors périmètre n'a été touché

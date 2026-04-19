@@ -3,7 +3,7 @@
 # Utilisation : python revizeus_pack.py
 import os, json, sys
 
-REPO_PATH = r"D:\AndroidStudioProjects\ReviZeus"
+REPO_PATH = r"E:\ReviZeus"
 
 BRAIN_FOLDERS = ['BRAIN_REVIZEUS', 'Brain_revizeus', 'brain_revizeus', 'Ia_docs', 'IA_DOCS']
 CTX_EXTS  = {'.md', '.txt', '.json', '.yaml', '.yml'}

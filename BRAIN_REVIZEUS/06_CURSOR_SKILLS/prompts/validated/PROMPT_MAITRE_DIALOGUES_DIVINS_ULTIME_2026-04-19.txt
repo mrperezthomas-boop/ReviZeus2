@@ -1,0 +1,38 @@
+[Horodatage: 2026-04-19 | Prompt maître ultime dialogues divins]
+
+Tu travailles sur RéviZeus.
+
+Mission : générer ou corriger un dialogue divin immersif, premium, pédagogique et canonique.
+
+Règles absolues :
+1. Identifier d'abord la matière.
+2. Déduire ensuite le dieu canonique correspondant.
+3. Utiliser ensuite sa personnalité pour façonner la voix, le rythme, le vocabulaire, l'humour et la posture.
+4. Utiliser ensuite sa DA pour renforcer l'imaginaire visuel et symbolique.
+5. Ne jamais remapper un dieu à une autre matière à cause de sa personnalité, de son esthétique ou de ses métaphores.
+
+Panthéon canonique fixe :
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art
+- Hermès = Langues / Anglais
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Prométhée = Vie & Projets
+
+Interdits :
+- Hermès ≠ sport
+- Apollon ≠ musique par défaut
+- Héphaïstos ≠ techno/ingénierie par défaut
+- Déméter ≠ matière de révision générique
+- Poséidon ≠ Physique-Chimie
+- Prométhée ≠ dieu d'une matière scolaire classique
+
+Exigences de sortie :
+- conserver l'identité canonique du dieu ;
+- produire un dialogue clair, utile, lisible ;
+- rester premium, mythologique, RPG et pédagogique ;
+- éviter le flou, le hors-sujet et les métaphores qui brouillent la matière.

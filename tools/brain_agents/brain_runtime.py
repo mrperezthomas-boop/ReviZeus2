@@ -1,70 +1,50 @@
 from __future__ import annotations
-
 import json
-import subprocess
-from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
-from typing import Any
 
+def resolve_brain_paths(project_root: Path) -> dict:
+    brain = project_root / "BRAIN_REVIZEUS"
+    runtime = brain / "09_RUNTIME_AGENT"
+    snapshots = brain / "08_SNAPSHOTS"
+    qa = brain / "10_RAPPORTS_QA"
+    quick = brain / "00_QUICK_START"
+    return {
+        "project_root": project_root,
+        "brain_dir": brain,
+        "runtime_dir": runtime,
+        "snapshots_dir": snapshots,
+        "qa_dir": qa,
+        "quick_dir": quick,
+        "agent_config": runtime / "agent_config.json",
+        "last_analysis": runtime / "LAST_ANALYSIS.json",
+        "last_summary": runtime / "LAST_RUN_SUMMARY.md",
+        "governance": runtime / "revizeus_mapper_rules.json",
+        "qa_report": qa / "LAST_RULES_REPORT.md",
+        "etat_temps_reel": quick / "ETAT_TEMPS_REEL.md",
+    }
 
-@dataclass
-class AgentContext:
-    project_root: Path
-    brain_root: Path
-    config: dict[str, Any]
-    now: datetime
-    source: str
+def ensure_runtime_files(project_root: Path) -> dict:
+    ctx = resolve_brain_paths(project_root)
+    ctx["runtime_dir"].mkdir(parents=True, exist_ok=True)
+    ctx["snapshots_dir"].mkdir(parents=True, exist_ok=True)
+    ctx["qa_dir"].mkdir(parents=True, exist_ok=True)
+    ctx["quick_dir"].mkdir(parents=True, exist_ok=True)
 
-    @property
-    def timestamp(self) -> str:
-        return self.now.strftime("%Y-%m-%d %H:%M")
+    if not ctx["agent_config"].exists():
+        config = {
+            "project_name": "ReviZeus",
+            "brain_root": "BRAIN_REVIZEUS",
+            "runtime_dir": "09_RUNTIME_AGENT",
+            "snapshots_dir": "08_SNAPSHOTS",
+            "qa_dir": "10_RAPPORTS_QA",
+            "quick_dir": "00_QUICK_START",
+            "version": "true-brain-v1"
+        }
+        ctx["agent_config"].write_text(json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")
+    return ctx
 
-
-def load_context(project_root: Path, source: str) -> AgentContext:
-    brain_root = project_root / "BRAIN_REVIZEUS"
-    config_path = brain_root / "07_RUNTIME_AGENT" / "agent_config.json"
-    with config_path.open("r", encoding="utf-8") as f:
+def load_context(project_root: Path, source: str = "manual") -> dict:
+    ctx = ensure_runtime_files(project_root)
+    with ctx["agent_config"].open("r", encoding="utf-8") as f:
         config = json.load(f)
-    return AgentContext(project_root=project_root, brain_root=brain_root, config=config, now=datetime.now(), source=source)
-
-
-def read_json(path: Path, default: Any) -> Any:
-    if not path.exists():
-        return default
-    with path.open("r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def write_json(path: Path, data: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-
-def write_text(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-
-
-def append_text(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as f:
-        f.write(text)
-
-
-def git(args: list[str], cwd: Path) -> str:
-    result = subprocess.run(["git", *args], cwd=str(cwd), capture_output=True, text=True, encoding="utf-8")
-    if result.returncode != 0:
-        return ""
-    return result.stdout.strip()
-
-
-def safe_slug(value: str) -> str:
-    out = []
-    for ch in value.lower():
-        if ch.isalnum():
-            out.append(ch)
-        else:
-            out.append("-")
-    return "".join(out).strip("-") or "run"
+    return {"paths": ctx, "config": config, "source": source}

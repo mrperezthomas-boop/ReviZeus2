@@ -1,0 +1,59 @@
+[Horodatage logique : 2026-04-19 | Type : prompt d'audit]
+Mission RéviZeus : AUDIT DES PROMPTS DIVINS EXISTANTS
+
+Contexte :
+Le Brain RéviZeus contient déjà des prompts, blocs et documents pouvant influencer la génération de dialogues, feedbacks, quiz, onboarding, aides contextuelles et contenus divins.
+Le panthéon canonique a été verrouillé.
+Le but n'est PAS de refondre le Brain, mais d'auditer strictement les prompts existants pour détecter les dérives de mapping entre matière, personnalité et direction artistique.
+
+Vérité canonique à respecter absolument :
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art / Musique
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Hermès = Langues / Anglais
+- Prométhée = Vie & Projets
+
+Règle absolue :
+La matière canonique du dieu est fixe et ne doit jamais être modifiée, réinterprétée ni déduite à partir du ton, du lore ou de la direction artistique. La personnalité influence uniquement la manière de parler.
+
+Fichiers à lire en priorité :
+- BRAIN_REVIZEUS/11_LORE/PANTHEON_CANONIQUE_REVIZEUS.md
+- BRAIN_REVIZEUS/11_LORE/DIEUX_PERSONNALITES.md
+- BRAIN_REVIZEUS/11_LORE/BIBLE_MYTHOLOGIQUE.md
+- BRAIN_REVIZEUS/11_LORE/MATRICE_DIALOGUES_DIVINS_CANONIQUES_2026-04-19.md
+- BRAIN_REVIZEUS/03_SYSTEMES/NORME_GENERATION_DIALOGUES_DIVINS_2026-04-19.md
+- BRAIN_REVIZEUS/02_BLOCS/B_A_FAIRE/BLOC_B_DIALOGUES_RPG.txt
+- BRAIN_REVIZEUS/06_CURSOR_SKILLS/prompts/
+
+Interdictions :
+- Ne modifier aucun fichier pendant l'audit.
+- Ne pas inventer de nouvelle matière.
+- Ne pas fusionner des dieux entre eux.
+- Ne pas proposer de refactor global sans preuve.
+
+Ce qu'il faut faire exactement :
+1. Lister tous les prompts / blocs / docs qui parlent explicitement d'un dieu ou influencent des dialogues divins.
+2. Détecter chaque dérive éventuelle entre matière canonique et ton réel du prompt.
+3. Classer les écarts en :
+   - bloquant
+   - incohérent mais tolérable
+   - purement stylistique
+4. Pour chaque fichier, dire :
+   - ce qui est correct
+   - ce qui est faux
+   - ce qui doit être patché
+5. Donner un plan minimal de normalisation.
+
+Format de sortie obligatoire :
+A. Fichiers concernés
+B. Écarts critiques
+C. Écarts mineurs
+D. Plan de patch minimal
+E. Fichiers exacts à modifier ensuite
+
+Ne code pas. Audit seulement.

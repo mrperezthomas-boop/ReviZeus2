@@ -1,67 +1,71 @@
 from __future__ import annotations
-
 from collections import Counter
 
-from brain_runtime import AgentContext, git
+def _pick(values, fallback="UNKNOWN"):
+    vals = [v for v in values if v and v != "UNKNOWN" and v != "unknown"]
+    if vals:
+        return Counter(vals).most_common(1)[0][0]
+    return fallback
 
+def _session_type(groups: list[str]) -> str:
+    g = set(groups)
+    if not g or g == {"unknown"}:
+        return "unknown"
+    if g <= {"runtime"}:
+        return "runtime_only"
+    if g <= {"archive"}:
+        return "archive_heavy"
+    if g <= {"canonical"}:
+        return "canonical_documentation"
+    if g <= {"active_planning"}:
+        return "active_planning"
+    return "mixed"
 
-BEHAVIOR_TEMPLATES = {
-    "BOOT": "Impact probable sur le flux de lancement et d’accès au jeu.",
-    "AUTH": "Impact probable sur les comptes, héros ou l’onboarding.",
-    "CORE_LOOP": "Impact probable sur le hub principal et la navigation centrale.",
-    "BLOC_A": "Impact probable sur le socle transverse et la stabilité technique.",
-    "BLOC_B": "Impact probable sur les dialogues RPG immersifs.",
-    "BLOC_B2": "Impact probable sur les personas divines et l’orchestration narrative.",
-    "C_AUDIO": "Impact probable sur l’audio, la TTS ou le loading diégétique.",
-    "D_ORACLE": "Impact probable sur le pipeline Oracle et la génération IA.",
-    "E_QUIZ": "Impact probable sur le moteur quiz ou l’entraînement.",
-    "F_ECONOMIE": "Impact probable sur l’économie, l’XP ou les récompenses.",
-    "G_FORGE": "Impact probable sur la forge, le crafting ou l’inventaire.",
-    "H_AVENTURE": "Impact probable sur le mode aventure, les maps ou la progression.",
-    "I_SAVOIRS": "Impact probable sur les savoirs, temples matière ou la bibliothèque.",
-    "K_ADAPTATIVE": "Impact probable sur l’IA adaptative joueur/héros.",
-    "L_ANALYTICS": "Impact probable sur l’analytics pédagogique ou le debug.",
-    "M_RECO": "Impact probable sur les recommandations et synthèses.",
-    "O_META": "Impact probable sur les badges ou la méta-progression.",
-    "DATA_ROOM": "Impact probable sur la persistance Room et les entités.",
-    "CORE_PANTHEON": "Impact probable sur le mapping panthéon / matières.",
-}
+def analyze(mapping: dict, diff_stat: str = "", changed_count: int = 0) -> dict:
+    mapped = mapping.get("mapped_files", [])
+    blocs = [m.get("bloc", "UNKNOWN") for m in mapped]
+    owners = [m.get("owner", "unknown") for m in mapped]
+    groups = [m.get("group", "unknown") for m in mapped]
+    unknown_files = [m["file"] for m in mapped if m.get("bloc") == "UNKNOWN"]
 
+    dominant_bloc = _pick(blocs)
+    dominant_owner = _pick(owners, "unknown")
+    session_type = _session_type(groups)
 
-def analyze_changes(ctx: AgentContext, changed_files: list[str], mapping: dict) -> dict:
-    diff_stat = git(["diff", "--stat", "HEAD~1", "HEAD"], ctx.project_root)
-    mapped_files = mapping.get("mapped_files", [])
-    bloc_counter = Counter(row["bloc"] for row in mapped_files)
-    owner_counter = Counter(row.get("owner", "unknown") for row in mapped_files)
-    unknown_files = [row["file"] for row in mapped_files if row["bloc"] == "UNKNOWN"]
+    confidence = "LOW"
+    if dominant_bloc != "UNKNOWN" and not unknown_files:
+        confidence = "HIGH"
+    elif dominant_bloc != "UNKNOWN":
+        confidence = "MEDIUM"
 
-    dominant_bloc = bloc_counter.most_common(1)[0][0] if bloc_counter else "UNKNOWN"
-    dominant_owner = owner_counter.most_common(1)[0][0] if owner_counter else "unknown"
+    labels = {
+        "canonical_documentation": "documentation canonique",
+        "active_planning": "pilotage actif",
+        "runtime_only": "runtime agent/documentaire",
+        "archive_heavy": "archive",
+        "mixed": "session mixte",
+        "unknown": "session non classée",
+    }
+    label = labels.get(session_type, session_type)
+    summary = f"{changed_count} fichier(s) classé(s) en {label}, bloc dominant = {dominant_bloc}, owner dominant = {dominant_owner}, confiance = {confidence}."
 
     key_behaviors = []
-    for bloc, _count in bloc_counter.most_common(5):
-        template = BEHAVIOR_TEMPLATES.get(bloc)
-        if template:
-            key_behaviors.append(template)
-
     if unknown_files:
         key_behaviors.append(f"{len(unknown_files)} fichier(s) restent non cartographié(s) et demandent une règle explicite si critiques.")
-
-    if not key_behaviors and changed_files:
-        key_behaviors.append("Modifications détectées mais impact métier non déterminé automatiquement.")
-
-    confidence = "HIGH"
-    if dominant_bloc == "UNKNOWN":
-        confidence = "LOW"
-    elif unknown_files:
-        confidence = "MEDIUM"
+    if session_type == "canonical_documentation":
+        key_behaviors.append("Session dominée par des référentiels canoniques du brain.")
+    elif session_type == "active_planning":
+        key_behaviors.append("Session dominée par des documents de pilotage actif.")
+    elif session_type == "runtime_only":
+        key_behaviors.append("Session dominée par des sorties runtime ou journaux agents.")
 
     return {
         "diff_stat": diff_stat,
         "dominant_bloc": dominant_bloc,
         "dominant_owner": dominant_owner,
+        "session_type": session_type,
         "unknown_files": unknown_files,
         "key_behaviors": key_behaviors,
-        "summary": f"{len(changed_files)} fichier(s) surveillé(s) modifié(s), bloc dominant = {dominant_bloc}, owner dominant = {dominant_owner}, confiance = {confidence}.",
+        "summary": summary,
         "confidence": confidence,
     }

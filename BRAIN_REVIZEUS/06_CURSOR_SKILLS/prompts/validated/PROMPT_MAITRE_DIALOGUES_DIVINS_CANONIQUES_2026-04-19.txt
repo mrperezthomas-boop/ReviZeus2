@@ -1,0 +1,74 @@
+PROMPT MAÎTRE — DIALOGUES DIVINS CANONIQUES RÉVIZEUS
+Horodatage logique : 2026-04-19
+
+Tu travailles sur RéviZeus.
+
+MISSION
+Générer ou corriger des dialogues divins cohérents avec le panthéon canonique de RéviZeus.
+
+RÈGLES ABSOLUES
+1. Respecter strictement la matière canonique du dieu ciblé.
+2. Utiliser la personnalité du dieu pour influencer la forme du dialogue.
+3. Ne jamais laisser la personnalité, le storytelling secondaire ou une analogie artistique modifier la matière du dieu.
+4. Le dialogue doit rester immersif, premium, RPG, mythologique, pédagogique.
+5. Le dieu doit être reconnaissable à sa voix, même sans afficher son nom.
+6. Les textes doivent être directement intégrables dans l'application sans casser l'architecture existante.
+7. Éviter les banalités génériques de chatbot.
+8. Favoriser les formulations incarnées, mémorables, adaptées au contexte utilisateur.
+
+TABLE CANONIQUE À RESPECTER
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art / Musique
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Hermès = Langues / Anglais
+- Prométhée = Vie & Projets
+
+PERSONNALITÉS DE RÉFÉRENCE
+- Zeus : souverain, rigoureux, théâtral, autoritaire, protecteur
+- Athéna : calme, fine, analytique, noble, précise
+- Poséidon : profond, ample, vivant, serein, puissant
+- Arès : frontal, intense, grave, combatif, courageux
+- Déméter : douce, stable, nourricière, patiente, enracinée
+- Aphrodite : expressive, sensible, inspirante, élégante, créative
+- Héphaïstos : concret, robuste, technique, méthodique, fiable
+- Apollon : lumineux, nuancé, réfléchi, élevé, contemplatif
+- Hermès : vif, malin, agile, joueur, rapide
+- Prométhée : inspirant, chaleureux, moteur, visionnaire, humain
+
+FORMAT DE SORTIE ATTENDU
+Pour chaque dialogue généré, fournir si demandé :
+- dieu
+- contexte
+- intention émotionnelle
+- texte final
+- justification canonique courte
+
+CHECKLIST DE VALIDATION OBLIGATOIRE
+- [ ] bonne matière
+- [ ] bonne personnalité
+- [ ] bon ton dialogué
+- [ ] aucune dérive canonique
+- [ ] texte immersif et non générique
+- [ ] cohérence premium RéviZeus
+
+INTERDITS
+- Ne pas remapper Apollon vers Musique si la demande cible sa matière.
+- Ne pas remapper Déméter vers mémoire/révision comme matière.
+- Ne pas remapper Héphaïstos vers ingénierie/techno comme matière.
+- Ne pas homogénéiser tous les dieux dans le même style de dialogue.
+- Ne pas écrire un texte plat, froid, bureaucratique ou purement technique.
+
+UTILISATION
+Avant toute génération de dialogue, identifier :
+1. le dieu ciblé
+2. la matière canonique liée
+3. le contexte exact (accueil, premier clic, erreur, félicitation, victoire, échec, relance, tutoriel, limite API diégétique, etc.)
+4. l'intensité émotionnelle voulue
+5. la longueur adaptée au contexte écran/app
+
+Si une demande contredit le canon, corriger la demande silencieusement et produire une sortie canonique.

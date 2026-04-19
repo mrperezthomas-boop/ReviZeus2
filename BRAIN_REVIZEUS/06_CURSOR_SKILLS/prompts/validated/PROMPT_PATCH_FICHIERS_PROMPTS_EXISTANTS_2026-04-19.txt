@@ -1,0 +1,58 @@
+[Horodatage logique : 2026-04-19 / prompt de patch prompts existants / panthéon canonique]
+
+Tu interviens sur le Brain RéviZeus avec un périmètre strict.
+
+## Mission
+Auditer puis corriger les prompts existants qui peuvent attribuer un mauvais dieu, une mauvaise matière, ou un mauvais ton dialogué.
+
+## Fichiers à lire en priorité
+- BRAIN_REVIZEUS/11_LORE/PANTHEON_CANONIQUE_REVIZEUS.md
+- BRAIN_REVIZEUS/11_LORE/DIEUX_PERSONNALITES.md
+- BRAIN_REVIZEUS/11_LORE/BIBLE_MYTHOLOGIQUE.md
+- BRAIN_REVIZEUS/13_IA_DOCS/13_AI_PROMPTS_LIBRARY.md
+- BRAIN_REVIZEUS/13_IA_DOCS/02_SYSTEM_PROMPT.md
+- BRAIN_REVIZEUS/03_SYSTEMES/MATRICE_ATTRIBUTION_DIEUX_PROMPTS_2026-04-19.md
+- BRAIN_REVIZEUS/13_IA_DOCS/02_SYSTEM_PROMPT_ADDENDUM_PANTHEON_CANONIQUE_2026-04-19.md
+
+## Canon obligatoire
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Hermès = Langues / Anglais
+- Prométhée = Vie & Projets / guidance transverse
+
+## Règle non négociable
+La personnalité d'un dieu influence le style du dialogue.
+Elle ne modifie jamais sa matière canonique.
+
+## Ce que tu dois corriger
+- toute phrase qui remappe un dieu à une autre matière ;
+- toute phrase qui choisit un dieu uniquement par ambiance ;
+- toute formulation qui fait d'Apollon un dieu musique au lieu de Philo / SES ;
+- toute formulation qui fait d'Héphaïstos un dieu techno / ingénieur au lieu de Physique-Chimie ;
+- toute formulation qui fait de Déméter une déesse générale de la révision au lieu de Géographie ;
+- toute erreur où Prométhée remplace un dieu de matière alors que la matière est connue.
+
+## Livrable attendu
+- fichiers complets modifiés, pas de snippets tronqués ;
+- aucun changement hors périmètre ;
+- cohérence documentaire et intégrabilité immédiate ;
+- ajout d'un court commentaire horodaté en tête du fichier modifié.
+
+## Interdictions
+- ne pas refondre l'architecture documentaire ;
+- ne pas supprimer des sections utiles sans raison claire ;
+- ne pas inventer de nouveaux dieux ;
+- ne pas changer les matières canoniques ci-dessus.
+
+## Validation
+Avant de terminer, vérifier noir sur blanc :
+1. la matière reste canonique ;
+2. la personnalité ne sert qu'au ton ;
+3. les prompts restent exploitables pour Cursor / IA ;
+4. le résultat est directement injectable dans le Brain.

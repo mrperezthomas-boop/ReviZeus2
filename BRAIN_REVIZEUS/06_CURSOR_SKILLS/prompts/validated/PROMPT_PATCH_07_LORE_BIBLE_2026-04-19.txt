@@ -1,0 +1,65 @@
+PATCH DIRECT — 07_LORE_BIBLE.md — PANTHÉON CANONIQUE RÉVIZEUS
+Horodatage logique : 2026-04-19
+
+MISSION
+Corriger le fichier `BRAIN_REVIZEUS/13_IA_DOCS/07_LORE_BIBLE.md` pour qu’il devienne une source agrégée fiable du panthéon RéviZeus.
+
+OBJECTIF STRICT
+- Ne pas changer l’architecture du Brain.
+- Ne pas renommer les dossiers.
+- Remplacer uniquement le contenu nécessaire du fichier visé.
+- Produire un contenu directement intégrable.
+- Ne jamais remapper les matières selon la personnalité ou l’ambiance.
+
+VÉRITÉ CANONIQUE À RESPECTER
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art
+- Hermès = Langues / Anglais
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Prométhée = Vie & Projets
+
+RÈGLE ABSOLUE
+- matière = fixe
+- personnalité = style de dialogue
+- DA = cadrage visuel et narratif
+- aucune de ces couches ne doit réécrire la matière
+
+ATTENDUS DE CONTENU
+Le fichier corrigé doit contenir :
+1. un statut documentaire clair
+2. une règle de vérité absolue
+3. la fiche canonique de chaque dieu :
+   - matière
+   - couleur
+   - rôle
+   - personnalité
+   - direction artistique
+   - style de dialogue
+   - interdits de dérive
+4. les règles de génération des dialogues divins
+5. une grille d’usage par matière
+6. une clause de supériorité documentaire
+7. un résumé opérationnel final
+
+INTERDICTIONS
+- Pas de nouvelles matières
+- Pas de fusion de dieux
+- Pas de glissement “poétique” qui change l’attribution
+- Pas de suppression de Prométhée comme domaine transverse
+- Pas de conversion d’Aphrodite en Musique par défaut
+- Pas de conversion d’Apollon en Musique par défaut
+- Pas de conversion d’Héphaïstos en dieu matière de la technologie
+- Pas de conversion de Déméter en déesse de la révision
+
+VALIDATION
+Avant de livrer, vérifier :
+- chaque dieu a bien sa matière canonique
+- aucune contradiction interne
+- le texte est exploitable par une IA
+- le texte est lisible par un humain
+- le patch est directement remplaçable dans le Brain

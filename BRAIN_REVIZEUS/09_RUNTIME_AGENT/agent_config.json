@@ -1,47 +1,9 @@
 {
   "project_name": "ReviZeus",
-  "default_branch": "main",
-  "sacred_rules_file": "BRAIN_REVIZEUS/01_REGLES_SACREES/RULES_SACREES.md",
-  "block_index_file": "BRAIN_REVIZEUS/02_BLOCS/INDEX_BLOCS.md",
-  "etat_temps_reel_file": "BRAIN_REVIZEUS/00_QUICK_START/ETAT_TEMPS_REEL.md",
-  "journal_file": "BRAIN_REVIZEUS/04_JOURNAUX/JOURNAL_AGENT.md",
-  "rules_report_file": "BRAIN_REVIZEUS/10_RAPPORTS_QA/LAST_RULES_REPORT.md",
-  "last_analysis_file": "BRAIN_REVIZEUS/09_RUNTIME_AGENT/LAST_ANALYSIS.json",
-  "last_run_summary_file": "BRAIN_REVIZEUS/09_RUNTIME_AGENT/LAST_RUN_SUMMARY.md",
-  "snapshots_dir": "BRAIN_REVIZEUS/08_SNAPSHOTS",
-  "ia_docs_dir": "BRAIN_REVIZEUS/13_IA_DOCS",
-  "taxonomie_dir": "BRAIN_REVIZEUS/14_TAXONOMIE",
-  "lore_dir": "BRAIN_REVIZEUS/11_LORE",
-  "adventure_dir": "BRAIN_REVIZEUS/12_AVENTURE",
-  "constitution_file": "BRAIN_REVIZEUS/01_REGLES_SACREES/CONSTITUTION_PROJET.md",
-  "agents_doctrine_file": "BRAIN_REVIZEUS/01_REGLES_SACREES/DOCTRINE_EQUIPE_AGENTS.md",
-  "watched_extensions": [".kt", ".xml", ".gradle", ".kts", ".md"],
-  "sensitive_ids": [
-    "btnNewCourse",
-    "btnLibrary",
-    "btnDailyTraining",
-    "layoutCurrenciesHud",
-    "btnDebugML"
-  ],
-  "forbidden_patterns": [
-    "androidx.compose",
-    "@Composable"
-  ],
-  "_correction_notes": {
-    "date_correction": "2026-04-18",
-    "raison": "Chemins runtime desalignes avec la structure reelle du Brain. Ancien agent_config pointait vers 06_RAPPORTS_QA et 07_RUNTIME_AGENT qui n existent pas.",
-    "corrections": {
-      "rules_report_file": "06_RAPPORTS_QA -> 10_RAPPORTS_QA",
-      "last_analysis_file": "07_RUNTIME_AGENT -> 09_RUNTIME_AGENT",
-      "last_run_summary_file": "07_RUNTIME_AGENT -> 09_RUNTIME_AGENT"
-    },
-    "ajouts": [
-      "ia_docs_dir",
-      "taxonomie_dir",
-      "lore_dir",
-      "adventure_dir",
-      "constitution_file",
-      "agents_doctrine_file"
-    ]
-  }
+  "brain_root": "BRAIN_REVIZEUS",
+  "runtime_dir": "09_RUNTIME_AGENT",
+  "snapshots_dir": "08_SNAPSHOTS",
+  "qa_dir": "10_RAPPORTS_QA",
+  "quick_dir": "00_QUICK_START",
+  "version": "true-brain-v1"
 }

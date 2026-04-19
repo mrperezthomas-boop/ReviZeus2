@@ -1,86 +1,134 @@
 from __future__ import annotations
-
-import argparse
-import json
+import argparse, json, subprocess
+from datetime import datetime, timedelta
 from pathlib import Path
 
-from brain_archivist import build_journal_entry
-from brain_diff_analyzer import analyze_changes
-from brain_mapper import map_files_to_domains
-from brain_rules_guard import check_rules
-from brain_runtime import load_context, safe_slug, write_json, write_text
-from brain_scribe import append_journal, update_block_index, update_etat_temps_reel, update_last_run_summary, update_rules_report
-from brain_watcher import collect_recent_activity
+from brain_runtime import load_context
+from brain_mapper import map_files
+from brain_diff_analyzer import analyze
 
+def git(project_root: Path, args: list[str]) -> str:
+    r = subprocess.run(["git"] + args, cwd=str(project_root), capture_output=True, text=True, encoding="utf-8", errors="replace")
+    return r.stdout.strip()
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="RéviZeus Brain Agents v1")
-    parser.add_argument("--status", action="store_true", help="Lecture seule, aucune écriture.")
-    parser.add_argument("--full", action="store_true", help="Analyse les 7 derniers jours au lieu de 24h.")
-    parser.add_argument("--source", default="manual", help="Origine du run : manual, post-commit, scheduler...")
+def recent_commits(project_root: Path, hours: int = 24) -> list[dict]:
+    since = (datetime.now() - timedelta(hours=hours)).strftime("%Y-%m-%d %H:%M:%S")
+    raw = git(project_root, ["log", f"--since={since}", "--pretty=format:%H|%ai|%s", "--no-merges"])
+    out = []
+    if raw:
+        for line in raw.splitlines():
+            parts = line.split("|", 2)
+            if len(parts) == 3:
+                out.append({"hash": parts[0], "date": parts[1], "subject": parts[2]})
+    return out
+
+def changed_files(project_root: Path, hours: int = 24) -> list[str]:
+    since = (datetime.now() - timedelta(hours=hours)).strftime("%Y-%m-%d %H:%M:%S")
+    raw = git(project_root, ["log", f"--since={since}", "--name-only", "--pretty=format:", "--diff-filter=AM"])
+    files = []
+    if raw:
+        for line in raw.splitlines():
+            line = line.strip()
+            if line:
+                files.append(line)
+    return sorted(set(files))
+
+def write_summary(path: Path, payload: dict):
+    text = []
+    text.append("# LAST RUN SUMMARY")
+    text.append("")
+    text.append(f"- Timestamp : {payload['timestamp']}")
+    text.append(f"- Dominant bloc : {payload['analysis']['dominant_bloc']}")
+    text.append(f"- Dominant owner : {payload['analysis']['dominant_owner']}")
+    text.append(f"- Session type : {payload['analysis'].get('session_type', 'unknown')}")
+    text.append(f"- Confidence : {payload['analysis']['confidence']}")
+    text.append("")
+    text.append(payload['analysis']['summary'])
+    text.append("")
+    if payload['analysis']['key_behaviors']:
+        text.append("## Key behaviors")
+        for item in payload['analysis']['key_behaviors']:
+            text.append(f"- {item}")
+    path.write_text("\n".join(text) + "\n", encoding="utf-8")
+
+def write_qa(path: Path, mapping: dict):
+    unknown = [m['file'] for m in mapping.get('mapped_files', []) if m.get('bloc') == 'UNKNOWN']
+    lines = ["# LAST RULES REPORT", ""]
+    lines.append("Status: OK" if not unknown else "Status: WARN")
+    lines.append("")
+    if unknown:
+        lines.append("## Unknown files")
+        for f in unknown:
+            lines.append(f"- {f}")
+    else:
+        lines.append("Aucun fichier inconnu sur cette fenêtre d'analyse.")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--status", action="store_true")
+    parser.add_argument("--source", default="manual")
+    parser.add_argument("--hours", type=int, default=24)
     args = parser.parse_args()
 
     project_root = Path(__file__).resolve().parents[2]
     ctx = load_context(project_root, source=args.source)
+    paths = ctx["paths"]
 
-    print("╔══════════════════════════════════════════╗")
-    print("║       REVIZEUS BRAIN AGENTS — v1         ║")
-    print("╚══════════════════════════════════════════╝")
-    print(f"  Projet     : {ctx.project_root}")
-    print(f"  Brain      : {ctx.brain_root}")
-    print(f"  Mode       : {'STATUS ONLY' if args.status else 'WRITE'}")
-    print(f"  Horodatage : {ctx.now.strftime('%d/%m/%Y %H:%M:%S')}")
-    print()
+    commits = recent_commits(project_root, args.hours)
+    files = changed_files(project_root, args.hours)
+    mapping = map_files(project_root, files)
+    diff_stat = git(project_root, ["diff", "--stat", "HEAD~1", "HEAD"]) if commits else ""
+    analysis = analyze(mapping, diff_stat=diff_stat, changed_count=len(files))
 
-    activity = collect_recent_activity(ctx, full=args.full)
-    mapping = map_files_to_domains(ctx, activity.get("changed_files", []))
-    analysis = analyze_changes(ctx, activity.get("changed_files", []), mapping)
-    rules = check_rules(ctx, activity.get("changed_files", []))
-
-    report = {
-        "timestamp": ctx.timestamp,
-        "source": ctx.source,
-        "activity": activity,
+    payload = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "source": args.source,
+        "activity": {
+            "branch": git(project_root, ["branch", "--show-current"]) or "main",
+            "commits": commits[:10],
+            "changed_files": files,
+            "last_commit": commits[0] if commits else None,
+        },
         "mapping": mapping,
         "analysis": analysis,
-        "rules": rules,
+        "rules": {
+            "status": "OK" if not analysis["unknown_files"] else "WARN",
+            "checked_files": [f for f in files if f.endswith(".kts") or f.endswith(".gradle")],
+            "warnings": [],
+        }
     }
 
+    print("╔══════════════════════════════════════════╗")
+    print("║       REVIZEUS BRAIN AGENTS — TRUE       ║")
+    print("╚══════════════════════════════════════════╝")
+    print(f"  Projet     : {project_root}")
+    print(f"  Brain      : {paths['brain_dir']}")
+    print(f"  Mode       : {'STATUS ONLY' if args.status else 'WRITE'}")
+    print(f"  Horodatage : {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+    print()
     print("→ Lecture des commits récents...")
-    print(f"  {len(activity.get('commits', []))} commit(s) trouvé(s)")
+    print(f"  {len(commits)} commit(s) trouvé(s)")
     print("→ Scan des fichiers modifiés...")
-    print(f"  {len(activity.get('changed_files', []))} fichier(s) surveillé(s) modifié(s)")
+    print(f"  {len(files)} fichier(s) surveillé(s) modifié(s)")
     print("→ Analyse des blocs impactés...")
-    if mapping.get("detected_blocs"):
-        print(f"  {', '.join(mapping['detected_blocs'])}")
-    else:
-        print("  Aucun bloc clairement identifié")
+    print(f"  {analysis['dominant_bloc']}")
 
     if args.status:
-        print("\nMode --status : aucune écriture effectuée.")
+        print()
+        print("Mode --status : aucune écriture effectuée.")
         return 0
 
-    last_analysis_path = ctx.project_root / ctx.config["last_analysis_file"]
-    write_json(last_analysis_path, report)
+    paths["last_analysis"].write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_summary(paths["last_summary"], payload)
+    write_qa(paths["qa_report"], mapping)
 
-    snapshot_name = f"snapshot-{ctx.now.strftime('%Y%m%d-%H%M%S')}-{safe_slug(ctx.source)}.json"
-    snapshot_path = ctx.project_root / ctx.config["snapshots_dir"] / snapshot_name
-    write_json(snapshot_path, report)
-
-    update_etat_temps_reel(ctx, activity, mapping, analysis, rules)
-    update_block_index(ctx, activity, mapping, analysis)
-    update_rules_report(ctx, rules)
-    update_last_run_summary(ctx, activity, mapping, analysis, rules)
-    append_journal(ctx, build_journal_entry(ctx, activity, mapping, analysis, rules))
-
-    print("\nÉcriture terminée.")
-    print(f"- {ctx.config['etat_temps_reel_file']}")
-    print(f"- {ctx.config['block_index_file']}")
-    print(f"- {ctx.config['rules_report_file']}")
-    print(f"- {ctx.config['journal_file']}")
-    print(f"- {ctx.config['last_analysis_file']}")
+    print()
+    print("Écriture terminée.")
+    print(f"- {paths['last_analysis'].relative_to(project_root)}")
+    print(f"- {paths['last_summary'].relative_to(project_root)}")
+    print(f"- {paths['qa_report'].relative_to(project_root)}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

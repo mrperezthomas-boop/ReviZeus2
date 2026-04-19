@@ -1,0 +1,46 @@
+[Horodatage logique : 2026-04-19 | Prompt de patch direct | Dialogues divins canoniques]
+
+Tu travailles sur RéviZeus.
+
+Mission : corriger uniquement les fichiers du Brain et les prompts liés aux dialogues divins afin d’aligner totalement le système sur le canon validé.
+
+Règles absolues :
+- ne jamais remapper un dieu à partir de sa personnalité ;
+- conserver les matières canoniques fixes ;
+- la personnalité ne sert qu’à influencer le ton du dialogue ;
+- la DA ne sert qu’à cadrer l’identité visuelle et narrative ;
+- ne pas réécrire l’architecture globale du Brain hors périmètre ;
+- produire des fichiers complets, intégrables, cohérents entre eux.
+
+Canon à respecter :
+- Zeus = Mathématiques
+- Athéna = Français
+- Poséidon = SVT
+- Arès = Histoire
+- Déméter = Géographie
+- Aphrodite = Art
+- Héphaïstos = Physique-Chimie
+- Apollon = Philo / SES
+- Hermès = Langues / Anglais
+- Prométhée = Vie & Projets
+
+Travail attendu :
+1. lire les fichiers lore, personnalité, prompts divins et systèmes de génération concernés ;
+2. détecter chaque conflit où ton, rôle symbolique ou esthétique remappe à tort une matière ;
+3. corriger ces conflits ;
+4. reformuler les instructions IA pour imposer l’ordre suivant : matière -> rôle symbolique -> personnalité -> DA -> contexte joueur ;
+5. ajouter un changelog clair des remplacements.
+
+Interdictions :
+- ne pas convertir Apollon en dieu de la musique ;
+- ne pas convertir Héphaïstos en dieu techno/ingénierie comme matière ;
+- ne pas convertir Déméter en déesse de la mémoire comme matière ;
+- ne pas convertir Hermès en dieu du sport ;
+- ne pas transformer Prométhée en dieu des sciences.
+
+Livrable :
+- fichiers complets ;
+- changelog ;
+- aucun placeholder ;
+- aucun JSON inutile ;
+- résultat injectable directement dans BRAIN_REVIZEUS.
