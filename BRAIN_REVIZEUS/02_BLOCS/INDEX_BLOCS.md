@@ -51,3 +51,24 @@ Index officiel des blocs de développement RéviZeus. Section du haut = état ci
 ## Notes
 - L'ancienne version de cet index pointait vers `BRAIN_REVIZEUS/01_IA_DOCS/` et `BRAIN_REVIZEUS/04_LORE/`. Ces chemins étaient **obsolètes** (héritage d'une numérotation antérieure). Les chemins corrects sont `13_IA_DOCS/` et `11_LORE/`.
 - Tous les éléments marqués `UNKNOWN / Non cartographié` dans l'ancienne version étaient dus à ces chemins cassés, pas à un vrai problème de mapping. Le prochain run des agents produira des classements explicites.
+
+---
+
+## 🔄 Activité récente — 20/04/2026 00:56
+
+- `181649f` 2026-04-20 00:42 — deuxieme phase Bloc B2
+- `70386b5` 2026-04-20 00:05 — Premiere phase Bloc B2
+- `8aad5a5` 2026-04-19 23:43 — Premiere phase Bloc B2
+- `bb96ef3` 2026-04-19 23:43 — Premiere phase Bloc B2
+- `36f6343` 2026-04-19 23:33 — Premiere phase Bloc B2
+
+**Blocs touchés :**
+- AGENT_OPS : `LAST_ANALYSIS.json`, `LAST_RUN_SUMMARY.md`, `agent_config.json`
+- AI_TOOLING : `CHANGELOG_PATCH_PROMPTS_EXISTANTS_2026-04-19.md`, `MATRICE_ATTRIBUTION_DIEUX_PROMPTS_2026-04-19.md`, `PLAN_NORMALISATION_PROMPTS_EXISTANTS_2026-04-19.md`
+- BRAIN_BLOCKS : `INDEX_BLOCS.md`
+- BRAIN_CORE : `RULES_SACREES.md`, `CARTOGRAPHIE_MASTER.md`, `DOMAINES_OWNERS.md`
+- H_AVENTURE : `01_ORDRE_MAITRE_BESTIAIRE_DIVIN_ULTIME.txt`, `03_PROMPTS_JSON_RESSOURCES_BESTIAIRE.json`, `08_CHECKLIST_PRODUCTION_BESTIAIRE.txt`
+- LORE : `CHANGELOG_PATCH_07_LORE_BIBLE_2026-04-19.md`, `NOTE_INTEGRATION_07_LORE_BIBLE_2026-04-19.md`, `PROMPT_PATCH_07_LORE_BIBLE_2026-04-19.txt`
+- QA : `ALERTE_SECURITE_FIREBASE_2026-04-19.md`, `LAST_RULES_REPORT.md`
+
+---

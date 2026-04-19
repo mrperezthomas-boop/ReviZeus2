@@ -1,58 +1,81 @@
-# État temps réel RéviZeus
+# ⚡ ÉTAT EN TEMPS RÉEL — RÉVIZEUS
+> Mis à jour automatiquement le **20/04/2026 00:56** par `brain_agent.py`
 
-**Dernière consolidation :** 2026-04-18 (structure Brain consolidée)
-**Généré par :** consolidation manuelle (les agents runtime reprennent ensuite automatiquement)
+## Dépôt Git
+- Branche : `main`
+- Dernier commit : `181649f — deuxieme phase Bloc B2`
+- Fenêtre analysée : 24h
 
----
+## Commits récents (11)
+- `181649f` 2026-04-20 00:42 — deuxieme phase Bloc B2
+- `70386b5` 2026-04-20 00:05 — Premiere phase Bloc B2
+- `8aad5a5` 2026-04-19 23:43 — Premiere phase Bloc B2
+- `bb96ef3` 2026-04-19 23:43 — Premiere phase Bloc B2
+- `36f6343` 2026-04-19 23:33 — Premiere phase Bloc B2
+- `26e3efc` 2026-04-19 22:16 — maj 19_04 22-15h
+- `ae02592` 2026-04-19 21:50 — maj 19_04 22h
+- `ccf0b2e` 2026-04-19 21:00 — Consolidation des dieux et leurs role dans Brain
+- `0edfb7c` 2026-04-19 14:30 — test: hook brain agent
+- `881d5a7` 2026-04-19 14:26 — test: verification brain agent
 
-## Dernier run
-- Horodatage : 2026-04-18 05:02
-- Source : manual
-- Branche : main
+## Fichiers modifiés (454)
+- `"BRAIN_REVIZEUS/02_BLOCS/B_A_FAIRE/BLOC B2 \342\200\224 Personas Divines & Orchestration IA Multi-Dieux.txt"`
+- `BRAIN_REVIZEUS.zip`
+- `BRAIN_REVIZEUS/00_QUICK_START/ETAT_CONSOLIDATION.md`
+- `BRAIN_REVIZEUS/00_QUICK_START/ETAT_TEMPS_REEL.md`
+- `BRAIN_REVIZEUS/00_QUICK_START/INDEX_MASTER.md`
+- `BRAIN_REVIZEUS/00_QUICK_START/PRESENTATION_COMPLETE.md`
+- `BRAIN_REVIZEUS/00_QUICK_START/README.md`
+- `BRAIN_REVIZEUS/00_QUICK_START/README_PROJET_ANDROID.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/AGENTS_RULES.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/CONSTITUTION_PROJET.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/DOCTRINE_EQUIPE_AGENTS.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/PROTOCOLE_CARTOGRAPHIE.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/REVIZEUS_CONTEXT.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/RULES_SACREES.md`
+- `BRAIN_REVIZEUS/01_REGLES_SACREES/WORKFLOW_PIPELINE.md`
+- `BRAIN_REVIZEUS/02_BLOCS/INDEX_BLOCS.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/ARBORESCENCE_CODE_SOURCE.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/BACKEND_FIREBASE_PARENTS_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/BLOCK_SYSTEM_FILE_MATRIX.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/CARTOGRAPHIE_MASTER.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/CHANGELOG_PATCH_07_LORE_BIBLE_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/CHANGELOG_PATCH_DIRECT_PANTHEON_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/CHANGELOG_PATCH_PROMPTS_EXISTANTS_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/DOC_UPDATE_RULES.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/DOMAINES_OWNERS.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/GOUVERNANCE_DOCUMENTAIRE_BRAIN.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/INDEX_CANONIQUE_BRAIN_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/MASTER_SYSTEM_MAP.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/MATRICE_ATTRIBUTION_DIEUX_PROMPTS_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/MATRICE_SOURCES_DE_VERITE_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/NORME_GENERATION_DIALOGUES_DIVINS_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/NOTE_INTEGRATION_07_LORE_BIBLE_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/PLAN_D_INJECTION_BRAIN_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/PLAN_NORMALISATION_PROMPTS_EXISTANTS_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/PROJECT_TRUTH_MAP.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/PROTOCOLE_LECTURE_ECRITURE_AGENTS.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/REGISTRE_VERITE_DOCUMENTAIRE.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/REGISTRE_VERITE_DOCUMENTAIRE_PANTHEON_2026-04-19.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/RISK_ZONES_MAP.md`
+- `BRAIN_REVIZEUS/03_SYSTEMES/SNAPSHOT_CODEBASE_ANDROID_2026-04-19.md`
+- `BRAIN_REVIZEUS/04_JOURNAUX/BRAIN_UPDATE_PROPOSALS.md`
+- `BRAIN_REVIZEUS/04_JOURNAUX/CHANGE_LOG_OPERATIONNEL.md`
+- `BRAIN_REVIZEUS/04_JOURNAUX/JOURNAL_AGENT.md`
+- `BRAIN_REVIZEUS/04_JOURNAUX/JOURNAL_IMPORT_TOUT_ZIP_2026-04-19.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/CLAUDE_CODE_MISSION_TEMPLATE.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/CONTINUE_CONFIG_NOTE_2026-04-19.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/CURSOR_MISSION_TEMPLATE.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/PATCH_REVIEW_PROTOCOL.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/PROMPT_FACTORY_PROTOCOL.md`
+- `BRAIN_REVIZEUS/06_CURSOR_SKILLS/VALIDATION_GATE_PROTOCOL.md`
 
-## Dernier commit observé
-- Sujet : feat: ajout BRAIN_REVIZEUS + agent auto-update
-- Hash : 809847b81d87f03ff15a60bf11c5c568c5372b43
-- Date : 2026-04-18 03:56:11 +0200
+## Blocs impactés
+- **AGENT_OPS** : `LAST_ANALYSIS.json`, `LAST_RUN_SUMMARY.md`, `agent_config.json`, `doc_update_rules.json`, `file_block_map.json`
+- **AI_TOOLING** : `CHANGELOG_PATCH_PROMPTS_EXISTANTS_2026-04-19.md`, `MATRICE_ATTRIBUTION_DIEUX_PROMPTS_2026-04-19.md`, `PLAN_NORMALISATION_PROMPTS_EXISTANTS_2026-04-19.md`, `CURSOR_MISSION_TEMPLATE.md`, `PROMPT_FACTORY_PROTOCOL.md`
+- **BRAIN_BLOCKS** : `INDEX_BLOCS.md`
+- **BRAIN_CORE** : `RULES_SACREES.md`, `CARTOGRAPHIE_MASTER.md`, `DOMAINES_OWNERS.md`, `08_TAXONOMIE.md`, `01_TAXONOMIE_MASTER.md`
+- **H_AVENTURE** : `01_ORDRE_MAITRE_BESTIAIRE_DIVIN_ULTIME.txt`, `03_PROMPTS_JSON_RESSOURCES_BESTIAIRE.json`, `08_CHECKLIST_PRODUCTION_BESTIAIRE.txt`, `09_EXEMPLES_FICHES_MONSTRES_BESTIAIRE.txt`, `00_ORDRE_MAITRE_BESTIAIRE_DIVIN_ULTIME.txt`
+- **LORE** : `CHANGELOG_PATCH_07_LORE_BIBLE_2026-04-19.md`, `NOTE_INTEGRATION_07_LORE_BIBLE_2026-04-19.md`, `PROMPT_PATCH_07_LORE_BIBLE_2026-04-19.txt`, `BIBLE_MYTHOLOGIQUE.md`, `DIEUX_PERSONNALITES.md`
+- **QA** : `ALERTE_SECURITE_FIREBASE_2026-04-19.md`, `LAST_RULES_REPORT.md`
 
-## État des blocs
-- **BLOC A** — Stabilisation technique → ✅ Terminé
-- **BLOC B** — Dialogues RPG → 🔄 En cours (~30 conversions faites / ~77 restantes)
-- **BLOCS C à Q** — 📋 À faire (backlog dans `02_BLOCS/B_A_FAIRE/`)
-
-## État du Brain
-- Structure : **consolidée** (numérotation 00 → 14 stable)
-- Orphelins racine : **tous intégrés** dans le Brain
-- Chemins runtime : **corrigés** dans `agent_config.json`
-- Documents sacrés ajoutés : `CONSTITUTION_PROJET.md`, `DOCTRINE_EQUIPE_AGENTS.md`
-
-## Cartographie fichiers surveillés
-
-Les entrées ci-dessous reflètent les fichiers surveillés au dernier run.
-Après correction des chemins, les futurs runs doivent aboutir à des classements explicites (et non plus `UNKNOWN`).
-
-- `Brain_ReviZeus/00_QUICK_START/README.md` → `DOC_BRAIN` / `QUICK_START` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/02_BUILD_AND_TECH_STACK.md` → `DOC_TECH` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/03_DATA_AND_MANAGERS.md` → `DOC_TECH` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/04_UI_AND_NAVIGATION_MAP.md` → `DOC_TECH` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/07_GAME_SYSTEMS.md` → `DOC_TECH` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/08_AI_PROMPTS_LIBRARY.md` → `DOC_TECH` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/13_IA_DOCS/09_LORE_BIBLE_REVIZEUS.md` → `DOC_LORE` / `IA_DOCS` / **Stable**
-- `Brain_ReviZeus/02_BLOCS/INDEX_BLOCS.md` → `DOC_BLOC` / `ROADMAP` / **Vivant**
-- `Brain_ReviZeus/11_LORE/BIBLE_MYTHOLOGIQUE.md` → `DOC_LORE` / `LORE` / **Stable**
-- `Brain_ReviZeus/11_LORE/DIEUX_PERSONNALITES.md` → `DOC_LORE` / `LORE` / **Stable**
-- `Brain_ReviZeus/06_CURSOR_SKILLS/CURSOR_SKILLS.md` → `DOC_TOOL` / `CURSOR` / **Stable**
-- `android studio/build.gradle.kts` → `TECH_CORE` / `BUILD_SYSTEM` / **P0**
-
-## Résumé métier court
-- Le Brain est maintenant **cohérent** : plus de décalage entre `ETAT_TEMPS_REEL`, `agent_config.json` et la structure disque.
-- Les agents Famille A peuvent tourner sans produire de `UNKNOWN` massifs.
-- Confiance : **HIGH** (après consolidation).
-
-## Contrôle de règles
-- Statut : OK
-- Aucun avertissement critique après consolidation.
-- Les prochains runs partent d'une base saine.
-
-## Prochaine action recommandée
-Relancer le cycle complet d'agents Famille A (Watcher → Mapper → Diff Analyzer → Rules Guard → Archivist → Scribe) pour regénérer automatiquement cet état à partir de la nouvelle structure.
