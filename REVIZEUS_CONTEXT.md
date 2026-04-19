@@ -14,9 +14,9 @@ Le joueur crée un avatar héros, choisit un dieu tutélaire, dépose ses cours 
 obtient des résumés IA + QCM générés automatiquement depuis ses propres cours, et progresse dans
 l'Olympe en gagnant XP, badges, fragments et récompenses.
 
-**GitHub** : https://github.com/mrperezthomas-boop/Revizeus
+**GitHub** : https://github.com/mrperezthomas-boop/Revizeus2
 **Package** : `com.revizeus.app`
-**Répertoire local** : `D:\AndroidStudioProjects\ReviZeus`
+**Répertoire local** : `E:\ReviZeus`
 
 ---
 
