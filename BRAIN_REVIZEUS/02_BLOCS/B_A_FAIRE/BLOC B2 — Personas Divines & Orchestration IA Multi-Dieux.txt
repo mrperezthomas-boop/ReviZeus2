@@ -1,0 +1,545 @@
+B2 — PERSONAS DIVINES & ORCHESTRATION IA MULTI-DIEUX
+0 — RÔLE DU BLOC B2
+
+Ce bloc sert à transformer les dieux de RéviZeus en véritables agents pédagogiques différenciés, et non en simples variantes de texte ou de ton.
+
+Sans B2 :
+
+Zeus, Athéna, Prométhée, Apollon, Hermès, Déméter, etc. peuvent apparaître visuellement différents, mais rester pédagogiquement trop proches ;
+les prompts risquent d’être dispersés ;
+les actions créatives du bloc J peuvent dériver en mini-systèmes isolés ;
+la personnalisation par héros des blocs K/L/M n’a pas de vraie base divine sur laquelle s’appuyer.
+
+Avec B2 :
+
+chaque dieu possède une personnalité IA stable ;
+chaque action divine passe par un orchestrateur central ;
+GeminiManager et GodLoreManager reçoivent une base commune pour toutes les futures générations ;
+les blocs D, E et J peuvent immédiatement exploiter des dieux vraiment distincts.
+1 — POSITION EXACTE DANS TON PLAN GLOBAL
+B2 vient :
+après B
+avant C
+et doit être branché immédiatement dans D, E et plus tard J
+Séquence recommandée
+B : dialogues RPG universels
+B2 : personas divines et orchestration IA multi-dieux
+C : audio/TTS/loading/fatigue divine
+D : Oracle premium
+E : quiz/corrections
+F/H/I/J : savoirs vivants + actions créatives
+K/L/M/N : personnalisation par héros, cognition, recommandations, dashboard vivant
+2 — OBJECTIF EXACT DU BLOC B2
+
+À la fin de B2, RéviZeus doit pouvoir :
+
+définir chaque dieu comme une personnalité pédagogique stable ;
+choisir automatiquement quel dieu doit parler selon le contexte ;
+choisir comment ce dieu doit parler selon le type d’action ;
+injecter cette identité dans les prompts IA ;
+permettre à GodLoreManager et GeminiManager de parler d’une seule voix cohérente ;
+préparer naturellement les blocs J et K ;
+éviter la duplication de logique divine dans les Activities.
+3 — FICHIERS À CRÉER
+
+Voici le noyau minimal à créer.
+
+3.1 DivinePersonaType.kt
+Rôle
+
+Lister tous les dieux/personas supportés par l’orchestration.
+
+Contenu attendu
+
+Une enum stable du type :
+
+ZEUS
+ATHENA
+POSEIDON
+ARES
+APHRODITE
+HERMES
+DEMETER
+HEPHAISTOS
+APOLLON
+PROMETHEE
+Connexions
+PantheonConfig
+GodManager
+DivinePersonaManager
+DivineResponseOrchestrator
+Pourquoi
+
+Tu figes une clé unique pour toute l’orchestration divine.
+
+3.2 DivineActionType.kt
+Rôle
+
+Lister les types d’actions pédagogiques/divines sur lesquels un dieu peut intervenir.
+
+Contenu attendu
+
+Exemples :
+
+SUMMARY_GENERATION
+SUMMARY_REFORMULATION
+QUIZ_GENERATION
+QUIZ_CORRECTION
+MNEMONIC
+DIVINE_VERDICT
+ENCOURAGEMENT
+ERROR_EXPLANATION
+SYSTEM_HELP
+LOADING_MESSAGE
+TEMPLE_GUIDANCE
+TRANSLATION
+POEM
+IMAGE_GENERATION
+MUSIC_GUIDE
+DIVINE_SUGGESTION
+Connexions
+DivineResponseOrchestrator
+GeminiManager
+GodLoreManager
+futurs managers du bloc J
+Pourquoi
+
+Le dieu ne parle pas pareil selon qu’il :
+
+corrige,
+résume,
+reformule,
+crée,
+attend,
+rassure,
+met au défi.
+3.3 DivineSpeechMode.kt
+Rôle
+
+Définir sous quelle forme la réponse doit être livrée à l’UI.
+
+Contenu attendu
+
+Exemples :
+
+RPG_POPUP
+INTEGRATED_ACTIVITY_DIALOG
+LOADING_WHISPER
+RESULT_PANEL
+CREATIVE_INVOCATION
+SHORT_SYSTEM_FEEDBACK
+Connexions
+DialogRPGManager
+DialogRPGFragment
+GodSpeechAnimator
+LoadingDivineDialog
+Pourquoi
+
+Tes docs distinguent déjà clairement :
+
+popup RPG centralisé,
+bloc Activity directe,
+loading distinct.
+3.4 DivinePersonaConfig.kt
+Rôle
+
+Décrire la personnalité pédagogique exécutable de chaque dieu.
+
+Contenu attendu
+
+Data class avec, par exemple :
+
+personaType: DivinePersonaType
+displayName: String
+coreTone: String
+teachingStyle: String
+correctionStyle: String
+encouragementStyle: String
+challengeStyle: String
+warmthBias: Float
+disciplineBias: Float
+maieuticBias: Float
+analogyBias: Float
+stepByStepBias: Float
+poeticBias: Float
+verbosityBias: Float
+preferredActionTypes: Set<DivineActionType>
+forbiddenPatterns: List<String>
+Connexions
+DivinePersonaManager
+GeminiManager
+GodLoreManager
+Pourquoi
+
+C’est le cœur réel du “chaque dieu a sa propre IA”.
+
+3.5 DivinePersonaManager.kt
+Rôle
+
+Source unique de vérité des personnalités divines.
+
+Responsabilités
+retourner la config d’un dieu ;
+exposer ses forces pédagogiques ;
+exposer ses biais de ton ;
+exposer ses cas d’usage préférés ;
+fournir les descriptions utiles à l’IA.
+Méthodes recommandées
+getConfig(personaType)
+getDisplayName(personaType)
+getPersonaPromptHints(personaType, actionType)
+getPreferredActions(personaType)
+getFallbackPersonaForSubject(subject) si besoin
+Connexions
+GeminiManager
+GodLoreManager
+DivineResponseOrchestrator
+Pourquoi
+
+Aucune logique divine importante ne doit être redéfinie localement dans une Activity.
+
+3.6 DivineRequestContext.kt
+Rôle
+
+Modèle de contexte standard pour toute intervention divine.
+
+Contenu attendu
+subject: String?
+actionType: DivineActionType
+screenSource: String
+userAge: Int?
+userClass: String?
+currentMood: String?
+successState: Boolean?
+difficulty: Int?
+rawInput: String?
+validatedSummary: String?
+questionText: String?
+userAnswer: String?
+correctAnswer: String?
+learningProfile: String? plus tard
+metadata: Map<String, String>
+Connexions
+DivineResponseOrchestrator
+GeminiManager
+GodLoreManager
+plus tard LearningProfileManager
+Pourquoi
+
+Tu unifies la matière d’entrée du système.
+
+3.7 DivineResponsePlan.kt
+Rôle
+
+Modèle de sortie de l’orchestrateur.
+
+Contenu attendu
+personaType
+actionType
+speechMode
+godName
+promptHints
+uiHints
+shouldUseRpgDialog
+shouldUseLoadingDivine
+fallbackTextStyle
+priority
+Connexions
+DivineResponseOrchestrator
+GeminiManager
+UI screens
+Pourquoi
+
+Séparer :
+
+décision divine,
+prompt,
+rendu UI.
+3.8 DivineResponseOrchestrator.kt
+Rôle
+
+C’est le cerveau décisionnel du bloc B2.
+
+Responsabilités
+choisir quel dieu parle ;
+choisir son mode de prise de parole ;
+choisir sa profondeur ;
+injecter la personnalité adaptée à l’action ;
+préparer les hints pour l’IA et pour l’UI.
+Méthodes recommandées
+buildResponsePlan(context: DivineRequestContext): DivineResponsePlan
+resolvePersona(context)
+resolveSpeechMode(context)
+resolveActionHints(context)
+resolveFallbackText(context)
+Connexions
+PantheonConfig
+GodManager
+DivinePersonaManager
+GeminiManager
+GodLoreManager
+Pourquoi
+
+C’est la pièce qui évite les “if dieu == Zeus” partout.
+
+3.9 DivinePromptBuilder.kt
+Rôle
+
+Fabriquer les prompts multi-divins à partir du plan.
+
+Responsabilités
+composer le prompt final selon :
+dieu,
+action,
+style,
+contexte utilisateur,
+humeur,
+matière,
+plus tard profil d’accompagnement.
+Méthodes recommandées
+buildSummaryPrompt(plan, context)
+buildCorrectionPrompt(plan, context)
+buildQuizPrompt(plan, context)
+buildCreativePrompt(plan, context)
+buildSystemHelpPrompt(plan, context)
+Connexions
+GeminiManager
+DivinePersonaManager
+futurs managers créatifs du bloc J
+Pourquoi
+
+Le prompt ne doit plus être reconstruit au hasard dans 6 classes différentes.
+
+4 — FICHIERS EXISTANTS À MODIFIER
+
+Voici où brancher B2 dans ton projet réel.
+
+4.1 GeminiManager.kt
+À faire
+lui faire consommer DivineRequestContext
+lui faire consommer DivineResponsePlan
+remplacer les prompts trop plats ou trop centralisés par DivinePromptBuilder
+Pourquoi
+
+C’est le cœur IA réel du projet.
+
+4.2 GodLoreManager.kt
+À faire
+l’aligner sur DivinePersonaManager
+centraliser les lignes de dieu déjà non-IA ou fallback
+éviter les textes qui contredisent la personnalité divine officielle
+Pourquoi
+
+Le lore parlé doit rester cohérent avec la personnalité IA.
+
+4.3 PantheonConfig.kt
+À faire
+prévoir un mapping stable :
+matière → dieu
+dieu → DivinePersonaType
+Pourquoi
+
+Tu as déjà le mapping matière/dieu, il faut juste le brancher proprement à B2.
+
+4.4 GodManager.kt
+À faire
+lui faire exposer, si besoin, la résolution “contexte → dieu” vers B2
+ne pas dupliquer sa logique métier
+Pourquoi
+
+Tu réutilises l’existant au lieu de créer un deuxième système parallèle.
+
+5 — ÉCRANS À BRANCHER EN PREMIER
+
+Voici l’ordre des écrans où B2 doit être visible immédiatement.
+
+5.1 ResultActivity.kt
+
+Pourquoi :
+
+résumé
+validation
+reformulation
+choix temple
+premières réponses divines riches
+
+Bloc directement concerné par D.
+
+5.2 QuizResultActivity.kt
+
+Pourquoi :
+
+verdict
+correction
+conseil
+mnémonique
+feedback personnalisé
+
+Bloc directement concerné par E.
+
+5.3 GodMatiereActivity.kt
+
+Pourquoi :
+
+temple vivant
+savoirs
+futures actions créatives
+voix du dieu matière
+
+Bloc directement concerné par I/J.
+
+5.4 OraclePromptActivity.kt
+
+Pourquoi :
+
+Prométhée / Athéna / dieu matière doivent déjà se distinguer dans la génération initiale du savoir
+5.5 TrainingSelectActivity.kt
+
+Pourquoi :
+
+choix de défi
+ton d’appel au combat ou à la sagesse selon dieu
+6 — CONNEXIONS B2 → D / E / J / K
+B2 → D
+
+Le bloc D exploite B2 pour :
+
+résumés générés avec vrai style divin
+reformulations adaptées
+explications temple plus incarnées
+B2 → E
+
+Le bloc E exploite B2 pour :
+
+corrections maïeutiques différenciées
+verdicts de performance vraiment divins
+encouragements cohérents
+B2 → J
+
+Le bloc J exploite B2 pour :
+
+donner une vraie identité à :
+Aphrodite
+Hermès
+Apollon
+Prométhée
+
+Sans B2, J risque d’être fonctionnel mais trop peu incarné.
+
+B2 → K
+
+Le bloc K viendra plus tard injecter dans B2 :
+
+le profil du héros,
+pour moduler la manière dont chaque dieu s’exprime selon l’utilisateur.
+7 — CE QU’IL NE FAUT PAS METTRE DANS B2
+
+Pour éviter que le bloc explose trop tôt, ne mets pas encore dans B2 :
+
+le moteur cognitif profond du bloc L ;
+les recommandations du bloc M ;
+les règles de dashboard vivant du bloc N ;
+la logique aventure du bloc P.
+
+B2 doit rester :
+
+le noyau identitaire des dieux
+pas le noyau de toute l’adaptation du jeu.
+8 — PRIORITÉ INTERNE DU BLOC B2
+
+Ordre recommandé de codage :
+
+Étape 1
+DivinePersonaType.kt
+DivineActionType.kt
+DivineSpeechMode.kt
+Étape 2
+DivinePersonaConfig.kt
+DivinePersonaManager.kt
+Étape 3
+DivineRequestContext.kt
+DivineResponsePlan.kt
+DivineResponseOrchestrator.kt
+Étape 4
+DivinePromptBuilder.kt
+Étape 5
+modifications ciblées :
+GeminiManager.kt
+GodLoreManager.kt
+PantheonConfig.kt
+GodManager.kt
+Étape 6
+branchements premiers écrans :
+ResultActivity.kt
+QuizResultActivity.kt
+GodMatiereActivity.kt
+OraclePromptActivity.kt
+TrainingSelectActivity.kt
+9 — RESSOURCES
+
+B2 ne doit normalement pas demander beaucoup de nouvelles ressources.
+
+Réutilisations probables
+avatars/dialogues dieux existants dans le manifeste ressource
+bg_rpg_dialog
+sfx_dialogue_blip
+LoadingDivineDialog
+GodSpeechAnimator
+Ressources manquantes possibles
+
+Aucune obligatoire à ce stade, sauf si tu veux plus tard :
+
+un indicateur discret du dieu actif dans certains composants UI ;
+un petit marqueur visuel de “persona dominante” dans certains flows.
+
+À ce stade, B2 est surtout un bloc de logique et d’orchestration.
+
+10 — CE QUE TU OBTIENS À LA FIN DE B2
+
+À la fin de ce bloc, tu n’auras pas encore :
+
+la personnalisation profonde par héros,
+les profils type,
+ni les extensions créatives pleinement opérationnelles.
+
+Mais tu auras enfin :
+
+de vrais dieux IA distincts
+une colonne vertébrale divine
+une base propre pour J puis K/L/M
+
+Et c’est exactement ce qu’il te faut avant d’aller plus loin.
+
+Verdict final
+Où l’introduire
+
+Entre B et C/D, comme B2 officiel.
+
+Avec quels fichiers
+
+À créer :
+
+DivinePersonaType.kt
+DivineActionType.kt
+DivineSpeechMode.kt
+DivinePersonaConfig.kt
+DivinePersonaManager.kt
+DivineRequestContext.kt
+DivineResponsePlan.kt
+DivineResponseOrchestrator.kt
+DivinePromptBuilder.kt
+
+À modifier :
+
+GeminiManager.kt
+GodLoreManager.kt
+PantheonConfig.kt
+GodManager.kt
+
+À brancher d’abord :
+
+ResultActivity.kt
+QuizResultActivity.kt
+GodMatiereActivity.kt
+OraclePromptActivity.kt
+TrainingSelectActivity.kt
