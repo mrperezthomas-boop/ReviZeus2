@@ -1,12 +1,14 @@
 # REVIZEUS_CONTEXT.md
 
 > **NOTE DE CONSOLIDATION (2026-04-19)** : ce document reste la référence de contexte pour Continue.dev / IA locale (Ollama). Hiérarchie de vérité toujours applicable. Les anciennes références aux "Anciens IA_DOCS non mis à jour" renvoient désormais principalement aux dossiers `Brain_ReviZeus/07_ARCHIVES/` (archives explicites) et aux doc de `Brain_ReviZeus/13_IA_DOCS/` (tenues à jour).
+>
+> **NOTE DE MISE À JOUR (2026-04-20)** : le transport IA principal RéviZeus n’utilise plus de clé Gemini côté client Android. Les flux Oracle texte, dialogues et images passent désormais par `Firebase Functions` ; l’exécution modèle se fait côté backend via `IAM / service account` + `Vertex AI`. Toute référence plus bas à `BuildConfig.GEMINI_API_KEY`, `local.properties` ou au client Gemini Android doit être considérée comme obsolète si elle n’a pas été explicitement mise à jour.
 
 ---
 
 # Fichier de contexte projet pour Continue.dev / IA locale (Ollama)
 # Priorité de vérité : code réel > ressources réelles > ce document > anciens docs
-# Dernière mise à jour : 17/04/2026
+# Dernière mise à jour : 20/04/2026
 
 ---
 
@@ -38,10 +40,11 @@ l'Olympe en gagnant XP, badges, fragments et récompenses.
 - AGP : **9.0.1**
 - Gradle Wrapper : **9.1.0**
 
-### Dépendances critiques (versions exactes, ne pas changer)
-| Lib | Version |
+### Dépendances critiques (versions exactes, ne pas changer sans audit)
+| Lib | Version / statut |
 |---|---|
-| Gemini | `com.google.ai.client.generativeai:generativeai:0.9.0` |
+| Transport IA Android | `com.google.firebase:firebase-functions` |
+| Backend IA | `firebase-functions` + `@google-cloud/vertexai` |
 | Room (via KSP) | `com.google.devtools.ksp:2.3.6` — toutes fonctions DAO en `suspend` |
 | CameraX | `1.5.3` — modules : core, camera2, lifecycle, view |
 | ML Kit Text Recognition | `play-services-mlkit-text-recognition:19.0.1` |
@@ -53,10 +56,14 @@ l'Olympe en gagnant XP, badges, fragments et récompenses.
 | Firebase Functions | ✅ |
 | lifecycle-runtime-ktx | `2.8.7` |
 
-### Clé Gemini
-- **Ne jamais mettre en dur dans le code**
-- Injection via `BuildConfig.GEMINI_API_KEY`
-- Source : `local.properties` ou propriété Gradle `GEMINI_API_KEY`
+### Sécurité IA / secrets
+- **Ne jamais mettre de clé Gemini en dur dans le code**
+- **Ne plus utiliser `BuildConfig.GEMINI_API_KEY` dans le client Android pour le flux IA principal**
+- **Ne plus stocker de clé Gemini dans `local.properties` pour l’application**
+- L’application Android appelle désormais `Firebase Functions`
+- Le backend s’authentifie côté Google Cloud via **service account / IAM**
+- Le modèle est exécuté côté serveur via **Vertex AI**
+- Toute future évolution IA doit conserver ce principe : **secret et exécution modèle côté backend**
 
 ---
 
@@ -77,6 +84,7 @@ l'Olympe en gagnant XP, badges, fragments et récompenses.
 13. **GodSpeechAnimator** gère le typewriter de tous les dialogues
 14. **LoadingDivineDialog** pour toute attente IA — jamais de ProgressBar simple
 15. **Lifecycle strict** : cancel en `onPause`, release en `onDestroy`, cancel jobs coroutines
+16. **Transport IA principal via backend uniquement** — ne pas réintroduire d’appel Gemini direct dans le client Android
 
 ---
 
@@ -102,6 +110,16 @@ l'Olympe en gagnant XP, badges, fragments et récompenses.
 | Attente IA | `LoadingDivineDialog` |
 | Message joueur | Dialogue RPG |
 | Erreur système | Dialogue RPG |
+
+### IA / sécurité / transport
+- `GeminiManager` reste la **façade métier** centrale
+- Les prompts, system instructions, parsing et orchestration restent côté Android
+- Le **transport** passe par `FunctionsAiGateway`
+- Le backend callable principal est `invokeDivineOracle`
+- L’auth utilisateur côté app passe par **Firebase Auth**
+- L’auth backend vers le modèle passe par **IAM / service account**
+- L’exécution modèle se fait sur **Vertex AI**
+- **INTERDIT** : réintroduire `GenerativeModel`, `BuildConfig.GEMINI_API_KEY` ou la lib client Gemini Android pour l’Oracle principal
 
 ### Animations
 - `AnimatedBackgroundHelper` — fonds animés
@@ -164,7 +182,7 @@ l'Olympe en gagnant XP, badges, fragments et récompenses.
 - `BaseGameActivity.kt`
 
 ### Managers & Systèmes
-- `GeminiManager.kt` — appels IA Gemini
+- `GeminiManager.kt` — façade métier IA ; transport backend via Firebase Functions / Vertex AI
 - `GodManager.kt` — gestion des dieux
 - `GodLoreManager.kt` — lore des dieux
 - `GodSpeechAnimator.kt` — typewriter dialogues
@@ -362,15 +380,16 @@ Patchs appliqués :
 1. `SettingsActivity` hérite de `BaseActivity`
 2. Migration `onBackPressed()` → contrat socle sur écrans critiques (`VideoPlayerActivity`, `QuizResultActivity`, `LoginActivity`)
 3. Logs structurés sur catches critiques (lifecycle, audio/TTS, navigation, IA)
-4. Clé Gemini externalisée via `BuildConfig.GEMINI_API_KEY`
+4. Sécurisation du transport IA : plus de clé Gemini côté client pour l’Oracle principal ; transport backend via Firebase Functions ; exécution modèle côté serveur via IAM / service account + Vertex AI
 5. Contrat coroutine IA homogène (cancel, guards UI, pas de résultats fantômes)
 
 Invariants acquis (à ne plus jamais casser) :
 - `BaseActivity` est la référence de socle
-- Clé Gemini jamais en dur
-- Catches silencieux critiques interdits
-- Loaders IA ne restent pas bloqués
-- Protections audio/TTS/lifecycle préservées
+- aucun secret Gemini codé en dur ni réintroduit côté client Android pour l’Oracle principal
+- catches silencieux critiques interdits
+- loaders IA ne restent pas bloqués
+- protections audio/TTS/lifecycle préservées
+- transport IA principal via backend uniquement
 
 ### BLOC B — Dialogues RPG universels & Personas divines → EN PRÉPARATION
 
@@ -408,7 +427,7 @@ Invariants acquis (à ne plus jamais casser) :
 ❌ Texte affiché instantanément (toujours typewriter)  
 ❌ ProgressBar simple pour attente IA  
 ❌ Dialogue RPG sans avatar dieu  
-❌ Clé Gemini codée en dur  
+❌ Clé Gemini codée en dur ou réintroduite côté client Android pour l’Oracle principal  
 ❌ Catch silencieux sur chemins critiques  
 ❌ `findViewByID` (ViewBinding obligatoire)  
 ❌ Logique lourde sur UI thread  
@@ -436,6 +455,8 @@ Contraintes absolues :
 - si une ressource manque, liste-la explicitement
 - conserve les mécaniques, commentaires utiles et systèmes transversaux existants
 - respecte REVIZEUS_CONTEXT.md
+- ne réintroduis pas de clé Gemini ni d’appel Gemini direct côté client pour l’Oracle principal
+- conserve le transport backend via Firebase Functions + IAM / service account + Vertex AI
 
 Commence par un AUDIT uniquement.
 Donne-moi avant tout code :

@@ -50,6 +50,9 @@ import java.io.ByteArrayOutputStream
  * ✅ Texte Oracle, dialogues et images passent désormais par Firebase Functions.
  * ✅ GeminiManager reste la façade métier centrale.
  * ✅ Les prompts, system instructions et parseurs restent dans GeminiManager.
+ *
+ * [2026-04-20 23:59][PATCH_429_MINIMAL]
+ * ✅ Backoff plus propre côté Android quand Vertex renvoie RESOURCE_EXHAUSTED / 429.
  * ═══════════════════════════════════════════════════════════════
  */
 object GeminiManager {
@@ -58,6 +61,7 @@ object GeminiManager {
     private const val MODEL_NAME = "gemini-2.5-flash"
     private const val MAX_RETRIES = 2
     private const val ORACLE_FUNCTIONS_REGION = "europe-west1"
+    private const val RESOURCE_EXHAUSTED_BACKOFF_MS = 3000L
 
     private val oracleGateway: AiInvocationGateway by lazy {
         FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_FUNCTIONS_REGION))
@@ -1100,7 +1104,11 @@ object GeminiManager {
                 lastError = e
                 Log.e(TAG, "GeminiManager : tentative ${attempt + 1} échouée : ${e.message}")
                 if (attempt < MAX_RETRIES - 1) {
-                    delay(800L)
+                    if (isResourceExhaustedError(e)) {
+                        delay(RESOURCE_EXHAUSTED_BACKOFF_MS * (attempt + 1))
+                    } else {
+                        delay(800L)
+                    }
                 }
             }
         }
@@ -1110,6 +1118,14 @@ object GeminiManager {
         }
 
         return null
+    }
+
+    private fun isResourceExhaustedError(error: Exception): Boolean {
+        val message = error.message.orEmpty()
+        return message.contains("RESOURCE_EXHAUSTED", ignoreCase = true) ||
+            message.contains("Resource exhausted", ignoreCase = true) ||
+            message.contains("429", ignoreCase = true) ||
+            message.contains("Too Many Requests", ignoreCase = true)
     }
 
     /**

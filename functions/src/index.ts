@@ -8,8 +8,11 @@ admin.initializeApp();
 const PROJECT_ID = "revizeus";
 const LOCATION = "us-central1";
 const ORACLE_LOCATION = "europe-west1";
+const ORACLE_VERTEX_LOCATION = "global";
 const FUNCTION_SERVICE_ACCOUNT =
   "revizeus-functions-sa@revizeus.iam.gserviceaccount.com";
+const ORACLE_MAX_ATTEMPTS = 3;
+const ORACLE_BASE_DELAY_MS = 1500;
 
 // Initialisation Vertex AI
 const vertexAI = new VertexAI({
@@ -20,10 +23,14 @@ const vertexAI = new VertexAI({
 /**
  * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
  * Instance dédiée au flux Oracle texte / image / dialogue.
+ *
+ * [2026-04-20 23:59][PATCH_429_MINIMAL]
+ * L'appel Vertex AI Oracle passe par l'endpoint global pour réduire
+ * les erreurs de capacité régionales.
  */
 const oracleVertexAI = new VertexAI({
   project: PROJECT_ID,
-  location: ORACLE_LOCATION,
+  location: ORACLE_VERTEX_LOCATION,
 });
 
 // Limites quotidiennes par utilisateur
@@ -107,49 +114,12 @@ export const invokeDivineOracle = functions
     }
 
     try {
-      const generativeModel = oracleVertexAI.getGenerativeModel({
+      const text = await generateOracleTextWithRetry(
+        systemInstruction,
+        prompt,
         model,
-      });
-
-      const parts: any[] = [{text: prompt}];
-
-      for (const image of images) {
-        const mimeType =
-          typeof image?.mimeType === "string" && image.mimeType.trim().length > 0 ?
-            image.mimeType.trim() :
-            "image/jpeg";
-
-        const dataBase64 =
-          typeof image?.dataBase64 === "string" ?
-            image.dataBase64.trim() :
-            "";
-
-        if (!dataBase64) {
-          continue;
-        }
-
-        parts.push({
-          inlineData: {
-            mimeType,
-            data: dataBase64,
-          },
-        });
-      }
-
-      const result = await generativeModel.generateContent({
-        systemInstruction: {
-          role: "system",
-          parts: [{text: systemInstruction}],
-        } as any,
-        contents: [
-          {
-            role: "user",
-            parts,
-          },
-        ],
-      } as any);
-
-      const text = extractGeneratedText(result.response);
+        images
+      );
 
       if (!text) {
         throw new functions.https.HttpsError(
@@ -164,6 +134,13 @@ export const invokeDivineOracle = functions
 
       if (error instanceof functions.https.HttpsError) {
         throw error;
+      }
+
+      if (isRetryableOracleError(error)) {
+        throw new functions.https.HttpsError(
+          "resource-exhausted",
+          "L'Oracle est momentanément saturé. Réessaie dans un instant."
+        );
       }
 
       const message = error instanceof Error ? error.message : "Erreur inconnue";
@@ -380,6 +357,118 @@ function extractGeneratedText(response: unknown): string | null {
     .trim();
 
   return text.length > 0 ? text : null;
+}
+
+/**
+ * Pause utilitaire pour backoff Oracle.
+ *
+ * @param {number} ms Durée en millisecondes.
+ * @return {Promise<void>}
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Détecte les erreurs retryables Vertex AI / capacité.
+ *
+ * @param {unknown} error Erreur brute.
+ * @return {boolean}
+ */
+function isRetryableOracleError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error ?? "");
+  return (
+    message.includes("429") ||
+    message.includes("RESOURCE_EXHAUSTED") ||
+    message.includes("Resource exhausted") ||
+    message.includes("Too Many Requests")
+  );
+}
+
+/**
+ * Appel Oracle avec retry exponentiel tronqué.
+ *
+ * @param {string} systemInstruction System instruction déjà construite.
+ * @param {string} prompt Prompt final déjà construit.
+ * @param {string} model Modèle ciblé.
+ * @param {OracleInlineImage[]} images Images inline éventuelles.
+ * @return {Promise<string>}
+ */
+async function generateOracleTextWithRetry(
+  systemInstruction: string,
+  prompt: string,
+  model: string,
+  images: OracleInlineImage[]
+): Promise<string> {
+  let lastError: unknown = null;
+
+  for (let attempt = 0; attempt < ORACLE_MAX_ATTEMPTS; attempt++) {
+    try {
+      const generativeModel = oracleVertexAI.getGenerativeModel({
+        model,
+      });
+
+      const parts: any[] = [{text: prompt}];
+
+      for (const image of images) {
+        const mimeType =
+          typeof image?.mimeType === "string" && image.mimeType.trim().length > 0 ?
+            image.mimeType.trim() :
+            "image/jpeg";
+
+        const dataBase64 =
+          typeof image?.dataBase64 === "string" ?
+            image.dataBase64.trim() :
+            "";
+
+        if (!dataBase64) {
+          continue;
+        }
+
+        parts.push({
+          inlineData: {
+            mimeType,
+            data: dataBase64,
+          },
+        });
+      }
+
+      const result = await generativeModel.generateContent({
+        systemInstruction: {
+          role: "system",
+          parts: [{text: systemInstruction}],
+        } as any,
+        contents: [
+          {
+            role: "user",
+            parts,
+          },
+        ],
+      } as any);
+
+      const text = extractGeneratedText(result.response);
+      if (!text) {
+        throw new Error("L'Oracle n'a renvoyé aucun texte exploitable.");
+      }
+
+      return text;
+    } catch (error) {
+      lastError = error;
+
+      if (!isRetryableOracleError(error) || attempt >= ORACLE_MAX_ATTEMPTS - 1) {
+        throw error;
+      }
+
+      const jitter = Math.floor(Math.random() * 500);
+      const delayMs = Math.min(
+        ORACLE_BASE_DELAY_MS * Math.pow(2, attempt) + jitter,
+        8000
+      );
+      await sleep(delayMs);
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Erreur Oracle inconnue");
 }
 
 /**

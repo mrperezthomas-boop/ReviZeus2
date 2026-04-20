@@ -1,12 +1,12 @@
-# Last run summary
+# LAST RUN SUMMARY
 
-- Horodatage : 2026-04-18 05:02
-- Source : manual
-- Branche : main
-- Fichiers surveillés : 12
-- Blocs détectés : UNKNOWN
-- Statut règles : OK
+- Timestamp : 2026-04-20 22:00
+- Dominant bloc : AGENT_OPS
+- Dominant owner : agent_runtime_system
+- Session type : mixed
+- Confidence : MEDIUM
 
-## Résumé
+51 fichier(s) classé(s) en session mixte, bloc dominant = AGENT_OPS, owner dominant = agent_runtime_system, confiance = MEDIUM.
 
-- 12 fichier(s) surveillé(s) modifié(s), bloc dominant = UNKNOWN, owner dominant = unknown, confiance = LOW.
+## Key behaviors
+- 29 fichier(s) restent non cartographié(s) et demandent une règle explicite si critiques.

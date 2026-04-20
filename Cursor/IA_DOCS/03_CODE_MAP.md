@@ -1,5 +1,5 @@
 # 03_CODE_MAP.md — ARBRE DE CONNAISSANCE DU CODE RÉVIZEUS
-# Dernière mise à jour : 2026-04-17
+# Dernière mise à jour : 2026-04-20
 # BUT : permettre à Claude de comprendre instantanément quel fichier fait quoi,
 # qui appelle qui, et quels fichiers toucher pour n'importe quelle tâche.
 
@@ -32,7 +32,9 @@ SettingsActivity → RevizeusInfoActivity | TitleScreenActivity | LoginActivity
 ### Cœur IA
 | Manager | Rôle | Consomme | Consommé par |
 |---------|------|----------|--------------|
-| GeminiManager | Appels Gemini (résumés, quiz, corrections, lore) | BuildConfig.GEMINI_API_KEY | OracleActivity, ResultActivity, TrainingSelectActivity, GodMatiereActivity, GodLoreManager, QuizResultActivity |
+| GeminiManager | Façade métier IA (résumés, quiz, dialogues, lore) ; prompts, parsing, orchestration | `FunctionsAiGateway`, `Firebase Functions`, `invokeDivineOracle` | OracleActivity, ResultActivity, TrainingSelectActivity, GodMatiereActivity, GodLoreManager, QuizResultActivity |
+| FunctionsAiGateway | Transport IA backend pour texte + images | `FirebaseFunctions`, callable `invokeDivineOracle` | GeminiManager |
+| AiInvocationGateway | Contrat minimal de transport IA | — | FunctionsAiGateway, GeminiManager |
 | GodLoreManager | Contenu divin (hymnes, explications, dialogues) | GeminiManager, GodManager, UserProfile | GodMatiereActivity, DashboardActivity, ForgeActivity, TrainingSelectActivity |
 | GodPersonalityEngine | Personnalité/ton de chaque dieu | PantheonConfig | GodLoreManager, futur B2 |
 | GodTriggerEngine | Déclencheurs divins contextuels | UserProfile, quiz results | QuizResultActivity, DashboardActivity |
@@ -76,6 +78,14 @@ SettingsActivity → RevizeusInfoActivity | TitleScreenActivity | LoginActivity
 | PantheonConfig | Mapping matière↔dieu, couleurs, icônes | GodManager, GodLoreManager, DialogRPGManager, quasi tout |
 | GodManager | Résolution contexte→dieu, dialogues contextuels | GodMatiereActivity, GodLoreManager, DashboardActivity |
 | SettingsManager | Préférences utilisateur | SettingsActivity, quiz, audio |
+
+## BACKEND IA — TRANSPORT ET EXÉCUTION
+| Élément | Rôle | Détails |
+|--------|------|---------|
+| `invokeDivineOracle` | Callable Function backend principale | Reçoit `systemInstruction`, `prompt`, images inline ; auth utilisateur obligatoire |
+| `Firebase Auth` | Auth utilisateur côté app | Le token accompagne l’appel callable |
+| `IAM / service account` | Auth backend vers le modèle | Service account Functions autorisé à appeler Vertex AI |
+| `Vertex AI` | Exécution modèle côté serveur | Plus de clé Gemini côté client pour l’Oracle principal |
 
 ## ROOM DATABASE — ENTITIES ET DAO
 

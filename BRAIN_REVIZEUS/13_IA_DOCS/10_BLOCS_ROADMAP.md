@@ -5,8 +5,8 @@ stability: vivant
 truth_level: certain
 owner: brain_core
 criticality: P0
-version: 1.0
-last_updated: 2026-04-18
+version: 1.1
+last_updated: 2026-04-20
 sources:
   - Brain_ReviZeus/02_BLOCS/INDEX_BLOCS.md
   - Brain_ReviZeus/02_BLOCS/REVIZEUS_ETAT_CUMULATIF_DES_BLOCS_TERMINES.txt
@@ -75,12 +75,17 @@ Index officiel des blocs de développement RéviZeus. Section du haut = état ci
 - [2026-04-18 05:02] Brain_ReviZeus/13_IA_DOCS/08_AI_PROMPTS_LIBRARY.md -> DOC_TECH / IA_DOCS / brain_core
 - [2026-04-18 05:02] Brain_ReviZeus/13_IA_DOCS/09_LORE_BIBLE_REVIZEUS.md -> DOC_LORE / IA_DOCS / lore_world
 - [2026-04-18 05:02] Brain_ReviZeus/02_BLOCS/INDEX_BLOCS.md -> DOC_BLOC / ROADMAP / brain_core
+- [2026-04-20 23:59] app/build.gradle.kts -> BLOC A / IA_TRANSPORT_BACKEND / tech_core
+- [2026-04-20 23:59] app/src/main/java/com/revizeus/app/GeminiManager.kt -> BLOC A / IA_TRANSPORT_BACKEND / tech_core
+- [2026-04-20 23:59] app/src/main/java/com/revizeus/app/ai/FunctionsAiGateway.kt -> BLOC A / IA_TRANSPORT_BACKEND / tech_core
+- [2026-04-20 23:59] functions/src/index.ts -> BLOC A / IA_TRANSPORT_BACKEND / backend_core
 
 ---
 
 ## Notes
 - L'ancienne version de cet index pointait vers `BRAIN_REVIZEUS/01_IA_DOCS/` et `BRAIN_REVIZEUS/04_LORE/`. Ces chemins étaient **obsolètes** (héritage d'une numérotation antérieure). Les chemins corrects sont `13_IA_DOCS/` et `11_LORE/`.
 - Tous les éléments marqués `UNKNOWN / Non cartographié` dans l'ancienne version étaient dus à ces chemins cassés, pas à un vrai problème de mapping. Le prochain run des agents produira des classements explicites.
+- Ancienne doctrine obsolète : `BuildConfig.GEMINI_API_KEY` / `local.properties` côté client pour l’Oracle principal. Doctrine actuelle : transport via `Firebase Functions`, auth backend via `IAM / service account`, exécution modèle via `Vertex AI`.
 
 ---
 
@@ -178,7 +183,7 @@ Consigne globale pour les prochains blocs :
 - repartir du code réel
 - respecter le socle stabilisé par le Bloc A
 - ne plus rouvrir inutilement les sujets déjà clôturés dans le Bloc A
-- toute modification future doit préserver les garanties lifecycle, navigation, audio/TTS, loaders, coroutines défensives et externalisation des secrets déjà validées
+- toute modification future doit préserver les garanties lifecycle, navigation, audio/TTS, loaders, coroutines défensives et sécurisation backend du transport IA déjà validées
 
 ====================================================================
 4 — BLOC A — STABILISATION TECHNIQUE ET SOCLE TRANSVERSE
@@ -266,20 +271,23 @@ Résultat :
 - les incidents critiques ne sont plus entièrement masqués
 - meilleure observabilité pour la suite des blocs
 
-PATCH 4 — Externalisation de la clé Gemini
+PATCH 4 — Sécurisation du transport IA
 Objectif :
-- sortir la clé Gemini du code source
+- sortir définitivement la clé Gemini du client Android pour l’Oracle principal et basculer l’invocation modèle côté backend
 
 Correctif appliqué :
-- suppression de la clé hardcodée dans `GeminiManager`
-- passage par `BuildConfig.GEMINI_API_KEY`
-- injection via propriété Gradle locale ou `local.properties`
-- message explicite si la clé est absente
+- suppression du transport client direct Gemini pour l’Oracle principal
+- conservation de `GeminiManager` comme façade métier centrale
+- transport via `Firebase Functions`
+- exécution modèle côté backend via `IAM / service account` + `Vertex AI`
+- authentification utilisateur via `Firebase Auth` côté callable
+- disparition de la dépendance fonctionnelle à `BuildConfig.GEMINI_API_KEY` pour le flux Oracle principal
 
 Résultat :
-- secret Gemini externalisé
-- meilleur niveau de sécurité/configuration
-- API d’appel côté écrans inchangée
+- plus de clé Gemini nécessaire côté client Android pour l’Oracle principal
+- meilleure sécurité de secret
+- meilleure cohérence d’architecture backend
+- l’orchestration métier côté écrans reste inchangée en façade
 
 PATCH 5 — Contrat coroutine IA homogène
 Objectif :
@@ -322,6 +330,9 @@ Patch 3 :
 Patch 4 :
 - `app/build.gradle.kts`
 - `GeminiManager.kt`
+- `FunctionsAiGateway.kt`
+- `AiInvocationGateway.kt`
+- `functions/src/index.ts`
 
 Patch 5 :
 - `GeminiManager.kt`
@@ -354,9 +365,11 @@ IA / coroutines :
 - pas de navigation tardive déclenchée après destruction/fermeture écran sur flux IA critiques
 - les loaders critiques ne doivent pas rester bloqués après annulation normale d’un flux
 
-Secret / configuration :
-- la clé Gemini ne doit plus jamais être recodée en dur dans le code source
-- toute future logique Gemini doit respecter l’injection via environnement local / BuildConfig
+Secret / configuration / backend :
+- aucune clé Gemini ne doit être recodée en dur dans le code source
+- le client Android principal ne doit plus dépendre de `BuildConfig.GEMINI_API_KEY` pour l’Oracle principal
+- toute future logique Oracle principale doit respecter le transport backend via `Firebase Functions`
+- toute exécution modèle principale doit rester côté serveur via `IAM / service account` + `Vertex AI`
 
 Audio / TTS :
 - les protections audio/TTS déjà présentes dans le socle ne doivent pas être recassées
@@ -372,6 +385,7 @@ Risques encore acceptés mais non bloquants pour clôture :
 - un nettoyage legacy plus large reste possible plus tard
 - les ressources visuelles/sonores non encore déposées n’ont pas été utilisées comme critère d’invalidation du Bloc A
 - des audits ressources séparés pourront être faits plus tard sans rouvrir le Bloc A
+- le SDK backend `@google-cloud/vertexai` pourra être migré plus tard vers un SDK plus récent sans rouvrir l’objectif sécurité du Bloc A
 
 ====================================================================
 4.6 — SUJETS EXPLICITEMENT HORS PÉRIMÈTRE DU BLOC A
@@ -399,6 +413,7 @@ Tout futur bloc doit :
 - éviter de réintroduire des catches silencieux critiques
 - respecter les protections défensives sur lifecycle / audio / TTS / loaders / IA
 - vérifier qu’un nouveau patch n’annule pas les sécurisations déjà validées
+- ne pas réintroduire d’appel Gemini direct côté client pour l’Oracle principal
 
 Si un futur besoin semble nécessiter de revenir sur un point du Bloc A :
 - le signaler explicitement
