@@ -10,3 +10,10 @@ node_modules/
 *.local
 
 service-account-key.json
+lib/**/*.js
+lib/**/*.js.map
+node_modules/
+*.local
+service-account-key.json
+.env
+.env.*

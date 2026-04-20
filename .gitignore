@@ -21,3 +21,29 @@ Thumbs.db
 .python_user/
 tmp/
 build/
+# Secrets
+.env
+.env.*
+*.pem
+*.p12
+*.key
+service-account*.json
+
+# Android outputs
+*.apk
+*.aab
+
+# Archives
+*.zip
+*.7z
+*.rar
+
+# Firebase / local debug
+firebase-debug.log
+ui-debug.log
+
+# Functions build output
+functions/lib/
+
+# OS noise
+Desktop.ini
