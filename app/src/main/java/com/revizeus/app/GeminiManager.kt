@@ -5,6 +5,9 @@ import android.util.Log
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.RequestOptions
 import com.google.ai.client.generativeai.type.content
+import com.google.firebase.functions.FirebaseFunctions
+import com.revizeus.app.ai.AiInvocationGateway
+import com.revizeus.app.ai.FunctionsAiGateway
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -48,6 +51,13 @@ import kotlin.time.Duration.Companion.seconds
  * NOTE IMPORTANTE :
  * - La clé API Gemini est désormais injectée via BuildConfig.GEMINI_API_KEY.
  * - Elle doit être fournie côté environnement local (local.properties ou propriété Gradle).
+ *
+ * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+ * - Le flux Oracle texte FREE_TEXT_INPUT ne dépend plus de la clé embarquée côté client.
+ * - GeminiManager reste la façade centrale.
+ * - Les prompts / system instructions / parsing restent ici.
+ * - Seul le transport texte Oracle est délégué à Firebase Functions (europe-west1).
+ * - Le flux image et les dialogues restent directs pour éviter toute casse hors périmètre.
  * ═══════════════════════════════════════════════════════════════
  */
 object GeminiManager {
@@ -55,7 +65,17 @@ object GeminiManager {
     private const val TAG = "REVIZEUS"
     private const val MODEL_NAME = "gemini-2.5-flash"
     private const val MAX_RETRIES = 2
+    private const val ORACLE_TEXT_FUNCTIONS_REGION = "europe-west1"
     private val requestOptions = RequestOptions(timeout = 60.seconds)
+
+    /**
+     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+     * Gateway additive pour le flux Oracle texte uniquement.
+     * Le reste du moteur conserve le transport direct existant.
+     */
+    private val oracleTextGateway: AiInvocationGateway by lazy {
+        FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_TEXT_FUNCTIONS_REGION))
+    }
 
     // CHANTIER 1 - FONDATION IA
     // Contrat unifié pour les dialogues IA divins.
@@ -73,6 +93,9 @@ object GeminiManager {
      *
      * AJOUT CONSERVATEUR :
      * - adaptiveContextNote est optionnel pour ne jamais casser les anciens appels.
+     *
+     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+     * Cette surcharge passe désormais par Firebase Functions.
      */
     suspend fun genererContenuOracle(
         texte: String,
@@ -85,9 +108,7 @@ object GeminiManager {
         adaptiveContextNote: String? = null
     ): String? = withContext(Dispatchers.IO) {
         try {
-            val model = buildModel(
-                systemInstructionText = buildOracleSystemInstruction()
-            )
+            val systemInstructionText = buildOracleSystemInstruction()
 
             val prompt = buildStructuredPromptFromText(
                 texte = texte,
@@ -100,11 +121,10 @@ object GeminiManager {
                 adaptiveContextNote = adaptiveContextNote
             )
 
-            val responseText = executeWithRetry {
-                model.generateContent(prompt).text
-            }
-
-            return@withContext normalizeAiResponse(responseText)
+            return@withContext invokeOracleTextTransport(
+                systemInstructionText = systemInstructionText,
+                prompt = prompt
+            )
         } catch (e: Exception) {
             Log.e(TAG, "Erreur Entraînement Olympe : ${e.message}", e)
             null
@@ -362,6 +382,9 @@ object GeminiManager {
 
     /**
      * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif pour résumé/quiz depuis texte.
+     *
+     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+     * Cette surcharge réelle appelée par ResultActivity passe désormais par Firebase Functions.
      */
     suspend fun genererContenuOracle(
         texte: String,
@@ -375,9 +398,7 @@ object GeminiManager {
         divineRequestContext: DivineRequestContext
     ): String? = withContext(Dispatchers.IO) {
         try {
-            val model = buildModel(
-                systemInstructionText = buildOracleSystemInstruction()
-            )
+            val systemInstructionText = buildOracleSystemInstruction()
 
             val basePrompt = buildStructuredPromptFromText(
                 texte = texte,
@@ -400,11 +421,10 @@ object GeminiManager {
                 plan = plan
             )
 
-            val responseText = executeWithRetry {
-                model.generateContent(prompt).text
-            }
-
-            return@withContext normalizeAiResponse(responseText)
+            return@withContext invokeOracleTextTransport(
+                systemInstructionText = systemInstructionText,
+                prompt = prompt
+            )
         } catch (e: Exception) {
             Log.e(TAG, "Erreur Entraînement Olympe B2 : ${e.message}", e)
             null
@@ -820,29 +840,29 @@ object GeminiManager {
 
         val adaptationClasse = when {
             classe.contains("CP", ignoreCase = true) ||
-                classe.contains("CE1", ignoreCase = true) ||
-                classe.contains("CE2", ignoreCase = true) ||
-                classe.contains("CM1", ignoreCase = true) ||
-                classe.contains("CM2", ignoreCase = true) -> """
+                    classe.contains("CE1", ignoreCase = true) ||
+                    classe.contains("CE2", ignoreCase = true) ||
+                    classe.contains("CM1", ignoreCase = true) ||
+                    classe.contains("CM2", ignoreCase = true) -> """
                 - Niveau primaire : privilégie les notions essentielles.
                 - Évite les longues phrases.
                 - Préfère les formulations très accessibles.
             """.trimIndent()
 
             classe.contains("6", ignoreCase = true) ||
-                classe.contains("5", ignoreCase = true) ||
-                classe.contains("4", ignoreCase = true) ||
-                classe.contains("3", ignoreCase = true) -> """
+                    classe.contains("5", ignoreCase = true) ||
+                    classe.contains("4", ignoreCase = true) ||
+                    classe.contains("3", ignoreCase = true) -> """
                 - Niveau collège : reste clair, pédagogique et progressif.
                 - Définis implicitement les notions si elles sont nouvelles.
                 - Mets en évidence ce qu'il faut retenir pour un contrôle.
             """.trimIndent()
 
             classe.contains("2nde", ignoreCase = true) ||
-                classe.contains("seconde", ignoreCase = true) ||
-                classe.contains("1ère", ignoreCase = true) ||
-                classe.contains("première", ignoreCase = true) ||
-                classe.contains("terminale", ignoreCase = true) -> """
+                    classe.contains("seconde", ignoreCase = true) ||
+                    classe.contains("1ère", ignoreCase = true) ||
+                    classe.contains("première", ignoreCase = true) ||
+                    classe.contains("terminale", ignoreCase = true) -> """
                 - Niveau lycée : sois plus précis et plus structuré.
                 - Fais ressortir les mécanismes, les liens et les notions centrales.
                 - Le résumé doit aider à préparer une évaluation sérieuse.
@@ -900,18 +920,18 @@ object GeminiManager {
             """.trimIndent()
 
             matiere.contains("Histoire", ignoreCase = true) ||
-                matiere.contains("Géographie", ignoreCase = true) -> """
+                    matiere.contains("Géographie", ignoreCase = true) -> """
                 - Mets en avant dates, lieux, causes, conséquences et repères essentiels.
             """.trimIndent()
 
             matiere.contains("SVT", ignoreCase = true) ||
-                matiere.contains("Physique", ignoreCase = true) ||
-                matiere.contains("Chimie", ignoreCase = true) -> """
+                    matiere.contains("Physique", ignoreCase = true) ||
+                    matiere.contains("Chimie", ignoreCase = true) -> """
                 - Mets en avant les mécanismes, définitions, phénomènes, étapes et vocabulaire scientifique.
             """.trimIndent()
 
             matiere.contains("Anglais", ignoreCase = true) ||
-                matiere.contains("Langue", ignoreCase = true) -> """
+                    matiere.contains("Langue", ignoreCase = true) -> """
                 - Le résumé doit rester en français clair.
                 - Fais ressortir les points de langue, vocabulaire ou structures importantes.
                 - Le quiz peut mélanger le français et la langue étudiée si le document s'y prête.
@@ -1060,6 +1080,25 @@ object GeminiManager {
         """.trimIndent()
     }
 
+    /**
+     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+     * Transport Functions pour les flux Oracle texte uniquement.
+     * Le retry existant est conservé ici pour les faux échecs réseau temporaires.
+     */
+    private suspend fun invokeOracleTextTransport(
+        systemInstructionText: String,
+        prompt: String
+    ): String? {
+        val responseText = executeWithRetry {
+            oracleTextGateway.invokeText(
+                systemInstruction = systemInstructionText,
+                prompt = prompt,
+                model = MODEL_NAME
+            )
+        }
+        return normalizeAiResponse(responseText)
+    }
+
     private fun buildModel(
         systemInstructionText: String? = null
     ): GenerativeModel {
@@ -1067,7 +1106,7 @@ object GeminiManager {
         if (apiKey.isBlank()) {
             throw IllegalStateException(
                 "GEMINI_API_KEY manquante. Renseigne-la dans local.properties " +
-                    "ou via la propriété Gradle GEMINI_API_KEY."
+                        "ou via la propriété Gradle GEMINI_API_KEY."
             )
         }
 

@@ -7,6 +7,7 @@ admin.initializeApp();
 // Configuration Vertex AI
 const PROJECT_ID = "revizeus";
 const LOCATION = "us-central1";
+const ORACLE_LOCATION = "europe-west1";
 const FUNCTION_SERVICE_ACCOUNT =
   "revizeus-functions-sa@revizeus.iam.gserviceaccount.com";
 
@@ -16,6 +17,17 @@ const vertexAI = new VertexAI({
   location: LOCATION,
 });
 
+/**
+ * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+ * Instance dédiée au flux Oracle texte.
+ * On la place explicitement en europe-west1 selon la demande,
+ * sans migrer la musique existante pour éviter une casse latérale.
+ */
+const oracleVertexAI = new VertexAI({
+  project: PROJECT_ID,
+  location: ORACLE_LOCATION,
+});
+
 // Limites quotidiennes par utilisateur
 // MODE TEST TEMPORAIRE : désactive les quotas pour pouvoir valider le flow
 // musical sans attendre le reset quotidien.
@@ -23,6 +35,104 @@ const DISABLE_QUOTA = true;
 const DAILY_QUOTA_PER_USER = 5;
 const DAILY_QUOTA_GLOBAL = 100;
 const TEST_REMAINING_QUOTA = 9999;
+
+/**
+ * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+ * Cloud Function callable pour le flux Oracle texte.
+ *
+ * Contrat :
+ * - Auth obligatoire
+ * - Reçoit systemInstruction + prompt déjà construits par GeminiManager
+ * - Exécute Gemini côté backend
+ * - Retourne UNIQUEMENT le texte brut
+ *
+ * Aucun prompt métier n'est déplacé ici.
+ */
+export const invokeDivineOracle = functions
+  .region(ORACLE_LOCATION)
+  .runWith({
+    timeoutSeconds: 120,
+    memory: "1GB",
+    serviceAccount: FUNCTION_SERVICE_ACCOUNT,
+  })
+  .https.onCall(async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "Tu dois être connecté à l'Olympe pour invoquer l'Oracle."
+      );
+    }
+
+    const systemInstruction =
+      typeof data?.systemInstruction === "string" ?
+        data.systemInstruction.trim() :
+        "";
+    const prompt =
+      typeof data?.prompt === "string" ?
+        data.prompt.trim() :
+        "";
+    const model =
+      typeof data?.model === "string" && data.model.trim().length > 0 ?
+        data.model.trim() :
+        "gemini-2.5-flash";
+
+    if (!systemInstruction) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "systemInstruction manquante."
+      );
+    }
+
+    if (!prompt) {
+      throw new functions.https.HttpsError(
+        "invalid-argument",
+        "prompt manquant."
+      );
+    }
+
+    try {
+      const generativeModel = oracleVertexAI.getGenerativeModel({
+        model,
+        systemInstruction: {
+          role: "system",
+          parts: [{text: systemInstruction}],
+        },
+      });
+
+      const result = await generativeModel.generateContent({
+        contents: [
+          {
+            role: "user",
+            parts: [{text: prompt}],
+          },
+        ],
+      });
+
+      const text = extractGeneratedText(result.response);
+
+      if (!text) {
+        throw new functions.https.HttpsError(
+          "internal",
+          "L'Oracle n'a renvoyé aucun texte exploitable."
+        );
+      }
+
+      return {text};
+    } catch (error: unknown) {
+      console.error("Erreur invokeDivineOracle:", error);
+
+      if (error instanceof functions.https.HttpsError) {
+        throw error;
+      }
+
+      const message = error instanceof Error ? error.message : "Erreur inconnue";
+
+      throw new functions.https.HttpsError(
+        "internal",
+        `L'Oracle n'a pas pu répondre : ${message}`
+      );
+    }
+  });
 
 /**
  * Cloud Function : Génère une musique avec Lyria
@@ -203,6 +313,32 @@ CONTRAINTES AUDIO :
 FORMAT ATTENDU :
 - Audio chanté au format .mp3 ou .wav
 `.trim();
+}
+
+/**
+ * Extrait le texte brut de la réponse Gemini.
+ *
+ * @param {unknown} response Réponse brute du modèle.
+ * @return {string | null} Texte si trouvé, sinon null.
+ */
+function extractGeneratedText(response: unknown): string | null {
+  const typedResponse = response as {
+    candidates?: Array<{
+      content?: {
+        parts?: Array<{
+          text?: string;
+        }>;
+      };
+    }>;
+  };
+
+  const parts = typedResponse.candidates?.[0]?.content?.parts ?? [];
+  const text = parts
+    .map((part) => typeof part.text === "string" ? part.text : "")
+    .join("")
+    .trim();
+
+  return text.length > 0 ? text : null;
 }
 
 /**

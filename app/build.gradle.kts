@@ -144,5 +144,4 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
 
     // --- FIREBASE FUNCTIONS ---
-    implementation("com.google.firebase:firebase-functions-ktx:20.4.0")
-}
+    implementation("com.google.firebase:firebase-functions")}
