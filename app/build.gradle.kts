@@ -1,43 +1,10 @@
-import java.util.Properties
-
+// [2026-04-20 23:59][TRANSPORT_IA_TOTAL] Build Gradle nettoyé : suppression définitive de la clé Gemini côté client.
 plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("com.google.gms.google-services")
 }
-
-/**
- * Lecture locale de la clé Gemini depuis local.properties.
- * On garde ce mécanisme simple pour éviter de remettre la clé en dur dans le code source.
- */
-val geminiApiKeyFromLocal = run {
-    val props = Properties()
-    val localFile = rootProject.file("local.properties")
-    if (localFile.exists()) {
-        localFile.inputStream().use { props.load(it) }
-        props.getProperty("GEMINI_API_KEY")
-    } else {
-        null
-    }
-}
-
-/**
- * Priorité :
- * 1. propriété Gradle GEMINI_API_KEY
- * 2. local.properties
- * 3. chaîne vide si rien n’est défini
- */
-val geminiApiKey = providers.gradleProperty("GEMINI_API_KEY").orNull
-    ?: geminiApiKeyFromLocal
-    ?: ""
-
-/**
- * Échappement minimal défensif pour injection sûre dans BuildConfig.
- */
-val escapedGeminiApiKey = geminiApiKey
-    .replace("\\", "\\\\")
-    .replace("\"", "\\\"")
 
 android {
     namespace = "com.revizeus.app"
@@ -54,12 +21,6 @@ android {
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
-
-        /**
-         * La clé Gemini n’est plus codée en dur dans GeminiManager.
-         * Elle est injectée via BuildConfig.
-         */
-        buildConfigField("String", "GEMINI_API_KEY", "\"$escapedGeminiApiKey\"")
     }
 
     buildTypes {
@@ -88,8 +49,7 @@ android {
         viewBinding = true
 
         /**
-         * Indispensable ici car on utilise un buildConfigField personnalisé
-         * pour injecter GEMINI_API_KEY.
+         * Conservé pour compatibilité générale du projet.
          */
         buildConfig = true
     }
@@ -100,11 +60,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
-
-    // --- IA & GEMINI ---
-    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
-    implementation("com.google.guava:guava:33.5.0-android")
-    implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
+    implementation("com.google.firebase:firebase-functions")
 
     // --- GOOGLE SIGN-IN ---
     implementation("com.google.android.gms:play-services-auth:21.2.0")
@@ -143,5 +99,7 @@ dependencies {
     // --- LOTTIE ---
     implementation("com.airbnb.android:lottie:6.4.0")
 
-    // --- FIREBASE FUNCTIONS ---
-    implementation("com.google.firebase:firebase-functions")}
+    // --- DÉPENDANCES UTILITAIRES CONSERVÉES ---
+    implementation("com.google.guava:guava:33.5.0-android")
+    implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
+}

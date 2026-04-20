@@ -1,7 +1,7 @@
 package com.revizeus.app.ai
 
 /**
- * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+ * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
  * Contrat minimal de transport IA.
  *
  * IMPORTANT :
@@ -12,9 +12,15 @@ package com.revizeus.app.ai
  */
 interface AiInvocationGateway {
 
-    suspend fun invokeText(
+    data class InlineImage(
+        val mimeType: String,
+        val dataBase64: String
+    )
+
+    suspend fun invoke(
         systemInstruction: String,
         prompt: String,
-        model: String? = null
+        model: String? = null,
+        images: List<InlineImage> = emptyList()
     ): String
 }

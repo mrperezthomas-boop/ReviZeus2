@@ -18,10 +18,8 @@ const vertexAI = new VertexAI({
 });
 
 /**
- * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
- * Instance dédiée au flux Oracle texte.
- * On la place explicitement en europe-west1 selon la demande,
- * sans migrer la musique existante pour éviter une casse latérale.
+ * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
+ * Instance dédiée au flux Oracle texte / image / dialogue.
  */
 const oracleVertexAI = new VertexAI({
   project: PROJECT_ID,
@@ -36,13 +34,25 @@ const DAILY_QUOTA_PER_USER = 5;
 const DAILY_QUOTA_GLOBAL = 100;
 const TEST_REMAINING_QUOTA = 9999;
 
+type OracleInlineImage = {
+  mimeType?: string;
+  dataBase64?: string;
+};
+
+type InvokeDivineOracleRequest = {
+  systemInstruction?: string;
+  prompt?: string;
+  model?: string;
+  images?: OracleInlineImage[];
+};
+
 /**
- * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
- * Cloud Function callable pour le flux Oracle texte.
+ * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
+ * Cloud Function callable pour le flux Oracle total.
  *
  * Contrat :
  * - Auth obligatoire
- * - Reçoit systemInstruction + prompt déjà construits par GeminiManager
+ * - Reçoit systemInstruction + prompt + images déjà construits côté Android
  * - Exécute Gemini côté backend
  * - Retourne UNIQUEMENT le texte brut
  *
@@ -63,18 +73,24 @@ export const invokeDivineOracle = functions
       );
     }
 
+    const payload = (data ?? {}) as InvokeDivineOracleRequest;
+
     const systemInstruction =
-      typeof data?.systemInstruction === "string" ?
-        data.systemInstruction.trim() :
+      typeof payload.systemInstruction === "string" ?
+        payload.systemInstruction.trim() :
         "";
+
     const prompt =
-      typeof data?.prompt === "string" ?
-        data.prompt.trim() :
+      typeof payload.prompt === "string" ?
+        payload.prompt.trim() :
         "";
+
     const model =
-      typeof data?.model === "string" && data.model.trim().length > 0 ?
-        data.model.trim() :
+      typeof payload.model === "string" && payload.model.trim().length > 0 ?
+        payload.model.trim() :
         "gemini-2.5-flash";
+
+    const images = Array.isArray(payload.images) ? payload.images : [];
 
     if (!systemInstruction) {
       throw new functions.https.HttpsError(
@@ -93,20 +109,45 @@ export const invokeDivineOracle = functions
     try {
       const generativeModel = oracleVertexAI.getGenerativeModel({
         model,
+      });
+
+      const parts: any[] = [{text: prompt}];
+
+      for (const image of images) {
+        const mimeType =
+          typeof image?.mimeType === "string" && image.mimeType.trim().length > 0 ?
+            image.mimeType.trim() :
+            "image/jpeg";
+
+        const dataBase64 =
+          typeof image?.dataBase64 === "string" ?
+            image.dataBase64.trim() :
+            "";
+
+        if (!dataBase64) {
+          continue;
+        }
+
+        parts.push({
+          inlineData: {
+            mimeType,
+            data: dataBase64,
+          },
+        });
+      }
+
+      const result = await generativeModel.generateContent({
         systemInstruction: {
           role: "system",
           parts: [{text: systemInstruction}],
-        },
-      });
-
-      const result = await generativeModel.generateContent({
+        } as any,
         contents: [
           {
             role: "user",
-            parts: [{text: prompt}],
+            parts,
           },
         ],
-      });
+      } as any);
 
       const text = extractGeneratedText(result.response);
 

@@ -1,10 +1,8 @@
 package com.revizeus.app
 
 import android.graphics.Bitmap
+import android.util.Base64
 import android.util.Log
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.RequestOptions
-import com.google.ai.client.generativeai.type.content
 import com.google.firebase.functions.FirebaseFunctions
 import com.revizeus.app.ai.AiInvocationGateway
 import com.revizeus.app.ai.FunctionsAiGateway
@@ -13,14 +11,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import kotlin.math.roundToInt
-import kotlin.time.Duration.Companion.seconds
+import java.io.ByteArrayOutputStream
 
 /**
  * ═══════════════════════════════════════════════════════════════
  * GESTIONNAIRE DE L'OLYMPE (IA Gemini)
  * ═══════════════════════════════════════════════════════════════
- * Utilité : Envoie le texte ou l'image du cours à l'API Google Gemini.
+ * Utilité : Orchestration centrale des flux IA de RéviZeus.
  *
  * CHANGEMENTS :
  * ✅ Support multi-pages conservé.
@@ -48,16 +45,11 @@ import kotlin.time.Duration.Companion.seconds
  * ✅ adaptiveContextNote optionnel sur le moteur de dialogues divins
  * ✅ Aucun appel existant cassé grâce aux valeurs par défaut
  *
- * NOTE IMPORTANTE :
- * - La clé API Gemini est désormais injectée via BuildConfig.GEMINI_API_KEY.
- * - Elle doit être fournie côté environnement local (local.properties ou propriété Gradle).
- *
- * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
- * - Le flux Oracle texte FREE_TEXT_INPUT ne dépend plus de la clé embarquée côté client.
- * - GeminiManager reste la façade centrale.
- * - Les prompts / system instructions / parsing restent ici.
- * - Seul le transport texte Oracle est délégué à Firebase Functions (europe-west1).
- * - Le flux image et les dialogues restent directs pour éviter toute casse hors périmètre.
+ * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
+ * ✅ La clé Gemini est totalement sortie du client Android.
+ * ✅ Texte Oracle, dialogues et images passent désormais par Firebase Functions.
+ * ✅ GeminiManager reste la façade métier centrale.
+ * ✅ Les prompts, system instructions et parseurs restent dans GeminiManager.
  * ═══════════════════════════════════════════════════════════════
  */
 object GeminiManager {
@@ -65,16 +57,10 @@ object GeminiManager {
     private const val TAG = "REVIZEUS"
     private const val MODEL_NAME = "gemini-2.5-flash"
     private const val MAX_RETRIES = 2
-    private const val ORACLE_TEXT_FUNCTIONS_REGION = "europe-west1"
-    private val requestOptions = RequestOptions(timeout = 60.seconds)
+    private const val ORACLE_FUNCTIONS_REGION = "europe-west1"
 
-    /**
-     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
-     * Gateway additive pour le flux Oracle texte uniquement.
-     * Le reste du moteur conserve le transport direct existant.
-     */
-    private val oracleTextGateway: AiInvocationGateway by lazy {
-        FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_TEXT_FUNCTIONS_REGION))
+    private val oracleGateway: AiInvocationGateway by lazy {
+        FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_FUNCTIONS_REGION))
     }
 
     // CHANTIER 1 - FONDATION IA
@@ -93,9 +79,6 @@ object GeminiManager {
      *
      * AJOUT CONSERVATEUR :
      * - adaptiveContextNote est optionnel pour ne jamais casser les anciens appels.
-     *
-     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
-     * Cette surcharge passe désormais par Firebase Functions.
      */
     suspend fun genererContenuOracle(
         texte: String,
@@ -121,7 +104,7 @@ object GeminiManager {
                 adaptiveContextNote = adaptiveContextNote
             )
 
-            return@withContext invokeOracleTextTransport(
+            return@withContext invokeOracleTransport(
                 systemInstructionText = systemInstructionText,
                 prompt = prompt
             )
@@ -174,9 +157,7 @@ object GeminiManager {
                 return@withContext null
             }
 
-            val model = buildModel(
-                systemInstructionText = buildOracleSystemInstruction()
-            )
+            val systemInstructionText = buildOracleSystemInstruction()
 
             val promptText = buildStructuredPromptFromImages(
                 age = age,
@@ -188,18 +169,13 @@ object GeminiManager {
                 adaptiveContextNote = adaptiveContextNote
             )
 
-            val responseText = executeWithRetry {
-                val input = content {
-                    // On ajoute toutes les pages du cours dans l'ordre reçu
-                    imageBitmaps.forEach { bitmap ->
-                        image(bitmap)
-                    }
-                    text(promptText)
-                }
-                model.generateContent(input).text
-            }
+            val inlineImages = imageBitmaps.map { bitmapToInlineImage(it) }
 
-            return@withContext normalizeAiResponse(responseText)
+            return@withContext invokeOracleTransport(
+                systemInstructionText = systemInstructionText,
+                prompt = promptText,
+                images = inlineImages
+            )
         } catch (e: Exception) {
             Log.e(TAG, "Erreur Vision Olympe multi-pages : ${e.message}", e)
             null
@@ -221,9 +197,7 @@ object GeminiManager {
         adaptiveContextNote: String? = null
     ): GodResponse? = withContext(Dispatchers.IO) {
         try {
-            val model = buildModel(
-                systemInstructionText = buildDialogSystemInstruction(matiere)
-            )
+            val systemInstructionText = buildDialogSystemInstruction(matiere)
 
             val finalPrompt = if (adaptiveContextNote.isNullOrBlank()) {
                 prompt
@@ -237,7 +211,11 @@ object GeminiManager {
             }
 
             val responseText = executeWithRetry {
-                model.generateContent(finalPrompt).text
+                oracleGateway.invoke(
+                    systemInstruction = systemInstructionText,
+                    prompt = finalPrompt,
+                    model = MODEL_NAME
+                )
             }
 
             return@withContext parseGodResponse(responseText, matiere)
@@ -382,9 +360,6 @@ object GeminiManager {
 
     /**
      * [2026-04-19 05:36][BLOC_B2][GEMINI_PATCH] Variante B2 additif pour résumé/quiz depuis texte.
-     *
-     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
-     * Cette surcharge réelle appelée par ResultActivity passe désormais par Firebase Functions.
      */
     suspend fun genererContenuOracle(
         texte: String,
@@ -421,7 +396,7 @@ object GeminiManager {
                 plan = plan
             )
 
-            return@withContext invokeOracleTextTransport(
+            return@withContext invokeOracleTransport(
                 systemInstructionText = systemInstructionText,
                 prompt = prompt
             )
@@ -475,9 +450,7 @@ object GeminiManager {
                 return@withContext null
             }
 
-            val model = buildModel(
-                systemInstructionText = buildOracleSystemInstruction()
-            )
+            val systemInstructionText = buildOracleSystemInstruction()
 
             val basePrompt = buildStructuredPromptFromImages(
                 age = age,
@@ -499,17 +472,13 @@ object GeminiManager {
                 plan = plan
             )
 
-            val responseText = executeWithRetry {
-                val input = content {
-                    imageBitmaps.forEach { bitmap ->
-                        image(bitmap)
-                    }
-                    text(promptText)
-                }
-                model.generateContent(input).text
-            }
+            val inlineImages = imageBitmaps.map { bitmapToInlineImage(it) }
 
-            return@withContext normalizeAiResponse(responseText)
+            return@withContext invokeOracleTransport(
+                systemInstructionText = systemInstructionText,
+                prompt = promptText,
+                images = inlineImages
+            )
         } catch (e: Exception) {
             Log.e(TAG, "Erreur Vision Olympe multi-pages B2 : ${e.message}", e)
             null
@@ -840,29 +809,29 @@ object GeminiManager {
 
         val adaptationClasse = when {
             classe.contains("CP", ignoreCase = true) ||
-                    classe.contains("CE1", ignoreCase = true) ||
-                    classe.contains("CE2", ignoreCase = true) ||
-                    classe.contains("CM1", ignoreCase = true) ||
-                    classe.contains("CM2", ignoreCase = true) -> """
+                classe.contains("CE1", ignoreCase = true) ||
+                classe.contains("CE2", ignoreCase = true) ||
+                classe.contains("CM1", ignoreCase = true) ||
+                classe.contains("CM2", ignoreCase = true) -> """
                 - Niveau primaire : privilégie les notions essentielles.
                 - Évite les longues phrases.
                 - Préfère les formulations très accessibles.
             """.trimIndent()
 
             classe.contains("6", ignoreCase = true) ||
-                    classe.contains("5", ignoreCase = true) ||
-                    classe.contains("4", ignoreCase = true) ||
-                    classe.contains("3", ignoreCase = true) -> """
+                classe.contains("5", ignoreCase = true) ||
+                classe.contains("4", ignoreCase = true) ||
+                classe.contains("3", ignoreCase = true) -> """
                 - Niveau collège : reste clair, pédagogique et progressif.
                 - Définis implicitement les notions si elles sont nouvelles.
                 - Mets en évidence ce qu'il faut retenir pour un contrôle.
             """.trimIndent()
 
             classe.contains("2nde", ignoreCase = true) ||
-                    classe.contains("seconde", ignoreCase = true) ||
-                    classe.contains("1ère", ignoreCase = true) ||
-                    classe.contains("première", ignoreCase = true) ||
-                    classe.contains("terminale", ignoreCase = true) -> """
+                classe.contains("seconde", ignoreCase = true) ||
+                classe.contains("1ère", ignoreCase = true) ||
+                classe.contains("première", ignoreCase = true) ||
+                classe.contains("terminale", ignoreCase = true) -> """
                 - Niveau lycée : sois plus précis et plus structuré.
                 - Fais ressortir les mécanismes, les liens et les notions centrales.
                 - Le résumé doit aider à préparer une évaluation sérieuse.
@@ -920,18 +889,18 @@ object GeminiManager {
             """.trimIndent()
 
             matiere.contains("Histoire", ignoreCase = true) ||
-                    matiere.contains("Géographie", ignoreCase = true) -> """
+                matiere.contains("Géographie", ignoreCase = true) -> """
                 - Mets en avant dates, lieux, causes, conséquences et repères essentiels.
             """.trimIndent()
 
             matiere.contains("SVT", ignoreCase = true) ||
-                    matiere.contains("Physique", ignoreCase = true) ||
-                    matiere.contains("Chimie", ignoreCase = true) -> """
+                matiere.contains("Physique", ignoreCase = true) ||
+                matiere.contains("Chimie", ignoreCase = true) -> """
                 - Mets en avant les mécanismes, définitions, phénomènes, étapes et vocabulaire scientifique.
             """.trimIndent()
 
             matiere.contains("Anglais", ignoreCase = true) ||
-                    matiere.contains("Langue", ignoreCase = true) -> """
+                matiere.contains("Langue", ignoreCase = true) -> """
                 - Le résumé doit rester en français clair.
                 - Fais ressortir les points de langue, vocabulaire ou structures importantes.
                 - Le quiz peut mélanger le français et la langue étudiée si le document s'y prête.
@@ -1081,46 +1050,35 @@ object GeminiManager {
     }
 
     /**
-     * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
-     * Transport Functions pour les flux Oracle texte uniquement.
-     * Le retry existant est conservé ici pour les faux échecs réseau temporaires.
+     * Transport unique backend pour texte + dialogues + images.
      */
-    private suspend fun invokeOracleTextTransport(
+    private suspend fun invokeOracleTransport(
         systemInstructionText: String,
-        prompt: String
+        prompt: String,
+        images: List<AiInvocationGateway.InlineImage> = emptyList()
     ): String? {
         val responseText = executeWithRetry {
-            oracleTextGateway.invokeText(
+            oracleGateway.invoke(
                 systemInstruction = systemInstructionText,
                 prompt = prompt,
-                model = MODEL_NAME
+                model = MODEL_NAME,
+                images = images
             )
         }
         return normalizeAiResponse(responseText)
     }
 
-    private fun buildModel(
-        systemInstructionText: String? = null
-    ): GenerativeModel {
-        val apiKey = BuildConfig.GEMINI_API_KEY
-        if (apiKey.isBlank()) {
-            throw IllegalStateException(
-                "GEMINI_API_KEY manquante. Renseigne-la dans local.properties " +
-                        "ou via la propriété Gradle GEMINI_API_KEY."
-            )
+    private fun bitmapToInlineImage(bitmap: Bitmap): AiInvocationGateway.InlineImage {
+        val output = ByteArrayOutputStream()
+        val compressed = bitmap.compress(Bitmap.CompressFormat.JPEG, 85, output)
+        if (!compressed) {
+            throw IllegalStateException("Compression image impossible")
         }
 
-        return GenerativeModel(
-            modelName = MODEL_NAME,
-            apiKey = apiKey,
-            requestOptions = requestOptions,
-            systemInstruction = if (systemInstructionText.isNullOrBlank()) {
-                null
-            } else {
-                content {
-                    text(systemInstructionText)
-                }
-            }
+        val base64 = Base64.encodeToString(output.toByteArray(), Base64.NO_WRAP)
+        return AiInvocationGateway.InlineImage(
+            mimeType = "image/jpeg",
+            dataBase64 = base64
         )
     }
 

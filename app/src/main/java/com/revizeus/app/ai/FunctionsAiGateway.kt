@@ -4,36 +4,36 @@ import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
 /**
- * [2026-04-20][TRANSPORT_ORACLE_TEXTE]
+ * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
  * Implémentation Firebase Functions callable.
- *
- * Contrat backend :
- * {
- *   systemInstruction: String,
- *   prompt: String,
- *   model?: String
- * }
- *
- * Réponse attendue :
- * {
- *   text: String
- * }
  */
 class FunctionsAiGateway(
     private val functions: FirebaseFunctions
 ) : AiInvocationGateway {
 
-    override suspend fun invokeText(
+    override suspend fun invoke(
         systemInstruction: String,
         prompt: String,
-        model: String?
+        model: String?,
+        images: List<AiInvocationGateway.InlineImage>
     ): String {
-        val payload = hashMapOf(
+        val payload = hashMapOf<String, Any>(
             "systemInstruction" to systemInstruction,
             "prompt" to prompt
         ).apply {
             if (!model.isNullOrBlank()) {
                 put("model", model)
+            }
+            if (images.isNotEmpty()) {
+                put(
+                    "images",
+                    images.map {
+                        hashMapOf(
+                            "mimeType" to it.mimeType,
+                            "dataBase64" to it.dataBase64
+                        )
+                    }
+                )
             }
         }
 
