@@ -1,12 +1,10 @@
 # LAST RUN SUMMARY
 
-- Timestamp : 2026-04-20 22:00
-- Dominant bloc : AGENT_OPS
-- Dominant owner : agent_runtime_system
-- Session type : mixed
-- Confidence : MEDIUM
+- Timestamp : 2026-04-22 22:00
+- Dominant bloc : UNKNOWN
+- Dominant owner : unknown
+- Session type : unknown
+- Confidence : LOW
 
-51 fichier(s) classé(s) en session mixte, bloc dominant = AGENT_OPS, owner dominant = agent_runtime_system, confiance = MEDIUM.
+0 fichier(s) classé(s) en session non classée, bloc dominant = UNKNOWN, owner dominant = unknown, confiance = LOW.
 
-## Key behaviors
-- 29 fichier(s) restent non cartographié(s) et demandent une règle explicite si critiques.

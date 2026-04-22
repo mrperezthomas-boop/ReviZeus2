@@ -1604,39 +1604,15 @@ class DashboardActivity : BaseActivity() {
                 SoundManager.playSFX(this, R.raw.sfx_dialogue_blip)
             } catch (_: Exception) {
             }
-            runFirstTimeFeatureThen("adventure_world") {
-                try {
-                    DialogRPGManager.showInfo(
-                        activity = this,
-                        godId = "zeus",
-                        title = "Le Grand Voyage commence",
-                        message = "Héros, l'Olympe blessé t'ouvre enfin la route du Mode Aventure. Le Chaos siège au centre du monde, et les temples restaurés attendent ton pas."
-                    ) {
-                        try {
-                            DialogRPGManager.showInfo(
-                                activity = this,
-                                godId = "prometheus",
-                                title = "Carte-Monde",
-                                message = "Depuis la carte du monde, tu choisiras un temple, puis tu entreras dans sa carte locale. Les nodes n'apparaissent qu'à l'intérieur du temple choisi."
-                            ) {
-                                try {
-                                    startActivity(Intent(this, WorldMapActivity::class.java))
-                                } catch (_: Exception) {
-                                }
-                            }
-                        } catch (_: Exception) {
-                            try {
-                                startActivity(Intent(this, WorldMapActivity::class.java))
-                            } catch (_: Exception) {
-                            }
-                        }
-                    }
-                } catch (_: Exception) {
-                    try {
-                        startActivity(Intent(this, WorldMapActivity::class.java))
-                    } catch (_: Exception) {
-                    }
-                }
+
+            try {
+                DialogRPGManager.showInfo(
+                    activity = this,
+                    godId = "zeus",
+                    title = "Mode Aventure scellé",
+                    message = "Héros... j’ai contemplé les astres, interrogé les éclairs, et même réveillé Prométhée de sa sieste sacrée : le Mode Aventure est encore en conceptualisation cosmique. En clair, l’Olympe cuisine encore la carte du destin... et pour l’instant, même le Chaos n’a pas reçu la version finale."
+                )
+            } catch (_: Exception) {
             }
         }
 
@@ -1714,8 +1690,8 @@ class DashboardActivity : BaseActivity() {
                 titre = "Mode Aventure",
                 icone = R.drawable.ic_aventure_locked,
                 accent = "#FFBF00",
-                texte = "Le Mode Aventure ouvre désormais la carte-monde mythologique. Le Chaos règne au centre, et les temples entourent le monde en cercle avant d'ouvrir chacun leur propre carte locale.",
-                comment = "Appui court : ouvrir la carte-monde de l'aventure."
+                texte = "Le Mode Aventure est encore en conceptualisation cosmique. Les dieux tracent la carte, le Chaos râle dans son coin, et les temples attendent encore leur destin final.",
+                comment = "Appui court : annonce divine de fermeture temporaire."
             )
             true
         }

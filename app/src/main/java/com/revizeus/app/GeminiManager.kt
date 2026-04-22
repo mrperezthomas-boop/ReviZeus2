@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.util.Base64
 import android.util.Log
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.FirebaseFunctionsException
 import com.revizeus.app.ai.AiInvocationGateway
 import com.revizeus.app.ai.FunctionsAiGateway
 import kotlinx.coroutines.CancellationException
@@ -46,8 +47,9 @@ import java.io.ByteArrayOutputStream
  * ✅ Aucun appel existant cassé grâce aux valeurs par défaut
  *
  * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
- * ✅ La clé Gemini est totalement sortie du client Android.
- * ✅ Texte Oracle, dialogues et images passent désormais par Firebase Functions.
+ * ✅ La clé Gemini est sortie du client pour le transport Oracle (callable sécurisée).
+ * ✅ Flux texte libre + dialogues : Firebase Functions `invokeDivineOracle` (sans images).
+ * ✅ Flux image : même callable pour ne rien casser ; point d’extension `oracleVisionTransport`.
  * ✅ GeminiManager reste la façade métier centrale.
  * ✅ Les prompts, system instructions et parseurs restent dans GeminiManager.
  *
@@ -60,10 +62,22 @@ object GeminiManager {
     private const val TAG = "REVIZEUS"
     private const val MODEL_NAME = "gemini-2.5-flash"
     private const val MAX_RETRIES = 2
-    private const val ORACLE_FUNCTIONS_REGION = "europe-west1"
+    private const val ORACLE_FUNCTIONS_REGION = "us-central1"
     private const val RESOURCE_EXHAUSTED_BACKOFF_MS = 3000L
 
-    private val oracleGateway: AiInvocationGateway by lazy {
+    /**
+     * Transport texte (Oracle FREE_TEXT_INPUT, entraînement texte, dialogues, chanson) :
+     * toujours `invokeDivineOracle` côté backend — aucune clé modèle sur l’appareil.
+     */
+    private val oracleTextTransport: AiInvocationGateway by lazy {
+        FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_FUNCTIONS_REGION))
+    }
+
+    /**
+     * Transport vision (pages scannées). Aujourd’hui identique au texte (Functions + images inline).
+     * Conservé comme point d’extension distinct pour une future voie « directe » sans toucher au métier.
+     */
+    private val oracleVisionTransport: AiInvocationGateway by lazy {
         FunctionsAiGateway(FirebaseFunctions.getInstance(ORACLE_FUNCTIONS_REGION))
     }
 
@@ -215,7 +229,7 @@ object GeminiManager {
             }
 
             val responseText = executeWithRetry {
-                oracleGateway.invoke(
+                oracleTextTransport.invoke(
                     systemInstruction = systemInstructionText,
                     prompt = finalPrompt,
                     model = MODEL_NAME
@@ -1061,8 +1075,14 @@ object GeminiManager {
         prompt: String,
         images: List<AiInvocationGateway.InlineImage> = emptyList()
     ): String? {
+        val gateway = if (images.isEmpty()) {
+            oracleTextTransport
+        } else {
+            oracleVisionTransport
+        }
+
         val responseText = executeWithRetry {
-            oracleGateway.invoke(
+            gateway.invoke(
                 systemInstruction = systemInstructionText,
                 prompt = prompt,
                 model = MODEL_NAME,
@@ -1121,11 +1141,24 @@ object GeminiManager {
     }
 
     private fun isResourceExhaustedError(error: Exception): Boolean {
-        val message = error.message.orEmpty()
-        return message.contains("RESOURCE_EXHAUSTED", ignoreCase = true) ||
-            message.contains("Resource exhausted", ignoreCase = true) ||
-            message.contains("429", ignoreCase = true) ||
-            message.contains("Too Many Requests", ignoreCase = true)
+        var current: Throwable? = error
+        while (current != null) {
+            if (current is FirebaseFunctionsException &&
+                current.code == FirebaseFunctionsException.Code.RESOURCE_EXHAUSTED
+            ) {
+                return true
+            }
+            val message = current.message.orEmpty()
+            if (message.contains("RESOURCE_EXHAUSTED", ignoreCase = true) ||
+                message.contains("Resource exhausted", ignoreCase = true) ||
+                message.contains("429", ignoreCase = true) ||
+                message.contains("Too Many Requests", ignoreCase = true)
+            ) {
+                return true
+            }
+            current = current.cause
+        }
+        return false
     }
 
     /**

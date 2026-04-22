@@ -1,5 +1,6 @@
 package com.revizeus.app.core
 
+import kotlin.compareTo
 import kotlin.math.roundToInt
 
 /**
@@ -83,7 +84,7 @@ object XpCalculator {
         var xpAccumulated = 0
         while (true) {
             val seuil = xpThresholdForLevel(level)
-            if (xpAccumulated + seuil > totalXp) break
+            if (xpAccumulated + seuil >= totalXp) break
             xpAccumulated += seuil
             level++
         }
@@ -114,7 +115,7 @@ object XpCalculator {
         val level = calculateLevel(totalXp)
         val seuil = xpThresholdForLevel(level)
         val xpIn  = xpInCurrentLevel(totalXp)
-        return if (seuil <= 0) 100 else ((xpIn * 100) / seuil).coerceIn(0, 100)
+                return if (seuil > 0) ((xpIn * 100) / seuil).coerceIn(0, 100) else 100
     }
 
     // ── Calculs de gain d'XP ─────────────────────────────────

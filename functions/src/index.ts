@@ -7,12 +7,14 @@ admin.initializeApp();
 // Configuration Vertex AI
 const PROJECT_ID = "revizeus";
 const LOCATION = "us-central1";
-const ORACLE_LOCATION = "europe-west1";
-const ORACLE_VERTEX_LOCATION = "global";
+const ORACLE_LOCATION = "us-central1";
 const FUNCTION_SERVICE_ACCOUNT =
   "revizeus-functions-sa@revizeus.iam.gserviceaccount.com";
 const ORACLE_MAX_ATTEMPTS = 3;
 const ORACLE_BASE_DELAY_MS = 1500;
+const METADATA_TOKEN_URL =
+  "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token";
+const ORACLE_RESPONSE_SNIPPET_MAX = 240;
 
 // Initialisation Vertex AI
 const vertexAI = new VertexAI({
@@ -21,17 +23,22 @@ const vertexAI = new VertexAI({
 });
 
 /**
- * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
- * Instance dédiée au flux Oracle texte / image / dialogue.
+ * [2026-04-21][FIX_ORACLE_VERTEX_REST]
+ * Le transport Oracle ne passe plus par @google-cloud/vertexai 1.x.
  *
- * [2026-04-20 23:59][PATCH_429_MINIMAL]
- * L'appel Vertex AI Oracle passe par l'endpoint global pour réduire
- * les erreurs de capacité régionales.
+ * Cause racine observée en prod :
+ * - le callable Firebase passait correctement
+ * - l'appel Oracle recevait parfois une page HTML au lieu d'un JSON
+ * - le SDK tentait ensuite de parser ce HTML, d'où :
+ *   `Unexpected token '<', "<!DOCTYPE"... is not valid JSON`
+ *
+ * Correctif minimal :
+ * - conserver Lyria sur le SDK existant
+ * - migrer uniquement le transport Oracle vers l'endpoint REST officiel
+ *   Vertex AI generateContent
+ * - authentifier via le service account attaché à la function
+ * - ajouter des logs défensifs propres
  */
-const oracleVertexAI = new VertexAI({
-  project: PROJECT_ID,
-  location: ORACLE_VERTEX_LOCATION,
-});
 
 // Limites quotidiennes par utilisateur
 // MODE TEST TEMPORAIRE : désactive les quotas pour pouvoir valider le flow
@@ -52,6 +59,41 @@ type InvokeDivineOracleRequest = {
   model?: string;
   images?: OracleInlineImage[];
 };
+
+type OraclePart = {
+  text?: string;
+  inlineData?: {
+    mimeType: string;
+    data: string;
+  };
+};
+
+type OracleContent = {
+  role: string;
+  parts: OraclePart[];
+};
+
+type OracleGenerateContentResponse = {
+  candidates?: Array<{
+    content?: {
+      parts?: Array<{
+        text?: string;
+      }>;
+    };
+  }>;
+  error?: {
+    code?: number;
+    message?: string;
+    status?: string;
+  };
+};
+
+type CachedAccessToken = {
+  token: string;
+  expiresAtMs: number;
+};
+
+let cachedAccessToken: CachedAccessToken | null = null;
 
 /**
  * [2026-04-20 23:59][TRANSPORT_IA_TOTAL]
@@ -381,7 +423,9 @@ function isRetryableOracleError(error: unknown): boolean {
     message.includes("429") ||
     message.includes("RESOURCE_EXHAUSTED") ||
     message.includes("Resource exhausted") ||
-    message.includes("Too Many Requests")
+    message.includes("Too Many Requests") ||
+    message.includes("503") ||
+    message.includes("UNAVAILABLE")
   );
 }
 
@@ -404,53 +448,15 @@ async function generateOracleTextWithRetry(
 
   for (let attempt = 0; attempt < ORACLE_MAX_ATTEMPTS; attempt++) {
     try {
-      const generativeModel = oracleVertexAI.getGenerativeModel({
+      const text = await callOracleGenerateContent(
+        systemInstruction,
+        prompt,
         model,
-      });
-
-      const parts: any[] = [{text: prompt}];
-
-      for (const image of images) {
-        const mimeType =
-          typeof image?.mimeType === "string" && image.mimeType.trim().length > 0 ?
-            image.mimeType.trim() :
-            "image/jpeg";
-
-        const dataBase64 =
-          typeof image?.dataBase64 === "string" ?
-            image.dataBase64.trim() :
-            "";
-
-        if (!dataBase64) {
-          continue;
-        }
-
-        parts.push({
-          inlineData: {
-            mimeType,
-            data: dataBase64,
-          },
-        });
-      }
-
-      const result = await generativeModel.generateContent({
-        systemInstruction: {
-          role: "system",
-          parts: [{text: systemInstruction}],
-        } as any,
-        contents: [
-          {
-            role: "user",
-            parts,
-          },
-        ],
-      } as any);
-
-      const text = extractGeneratedText(result.response);
+        images
+      );
       if (!text) {
         throw new Error("L'Oracle n'a renvoyé aucun texte exploitable.");
       }
-
       return text;
     } catch (error) {
       lastError = error;
@@ -464,11 +470,300 @@ async function generateOracleTextWithRetry(
         ORACLE_BASE_DELAY_MS * Math.pow(2, attempt) + jitter,
         8000
       );
+
+      console.warn("[Oracle] Retry planifié", {
+        attempt: attempt + 1,
+        nextDelayMs: delayMs,
+        model,
+        location: ORACLE_LOCATION,
+      });
+
       await sleep(delayMs);
     }
   }
 
   throw lastError instanceof Error ? lastError : new Error("Erreur Oracle inconnue");
+}
+
+/**
+ * Appelle l'endpoint REST officiel Vertex AI generateContent.
+ *
+ * @param {string} systemInstruction Instruction système.
+ * @param {string} prompt Prompt utilisateur.
+ * @param {string} model Modèle cible.
+ * @param {OracleInlineImage[]} images Images inline éventuelles.
+ * @return {Promise<string>}
+ */
+async function callOracleGenerateContent(
+  systemInstruction: string,
+  prompt: string,
+  model: string,
+  images: OracleInlineImage[]
+): Promise<string> {
+  const accessToken = await getMetadataAccessToken();
+  const url = buildOracleGenerateContentUrl(model);
+  const body = buildOracleGenerateContentBody(systemInstruction, prompt, images);
+
+  console.info("[Oracle] Appel Vertex REST", {
+    model,
+    location: ORACLE_LOCATION,
+    imageCount: images.length,
+  });
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  const rawBody = await response.text();
+  const contentType = response.headers.get("content-type") ?? "";
+
+  if (!response.ok) {
+    throw buildOracleHttpError(response.status, contentType, rawBody, model);
+  }
+
+  if (!contentType.toLowerCase().includes("application/json")) {
+    throw new Error(
+      [
+        "[Oracle] Réponse non JSON reçue depuis Vertex.",
+        `model=${model}`,
+        `location=${ORACLE_LOCATION}`,
+        `status=${response.status}`,
+        `contentType=${contentType || "unknown"}`,
+        `snippet=${sanitizeSnippet(rawBody)}`,
+      ].join(" ")
+    );
+  }
+
+  let parsed: OracleGenerateContentResponse;
+  try {
+    parsed = JSON.parse(rawBody) as OracleGenerateContentResponse;
+  } catch (error) {
+    throw new Error(
+      [
+        "[Oracle] JSON invalide reçu depuis Vertex.",
+        `model=${model}`,
+        `location=${ORACLE_LOCATION}`,
+        `status=${response.status}`,
+        `contentType=${contentType || "unknown"}`,
+        `snippet=${sanitizeSnippet(rawBody)}`,
+        `parseError=${error instanceof Error ? error.message : String(error)}`,
+      ].join(" ")
+    );
+  }
+
+  const text = extractGeneratedText(parsed);
+  if (!text) {
+    throw new Error(
+      [
+        "[Oracle] Réponse JSON sans texte exploitable.",
+        `model=${model}`,
+        `location=${ORACLE_LOCATION}`,
+        `status=${response.status}`,
+      ].join(" ")
+    );
+  }
+
+  return text;
+}
+
+/**
+ * Construit l'URL REST officielle du modèle Vertex.
+ *
+ * @param {string} model Modèle Gemini.
+ * @return {string}
+ */
+function buildOracleGenerateContentUrl(model: string): string {
+  return [
+    "https://aiplatform.googleapis.com/v1/projects",
+    PROJECT_ID,
+    "locations",
+    ORACLE_LOCATION,
+    "publishers/google/models",
+    model + ":generateContent",
+  ].join("/");
+}
+
+/**
+ * Construit le body REST Oracle.
+ *
+ * @param {string} systemInstruction Instruction système.
+ * @param {string} prompt Prompt utilisateur.
+ * @param {OracleInlineImage[]} images Images éventuelles.
+ * @return {{systemInstruction: OracleContent, contents: OracleContent[]}}
+ */
+function buildOracleGenerateContentBody(
+  systemInstruction: string,
+  prompt: string,
+  images: OracleInlineImage[]
+): {systemInstruction: OracleContent; contents: OracleContent[]} {
+  const parts: OraclePart[] = [{text: prompt}];
+
+  for (const image of images) {
+    const mimeType =
+      typeof image?.mimeType === "string" && image.mimeType.trim().length > 0 ?
+        image.mimeType.trim() :
+        "image/jpeg";
+
+    const dataBase64 =
+      typeof image?.dataBase64 === "string" ?
+        image.dataBase64.trim() :
+        "";
+
+    if (!dataBase64) {
+      continue;
+    }
+
+    parts.push({
+      inlineData: {
+        mimeType,
+        data: dataBase64,
+      },
+    });
+  }
+
+  return {
+    systemInstruction: {
+      role: "system",
+      parts: [{text: systemInstruction}],
+    },
+    contents: [
+      {
+        role: "user",
+        parts,
+      },
+    ],
+  };
+}
+
+/**
+ * Récupère un access token ADC depuis le metadata server de la function.
+ *
+ * @return {Promise<string>}
+ */
+async function getMetadataAccessToken(): Promise<string> {
+  const now = Date.now();
+
+  if (cachedAccessToken && now < cachedAccessToken.expiresAtMs) {
+    return cachedAccessToken.token;
+  }
+
+  const response = await fetch(METADATA_TOKEN_URL, {
+    method: "GET",
+    headers: {
+      "Metadata-Flavor": "Google",
+    },
+  });
+
+  const rawBody = await response.text();
+  if (!response.ok) {
+    throw new Error(
+      [
+        "[Oracle] Impossible de récupérer le token du service account.",
+        `status=${response.status}`,
+        `snippet=${sanitizeSnippet(rawBody)}`,
+      ].join(" ")
+    );
+  }
+
+  type MetadataTokenResponse = {
+    access_token?: string;
+    expires_in?: number;
+    token_type?: string;
+  };
+
+  let parsed: MetadataTokenResponse;
+  try {
+    parsed = JSON.parse(rawBody) as MetadataTokenResponse;
+  } catch (error) {
+    throw new Error(
+      [
+        "[Oracle] Réponse metadata invalide.",
+        `snippet=${sanitizeSnippet(rawBody)}`,
+        `parseError=${error instanceof Error ? error.message : String(error)}`,
+      ].join(" ")
+    );
+  }
+
+  const accessToken = typeof parsed.access_token === "string" ?
+    parsed.access_token.trim() :
+    "";
+  const expiresIn = typeof parsed.expires_in === "number" ? parsed.expires_in : 300;
+
+  if (!accessToken) {
+    throw new Error("[Oracle] Metadata token vide.");
+  }
+
+  cachedAccessToken = {
+    token: accessToken,
+    expiresAtMs: now + Math.max(60, expiresIn - 60) * 1000,
+  };
+
+  return accessToken;
+}
+
+/**
+ * Construit une erreur HTTP détaillée et stable.
+ *
+ * @param {number} status Code HTTP.
+ * @param {string} contentType Content-Type reçu.
+ * @param {string} rawBody Corps brut.
+ * @param {string} model Modèle ciblé.
+ * @return {Error}
+ */
+function buildOracleHttpError(
+  status: number,
+  contentType: string,
+  rawBody: string,
+  model: string
+): Error {
+  if (contentType.toLowerCase().includes("application/json")) {
+    try {
+      const parsed = JSON.parse(rawBody) as OracleGenerateContentResponse;
+      const apiMessage = parsed.error?.message ?? "Erreur Vertex sans message.";
+      const apiStatus = parsed.error?.status ?? "UNKNOWN";
+      return new Error(
+        [
+          "[Oracle] Erreur HTTP Vertex.",
+          `model=${model}`,
+          `location=${ORACLE_LOCATION}`,
+          `status=${status}`,
+          `apiStatus=${apiStatus}`,
+          `message=${apiMessage}`,
+        ].join(" ")
+      );
+    } catch {
+      // fallback ci-dessous
+    }
+  }
+
+  return new Error(
+    [
+      "[Oracle] Erreur HTTP non JSON depuis Vertex.",
+      `model=${model}`,
+      `location=${ORACLE_LOCATION}`,
+      `status=${status}`,
+      `contentType=${contentType || "unknown"}`,
+      `snippet=${sanitizeSnippet(rawBody)}`,
+    ].join(" ")
+  );
+}
+
+/**
+ * Nettoie un extrait de réponse pour les logs.
+ *
+ * @param {string} value Valeur brute.
+ * @return {string}
+ */
+function sanitizeSnippet(value: string): string {
+  return value
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, ORACLE_RESPONSE_SNIPPET_MAX);
 }
 
 /**
@@ -527,33 +822,37 @@ async function checkUserQuota(userId: string): Promise<number> {
  */
 async function incrementUserQuota(userId: string): Promise<void> {
   const today = getTodayKey();
-  const docRef = admin.firestore()
+  const ref = admin.firestore()
     .collection("lyria_quotas_users")
     .doc(userId);
 
-  await admin.firestore().runTransaction(async (transaction) => {
-    const doc = await transaction.get(docRef);
+  await admin.firestore().runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const currentData = snap.data();
 
-    if (!doc.exists || doc.data()?.date !== today) {
-      transaction.set(docRef, {date: today, count: 1});
-    } else {
-      transaction.update(docRef, {
-        count: admin.firestore.FieldValue.increment(1),
-      });
-    }
+    const nextCount =
+      currentData?.date === today && typeof currentData?.count === "number" ?
+        currentData.count + 1 :
+        1;
+
+    tx.set(ref, {
+      date: today,
+      count: nextCount,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, {merge: true});
   });
 }
 
 /**
- * Vérifie le quota quotidien global.
+ * Vérifie le quota global quotidien.
  *
- * @return {Promise<number>} Nombre total d'utilisations aujourd'hui.
+ * @return {Promise<number>} Nombre d'utilisations aujourd'hui.
  */
 async function checkGlobalQuota(): Promise<number> {
   const today = getTodayKey();
   const doc = await admin.firestore()
     .collection("lyria_quotas_global")
-    .doc("daily")
+    .doc(today)
     .get();
 
   if (!doc.exists) {
@@ -561,46 +860,37 @@ async function checkGlobalQuota(): Promise<number> {
   }
 
   const data = doc.data();
-  if (data?.date === today) {
-    return typeof data.count === "number" ? data.count : 0;
-  }
-
-  return 0;
+  return typeof data?.count === "number" ? data.count : 0;
 }
 
 /**
- * Incrémente le quota quotidien global.
+ * Incrémente le quota global quotidien.
  *
  * @return {Promise<void>}
  */
 async function incrementGlobalQuota(): Promise<void> {
   const today = getTodayKey();
-  const docRef = admin.firestore()
+  const ref = admin.firestore()
     .collection("lyria_quotas_global")
-    .doc("daily");
+    .doc(today);
 
-  await admin.firestore().runTransaction(async (transaction) => {
-    const doc = await transaction.get(docRef);
+  await admin.firestore().runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const currentData = snap.data();
+    const currentCount = typeof currentData?.count === "number" ? currentData.count : 0;
 
-    if (!doc.exists || doc.data()?.date !== today) {
-      transaction.set(docRef, {date: today, count: 1});
-    } else {
-      transaction.update(docRef, {
-        count: admin.firestore.FieldValue.increment(1),
-      });
-    }
+    tx.set(ref, {
+      count: currentCount + 1,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, {merge: true});
   });
 }
 
 /**
- * Retourne une clé unique pour la date du jour au format YYYY-MM-DD.
+ * Retourne la clé journalière YYYY-MM-DD.
  *
- * @return {string} Clé de date du jour.
+ * @return {string}
  */
 function getTodayKey(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return new Date().toISOString().slice(0, 10);
 }

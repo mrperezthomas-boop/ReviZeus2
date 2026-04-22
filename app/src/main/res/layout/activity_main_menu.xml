@@ -180,7 +180,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/cinzel"
-        android:text="v1.0.5 — Révizeus"
+        android:text="v1.0.6 — Révizeus"
         android:textColor="#55FFD700"
         android:textSize="10sp" />
 

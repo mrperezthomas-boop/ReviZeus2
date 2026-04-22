@@ -26,11 +26,15 @@
     → 📊 Niveau, éclats 💎, ambroisie 🍯, temps joué ⏱️
 
   ⭐ Synchronisation parfaite des héros
-    → 👥 Création, chargement et sélection ultra-fluides
+    → 👥 Création, chargement et sélection fluides
     → 🔄 Données toujours à jour, zéro décalage
 
   ⭐ Dialogues au format RPG
     → 💬 Immersion narrative améliorée
+
+  ⭐ Création du compte Instagram officiel RéviZeus
+    → 📸 Retrouve désormais l'univers du projet sur :
+    → @revizeus.iaristote
 
 
 📚 🎯 SYSTÈME DE QUIZ AMÉLIORÉ
@@ -44,7 +48,7 @@
     → 🎁 Le mode sans timer réduit les récompenses
 
   ⭐ Entraînement Ultime
-    → 📜 Choix du format Brevet ou 🎓 Bac
+    → 📜 Choix du format Brevet ou 🎓 Bac en cour d'implementation.
 
   ⭐ Barème des temps adapté à l'âge
     → 👶 0-10 ans : 30 secondes par question
@@ -54,37 +58,35 @@
 
 📖 🏺 ÉVOLUTION DU SYSTÈME DE SAVOIRS
 
-  ⭐ Titre personnalisé pour chaque savoir
-    → ✏️ Nomme tes connaissances comme tu le souhaites !
-
-  ⭐ Sous-dossier de temple pour l'organisation
-    → 🗂️ Range tes savoirs par thématique
-
   ⭐ Actions avancées sur appui long
     → 👆 Reste appuyé pour voir une multitude de choix 🎯
 
 
 🎵 🎶 LA LYRE D'APOLLON
 
-  ⭐ Création de musique directement dans l'application
-    → 🎼 Compose tes propres mélodies divines !
-
-  ⭐ Export avec Lyria de Gemini
-    → 📝 Poème et/ou 🎵 musique
+  ⭐ Création de prompt de musique directement dans l'application
     → 🎤 Compatible Suno : paroles + style
 
 
 🧠 🤖 IA ADAPTATIVE 1.2
 
   ⭐ Première intégration profonde des profils type
-    → 🎯 L'IA comprend ton style d'apprentissage unique
-    → 📊 Analyse de tes forces et faiblesses en temps réel
+    → 🎯 L'IA comprend ton style d'apprentissage unique (30%)
+    → 📊 Analyse de tes forces et faiblesses en temps réel (40%)
 
   ⭐ Dialogue génératif selon multiples paramètres
-    → 💬 Conversations personnalisées et contextuelles
-    → 🎭 Les dieux s'adaptent à ta personnalité et tes besoins
-    → 🔮 Conseils sur mesure pour progresser efficacement
+    → 💬 Conversations personnalisées et contextuelles (75%)
+    → 🎭 Les dieux s'adaptent à ta personnalité et tes besoins (40%)
+    → 🔮 Conseils sur mesure pour progresser efficacement (60%)
 
+  ⭐ Implémentation du Bloc B "Dialogue vivant RPG" à 80 %
+    → ⚔️ Première avancée majeure du dialogue immersif dynamique
+    → 🗣️ Les échanges gagnent en présence, en rythme et en mise en scène
+    → 🏛️ Les fondations du système vivant sont désormais en place
+
+  ⭐ Parcours guidé divin à la première connexion
+    → ✨ Lors de ton arrivée dans RéviZeus, des pop-up explicatifs apparaissent sur les écrans clés
+    → 🏛️ Chaque écran est introduit par un dieu choisi selon son rôle et son contexte
 
 ───────────────────────────────────────────────────────────────
 🔧 ⚙️ AMÉLIORATIONS ⚙️ 🔧
@@ -102,6 +104,14 @@
   ✅ Stabilisation du socle transverse (Bloc A)
     → 🏗️ BaseActivity, SoundManager, audio/TTS/vidéo, navigation
 
+  ✅ Amélioration de la protection du code et des données
+    → 🔐 Renforcement progressif de la sécurité globale du projet
+    → 🛡️ Meilleure résistance côté logique, structure et données sensibles (API)
+
+  ✅ Stabilisation générale du projet à 50 %
+    → ⚙️ Consolidation progressive des fondations techniques
+    → 🧱 Réduction des comportements instables sur plusieurs flux clés
+
 
 ───────────────────────────────────────────────────────────────
 🛠️ 🔨 CORRECTIONS TECHNIQUES 🔨 🛠️
@@ -115,6 +125,9 @@
 
   🔹 Code plus propre
     → 🧼 Suppression de portions obsolètes, meilleure maintenance
+
+  🔹 Renforcement de la cohérence technique globale
+    → 🔧 Meilleure tenue du projet face aux évolutions en cours
 
 
 ═══════════════════════════════════════════════════════════════
@@ -131,21 +144,15 @@
     ⚡ 🏆 RÉVISEZ COMME UN DIEU, PROGRESSEZ COMME UN HÉROS 🏆 ⚡
 
 ═══════════════════════════════════════════════════════════════
- 
+
 ═══════════════════════════════════════════════════════════════
 
 ===========================================================
-_____  ________      _______ ____________ _    _  _____ 
+_____  ________      _______ ____________ _    _  _____
 |  __ \|  ____\ \    / /_   _|___  /  ____| |  | |/ ____|
-| |__) | |__   \ \  / /  | |    / /| |__  | |  | | (___  
-|  _  /|  __|   \ \/ /   | |   / / |  __| | |  | |\___ \ 
+| |__) | |__   \ \  / /  | |    / /| |__  | |  | | (___
+|  _  /|  __|   \ \/ /   | |   / / |  __| | |  | |\___ \
 | | \ \| |____   \  /   _| |_ / /__| |____| |__| |____) |
 |_|  \_\______|   \/   |_____/_____|______| \____/|_____/
-         
+
 ===========================================================
-
-
-
-
-
-
