@@ -1,6 +1,7 @@
+# [2026-04-22 00:00][ASSAINISSEMENT_GLOBAL] Alignement de la version KSP sur Kotlin 2.3.10 pour éviter les incompatibilités de génération.
 [versions]
 agp = "9.0.1"
-ksp = "2.3.6"
+ksp = "2.3.10-2.0.2"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
