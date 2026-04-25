@@ -203,6 +203,17 @@ class ResultActivity : BaseActivity() {
             }
         }
 
+        if (savedInstanceState == null) {
+            binding.root.post {
+                if (isFinishing || isDestroyed) return@post
+                TutorialManager.runHeroFirstTimeFeature(
+                    activity = this,
+                    featureId = "result_first_visit",
+                    onContinue = { }
+                )
+            }
+        }
+
         binding.btnInvoke.setOnClickListener {
             if (invokeAnalysisJob?.isActive == true) {
                 return@setOnClickListener

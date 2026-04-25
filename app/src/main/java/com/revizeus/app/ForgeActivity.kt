@@ -94,6 +94,17 @@ class ForgeActivity : BaseActivity() {
         setupHeader()
         setupRecyclerView()
         loadProfileAndSetup()
+
+        if (savedInstanceState == null) {
+            binding.root.post {
+                if (isFinishing || isDestroyed) return@post
+                TutorialManager.runHeroFirstTimeFeature(
+                    activity = this,
+                    featureId = "forge_first_visit",
+                    onContinue = { }
+                )
+            }
+        }
     }
 
     override fun onResume() {
