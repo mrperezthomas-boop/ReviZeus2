@@ -93,6 +93,18 @@ object AdaptiveContextFormatter {
 
             $weaknessesBlock
 
+            AFFINITÉS DIVINES
+            - synthèse globale : ${snapshot.divineAffinitySummary}
+            - affinité matière courante : ${snapshot.currentGodAffinitySummary}
+
+            DIRECTIVES D’AFFINITÉ
+            - utiliser cette affinité comme nuance relationnelle subtile ;
+            - ne jamais flatter gratuitement ;
+            - ne jamais afficher les chiffres, seuils ou données brutes au joueur ;
+            - si l’affinité est faible ou inconnue, rester neutre et pédagogique ;
+            - si l’affinité est élevée, le dieu peut reconnaître davantage les efforts du héros ;
+            - la priorité reste la clarté pédagogique, pas le fan-service.
+
             PERSONNALITÉ DIVINE CIBLE
             - dieu : ${personality.displayName}
             - identité de ton : ${personality.toneIdentity}

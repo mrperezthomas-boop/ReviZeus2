@@ -44,6 +44,7 @@ class DebugAnalyticsActivity : BaseActivity() {
 
     private data class DebugAiSnapshot(
         val profile: UserProfile,
+        val affinityProfile: GodAffinityManager.GodAffinityProfile,
         val userSourceDebug: UserSourceDebug,
         val testSubject: String,
         val godId: String,
@@ -306,9 +307,14 @@ class DebugAnalyticsActivity : BaseActivity() {
             container.addView(creerTexteInfo("Fragments : $it"))
         }
 
-        // F. PREVIEW CONTEXTE IA
+        // F. AFFINITÉS DIVINES
         container.addView(creerSeparateur())
-        container.addView(creerTitreSection("F. PREVIEW CONTEXTE IA"))
+        container.addView(creerTitreSection("🤝 AFFINITÉS DIVINES"))
+        afficherSectionAffinitesDivines(container, debugSnapshot.affinityProfile)
+
+        // G. PREVIEW CONTEXTE IA
+        container.addView(creerSeparateur())
+        container.addView(creerTitreSection("G. PREVIEW CONTEXTE IA"))
         container.addView(creerTexteInfo("Preview locale — aucun appel Gemini"))
         container.addView(creerTexteInfo(truncateDebugText(debugSnapshot.adaptivePreview)))
     }
@@ -341,6 +347,7 @@ class DebugAnalyticsActivity : BaseActivity() {
         }
 
         val (fragmentsBySubject, fragmentParseMessage) = safeParseFragments(profile.knowledgeFragments)
+        val affinityProfile = GodAffinityManager.buildProfile(profile)
         val userSource = readUserSourceSnapshot(profileFromDb)
 
         var adaptiveSnapshot: PlayerAdaptiveSnapshot? = null
@@ -381,6 +388,7 @@ class DebugAnalyticsActivity : BaseActivity() {
 
         DebugAiSnapshot(
             profile = profile,
+            affinityProfile = affinityProfile,
             userSourceDebug = userSource,
             testSubject = testSubject,
             godId = godId,
@@ -395,6 +403,44 @@ class DebugAnalyticsActivity : BaseActivity() {
             adaptiveResolverError = adaptiveResolverError,
             dialogueResolverError = dialogueResolverError
         )
+    }
+
+    private fun afficherSectionAffinitesDivines(
+        container: LinearLayout,
+        affinityProfile: GodAffinityManager.GodAffinityProfile
+    ) {
+        if (affinityProfile.topGods.isEmpty()) {
+            container.addView(creerTexteInfo("Aucune affinité divine calculable pour le moment."))
+        } else {
+            container.addView(creerTexteInfo("Top 3 affinités :"))
+            affinityProfile.topGods.forEach { snapshot ->
+                container.addView(
+                    creerTexteStatistique(
+                        "${snapshot.godDisplayName} — niveau ${snapshot.affinityLevel}/20 — ${snapshot.affinityLabel} — " +
+                            "${snapshot.fragments} fragment(s) — ${snapshot.progressToNextLevelPercent}% — " +
+                            "${snapshot.fragmentsNeededForNextLevel} restant(s)"
+                    )
+                )
+            }
+        }
+
+        container.addView(creerTexteInfo("Détail par dieu :"))
+        affinityProfile.profilesByGod.values.forEach { snapshot ->
+            container.addView(
+                creerTexteStatistique(
+                    "${snapshot.godDisplayName} : ${snapshot.affinityLevel}/20, ${snapshot.affinityLabel}, " +
+                        "${snapshot.fragments} fragment(s), ${snapshot.progressToNextLevelPercent}%, " +
+                        "${snapshot.fragmentsNeededForNextLevel} restant(s)"
+                )
+            )
+        }
+
+        if (affinityProfile.unknownSubjects.isNotEmpty()) {
+            container.addView(creerTexteInfo("Matières non reliées à un dieu :"))
+            affinityProfile.unknownSubjects.toSortedMap().forEach { (subject, count) ->
+                container.addView(creerTexteStatistique("$subject : $count fragment(s)"))
+            }
+        }
     }
 
     private fun readUserSourceSnapshot(profile: UserProfile?): UserSourceDebug {

@@ -201,11 +201,6 @@ class ResultActivity : BaseActivity() {
             }
         }
 
-        val prefs = getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
-        val age = prefs.getInt("USER_AGE", 15)
-        val classe = prefs.getString("USER_CLASS", "Terminale") ?: "3ème"
-        val mood = prefs.getString("CURRENT_MOOD", "Prêt") ?: "Neutre"
-
         binding.btnInvoke.setOnClickListener {
             if (invokeAnalysisJob?.isActive == true) {
                 return@setOnClickListener
@@ -231,6 +226,15 @@ class ResultActivity : BaseActivity() {
             invokeAnalysisJob?.cancel()
             invokeAnalysisJob = lifecycleScope.launch {
                 try {
+                    val userAiContext = UserAiContextResolver.resolve(this@ResultActivity)
+                    val age = userAiContext.age
+                    val classe = userAiContext.classLevel
+                    val mood = userAiContext.mood
+                    Log.d(
+                        "REVIZEUS_RESULT",
+                        "UserAiContext sources => age=${userAiContext.sources.ageSource}, class=${userAiContext.sources.classLevelSource}, mood=${userAiContext.sources.moodSource}"
+                    )
+
                     val oracleDivineContext = buildOracleMainInvokeDivineContext(
                         isFreeTextFlow = freeTextInput.isNotBlank(),
                         userAge = age,
