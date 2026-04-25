@@ -459,7 +459,7 @@ class DebugAnalyticsActivity : BaseActivity() {
         val heroClass = prefs.getString("hero_class", null)?.takeIf { it.isNotBlank() }
 
         val roomMood = profile?.mood?.takeIf { it.isNotBlank() }
-        val userMood = prefs.getString("USER_MOOD", null)?.takeIf { it.isNotBlank() }
+        val userMood = prefs.getString("CURRENT_MOOD", null)?.takeIf { it.isNotBlank() }
         val heroMood = prefs.getString("hero_mood", null)?.takeIf { it.isNotBlank() }
 
         val roomLevel = profile?.level
@@ -480,7 +480,7 @@ class DebugAnalyticsActivity : BaseActivity() {
             pseudoSources = "Room=${roomPseudo ?: "∅"} | USER_PSEUDO=${userPseudo ?: "∅"} | hero_pseudo=${heroPseudo ?: "∅"}",
             ageSources = "Room=${roomAge ?: "∅"} | USER_AGE=${userAge ?: "∅"} | hero_age=${heroAge ?: "∅"}",
             classSources = "Room=${roomClass ?: "∅"} | USER_CLASS=${userClass ?: "∅"} | hero_class=${heroClass ?: "∅"}",
-            moodSources = "Room=${roomMood ?: "∅"} | USER_MOOD=${userMood ?: "∅"} | hero_mood=${heroMood ?: "∅"}",
+            moodSources = "Room=${roomMood ?: "∅"} | CURRENT_MOOD=${userMood ?: "∅"} | hero_mood=${heroMood ?: "∅"}",
             levelSources = "Room=${roomLevel ?: "∅"} | USER_LEVEL=${userLevel ?: "∅"} | hero_level=${heroLevel ?: "∅"}",
             rankSources = "Room=${roomRank ?: "∅"} | USER_RANK=${userRank ?: "∅"} | hero_rank=${heroRank ?: "∅"}"
         )
