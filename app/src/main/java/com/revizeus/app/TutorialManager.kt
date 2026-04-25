@@ -487,9 +487,11 @@ object TutorialManager {
             godDrawable = R.drawable.avatar_athena_dialog,
             godColor = "#FFD700",
             title = "🦉 Le Savoir Structuré",
-            message = "Voici l’endroit où ton cours devient une arme de révision.
-Lis le résumé, vérifie qu’il est cohérent, puis valide-le pour le ranger et lancer un quiz.
-Ne te contente pas d’admirer le parchemin : teste-toi, c’est là que la mémoire se forge.",
+            message = """
+                Voici l’endroit où ton cours devient une arme de révision.
+                Lis le résumé, vérifie qu’il est cohérent, puis valide-le pour le ranger et lancer un quiz.
+                Ne te contente pas d’admirer le parchemin : teste-toi, c’est là que la mémoire se forge.
+            """.trimIndent(),
             screen = "ResultActivity"
         )
         "training_select_first_visit" -> TutorialStep(
@@ -498,9 +500,11 @@ Ne te contente pas d’admirer le parchemin : teste-toi, c’est là que la mém
             godDrawable = R.drawable.avatar_ares_dialog,
             godColor = "#DAA520",
             title = "⚔️ L’Entraînement des Héros",
-            message = "Ici, tu choisis ton champ de bataille : une matière, un cours, ou une révision plus intense.
-Chaque quiz révèle tes forces, tes failles, et nourrit ta progression.
-Ne crains pas l’échec : dans mon arène, une erreur bien comprise vaut mieux qu’une victoire molle.",
+            message = """
+                Ici, tu choisis ton champ de bataille : une matière, un cours, ou une révision plus intense.
+                Chaque quiz révèle tes forces, tes failles, et nourrit ta progression.
+                Ne crains pas l’échec : dans mon arène, une erreur bien comprise vaut mieux qu’une victoire molle.
+            """.trimIndent(),
             screen = "TrainingSelectActivity"
         )
         "forge_first_visit" -> TutorialStep(
@@ -509,9 +513,11 @@ Ne crains pas l’échec : dans mon arène, une erreur bien comprise vaut mieux 
             godDrawable = R.drawable.avatar_hephaistos_dialog,
             godColor = "#FF8C00",
             title = "⚒️ La Forge d’Héphaïstos",
-            message = "Bienvenue dans ma Forge.
-Tes fragments de connaissance servent ici à créer des objets, renforcer ta progression et préparer de futures offrandes.
-Rien ne se forge sans matière première : révise, gagne des fragments, puis reviens faire chanter l’enclume.",
+            message = """
+                Bienvenue dans ma Forge.
+                Tes fragments de connaissance servent ici à créer des objets, renforcer ta progression et préparer de futures offrandes.
+                Rien ne se forge sans matière première : révise, gagne des fragments, puis reviens faire chanter l’enclume.
+            """.trimIndent(),
             screen = "ForgeActivity"
         )
         else -> null
