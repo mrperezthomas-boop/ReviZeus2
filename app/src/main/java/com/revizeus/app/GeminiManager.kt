@@ -662,12 +662,20 @@ object GeminiManager {
             - pas de rôleplay dans le résumé
             - pas de métaphores inutiles
             - pas de ton "légende", "prophétie", "conte"
+            - pas de symboles décoratifs inutiles
+            - quelques emojis seulement si vraiment utiles à la lisibilité (maximum 1 à 3 sur tout le résumé)
             - si le texte est technique, reste technique
             - si l'élève est fatigué, fais plus court et plus découpé
             - si l'élève est stressé, sois rassurant, net et structuré
             - si l'élève est joyeux, tu peux être légèrement dynamique, mais toujours concret
             - si l'élève est plus âgé ou niveau élevé, monte légèrement en précision et rigueur
             - si le cours contient des définitions, dates, étapes, formules ou notions-clés, elles doivent apparaître clairement
+            - ne jamais inventer une information
+            - ne jamais ajouter une date absente
+            - ne jamais ajouter une formule absente
+            - ne jamais ajouter un nom propre absent
+            - si une information est illisible ou incertaine, écris exactement : "Information non lisible dans le document."
+            - reste strictement dans la demande texte et le support fourni
 
             CONTRAT DE SORTIE STRICT ET NON NÉGOCIABLE :
             - Aucune introduction avant ---START_RESUME---
@@ -678,12 +686,28 @@ object GeminiManager {
 
             STRUCTURE STRICTE DE LA RÉPONSE :
             ---START_RESUME---
-            (Résumé clair, concret, fidèle au cours)
+            TITLE: [titre court, simple, significatif, maximum 8 mots]
+            LEVEL: [niveau de formulation adapté à l'élève]
+            CHAPTER: [nom du chapitre]
+            SUBTITLE: [sous-partie]
+            TEXT: [explication claire]
+            SUBTITLE: [autre sous-partie si utile]
+            TEXT: [explication claire]
+            CHAPTER: [autre chapitre si utile]
+            ...
             ---END_RESUME---
             ---START_QUIZ---
             Q1: [?] A) [X] B) [Y] C) [Z] REP: [A, B ou C]
             ...
             ---END_QUIZ---
+
+            RÈGLES STRICTES POUR TITLE :
+            - maximum 8 mots
+            - aucun emoji
+            - aucun markdown
+            - interdit d'utiliser : "Résumé", "Cours", "Oracle", "RéviZeus"
+            - basé uniquement sur le contenu réel du document ou de la demande
+            - si impossible à déterminer, écris : "Notions principales"
 
             TEXTE DU COURS :
             $texte
@@ -758,6 +782,8 @@ object GeminiManager {
             - pas de rôleplay dans le résumé
             - pas de narration mythologique
             - pas de ton "légendaire", "prophétique", "conte"
+            - pas de symboles décoratifs inutiles
+            - quelques emojis seulement si vraiment utiles à la lisibilité (maximum 1 à 3 sur tout le résumé)
             - si le cours est scientifique, historique, grammatical ou technique, garde ce registre
             - si l'élève est fatigué, sois plus simple, plus court et mieux découpé
             - si l'élève est stressé, sois rassurant, propre et très structuré
@@ -765,6 +791,11 @@ object GeminiManager {
             - si l'élève est plus âgé ou niveau élevé, sois plus rigoureux
             - fais apparaître clairement :
               définitions, étapes, causes/conséquences, dates, notions-clés, formules ou vocabulaire important
+            - ne jamais inventer une information
+            - ne jamais ajouter une date absente
+            - ne jamais ajouter une formule absente
+            - ne jamais ajouter un nom propre absent
+            - si une information est illisible ou incertaine, écris exactement : "Information non lisible dans le document."
 
             CONTRAT DE SORTIE STRICT ET NON NÉGOCIABLE :
             - Aucune introduction avant ---START_RESUME---
@@ -775,12 +806,28 @@ object GeminiManager {
 
             STRUCTURE STRICTE :
             ---START_RESUME---
-            (Résumé clair, concret, fidèle au document)
+            TITLE: [titre court, simple, significatif, maximum 8 mots]
+            LEVEL: [niveau de formulation adapté à l'élève]
+            CHAPTER: [nom du chapitre]
+            SUBTITLE: [sous-partie]
+            TEXT: [explication claire]
+            SUBTITLE: [autre sous-partie si utile]
+            TEXT: [explication claire]
+            CHAPTER: [autre chapitre si utile]
+            ...
             ---END_RESUME---
             ---START_QUIZ---
             Q1: [?] A) [X] B) [Y] C) [Z] REP: [A, B ou C]
             ...
             ---END_QUIZ---
+
+            RÈGLES STRICTES POUR TITLE :
+            - maximum 8 mots
+            - aucun emoji
+            - aucun markdown
+            - interdit d'utiliser : "Résumé", "Cours", "Oracle", "RéviZeus"
+            - basé uniquement sur le contenu réel du document scanné
+            - si impossible à déterminer, écris : "Notions principales"
         """.trimIndent()
     }
 

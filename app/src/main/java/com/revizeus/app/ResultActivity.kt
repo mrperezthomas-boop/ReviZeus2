@@ -76,6 +76,20 @@ import java.util.UUID
  */
 class ResultActivity : BaseActivity() {
 
+    private enum class SummaryBlockType { CHAPTER, SUBTITLE, TEXT }
+
+    private data class SummaryDisplayBlock(
+        val type: SummaryBlockType,
+        val content: String
+    )
+
+    private data class ParsedOracleSummary(
+        val title: String,
+        val level: String,
+        val blocks: List<SummaryDisplayBlock>,
+        val plainText: String
+    )
+
     private lateinit var binding: ActivityResultBinding
     private var quizGenere: List<QuizQuestion> = emptyList()
     private var generatedSummary: String = ""
@@ -263,14 +277,18 @@ class ResultActivity : BaseActivity() {
                             binding.tvResult.visibility = View.VISIBLE
 
                             generatedSummary = data.first
-                            val (visualSummary, safeSummary) = formatSummarySafe(generatedSummary)
-                            binding.tvResult.text = visualSummary
-                            ttsSafeSummary = safeSummary
+                            val parsedSummary = parseOracleSummaryForDisplay(generatedSummary)
+                            renderPremiumSummary(parsedSummary)
+                            val fallbackSafeSummary = formatSummarySafe(generatedSummary).second
+                            ttsSafeSummary = parsedSummary.plainText.ifBlank { fallbackSafeSummary }
                             quizGenere = data.second
 
                             // AJOUT v10 — Détection matière + titre auto
                             matiereAutoDetectee = detecterMatiereDepuisContenu(generatedSummary)
-                            titreAutoGenere = genererTitreCoursSmart(matiereAutoDetectee)
+                            titreAutoGenere = genererTitreCoursSmart(
+                                matiere = matiereAutoDetectee,
+                                parsedSummary = parsedSummary
+                            )
                             updateResultSummaryCard(matiereAutoDetectee)
 
                             // Le héros doit d'abord valider le résumé,
@@ -333,15 +351,10 @@ class ResultActivity : BaseActivity() {
      * - nettoie le texte lu pour limiter les bugs TTS
      */
     private fun formatSummarySafe(raw: String): Pair<String, String> {
-        val visual = raw
-            .replace("•", "✨")
-            .replace("\n- ", "\n🔹 ")
-            .replace("\n* ", "\n✨ ")
+        val visual = raw.trim()
 
         val tts = raw
             .replace("•", "")
-            .replace("✨", "")
-            .replace("🔹", "")
             .replace("\n- ", ". ")
             .replace("\n* ", ". ")
             .replace("\n\n", ". ")
@@ -350,6 +363,298 @@ class ResultActivity : BaseActivity() {
             .trim()
 
         return Pair(visual, tts)
+    }
+
+    private fun parseOracleSummaryForDisplay(raw: String): ParsedOracleSummary {
+        return try {
+            val cleanedRaw = raw
+                .replace("\r", "")
+                .replace(Regex("\\u0000"), "")
+                .trim()
+
+            val lines = cleanedRaw.lines().map { it.trim() }
+            val blocks = mutableListOf<SummaryDisplayBlock>()
+            var title = ""
+            var level = ""
+
+            lines.forEach { line ->
+                if (line.isBlank()) return@forEach
+
+                when {
+                    line.startsWith("TITLE:", ignoreCase = true) -> {
+                        title = line.substringAfter(":").trim()
+                    }
+
+                    line.startsWith("LEVEL:", ignoreCase = true) -> {
+                        level = line.substringAfter(":").trim()
+                    }
+
+                    line.startsWith("CHAPTER:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.CHAPTER, value))
+                        }
+                    }
+
+                    line.startsWith("SUBTITLE:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.SUBTITLE, value))
+                        }
+                    }
+
+                    line.startsWith("TEXT:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.TEXT, value))
+                        }
+                    }
+
+                    line.startsWith("##") || line.startsWith("#") -> {
+                        val value = line.replace(Regex("^#+\\s*"), "").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.CHAPTER, value))
+                        }
+                    }
+
+                    line.startsWith("**") && line.endsWith("**") -> {
+                        val value = line.removePrefix("**").removeSuffix("**").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.SUBTITLE, value))
+                        }
+                    }
+
+                    else -> {
+                        val value = line
+                            .replace(Regex("^[-*]\\s*"), "")
+                            .trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.TEXT, value))
+                        }
+                    }
+                }
+            }
+
+            val hasStructuredFormat = lines.any { line ->
+                line.startsWith("TITLE:", ignoreCase = true) ||
+                    line.startsWith("LEVEL:", ignoreCase = true) ||
+                    line.startsWith("CHAPTER:", ignoreCase = true) ||
+                    line.startsWith("SUBTITLE:", ignoreCase = true) ||
+                    line.startsWith("TEXT:", ignoreCase = true)
+            }
+
+            val cleanedFallbackText = cleanedRaw
+                .replace(Regex("^---START_RESUME---\\s*", RegexOption.IGNORE_CASE), "")
+                .replace(Regex("\\s*---END_RESUME---$", RegexOption.IGNORE_CASE), "")
+                .replace(Regex("\\s+"), " ")
+                .trim()
+
+            val finalBlocks = if (blocks.isNotEmpty()) {
+                blocks
+            } else {
+                listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = cleanedFallbackText.ifBlank {
+                            "Information non lisible dans le document."
+                        }
+                    )
+                )
+            }
+
+            val finalTitle = sanitizeAutoCourseTitle(
+                if (title.isNotBlank()) title else genererTitreDepuisTexte(cleanedFallbackText)
+            )
+            val finalLevel = level
+                .replace(Regex("^[-*]\\s*"), "")
+                .replace(Regex("\\s+"), " ")
+                .trim()
+
+            val plainTextFromBlocks = buildString {
+                finalBlocks.forEach { block ->
+                    append(block.content.trim())
+                    if (!block.content.endsWith(".") && !block.content.endsWith("!") && !block.content.endsWith("?")) {
+                        append(".")
+                    }
+                    append(" ")
+                }
+            }.replace(Regex("\\s+"), " ").trim()
+
+            val plainText = if (plainTextFromBlocks.isNotBlank()) {
+                plainTextFromBlocks
+            } else {
+                formatSummarySafe(cleanedFallbackText).second
+            }
+
+            val normalizedBlocks = if (!hasStructuredFormat && finalBlocks.isNotEmpty()) {
+                listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = finalBlocks.joinToString("\n") { it.content }.trim()
+                    )
+                )
+            } else {
+                finalBlocks
+            }
+
+            ParsedOracleSummary(
+                title = finalTitle,
+                level = finalLevel,
+                blocks = normalizedBlocks,
+                plainText = plainText
+            )
+        } catch (e: Exception) {
+            Log.w("REVIZEUS_RESULT", "parseOracleSummaryForDisplay fallback : ${e.message}", e)
+            val clean = raw.replace(Regex("\\s+"), " ").trim()
+            ParsedOracleSummary(
+                title = sanitizeAutoCourseTitle(clean),
+                level = "",
+                blocks = listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = clean.ifBlank { "Information non lisible dans le document." }
+                    )
+                ),
+                plainText = formatSummarySafe(clean).second
+            )
+        }
+    }
+
+    private fun renderPremiumSummary(parsed: ParsedOracleSummary) {
+        try {
+            val container = binding.layoutSummaryContent
+            container.removeAllViews()
+
+            if (parsed.blocks.isEmpty()) {
+                binding.tvResult.visibility = View.VISIBLE
+                binding.tvResult.text = formatSummarySafe(generatedSummary).first
+                return
+            }
+
+            val titleText = TextView(this).apply {
+                text = parsed.title.ifBlank { "Notions principales" }
+                setTextColor(Color.parseColor("#FFD700"))
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 21f)
+                gravity = Gravity.CENTER
+                typeface = try {
+                    resources.getFont(R.font.cinzel_bold)
+                } catch (_: Exception) {
+                    Typeface.DEFAULT_BOLD
+                }
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    bottomMargin = dp(8)
+                }
+            }
+            container.addView(titleText)
+
+            if (parsed.level.isNotBlank()) {
+                val levelText = TextView(this).apply {
+                    text = parsed.level
+                    setTextColor(Color.parseColor("#FFF3B0"))
+                    setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+                    gravity = Gravity.CENTER
+                    typeface = try { resources.getFont(R.font.exo2) } catch (_: Exception) { Typeface.DEFAULT }
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        bottomMargin = dp(10)
+                    }
+                }
+                container.addView(levelText)
+            }
+
+            parsed.blocks.forEach { block ->
+                val textView = TextView(this).apply {
+                    text = block.content
+                    setLineSpacing(0f, 1.22f)
+                    typeface = when (block.type) {
+                        SummaryBlockType.TEXT -> try {
+                            resources.getFont(R.font.exo2)
+                        } catch (_: Exception) {
+                            Typeface.DEFAULT
+                        }
+
+                        else -> Typeface.DEFAULT_BOLD
+                    }
+                }
+
+                when (block.type) {
+                    SummaryBlockType.CHAPTER -> {
+                        textView.setTextColor(Color.parseColor("#FFD700"))
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+                        textView.gravity = Gravity.START
+                        textView.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply { topMargin = dp(14) }
+                    }
+
+                    SummaryBlockType.SUBTITLE -> {
+                        textView.setTextColor(Color.parseColor("#FFF3B0"))
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+                        textView.gravity = Gravity.START
+                        textView.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply { topMargin = dp(10) }
+                    }
+
+                    SummaryBlockType.TEXT -> {
+                        textView.setTextColor(Color.WHITE)
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.5f)
+                        textView.gravity = Gravity.START
+                        textView.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply { topMargin = dp(6) }
+                    }
+                }
+
+                container.addView(textView)
+            }
+
+            binding.tvResult.visibility = View.GONE
+            binding.tvResult.text = parsed.blocks
+                .joinToString("\n") { it.content }
+                .ifBlank { formatSummarySafe(generatedSummary).first }
+        } catch (e: Exception) {
+            Log.w("REVIZEUS_RESULT", "renderPremiumSummary fallback : ${e.message}", e)
+            val (visualSummary, _) = formatSummarySafe(generatedSummary)
+            binding.layoutSummaryContent.removeAllViews()
+            binding.tvResult.visibility = View.VISIBLE
+            binding.tvResult.text = visualSummary
+        }
+    }
+
+    private fun genererTitreDepuisTexte(raw: String): String {
+        val lignes = raw.lines().map { it.trim() }.filter { it.isNotBlank() }
+        val premiereCandidate = lignes.firstOrNull { it.length in 5..80 }
+            ?: raw.replace(Regex("\\s+"), " ").trim()
+        return sanitizeAutoCourseTitle(premiereCandidate)
+    }
+
+    private fun sanitizeAutoCourseTitle(raw: String): String {
+        val forbiddenWords = setOf("résumé", "cours", "document", "oracle", "révizeus")
+
+        val sanitized = raw
+            .replace(Regex("(?i)\\b(TITLE|CHAPTER|SUBTITLE|TEXT|LEVEL)\\s*:"), " ")
+            .replace(Regex("[#*_`\\[\\](){}]"), " ")
+            .replace(Regex("[\\p{So}\\p{Cn}]"), " ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
+
+        val words = sanitized
+            .split(" ")
+            .filter { it.isNotBlank() }
+            .filterNot { token -> forbiddenWords.contains(token.lowercase()) }
+            .take(8)
+
+        val candidate = words.joinToString(" ").trim().removeSuffix(".").trim()
+        return if (candidate.isBlank()) "Notions principales" else candidate
     }
 
     /**
@@ -524,37 +829,29 @@ class ResultActivity : BaseActivity() {
      * AJOUT v10 — Génère un titre de cours propre.
      * Priorité : Markdown ## → **Gras** → Ligne courte → Aperçu nettoyé.
      */
-    private fun genererTitreCoursSmart(matiere: String): String {
-        val lignes = generatedSummary.lines().map { it.trim() }.filter { it.isNotBlank() }
+    private fun genererTitreCoursSmart(
+        matiere: String,
+        parsedSummary: ParsedOracleSummary? = null
+    ): String {
+        val fromParsedTitle = sanitizeAutoCourseTitle(parsedSummary?.title.orEmpty())
+        if (fromParsedTitle != "Notions principales") return fromParsedTitle
 
-        val markdownHeader = lignes.take(5).firstOrNull { it.startsWith("#") }
-        if (markdownHeader != null) {
-            val titre = markdownHeader.replace(Regex("^#+\\s*"), "")
-                .replace(Regex("[*_|]"), "").trim().take(50)
-            if (titre.length >= 5) return "$matiere — $titre"
+        val chapter = parsedSummary?.blocks
+            ?.firstOrNull { it.type == SummaryBlockType.CHAPTER }
+            ?.content
+            .orEmpty()
+        val fromChapter = sanitizeAutoCourseTitle(chapter)
+        if (fromChapter != "Notions principales") return fromChapter
+
+        val fromSummary = sanitizeAutoCourseTitle(generatedSummary)
+        if (fromSummary != "Notions principales") return fromSummary
+
+        val matiereFallback = sanitizeAutoCourseTitle(matiere)
+        return if (matiereFallback == "Notions principales") {
+            "Notions principales"
+        } else {
+            matiereFallback
         }
-
-        val boldLine = lignes.take(5)
-            .firstOrNull { it.startsWith("**") && it.endsWith("**") }
-        if (boldLine != null) {
-            val titre = boldLine.replace("**", "").trim().take(50)
-            if (titre.length >= 5) return "$matiere — $titre"
-        }
-
-        val premiereLigne = lignes.firstOrNull { ligne ->
-            val mots = ligne.split(" ")
-            ligne.length in 10..60 && mots.size in 3..10 &&
-                    !ligne.startsWith("-") && !ligne.startsWith("*")
-        }?.replace(Regex("[*#_|]"), "")?.trim()
-
-        if (!premiereLigne.isNullOrBlank()) return "$matiere — $premiereLigne"
-
-        val apercu = generatedSummary
-            .replace(Regex("[\\n\\r*#_|]"), " ")
-            .replace(Regex("\\s+"), " ")
-            .trim().take(40)
-
-        return if (apercu.isNotBlank()) "$matiere — $apercu" else "$matiere — Nouveau parchemin"
     }
 
     // ═══════════════════════════════════════════════════════════════
@@ -1216,7 +1513,6 @@ class ResultActivity : BaseActivity() {
             binding.layoutActions.visibility = View.VISIBLE
             if (generatedSummary.isNotBlank()) {
                 binding.btnInvoke.visibility = View.GONE
-                binding.tvResult.visibility = View.VISIBLE
                 binding.btnStartQuiz.visibility = View.VISIBLE
             } else {
                 binding.btnInvoke.visibility = View.VISIBLE
@@ -1642,6 +1938,7 @@ class ResultActivity : BaseActivity() {
     private fun afficherErreurDivine(message: String) {
         binding.layoutLoading.visibility = View.GONE
         binding.layoutActions.visibility = View.VISIBLE
+        binding.layoutSummaryContent.removeAllViews()
         binding.tvResult.visibility = View.VISIBLE
         binding.tvResult.text = message
         ttsSafeSummary = ""
@@ -1659,10 +1956,12 @@ class ResultActivity : BaseActivity() {
         super.onResume()
         appliquerFondPremiumResultPourMatiere(selectedMatiereForSave ?: matiereAutoDetectee)
 
-        if (generatedSummary.isNotBlank() && binding.tvResult.text.isNullOrBlank()) {
-            val (visualSummary, safeSummary) = formatSummarySafe(generatedSummary)
-            binding.tvResult.text = visualSummary
-            ttsSafeSummary = safeSummary
+        if (generatedSummary.isNotBlank()) {
+            val parsedSummary = parseOracleSummaryForDisplay(generatedSummary)
+            renderPremiumSummary(parsedSummary)
+            if (ttsSafeSummary.isBlank()) {
+                ttsSafeSummary = parsedSummary.plainText.ifBlank { formatSummarySafe(generatedSummary).second }
+            }
         }
 
         rebindLoadingStateIfNeeded()
