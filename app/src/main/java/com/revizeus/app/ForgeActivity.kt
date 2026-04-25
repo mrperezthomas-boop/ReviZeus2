@@ -313,31 +313,45 @@ class ForgeActivity : BaseActivity() {
 
             if (isFinishing || isDestroyed) return@launch
 
-            // ── ÉTAPE 9 : dialogue visuel ──────────────────────────────────
-            response?.let { afficherDialogueHephaistos(recipe, it) }
+            // Suite post-dialogue succès local (badges -> reward adaptatif -> refresh UI)
+            val runPostSuccessFlow: () -> Unit = {
+                lifecycleScope.launch {
+                    if (isFinishing || isDestroyed) return@launch
 
-            // ── ÉTAPES 10–11 : check badges ───────────────────────────────
-            val nouveauxBadges = withContext(Dispatchers.IO) {
-                try {
-                    val ctx = BadgeManager.buildContext(this@ForgeActivity)
-                    BadgeManager.evaluateAll(this@ForgeActivity, ctx)
-                } catch (e: Exception) {
-                    Log.e("REVIZEUS", "Badge eval erreur : ${e.message}")
-                    emptyList()
+                    // ── ÉTAPES 10–11 : check badges ───────────────────────
+                    val nouveauxBadges = withContext(Dispatchers.IO) {
+                        try {
+                            val ctx = BadgeManager.buildContext(this@ForgeActivity)
+                            BadgeManager.evaluateAll(this@ForgeActivity, ctx)
+                        } catch (e: Exception) {
+                            Log.e("REVIZEUS", "Badge eval erreur : ${e.message}")
+                            emptyList()
+                        }
+                    }
+
+                    if (isFinishing || isDestroyed) return@launch
+
+                    // Afficher uniquement les badges FORGE débloqués pendant ce craft
+                    nouveauxBadges
+                        .filter { it.categorie == BadgeCategorie.FORGE }
+                        .forEach { badge -> afficherToastBadge(badge) }
+
+                    // D3 — Reward adaptatif rare/premium uniquement après succès craft confirmé.
+                    maybeShowAdaptiveForgeReward(recipe)
+
+                    // ── ÉTAPE 12 : rafraîchissement HUD ───────────────────
+                    afficherFragmentHud(profile)
+                    recipeAdapter.updateProfile(profile)
                 }
             }
 
-            // Afficher uniquement les badges FORGE débloqués pendant ce craft
-            nouveauxBadges
-                .filter { it.categorie == BadgeCategorie.FORGE }
-                .forEach { badge -> afficherToastBadge(badge) }
-
-            // D3 — Reward adaptatif rare/premium uniquement après succès craft confirmé.
-            maybeShowAdaptiveForgeReward(recipe)
-
-            // ── ÉTAPE 12 : rafraîchissement HUD ───────────────────────────
-            afficherFragmentHud(profile)
-            recipeAdapter.updateProfile(profile)
+            // ── ÉTAPE 9 : dialogue visuel ──────────────────────────────────
+            if (response != null && !isFinishing && !isDestroyed) {
+                afficherDialogueHephaistos(recipe, response, onDismiss = runPostSuccessFlow)
+            } else {
+                // Fail-safe : pas de dialogue affichable => ne jamais bloquer la suite du flow.
+                runPostSuccessFlow()
+            }
         }
     }
 
@@ -615,8 +629,17 @@ class ForgeActivity : BaseActivity() {
 
     private fun afficherDialogueHephaistos(
         recipe: CraftingSystem.Recipe,
-        response: GeminiManager.GodResponse
+        response: GeminiManager.GodResponse,
+        onDismiss: (() -> Unit)? = null
     ) {
+        var callbackCalled = false
+        val runOnDismissOnce: () -> Unit = {
+            if (!callbackCalled) {
+                callbackCalled = true
+                onDismiss?.invoke()
+            }
+        }
+
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setBackgroundResource(R.drawable.bg_rpg_dialog)
@@ -713,7 +736,9 @@ class ForgeActivity : BaseActivity() {
         btnClose.setOnClickListener {
             try { jouerSfx(R.raw.sfx_avatar_confirm) } catch (_: Exception) {}
             dialog.dismiss()
+            runOnDismissOnce()
         }
+        dialog.setOnDismissListener { runOnDismissOnce() }
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(R.drawable.bg_rpg_dialog)
     }
