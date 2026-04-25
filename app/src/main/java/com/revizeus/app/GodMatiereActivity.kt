@@ -79,6 +79,18 @@ import java.io.IOException
  * ✅ Conservation totale du flux de lecture, suppression et lyre
  */
 class GodMatiereActivity : BaseActivity() {
+    private enum class SummaryBlockType { CHAPTER, SUBTITLE, TEXT }
+
+    private data class SummaryDisplayBlock(
+        val type: SummaryBlockType,
+        val content: String
+    )
+
+    private data class ParsedOracleSummary(
+        val title: String,
+        val level: String,
+        val blocks: List<SummaryDisplayBlock>
+    )
 
     private lateinit var matiere: String
     private lateinit var divinite: String
@@ -1173,15 +1185,13 @@ class GodMatiereActivity : BaseActivity() {
             isFillViewport = true
         }
 
-        val tv = TextView(this).apply {
-            text = course.extractedText
+        val contentContainer = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
             setPadding(dp(18), dp(18), dp(18), dp(18))
-            setTextColor(Color.WHITE)
-            textSize = 16f
-            setLineSpacing(dp(3).toFloat(), 1f)
         }
 
-        scroll.addView(tv)
+        renderCourseSummaryContent(contentContainer, course.extractedText)
+        scroll.addView(contentContainer)
         containerGlobal.addView(scroll)
 
         val speakerRow = LinearLayout(this).apply {
@@ -1329,6 +1339,250 @@ class GodMatiereActivity : BaseActivity() {
 
         dialog.show()
         try { dialog.window?.setBackgroundDrawableResource(R.drawable.bg_rpg_dialog) } catch (_: Exception) {}
+    }
+
+    /**
+     * Alignement strict avec ResultActivity :
+     * - parsing des formats Oracle structurés + variantes markdown
+     * - fallback identique en bloc TEXT unique
+     * - niveaux TITLE/LEVEL/CHAPTER/SUBTITLE/TEXT avec mêmes styles et espacements
+     */
+    private fun parseCourseSummaryForDisplay(raw: String): ParsedOracleSummary {
+        return try {
+            val cleanedRaw = raw
+                .replace("\r", "")
+                .replace(Regex("\\u0000"), "")
+                .trim()
+
+            val lines = cleanedRaw.lines().map { it.trim() }
+            val blocks = mutableListOf<SummaryDisplayBlock>()
+            var title = ""
+            var level = ""
+
+            lines.forEach { line ->
+                if (line.isBlank()) return@forEach
+
+                when {
+                    line.startsWith("TITLE:", ignoreCase = true) -> {
+                        title = line.substringAfter(":").trim()
+                    }
+
+                    line.startsWith("LEVEL:", ignoreCase = true) -> {
+                        level = line.substringAfter(":").trim()
+                    }
+
+                    line.startsWith("CHAPTER:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.CHAPTER, value))
+                        }
+                    }
+
+                    line.startsWith("SUBTITLE:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.SUBTITLE, value))
+                        }
+                    }
+
+                    line.startsWith("TEXT:", ignoreCase = true) -> {
+                        val value = line.substringAfter(":").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.TEXT, value))
+                        }
+                    }
+
+                    line.startsWith("##") || line.startsWith("#") -> {
+                        val value = line.replace(Regex("^#+\\s*"), "").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.CHAPTER, value))
+                        }
+                    }
+
+                    line.startsWith("**") && line.endsWith("**") -> {
+                        val value = line.removePrefix("**").removeSuffix("**").trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.SUBTITLE, value))
+                        }
+                    }
+
+                    else -> {
+                        val value = line
+                            .replace(Regex("^[-*]\\s*"), "")
+                            .trim()
+                        if (value.isNotBlank()) {
+                            blocks.add(SummaryDisplayBlock(SummaryBlockType.TEXT, value))
+                        }
+                    }
+                }
+            }
+
+            val hasStructuredFormat = lines.any { line ->
+                line.startsWith("TITLE:", ignoreCase = true) ||
+                    line.startsWith("LEVEL:", ignoreCase = true) ||
+                    line.startsWith("CHAPTER:", ignoreCase = true) ||
+                    line.startsWith("SUBTITLE:", ignoreCase = true) ||
+                    line.startsWith("TEXT:", ignoreCase = true)
+            }
+
+            val cleanedFallbackText = cleanedRaw
+                .replace(Regex("^---START_RESUME---\\s*", RegexOption.IGNORE_CASE), "")
+                .replace(Regex("\\s*---END_RESUME---$", RegexOption.IGNORE_CASE), "")
+                .replace(Regex("\\s+"), " ")
+                .trim()
+
+            val finalBlocks = if (blocks.isNotEmpty()) {
+                blocks
+            } else {
+                listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = cleanedFallbackText.ifBlank { "Information non lisible dans le document." }
+                    )
+                )
+            }
+
+            val normalizedBlocks = if (!hasStructuredFormat && finalBlocks.isNotEmpty()) {
+                listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = finalBlocks.joinToString("\n") { it.content }.trim()
+                    )
+                )
+            } else {
+                finalBlocks
+            }
+
+            val fallbackTitle = cleanedFallbackText
+                .lines()
+                .map { it.trim() }
+                .firstOrNull { it.isNotBlank() && it.length in 5..80 }
+                ?: "Notions principales"
+
+            ParsedOracleSummary(
+                title = title.ifBlank { fallbackTitle },
+                level = level
+                    .replace(Regex("^[-*]\\s*"), "")
+                    .replace(Regex("\\s+"), " ")
+                    .trim(),
+                blocks = normalizedBlocks
+            )
+        } catch (_: Exception) {
+            val clean = raw.replace(Regex("\\s+"), " ").trim()
+            ParsedOracleSummary(
+                title = "Notions principales",
+                level = "",
+                blocks = listOf(
+                    SummaryDisplayBlock(
+                        type = SummaryBlockType.TEXT,
+                        content = clean.ifBlank { "Information non lisible dans le document." }
+                    )
+                )
+            )
+        }
+    }
+
+    private fun renderCourseSummaryContent(container: LinearLayout, raw: String) {
+        container.removeAllViews()
+        val parsed = parseCourseSummaryForDisplay(raw)
+
+        if (parsed.blocks.isEmpty()) {
+            container.addView(TextView(this).apply {
+                text = raw.trim().ifBlank { "Information non lisible dans le document." }
+                setTextColor(Color.WHITE)
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.5f)
+                setLineSpacing(0f, 1.22f)
+                gravity = Gravity.START
+                typeface = try { resources.getFont(R.font.exo2) } catch (_: Exception) { Typeface.DEFAULT }
+            })
+            return
+        }
+
+        val titleText = TextView(this).apply {
+            text = parsed.title.ifBlank { "Notions principales" }
+            setTextColor(Color.parseColor("#FFD700"))
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 21f)
+            gravity = Gravity.CENTER
+            typeface = try {
+                resources.getFont(R.font.cinzel_bold)
+            } catch (_: Exception) {
+                Typeface.DEFAULT_BOLD
+            }
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                bottomMargin = dp(8)
+            }
+        }
+        container.addView(titleText)
+
+        if (parsed.level.isNotBlank()) {
+            val levelText = TextView(this).apply {
+                text = parsed.level
+                setTextColor(Color.parseColor("#FFF3B0"))
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+                gravity = Gravity.CENTER
+                typeface = try { resources.getFont(R.font.exo2) } catch (_: Exception) { Typeface.DEFAULT }
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    bottomMargin = dp(10)
+                }
+            }
+            container.addView(levelText)
+        }
+
+        parsed.blocks.forEach { block ->
+            val textView = TextView(this).apply {
+                text = block.content
+                setLineSpacing(0f, 1.22f)
+                typeface = when (block.type) {
+                    SummaryBlockType.TEXT -> try {
+                        resources.getFont(R.font.exo2)
+                    } catch (_: Exception) {
+                        Typeface.DEFAULT
+                    }
+
+                    else -> Typeface.DEFAULT_BOLD
+                }
+            }
+
+            when (block.type) {
+                SummaryBlockType.CHAPTER -> {
+                    textView.setTextColor(Color.parseColor("#FFD700"))
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+                    textView.gravity = Gravity.START
+                    textView.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(14) }
+                }
+
+                SummaryBlockType.SUBTITLE -> {
+                    textView.setTextColor(Color.parseColor("#FFF3B0"))
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+                    textView.gravity = Gravity.START
+                    textView.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(10) }
+                }
+
+                SummaryBlockType.TEXT -> {
+                    textView.setTextColor(Color.WHITE)
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.5f)
+                    textView.gravity = Gravity.START
+                    textView.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(6) }
+                }
+            }
+
+            container.addView(textView)
+        }
     }
 
     private fun lancerLyreApollon(course: CourseEntry) {
