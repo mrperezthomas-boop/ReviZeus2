@@ -99,6 +99,13 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layoutSummaryContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical" />
+
                 <TextView
                     android:id="@+id/tvResult"
                     android:layout_width="match_parent"
