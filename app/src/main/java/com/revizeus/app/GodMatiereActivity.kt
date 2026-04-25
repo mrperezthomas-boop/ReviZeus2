@@ -1190,6 +1190,9 @@ class GodMatiereActivity : BaseActivity() {
             setPadding(dp(18), dp(18), dp(18), dp(18))
         }
 
+        // Résolution de conflit PR #13 :
+        // on conserve le rendu bloc-par-bloc aligné ResultActivity
+        // (et on n'utilise plus l'ancien fallback Spannable unique).
         renderCourseSummaryContent(contentContainer, course.extractedText)
         scroll.addView(contentContainer)
         containerGlobal.addView(scroll)
