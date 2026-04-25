@@ -245,6 +245,17 @@ class TrainingSelectActivity : BaseActivity() {
 
         binding.btnEpreuveUltime.setOnClickListener { launchEpreuveUltime() }
         binding.btnBack.setOnClickListener { finish() }
+
+        if (savedInstanceState == null) {
+            binding.root.post {
+                if (isFinishing || isDestroyed) return@post
+                TutorialManager.runHeroFirstTimeFeature(
+                    activity = this,
+                    featureId = "training_select_first_visit",
+                    onContinue = { }
+                )
+            }
+        }
     }
 
     // ═══════════════════════════════════════════════════════════════
