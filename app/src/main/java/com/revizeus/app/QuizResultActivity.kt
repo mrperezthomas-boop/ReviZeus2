@@ -46,6 +46,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class QuizResultActivity : BaseActivity() {
+    private data class QuizRewardVerdictContext(
+        val xpGained: Int,
+        val eclatsGain: Int,
+        val ambroisieGain: Int,
+        val fragmentsGain: Int,
+        val fragmentsBySubject: Map<String, Int>,
+        val dominantFragmentSubject: String,
+        val isTimedMode: Boolean,
+        val trainingMode: String,
+        val isEpreuveUltime: Boolean,
+        val rewardMultiplier: Double
+    ) {
+        val hasAnyReward: Boolean
+            get() = xpGained > 0 || eclatsGain > 0 || ambroisieGain > 0 || fragmentsGain > 0
+    }
 
     private lateinit var binding: ActivityQuizResultBinding
     private val godAnim = GodSpeechAnimator()
@@ -165,6 +180,18 @@ class QuizResultActivity : BaseActivity() {
 
         lastFragmentsBySubject = fragmentsBySubject
         lastDominantFragmentSubject = selectDominantFragmentSubject(fragmentsBySubject)
+        val rewardContext = QuizRewardVerdictContext(
+            xpGained = xpGained,
+            eclatsGain = eclatsGain,
+            ambroisieGain = ambroisieGain,
+            fragmentsGain = fragmentsGain,
+            fragmentsBySubject = fragmentsBySubject,
+            dominantFragmentSubject = lastDominantFragmentSubject,
+            isTimedMode = isTimedMode,
+            trainingMode = trainingMode,
+            isEpreuveUltime = isEpreuveUltime,
+            rewardMultiplier = rewardMultiplier
+        )
 
         binding.tvRewardEclats.text = "+$eclatsGain Éclats de Savoir"
         binding.tvRewardAmbroisie.text = if (ambroisieGain > 0) "+$ambroisieGain Ambroisie" else "+0 Ambroisie"
@@ -189,7 +216,7 @@ class QuizResultActivity : BaseActivity() {
             fragmentsBySubject = fragmentsBySubject
         )
 
-        afficherVerdictDivin(score, total, currentMatiere, isEpreuveUltime)
+        afficherVerdictDivin(score, total, currentMatiere, isEpreuveUltime, rewardContext)
         crediterXPetStreak(
             xpGained = xpGained,
             score = score,
@@ -548,7 +575,8 @@ class QuizResultActivity : BaseActivity() {
         percentage: Int,
         profile: UserProfile,
         godTrigger: GodTriggerEngine.GodTrigger,
-        aresTriggered: Boolean
+        aresTriggered: Boolean,
+        rewardContext: QuizRewardVerdictContext
     ): DivineRequestContext {
         val ctxNote = godTrigger.contextNote.trim()
         val raw = buildString {
@@ -558,6 +586,12 @@ class QuizResultActivity : BaseActivity() {
                 append(ctxNote.take(380))
             }
         }
+        val baseMetadata = mapOf(
+            "trigger_god" to godTrigger.godName,
+            "trigger_reason" to godTrigger.reason.take(160),
+            "trigger_priority" to godTrigger.priority.toString(),
+            "ares_streak_event" to aresTriggered.toString()
+        )
         return DivineRequestContext(
             subject = matiere,
             actionType = DivineActionType.DIVINE_VERDICT,
@@ -576,16 +610,72 @@ class QuizResultActivity : BaseActivity() {
             questionText = null,
             userAnswer = null,
             correctAnswer = null,
-            metadata = mapOf(
-                "trigger_god" to godTrigger.godName,
-                "trigger_reason" to godTrigger.reason.take(160),
-                "trigger_priority" to godTrigger.priority.toString(),
-                "ares_streak_event" to aresTriggered.toString()
-            )
+            metadata = baseMetadata + buildRewardMetadata(rewardContext)
         )
     }
 
-    private fun afficherVerdictDivin(score: Int, total: Int, matiere: String, isEpreuveUltime: Boolean) {
+    private fun enrichVerdictPromptWithRewardContext(
+        basePrompt: String,
+        rewardContext: QuizRewardVerdictContext
+    ): String {
+        if (!rewardContext.hasAnyReward) return basePrompt
+
+        val topFragments = rewardContext.fragmentsBySubject
+            .filter { it.value > 0 && it.key != "Panthéon" }
+            .toList()
+            .sortedByDescending { it.second }
+            .take(5)
+            .joinToString(", ") { "${it.first}: ${it.second}" }
+            .ifBlank { "aucun fragment significatif" }
+
+        return buildString {
+            append(basePrompt)
+            append("\n\nCONTEXTE RÉCOMPENSES RÉELLES DU QUIZ :\n")
+            append("- XP gagnée : ${rewardContext.xpGained}\n")
+            append("- Éclats gagnés : ${rewardContext.eclatsGain}\n")
+            append("- Ambroisie gagnée : ${rewardContext.ambroisieGain}\n")
+            append("- Fragments gagnés (total) : ${rewardContext.fragmentsGain}\n")
+            append("- Fragments par matière (top 5) : $topFragments\n")
+            append("- Matière dominante en fragments : ${rewardContext.dominantFragmentSubject.ifBlank { "Aucune" }}\n")
+            append("- Training mode : ${rewardContext.trainingMode.ifBlank { "INCONNU" }}\n")
+            append("- Mode chronométré : ${rewardContext.isTimedMode}\n")
+            append("- Épreuve ultime : ${rewardContext.isEpreuveUltime}\n")
+            append("- Multiplicateur de récompense : ${rewardContext.rewardMultiplier}\n")
+            append("Consigne : intègre naturellement les récompenses significatives dans le verdict, sans lister mécaniquement les chiffres, reste sobre si les gains sont faibles et ne crée pas de second message.")
+        }
+    }
+
+    private fun buildRewardMetadata(rewardContext: QuizRewardVerdictContext): Map<String, String> {
+        if (!rewardContext.hasAnyReward) return emptyMap()
+
+        val compactFragments = rewardContext.fragmentsBySubject
+            .filter { it.value > 0 && it.key != "Panthéon" }
+            .toList()
+            .sortedByDescending { it.second }
+            .take(5)
+            .joinToString("|") { "${it.first}:${it.second}" }
+
+        return mapOf(
+            "reward_xp_gained" to rewardContext.xpGained.toString(),
+            "reward_eclats_gained" to rewardContext.eclatsGain.toString(),
+            "reward_ambroisie_gained" to rewardContext.ambroisieGain.toString(),
+            "reward_fragments_total" to rewardContext.fragmentsGain.toString(),
+            "reward_fragments_by_subject" to compactFragments,
+            "reward_dominant_fragment_subject" to rewardContext.dominantFragmentSubject.ifBlank { "Aucune" },
+            "reward_training_mode" to rewardContext.trainingMode.ifBlank { "INCONNU" },
+            "reward_is_timed_mode" to rewardContext.isTimedMode.toString(),
+            "reward_is_epreuve_ultime" to rewardContext.isEpreuveUltime.toString(),
+            "reward_multiplier" to rewardContext.rewardMultiplier.toString()
+        )
+    }
+
+    private fun afficherVerdictDivin(
+        score: Int,
+        total: Int,
+        matiere: String,
+        isEpreuveUltime: Boolean,
+        rewardContext: QuizRewardVerdictContext
+    ) {
         val percentage = if (total > 0) (score * 100) / total else 0
         val prefs = getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
         val aresStreakKey = "ARES_STREAK"
@@ -628,8 +718,9 @@ class QuizResultActivity : BaseActivity() {
                 prefs.edit().putInt(aresStreakKey, 0).apply()
                 try { SoundManager.playSFX(this@QuizResultActivity, R.raw.sfx_thunder_confirm) } catch (e: Exception) { Log.e("REVIZEUS", "Arès SFX erreur : ${e.message}") }
             }
-            val geminiPrompt = GodTriggerEngine.buildGodDialoguePrompt(trigger = godTrigger, subject = matiere, userProfile = profile, scorePercent = percentage)
-            val verdictDivineCtx = buildGodTriggerVerdictDivineRequestContext(matiere, percentage, profile, godTrigger, aresTriggered)
+            val basePrompt = GodTriggerEngine.buildGodDialoguePrompt(trigger = godTrigger, subject = matiere, userProfile = profile, scorePercent = percentage)
+            val geminiPrompt = enrichVerdictPromptWithRewardContext(basePrompt, rewardContext)
+            val verdictDivineCtx = buildGodTriggerVerdictDivineRequestContext(matiere, percentage, profile, godTrigger, aresTriggered, rewardContext)
             val godResponse = withContext(Dispatchers.IO) {
                 try {
                     GeminiManager.generateDialog(prompt = geminiPrompt, matiere = matiere, divineRequestContext = verdictDivineCtx, adaptiveContextNote = null)
