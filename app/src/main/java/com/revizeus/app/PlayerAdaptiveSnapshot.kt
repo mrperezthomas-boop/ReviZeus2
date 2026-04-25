@@ -53,5 +53,7 @@ data class PlayerAdaptiveSnapshot(
     val equippedArtifacts: List<String>,
     val explicitOutcome: String?,
     val adventureStep: String?,
-    val futureParams: Map<String, String>
+    val futureParams: Map<String, String>,
+    val divineAffinitySummary: String,
+    val currentGodAffinitySummary: String
 )

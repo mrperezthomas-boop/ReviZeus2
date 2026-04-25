@@ -279,12 +279,9 @@ class TrainingQuizActivity : BaseActivity() {
     private fun loadUserAge() {
         lifecycleScope.launch {
             try {
-                val db = com.revizeus.app.models.AppDatabase.getDatabase(this@TrainingQuizActivity)
-                val profile = db.iAristoteDao().getUserProfile()
-                userAge = profile?.age ?: 15
+                userAge = UserAiContextResolver.resolve(this@TrainingQuizActivity).age
             } catch (_: Exception) {
-                val prefs = getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
-                userAge = prefs.getInt("USER_AGE", 15)
+                userAge = 15
             }
         }
     }

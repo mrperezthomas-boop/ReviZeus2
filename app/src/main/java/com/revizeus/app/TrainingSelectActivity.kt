@@ -570,13 +570,14 @@ class TrainingSelectActivity : BaseActivity() {
         faireParlerLeDieu("$nomDieu consulte les astres pour forger ton épreuve… Patiente, héros.")
 
         val prefs = getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
-        val age = prefs.getInt("USER_AGE", 15)
-        val classe = prefs.getString("USER_CLASS", "3ème") ?: "3ème"
-        val mood = prefs.getString("CURRENT_MOOD", "Neutre") ?: "Neutre"
         val examFormat = prefs.getString("TRAINING_EXAM_FORMAT", "CLASSIC") ?: "CLASSIC"
 
         generationJob = lifecycleScope.launch {
             showTrainingDivineLoadingDialog(godName = nomDieu)
+            val userAiContext = UserAiContextResolver.resolve(this@TrainingSelectActivity)
+            val age = userAiContext.age
+            val classe = userAiContext.classLevel
+            val mood = userAiContext.mood
 
             try {
                 // BLOC 2C — APPROFONDISSEMENT 30 QUESTIONS
@@ -673,13 +674,14 @@ class TrainingSelectActivity : BaseActivity() {
         )
 
         val prefs = getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
-        val age = prefs.getInt("USER_AGE", 15)
-        val classe = prefs.getString("USER_CLASS", "3ème") ?: "3ème"
-        val mood = prefs.getString("CURRENT_MOOD", "Neutre") ?: "Neutre"
         val examFormat = prefs.getString("TRAINING_EXAM_FORMAT", "CLASSIC") ?: "CLASSIC"
 
         generationJob = lifecycleScope.launch {
             showTrainingDivineLoadingDialog(godName = divinite)
+            val userAiContext = UserAiContextResolver.resolve(this@TrainingSelectActivity)
+            val age = userAiContext.age
+            val classe = userAiContext.classLevel
+            val mood = userAiContext.mood
 
             try {
                 // BLOC 2A — ALTERNANCE DYNAMIQUE POUR ULTIME_GLOBAL

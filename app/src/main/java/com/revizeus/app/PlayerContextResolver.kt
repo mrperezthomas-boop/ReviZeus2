@@ -1,7 +1,6 @@
 package com.revizeus.app
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.revizeus.app.models.AppDatabase
 import com.revizeus.app.models.UserAnalytics
 import com.revizeus.app.models.UserProfile
@@ -110,36 +109,23 @@ object PlayerContextResolver {
      * valeurs neutres si rien n'est encore disponible.
      */
     fun resolveLightweight(context: Context): PlayerDialogueContext {
-        val prefs = safePrefs(context)
-        val pseudo = prefs?.getString("hero_pseudo", null).orEmpty().ifBlank { "Héros" }
-        val mood = prefs?.getString("hero_mood", null).orEmpty().ifBlank { "neutre" }
-        val classLevel = prefs?.getString("hero_class", null).orEmpty().ifBlank { "inconnue" }
-        val age = prefs?.getInt("hero_age", 14) ?: 14
-        val level = prefs?.getInt("hero_level", 1) ?: 1
-        val rank = prefs?.getString("hero_rank", null).orEmpty().ifBlank { "Novice" }
+        val aiContext = UserAiContextResolver.resolveLightweight(context)
+        val mood = aiContext.mood
 
         return PlayerDialogueContext(
-            pseudo = pseudo,
-            age = age,
-            classLevel = classLevel,
+            pseudo = aiContext.pseudo,
+            age = aiContext.age,
+            classLevel = aiContext.classLevel,
             mood = mood,
-            level = level,
-            rank = rank,
+            level = aiContext.level,
+            rank = aiContext.rank,
             dominantWeakness = "non déterminée",
             recentSuccessRate = 0.55f,
             averageResponseTimeMs = 6500L,
             fatigueIndex = 0.35f,
             needsGentleMode = mood.equals("fatigué", ignoreCase = true) || mood.equals("fatigue", ignoreCase = true) || mood.equals("stressé", ignoreCase = true) || mood.equals("stresse", ignoreCase = true),
-            needsChallengeMode = mood.equals("joyeux", ignoreCase = true) && level >= 5
+            needsChallengeMode = mood.equals("joyeux", ignoreCase = true) && aiContext.level >= 5
         )
-    }
-
-    private fun safePrefs(context: Context): SharedPreferences? {
-        return try {
-            context.getSharedPreferences("ReviZeusPrefs", Context.MODE_PRIVATE)
-        } catch (_: Exception) {
-            null
-        }
     }
 
     private fun buildSnapshot(
@@ -184,6 +170,25 @@ object PlayerContextResolver {
             ?.takeIf { it.isNotBlank() }
             ?.let(profile::getFragmentCount)
 
+        val affinityProfile = GodAffinityManager.buildProfile(profile)
+        val currentSubject = request.subjectHint?.takeIf { it.isNotBlank() }
+        val currentGodId = currentSubject
+            ?.let(PantheonConfig::findByMatiere)
+            ?.divinite
+            ?.let(GodPersonalityEngine::normalizeGodId)
+
+        val currentGodAffinitySummary = currentGodId
+            ?.let { affinityProfile.profilesByGod[it] }
+            ?.let { snapshot ->
+                "Affinité actuelle : ${snapshot.godDisplayName} — niveau ${snapshot.affinityLevel}/20, " +
+                    "${snapshot.affinityLabel}. Affinité à utiliser subtilement comme mémoire relationnelle pédagogique. " +
+                    snapshot.promptHint
+            }
+            ?: "Affinité actuelle : non déterminée pour cette matière."
+
+        val divineAffinitySummary = affinityProfile.summaryLine
+            .ifBlank { "Aucune affinité divine significative pour le moment." }
+
         return PlayerAdaptiveSnapshot(
             pseudo = profile.pseudo,
             age = profile.age,
@@ -222,7 +227,9 @@ object PlayerContextResolver {
             equippedArtifacts = request.equippedArtifacts,
             explicitOutcome = request.explicitOutcome,
             adventureStep = request.adventureStep,
-            futureParams = request.futureParams
+            futureParams = request.futureParams,
+            divineAffinitySummary = divineAffinitySummary,
+            currentGodAffinitySummary = currentGodAffinitySummary
         )
     }
 
