@@ -127,6 +127,8 @@ class ResultActivity : BaseActivity() {
 
     private var initialBgmJob: Job? = null
     private var invokeAnalysisJob: Job? = null
+    private var hasShownConfusedOracleHelpDialog = false
+    private var hasShownSummaryValidationAdaptiveDialog = false
 
     // Fond premium Résumé : même mécanique partout, sans casser le flux Oracle.
     private var animatedBackgroundHelper: AnimatedBackgroundHelper? = null
@@ -311,6 +313,7 @@ class ResultActivity : BaseActivity() {
                                     "Le langage de l'Olympe est confus. Les pages étaient peut-être trop complexes ou mal ordonnées."
                                 }
                             )
+                            maybeShowConfusedOracleAdaptiveHelp()
                         }
                     } else {
                         stopScanAnimation()
@@ -332,7 +335,7 @@ class ResultActivity : BaseActivity() {
         // Le résumé doit être validé manuellement avant la proposition du temple.
         binding.btnStartQuiz.setOnClickListener {
             if (generatedSummary.isNotBlank()) {
-                ouvrirEtapeChoixMatiereRpg()
+                openSubjectChoiceWithOptionalAdaptiveGuidance()
             }
         }
 
@@ -694,6 +697,90 @@ class ResultActivity : BaseActivity() {
             correctAnswer = null,
             metadata = meta
         )
+    }
+
+    private fun canShowAdaptiveDialog(): Boolean {
+        return !isFinishing &&
+            !isDestroyed &&
+            !supportFragmentManager.isStateSaved
+    }
+
+    private fun resolveAdaptiveGodIdForMatiere(matiere: String?): String {
+        val god = GodManager.fromMatiere(matiere.orEmpty())
+        val nomDieu = god?.nomDieu?.trim().orEmpty()
+        if (nomDieu.isBlank()) return "zeus"
+
+        return when (nomDieu.uppercase()) {
+            "ZEUS" -> "zeus"
+            "ATHÉNA", "ATHENA" -> "athena"
+            "POSÉIDON", "POSEIDON" -> "poseidon"
+            "ARÈS", "ARES" -> "ares"
+            "APHRODITE" -> "aphrodite"
+            "HERMÈS", "HERMES" -> "hermes"
+            "DÉMÉTER", "DEMETER" -> "demeter"
+            "HÉPHAÏSTOS", "HEPHAISTUS", "HEPHAISTOS" -> "hephaistos"
+            "APOLLON", "APOLLO" -> "apollon"
+            "PROMÉTHÉE", "PROMETHEUS", "PROMETHEE" -> "prometheus"
+            else -> "zeus"
+        }
+    }
+
+    private fun maybeShowConfusedOracleAdaptiveHelp() {
+        if (hasShownConfusedOracleHelpDialog) return
+        if (!canShowAdaptiveDialog()) return
+
+        hasShownConfusedOracleHelpDialog = true
+
+        try {
+            DialogRPGManager.showAdaptiveHelp(
+                activity = this,
+                prompt = "La réponse de l'Oracle est arrivée mais son format est confus. " +
+                    "Donne une aide courte et concrète pour reformuler une demande texte trop vague, " +
+                    "refaire une capture plus lisible et réduire le nombre de pages si besoin.",
+                subjectHint = "Système",
+                title = "Prométhée — Clarifier l'invocation",
+                explicitOutcome = "Aider à relancer proprement l'analyse sans bloquer le joueur"
+            )
+        } catch (e: Exception) {
+            Log.w("REVIZEUS_RESULT", "maybeShowConfusedOracleAdaptiveHelp: fallback local conservé", e)
+        }
+    }
+
+    private fun openSubjectChoiceWithOptionalAdaptiveGuidance() {
+        if (generatedSummary.isBlank()) return
+        if (hasShownSummaryValidationAdaptiveDialog) {
+            ouvrirEtapeChoixMatiereRpg()
+            return
+        }
+        if (!canShowAdaptiveDialog()) {
+            ouvrirEtapeChoixMatiereRpg()
+            return
+        }
+
+        hasShownSummaryValidationAdaptiveDialog = true
+
+        try {
+            val subjectHint = matiereAutoDetectee.ifBlank { "Mathématiques" }
+            val adaptiveGodId = resolveAdaptiveGodIdForMatiere(subjectHint)
+            DialogRPGManager.showAdaptivePedagogy(
+                activity = this,
+                godId = adaptiveGodId,
+                prompt = "Le joueur vient de valider un résumé Oracle et va choisir un temple/matière pour sauvegarder. " +
+                    "Fais un message court, motivant, utile, et rappelle de choisir la matière la plus cohérente.",
+                subjectHint = subjectHint,
+                title = "Validation du résumé",
+                currentCourseTitle = titreAutoGenere.ifBlank { null },
+                explicitOutcome = "Préparer le joueur au choix de matière après validation du résumé",
+                onDismiss = {
+                    if (!isFinishing && !isDestroyed) {
+                        ouvrirEtapeChoixMatiereRpg()
+                    }
+                }
+            )
+        } catch (e: Exception) {
+            Log.w("REVIZEUS_RESULT", "openSubjectChoiceWithOptionalAdaptiveGuidance: ouverture directe", e)
+            ouvrirEtapeChoixMatiereRpg()
+        }
     }
 
     private fun updateResultSummaryCard(matiere: String) {
