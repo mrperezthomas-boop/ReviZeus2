@@ -1453,14 +1453,10 @@ class GodMatiereActivity : BaseActivity() {
                 finalBlocks
             }
 
-            val fallbackTitle = cleanedFallbackText
-                .lines()
-                .map { it.trim() }
-                .firstOrNull { it.isNotBlank() && it.length in 5..80 }
-                ?: "Notions principales"
-
             ParsedOracleSummary(
-                title = title.ifBlank { fallbackTitle },
+                title = sanitizeAutoCourseTitle(
+                    if (title.isNotBlank()) title else genererTitreDepuisTexte(cleanedFallbackText)
+                ),
                 level = level
                     .replace(Regex("^[-*]\\s*"), "")
                     .replace(Regex("\\s+"), " ")
@@ -1470,7 +1466,7 @@ class GodMatiereActivity : BaseActivity() {
         } catch (_: Exception) {
             val clean = raw.replace(Regex("\\s+"), " ").trim()
             ParsedOracleSummary(
-                title = "Notions principales",
+                title = sanitizeAutoCourseTitle(clean),
                 level = "",
                 blocks = listOf(
                     SummaryDisplayBlock(
@@ -1480,6 +1476,33 @@ class GodMatiereActivity : BaseActivity() {
                 )
             )
         }
+    }
+
+    private fun genererTitreDepuisTexte(raw: String): String {
+        val lignes = raw.lines().map { it.trim() }.filter { it.isNotBlank() }
+        val premiereCandidate = lignes.firstOrNull { it.length in 5..80 }
+            ?: raw.replace(Regex("\\s+"), " ").trim()
+        return sanitizeAutoCourseTitle(premiereCandidate)
+    }
+
+    private fun sanitizeAutoCourseTitle(raw: String): String {
+        val forbiddenWords = setOf("résumé", "cours", "document", "oracle", "révizeus")
+
+        val sanitized = raw
+            .replace(Regex("(?i)\\b(TITLE|CHAPTER|SUBTITLE|TEXT|LEVEL)\\s*:"), " ")
+            .replace(Regex("[#*_`\\[\\](){}]"), " ")
+            .replace(Regex("[\\p{So}\\p{Cn}]"), " ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
+
+        val words = sanitized
+            .split(" ")
+            .filter { it.isNotBlank() }
+            .filterNot { token -> forbiddenWords.contains(token.lowercase()) }
+            .take(8)
+
+        val candidate = words.joinToString(" ").trim().removeSuffix(".").trim()
+        return if (candidate.isBlank()) "Notions principales" else candidate
     }
 
     private fun renderCourseSummaryContent(container: LinearLayout, raw: String) {
