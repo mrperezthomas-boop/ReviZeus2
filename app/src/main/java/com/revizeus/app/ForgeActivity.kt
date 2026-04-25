@@ -79,6 +79,8 @@ class ForgeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityForgeBinding
     private var currentProfile: UserProfile? = null
+    // D3 — mémoire de session pour éviter de rejouer l'adaptatif sur la même recette.
+    private val shownAdaptiveForgeRewardRecipeIds = mutableSetOf<String>()
 
     private val allRecipes: List<CraftingSystem.Recipe> = CraftingSystem.availableRecipes
     private lateinit var recipeAdapter: RecipeAdapter
@@ -330,9 +332,97 @@ class ForgeActivity : BaseActivity() {
                 .filter { it.categorie == BadgeCategorie.FORGE }
                 .forEach { badge -> afficherToastBadge(badge) }
 
+            // D3 — Reward adaptatif rare/premium uniquement après succès craft confirmé.
+            maybeShowAdaptiveForgeReward(recipe)
+
             // ── ÉTAPE 12 : rafraîchissement HUD ───────────────────────────
             afficherFragmentHud(profile)
             recipeAdapter.updateProfile(profile)
+        }
+    }
+
+    /**
+     * D3 — Un craft est considéré premium s'il s'agit d'une OFFRANDE / ARTEFACT
+     * ou si le coût total atteint un seuil élevé.
+     */
+    private fun isPremiumCraft(recipe: CraftingSystem.Recipe): Boolean {
+        if (recipe.type.equals("OFFRANDE", ignoreCase = true)) return true
+        if (recipe.type.equals("ARTEFACT", ignoreCase = true)) return true
+        return recipe.cost.values.sum() >= 60
+    }
+
+    /**
+     * D3 — Résout la matière dominante d'une recette via son coût principal.
+     */
+    private fun dominantSubjectFromCost(cost: Map<String, Int>): String {
+        return cost.maxByOrNull { it.value }?.key ?: "Physique-Chimie"
+    }
+
+    /**
+     * D3 — Choix du dieu du reward adaptatif :
+     * 1) dieu de la matière dominante si disponible ; 2) fallback héphaïstos.
+     */
+    private fun resolveForgeRewardGodId(subject: String): String {
+        val divinite = PantheonConfig.findByMatiere(subject)?.divinite
+        val normalized = GodPersonalityEngine.normalizeGodId(divinite)
+        return normalized.ifBlank { "hephaestus" }
+    }
+
+    /**
+     * D3 — Prompt court et premium pour la récompense adaptative de forge.
+     */
+    private fun buildAdaptiveForgePrompt(
+        recipe: CraftingSystem.Recipe,
+        totalCost: Int,
+        dominantSubject: String
+    ): String {
+        return buildString {
+            append("Contexte: craft premium réussi à la Forge d'Héphaïstos.\n")
+            append("Objet forgé: ${recipe.name}.\n")
+            append("Type: ${recipe.type}.\n")
+            append("Coût total fragments: $totalCost.\n")
+            append("Matière dominante: $dominantSubject.\n")
+            append("Consignes: félicitation brève, premium, non redondante; ")
+            append("ne liste pas mécaniquement les coûts; souligne l'effort et la maîtrise; ")
+            append("reste cohérent avec la personnalité divine; ne bloque pas le joueur.")
+        }
+    }
+
+    /**
+     * D3 — Déclenche un reward adaptatif rare (one-shot par recette) sans jamais
+     * casser le flow de craft local existant.
+     */
+    private fun maybeShowAdaptiveForgeReward(recipe: CraftingSystem.Recipe) {
+        if (isFinishing || isDestroyed) return
+        if (!isPremiumCraft(recipe)) return
+        if (!shownAdaptiveForgeRewardRecipeIds.add(recipe.id)) return
+
+        try {
+            val totalCost = recipe.cost.values.sum()
+            val dominantSubject = dominantSubjectFromCost(recipe.cost)
+            val godId = resolveForgeRewardGodId(dominantSubject).ifBlank { "hephaestus" }
+            val prompt = buildAdaptiveForgePrompt(recipe, totalCost, dominantSubject)
+
+            DialogRPGManager.showAdaptiveReward(
+                activity = this,
+                godId = godId,
+                prompt = prompt,
+                subjectHint = dominantSubject,
+                title = "⚒ Résonance divine ⚒",
+                latestScorePercent = null,
+                latestStars = null,
+                explicitOutcome = "craft_success_premium",
+                futureParams = mapOf(
+                    "forge_item_id" to recipe.id,
+                    "forge_item_name" to recipe.name,
+                    "forge_item_type" to recipe.type,
+                    "forge_total_cost" to totalCost.toString(),
+                    "forge_dominant_subject" to dominantSubject,
+                    "forge_cost_by_subject" to recipe.cost.entries.joinToString("|") { "${it.key}:${it.value}" }
+                )
+            )
+        } catch (_: Exception) {
+            // Fail-safe strict : ne jamais casser un craft réussi.
         }
     }
 
