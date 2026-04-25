@@ -210,9 +210,9 @@ class SavoirActivity : BaseActivity() {
                 val db = AppDatabase.getDatabase(this@SavoirActivity)
                 allCourses = db.iAristoteDao().getAllCourses()
                 
-                // PACK 2 — Récupération des 7 derniers cours
+                // PACK 2 — Récupération des 3 derniers cours pour la section dédiée.
                 val recentCourses = try {
-                    db.iAristoteDao().getRecentCourses(7)
+                    db.iAristoteDao().getRecentCourses(3)
                 } catch (_: Exception) {
                     emptyList()
                 }
@@ -489,11 +489,33 @@ class SavoirActivity : BaseActivity() {
             
             card.setOnClickListener {
                 try { jouerSfx(R.raw.sfx_dialogue_blip) } catch (_: Exception) {}
-                Toast.makeText(this, "Lecture du cours « ${course.displayTitle()} » (future fonctionnalité)", Toast.LENGTH_SHORT).show()
+                ouvrirSavoirRecent(course)
             }
             
             binding.layoutSavoirsRecents.addView(card)
         }
+    }
+
+    /**
+     * Ouvre le temple de la matière du savoir récent et déclenche l'ouverture
+     * automatique du bon résumé via l'extra OPEN_COURSE_ID.
+     */
+    private fun ouvrirSavoirRecent(course: CourseEntry) {
+        val canonicalSubject = normalizeSubjectKey(course.subject)
+        val aliases = getAliasesForSubject(canonicalSubject)
+        val god = PantheonConfig.findByMatiere(canonicalSubject)
+
+        val intent = Intent(this@SavoirActivity, GodMatiereActivity::class.java).apply {
+            putExtra("MATIERE", canonicalSubject)
+            putExtra("DIVINITE", god?.divinite ?: "")
+            putExtra("COULEUR", god?.couleur ?: Color.parseColor("#FFD700"))
+            putExtra("SUBJECT", canonicalSubject)
+            putExtra("GOD_NAME", god?.divinite ?: "")
+            putExtra("CANONICAL_SUBJECT", canonicalSubject)
+            putExtra("SUBJECT_ALIASES", aliases.toTypedArray())
+            putExtra("OPEN_COURSE_ID", course.id)
+        }
+        startActivity(intent)
     }
 
     private fun formatDateRelative(timestamp: Long): String {

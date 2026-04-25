@@ -16,6 +16,11 @@ import android.os.Bundle
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
@@ -1174,7 +1179,7 @@ class GodMatiereActivity : BaseActivity() {
         }
 
         val tv = TextView(this).apply {
-            text = course.extractedText
+            text = buildFormattedCourseContent(course.extractedText)
             setPadding(dp(18), dp(18), dp(18), dp(18))
             setTextColor(Color.WHITE)
             textSize = 16f
@@ -1329,6 +1334,102 @@ class GodMatiereActivity : BaseActivity() {
 
         dialog.show()
         try { dialog.window?.setBackgroundDrawableResource(R.drawable.bg_rpg_dialog) } catch (_: Exception) {}
+    }
+
+    /**
+     * Conserve le rendu structuré des résumés Oracle sauvegardés (TITLE/CHAPTER/SUBTITLE/TEXT)
+     * pour garder une lecture équivalente entre l'écran Résultat et le Temple.
+     */
+    private fun buildFormattedCourseContent(raw: String): CharSequence {
+        val cleanedRaw = raw
+            .replace("\r", "")
+            .replace(Regex("\\u0000"), "")
+            .replace(Regex("^---START_RESUME---\\s*", RegexOption.IGNORE_CASE), "")
+            .replace(Regex("\\s*---END_RESUME---$", RegexOption.IGNORE_CASE), "")
+            .trim()
+
+        if (cleanedRaw.isBlank()) return "Information non lisible dans le document."
+
+        val lines = cleanedRaw.lines().map { it.trim() }.filter { it.isNotBlank() }
+        if (lines.isEmpty()) return cleanedRaw
+
+        val hasStructuredFormat = lines.any { line ->
+            line.startsWith("TITLE:", ignoreCase = true) ||
+                line.startsWith("LEVEL:", ignoreCase = true) ||
+                line.startsWith("CHAPTER:", ignoreCase = true) ||
+                line.startsWith("SUBTITLE:", ignoreCase = true) ||
+                line.startsWith("TEXT:", ignoreCase = true)
+        }
+        if (!hasStructuredFormat) return cleanedRaw
+
+        val builder = SpannableStringBuilder()
+
+        fun appendStyledLine(
+            text: String,
+            color: Int,
+            sizeMultiplier: Float,
+            isBold: Boolean,
+            topSpacing: Int
+        ) {
+            if (text.isBlank()) return
+            repeat(topSpacing.coerceAtLeast(0)) { builder.append("\n") }
+
+            val start = builder.length
+            builder.append(text)
+            val end = builder.length
+
+            builder.setSpan(ForegroundColorSpan(color), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            builder.setSpan(RelativeSizeSpan(sizeMultiplier), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            if (isBold) {
+                builder.setSpan(StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        }
+
+        lines.forEach { line ->
+            when {
+                line.startsWith("TITLE:", ignoreCase = true) -> appendStyledLine(
+                    text = line.substringAfter(":").trim(),
+                    color = Color.parseColor("#FFD700"),
+                    sizeMultiplier = 1.28f,
+                    isBold = true,
+                    topSpacing = if (builder.isEmpty()) 0 else 2
+                )
+
+                line.startsWith("LEVEL:", ignoreCase = true) -> appendStyledLine(
+                    text = line.substringAfter(":").trim(),
+                    color = Color.parseColor("#FFF3B0"),
+                    sizeMultiplier = 0.95f,
+                    isBold = false,
+                    topSpacing = 1
+                )
+
+                line.startsWith("CHAPTER:", ignoreCase = true) -> appendStyledLine(
+                    text = line.substringAfter(":").trim(),
+                    color = Color.parseColor("#FFD700"),
+                    sizeMultiplier = 1.15f,
+                    isBold = true,
+                    topSpacing = 2
+                )
+
+                line.startsWith("SUBTITLE:", ignoreCase = true) -> appendStyledLine(
+                    text = line.substringAfter(":").trim(),
+                    color = Color.parseColor("#FFF3B0"),
+                    sizeMultiplier = 1.05f,
+                    isBold = true,
+                    topSpacing = 1
+                )
+
+                line.startsWith("TEXT:", ignoreCase = true) -> appendStyledLine(
+                    text = line.substringAfter(":").trim(),
+                    color = Color.WHITE,
+                    sizeMultiplier = 1f,
+                    isBold = false,
+                    topSpacing = 1
+                )
+            }
+        }
+
+        return if (builder.isNotBlank()) builder else cleanedRaw
     }
 
     private fun lancerLyreApollon(course: CourseEntry) {
