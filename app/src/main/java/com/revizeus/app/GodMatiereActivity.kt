@@ -16,11 +16,6 @@ import android.os.Bundle
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
@@ -45,6 +40,7 @@ import androidx.media3.ui.PlayerView
 import com.revizeus.app.models.AppDatabase
 import com.revizeus.app.models.CourseEntry
 import com.revizeus.app.models.UserProfile
+import com.revizeus.app.utils.SummaryRenderFormatter
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -1178,15 +1174,17 @@ class GodMatiereActivity : BaseActivity() {
             isFillViewport = true
         }
 
-        val tv = TextView(this).apply {
-            text = buildFormattedCourseContent(course.extractedText)
+        val summaryContainer = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
             setPadding(dp(18), dp(18), dp(18), dp(18))
-            setTextColor(Color.WHITE)
-            textSize = 16f
-            setLineSpacing(dp(3).toFloat(), 1f)
         }
 
-        scroll.addView(tv)
+        // 2026-04-26 — PATCH RÉSUMÉS TEMPLE :
+        // On applique un rendu premium par blocs (titre/sous-titres/listes/paragraphes)
+        // pour rester fidèle à l'expérience visuelle de ResultActivity.
+        renderCourseContentPremium(summaryContainer, course.extractedText)
+
+        scroll.addView(summaryContainer)
         containerGlobal.addView(scroll)
 
         val speakerRow = LinearLayout(this).apply {
@@ -1336,100 +1334,106 @@ class GodMatiereActivity : BaseActivity() {
         try { dialog.window?.setBackgroundDrawableResource(R.drawable.bg_rpg_dialog) } catch (_: Exception) {}
     }
 
-    /**
-     * Conserve le rendu structuré des résumés Oracle sauvegardés (TITLE/CHAPTER/SUBTITLE/TEXT)
-     * pour garder une lecture équivalente entre l'écran Résultat et le Temple.
-     */
-    private fun buildFormattedCourseContent(raw: String): CharSequence {
-        val cleanedRaw = raw
-            .replace("\r", "")
-            .replace(Regex("\\u0000"), "")
-            .replace(Regex("^---START_RESUME---\\s*", RegexOption.IGNORE_CASE), "")
-            .replace(Regex("\\s*---END_RESUME---$", RegexOption.IGNORE_CASE), "")
-            .trim()
+    private fun renderCourseContentPremium(container: LinearLayout, raw: String) {
+        val model = SummaryRenderFormatter.parse(raw)
 
-        if (cleanedRaw.isBlank()) return "Information non lisible dans le document."
-
-        val lines = cleanedRaw.lines().map { it.trim() }.filter { it.isNotBlank() }
-        if (lines.isEmpty()) return cleanedRaw
-
-        val hasStructuredFormat = lines.any { line ->
-            line.startsWith("TITLE:", ignoreCase = true) ||
-                line.startsWith("LEVEL:", ignoreCase = true) ||
-                line.startsWith("CHAPTER:", ignoreCase = true) ||
-                line.startsWith("SUBTITLE:", ignoreCase = true) ||
-                line.startsWith("TEXT:", ignoreCase = true)
+        if (model.title.isNotBlank()) {
+            container.addView(TextView(this).apply {
+                text = model.title
+                setTextColor(Color.parseColor("#FFD700"))
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 21f)
+                gravity = Gravity.CENTER
+                typeface = try {
+                    resources.getFont(R.font.cinzel_bold)
+                } catch (_: Exception) {
+                    Typeface.DEFAULT_BOLD
+                }
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply { bottomMargin = dp(8) }
+            })
         }
-        if (!hasStructuredFormat) return cleanedRaw
 
-        val builder = SpannableStringBuilder()
+        if (model.level.isNotBlank()) {
+            container.addView(TextView(this).apply {
+                text = model.level
+                setTextColor(Color.parseColor("#FFF3B0"))
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
+                gravity = Gravity.CENTER
+                typeface = try { resources.getFont(R.font.exo2) } catch (_: Exception) { Typeface.DEFAULT }
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply { bottomMargin = dp(10) }
+            })
+        }
 
-        fun appendStyledLine(
-            text: String,
-            color: Int,
-            sizeMultiplier: Float,
-            isBold: Boolean,
-            topSpacing: Int
-        ) {
-            if (text.isBlank()) return
-            repeat(topSpacing.coerceAtLeast(0)) { builder.append("\n") }
-
-            val start = builder.length
-            builder.append(text)
-            val end = builder.length
-
-            builder.setSpan(ForegroundColorSpan(color), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            builder.setSpan(RelativeSizeSpan(sizeMultiplier), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            if (isBold) {
-                builder.setSpan(StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        model.blocks.forEach { block ->
+            val tv = TextView(this).apply {
+                text = if (block.type == SummaryRenderFormatter.BlockType.LIST_ITEM) "• ${block.content}" else block.content
+                setLineSpacing(0f, 1.22f)
             }
-        }
 
-        lines.forEach { line ->
-            when {
-                line.startsWith("TITLE:", ignoreCase = true) -> appendStyledLine(
-                    text = line.substringAfter(":").trim(),
-                    color = Color.parseColor("#FFD700"),
-                    sizeMultiplier = 1.28f,
-                    isBold = true,
-                    topSpacing = if (builder.isEmpty()) 0 else 2
-                )
+            when (block.type) {
+                SummaryRenderFormatter.BlockType.CHAPTER -> {
+                    tv.setTextColor(Color.parseColor("#FFD700"))
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+                    tv.typeface = Typeface.DEFAULT_BOLD
+                    tv.gravity = Gravity.START
+                    tv.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(14) }
+                }
 
-                line.startsWith("LEVEL:", ignoreCase = true) -> appendStyledLine(
-                    text = line.substringAfter(":").trim(),
-                    color = Color.parseColor("#FFF3B0"),
-                    sizeMultiplier = 0.95f,
-                    isBold = false,
-                    topSpacing = 1
-                )
+                SummaryRenderFormatter.BlockType.SUBTITLE -> {
+                    tv.setTextColor(Color.parseColor("#FFF3B0"))
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+                    tv.typeface = Typeface.DEFAULT_BOLD
+                    tv.gravity = Gravity.START
+                    tv.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(10) }
+                }
 
-                line.startsWith("CHAPTER:", ignoreCase = true) -> appendStyledLine(
-                    text = line.substringAfter(":").trim(),
-                    color = Color.parseColor("#FFD700"),
-                    sizeMultiplier = 1.15f,
-                    isBold = true,
-                    topSpacing = 2
-                )
+                SummaryRenderFormatter.BlockType.LIST_ITEM -> {
+                    tv.setTextColor(Color.WHITE)
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.5f)
+                    tv.typeface = try {
+                        resources.getFont(R.font.exo2)
+                    } catch (_: Exception) {
+                        Typeface.DEFAULT
+                    }
+                    tv.gravity = Gravity.START
+                    tv.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        topMargin = dp(6)
+                        marginStart = dp(6)
+                    }
+                }
 
-                line.startsWith("SUBTITLE:", ignoreCase = true) -> appendStyledLine(
-                    text = line.substringAfter(":").trim(),
-                    color = Color.parseColor("#FFF3B0"),
-                    sizeMultiplier = 1.05f,
-                    isBold = true,
-                    topSpacing = 1
-                )
-
-                line.startsWith("TEXT:", ignoreCase = true) -> appendStyledLine(
-                    text = line.substringAfter(":").trim(),
-                    color = Color.WHITE,
-                    sizeMultiplier = 1f,
-                    isBold = false,
-                    topSpacing = 1
-                )
+                SummaryRenderFormatter.BlockType.TEXT -> {
+                    tv.setTextColor(Color.WHITE)
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.5f)
+                    tv.typeface = try {
+                        resources.getFont(R.font.exo2)
+                    } catch (_: Exception) {
+                        Typeface.DEFAULT
+                    }
+                    tv.gravity = Gravity.START
+                    tv.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = dp(6) }
+                }
             }
-        }
 
-        return if (builder.isNotBlank()) builder else cleanedRaw
+            container.addView(tv)
+        }
     }
 
     private fun lancerLyreApollon(course: CourseEntry) {
